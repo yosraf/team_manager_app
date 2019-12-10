@@ -1,0 +1,65 @@
+{
+  "_from": "cordova-plugin-firebase-config",
+  "_id": "cordova-plugin-firebase-config@4.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-pk/cY1w36IFQ0DVH7jrKoJ0tQAijNRaqJ9Hx9Pd/bislo3iLnOp2fNguoelQdDTBsopTPnks/JTIC2mGESUuBw==",
+  "_location": "/cordova-plugin-firebase-config",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-firebase-config",
+    "name": "cordova-plugin-firebase-config",
+    "escapedName": "cordova-plugin-firebase-config",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-firebase-config/-/cordova-plugin-firebase-config-4.0.0.tgz",
+  "_shasum": "6fd0cf61ecbf9297e92d7de2953a065bd408e2ea",
+  "_spec": "cordova-plugin-firebase-config",
+  "_where": "/home/yosrafatnassi/Bureau/3ing/mobile/gestion_collab",
+  "author": {
+    "name": "Maksim Chemerisuk",
+    "email": "chemerisuk@gmail.com",
+    "url": "https://github.com/chemerisuk"
+  },
+  "bugs": {
+    "url": "https://github.com/chemerisuk/cordova-plugin-firebase-config/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-firebase-config",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin for Firebase Remote Config",
+  "homepage": "https://github.com/chemerisuk/cordova-plugin-firebase-config#readme",
+  "keywords": [
+    "cordova",
+    "firebase",
+    "remote config",
+    "analytics",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-firebase-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chemerisuk/cordova-plugin-firebase-config.git"
+  },
+  "scripts": {
+    "postversion": "git push && git push --tags",
+    "version": "replace -s 'version=\"(.+)(?=\">)' 'version=\"'$npm_package_version plugin.xml && git add plugin.xml"
+  },
+  "version": "4.0.0"
+}

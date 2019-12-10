@@ -1,0 +1,54 @@
+<ion-grid>
+	<ion-row justify-content-center>
+		<ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+			<div class="ion-text-center">
+				<h4>Login Form</h4>
+			</div>
+	<div class="validation-errors">
+		<label class="error-message">{{errorMessage}}</label>
+	  
+	</div>		
+	<form [formGroup]="validation"  (ngSubmit)="login(validation.value)">
+		<div class="ion-padding">
+			
+			<ion-item>
+				<ion-label>
+					<ion-icon name="mail"></ion-icon>
+				  </ion-label>
+						<ion-input type="email" placeholder="Email" formControlName="email"required></ion-input>
+			</ion-item>
+			<div class="validation-errors">
+				<ng-container *ngFor="let val of validation_messages.email">
+				  <div class="error-message" *ngIf="validation.get('email').hasError(val.type) && (validation.get('email').dirty || validation.get('email').touched)">
+					{{ val.message }}
+				  </div>
+				</ng-container>
+			  </div>
+	
+					<ion-item>
+				<ion-label>
+					<ion-icon name="lock"></ion-icon>
+				  </ion-label>
+						<ion-input type="password" placeholder="Password" formControlName="password" required></ion-input>
+			</ion-item>
+			<div class="validation-errors">
+				<ng-container *ngFor="let val of validation_messages.password">
+				  <div class="error-message" *ngIf="validation.get('password').hasError(val.type) && (validation.get('password').dirty || validation.get('password').touched)">
+					{{ val.message }}
+				  </div>
+				</ng-container>
+			  </div>
+		   
+		  
+		  </div>
+		 <div  class="ion-text-right">
+			 <a class="ion-margin-end" href="home">Create an account</a> 
+		 </div >
+		<div class="ion-padding">
+			<ion-button size="large" type="submit" expand="block">Sign In</ion-button>
+	
+		</div>
+	</form>
+		</ion-col>
+	</ion-row>
+</ion-grid>

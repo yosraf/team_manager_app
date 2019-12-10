@@ -1,0 +1,28 @@
+ion-icon{
+    color:#ff7300;
+    
+}
+ion-input{
+    --color:#462373;
+    
+}
+ion-input:hover{
+   border-bottom-color: #462373;
+    
+}
+
+ion-button{
+    height: 50px;
+    text-transform: none;
+    --background:#ff7300;
+    --background-hover:#ff7300;
+}
+a
+{
+    color:#462373;
+    text-decoration: none;
+}
+.validation-errors{
+    color:#ff6b6b;
+    size: 10px;
+}

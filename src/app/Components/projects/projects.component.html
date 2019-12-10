@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-menu-button class="title"></ion-menu-button>
+        </ion-buttons>
+      <ion-title class="title">
+        Projects
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list *ngIf="this.data.length>0">
+        <ion-item-group *ngFor="let d of data" >
+          <ion-card >
+            <ion-item>
+              <ion-icon name="code-working" slot="start" class="icon"></ion-icon>
+              <ion-label color="primary">{{d["name"]}}</ion-label>
+              <!--<ion-button fill="outline" slot="end" color="danger" (click)="delete(d['id'])">Delete</ion-button>-->
+            </ion-item>
+          
+            <ion-card-content>
+              {{d["description"]}}
+            </ion-card-content>
+          </ion-card>
+        </ion-item-group>
+      </ion-list>
+    <ion-list-header *ngIf="this.data.length==0" class="no-project">
+        No project Found
+      </ion-list-header>
+    
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+        <ion-fab-button>
+          <ion-icon name="add" routerLink="/project"></ion-icon>
+        </ion-fab-button>
+      
+      </ion-fab>
+</ion-content>

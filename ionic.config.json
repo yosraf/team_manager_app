@@ -1,0 +1,12 @@
+{
+  "name": "gestion_collab",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/localhost",
+      "proxyUrl": "http://localhost:26309"
+    }],
+  "type": "angular"
+}

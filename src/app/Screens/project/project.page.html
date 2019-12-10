@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="end">
+          <ion-button color="dark" routerLink="/homes/projects">
+            <ion-icon slot="icon-only" name="close" class="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form >
+        <div class="ion-padding">
+            <ion-item>
+               <ion-icon slot="start" name="clipboard"></ion-icon>
+                <ion-input type="text" placeholder="Project name" required></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-icon slot="start" name="create"></ion-icon>
+                  <ion-input type="text" placeholder="Project description" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-icon slot="start" name="list-box"></ion-icon>
+                    <ion-select placeholder="Project type">
+                      <ion-select-option value="web">web</ion-select-option>
+                      <ion-select-option value="mobile">mobile</ion-select-option>
+                      <ion-select-option value="data">data</ion-select-option>
+
+                    </ion-select>
+                  </ion-item>
+                <ion-item>
+                    <ion-icon slot="start" name="contacts"></ion-icon>
+                    <ion-select placeholder="Select a team">
+                      <ion-select-option value="f">Female</ion-select-option>
+                      <ion-select-option value="m">Male</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+          </div>
+        
+        <div class="ion-padding">
+          <ion-button size="medium" type="submit" expand="block" class="submit">Create project</ion-button>
+      
+        </div>
+      </form>
+
+</ion-content>
