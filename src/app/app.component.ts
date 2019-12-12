@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Router} from '@angular/router';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public route:Router
   ) {
     this.initializeApp();
     this.sideMenu();
@@ -33,19 +36,24 @@ export class AppComponent {
     [
       {
         title : "Acount",
-        url   : "",
+        url   : "/account",
         icon  : "person"
       },
       {
         title : "Chat",
-        url   : "",
+        url   : "/chat",
         icon  : "chatboxes"
       },
       {
         title : "Settings",
-        url   : "",
+        url   : "/settings",
         icon  : "settings"
       },
+     
     ]
+  }
+  logout(){
+    this.route.navigate(["/login-page"]);
+    
   }
 }

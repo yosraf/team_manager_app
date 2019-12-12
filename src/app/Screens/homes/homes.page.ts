@@ -12,8 +12,8 @@ export class HomesPage implements OnInit {
   constructor( private menu: MenuController) { }
   
   ngOnInit() {
-    this.his=history.state['data'];
-    this.data=this.his['re'];
+   // this.his=history.state['data'];
+    //this.data=this.his['re'];
   }
 
 }

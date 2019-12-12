@@ -40,7 +40,9 @@ export class LoginFormComponent implements OnInit {
     ]
   };
   login(value){
-    this.authService.loginUser(value)
+    this.router.navigate(["/homes"]);
+
+    /*this.authService.loginUser(value)
     .then(res => {
      this.errorMessage = "";
      this.authService.getUser(res.user.uid).then(re=>{
@@ -52,7 +54,7 @@ export class LoginFormComponent implements OnInit {
 
       console.log(err);
      
-    })
+    })*/
   }
 
 }

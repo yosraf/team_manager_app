@@ -61,7 +61,9 @@ export class RegisterFormComponent implements OnInit {
   };
 
   register(value){
-    this.authService.registerUser(value)
+    this.router.navigate(["/homes"]);
+
+    /*this.authService.registerUser(value)
      .then(res => {
       this.errorMessage = "";
       this.authService.createUser(value).then(
@@ -80,6 +82,6 @@ export class RegisterFormComponent implements OnInit {
 
        console.log(err);
       
-     })
+     })*/
   }
 }
