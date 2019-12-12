@@ -294,9 +294,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
-    implementation "com.android.support:support-annotations:27.+"
+    implementation "com.android.support:support-v4:27.+"
     implementation "com.google.firebase:firebase-analytics:17.2.+"
     implementation "com.google.firebase:firebase-config:19.0.+"
+    implementation "com.android.support:support-annotations:27.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

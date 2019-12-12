@@ -14,7 +14,7 @@
             <img src="../../../assets/icon/user.png" alt="" *ngIf="this.data['img']==null">
           </div>
           <div class="update">
-            <ion-icon name="md-create"></ion-icon>
+            <ion-icon name="md-create" (click)="selectImage()"></ion-icon>
           </div>
           <div class="description">
              <h3>{{data["name"]}}</h3>
@@ -26,7 +26,7 @@
               </h4>
           </div>
         </div>
-       <ion-card>
+       <ion-card (click)="update('email')">
           <ion-item>
               <ion-icon name="mail" slot="start"></ion-icon>
 
@@ -35,7 +35,7 @@
               </ion-label>
           </ion-item>
        </ion-card>
-       <ion-card>
+       <ion-card (click)="update('password')">
           <ion-item>
               <ion-icon name="md-lock" slot="start"></ion-icon>
 
@@ -43,8 +43,8 @@
                   {{data['password']}}
               </ion-label>
           </ion-item>
-       </ion-card>
-       <ion-card>
+       </ion-card >
+       <ion-card (click)="update('phone')"> 
           <ion-item>
               <ion-icon name="md-call" slot="start"></ion-icon>
 
