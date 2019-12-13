@@ -9,5 +9,48 @@
 </ion-header>
 
 <ion-content>
+    <ion-searchbar [(ngModel)]="queryText" (ionChange)="search()"></ion-searchbar>
+    <ion-list class="list-header">
+        <ion-list-header class="title">
+            Contacts
+        </ion-list-header>
+        </ion-list>
+    <div class="thumnails">
+        <div class="list-thumbnail">
+          <div class="list" *ngFor="let x of data">
+              <div class="img-thumb" >
+                  <img [src]="x['img']">
+      
+              </div>
+              <ion-label class="name" >{{x["name"]}}</ion-label>
 
+          </div>
+
+        </div>
+
+    </div>
+     
+      <ion-list>
+          <ion-list-header class="title">
+              Last discussions
+          </ion-list-header>
+          <ion-card *ngIf="this.discussions.length==0 ; else notempty;" class="no-chat">
+              <ion-card-content>
+                  No discussion Found
+               </ion-card-content>
+          </ion-card>
+          <ng-template #notempty>
+                  <ion-item *ngFor="let x of discussions">
+                      <ion-avatar slot="start">
+                          <img [src]="x['img']">
+                      </ion-avatar>
+                      <ion-label>
+                        <h2>{{x["name"]}}</h2>
+                        <p>{{x["chat"]}}</p>
+                      </ion-label>
+                  </ion-item>
+          </ng-template>
+      </ion-list>
+      
+  
 </ion-content>

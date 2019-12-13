@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Account</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"avatar\">\n            <img src=\"../../../assets/icon/user.png\" alt=\"\" *ngIf=\"this.data['img']==null\">\n          </div>\n          <div class=\"update\">\n            <ion-icon name=\"md-create\" (click)=\"selectImage()\"></ion-icon>\n          </div>\n          <div class=\"description\">\n             <h3>{{data[\"name\"]}}</h3>\n          </div>\n          <div class=\"position\">\n              <h4>                \n                  <ion-icon name=\"md-ribbon\" slot=\"start\"></ion-icon>\n                  {{data['position']}}\n              </h4>\n          </div>\n        </div>\n       <ion-card>\n          <ion-item>\n              <ion-icon name=\"mail\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['email']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card>\n          <ion-item>\n              <ion-icon name=\"md-lock\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['password']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card>\n          <ion-item>\n              <ion-icon name=\"md-call\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['phone']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       \n      </div>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Account</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"avatar\">\n            <img src=\"../../../assets/icon/user.png\" alt=\"\" *ngIf=\"this.data['img']==null\">\n          </div>\n          <div class=\"update\">\n            <ion-icon name=\"md-create\" (click)=\"selectImage()\"></ion-icon>\n          </div>\n          <div class=\"description\">\n             <h3>{{data[\"name\"]}}</h3>\n          </div>\n          <div class=\"position\">\n              <h4>                \n                  <ion-icon name=\"md-ribbon\" slot=\"start\"></ion-icon>\n                  {{data['position']}}\n              </h4>\n          </div>\n        </div>\n       <ion-card (click)=\"update('email')\">\n          <ion-item>\n              <ion-icon name=\"mail\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['email']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card (click)=\"update('password')\">\n          <ion-item>\n              <ion-icon name=\"md-lock\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['password']}}\n              </ion-label>\n          </ion-item>\n       </ion-card >\n       <ion-card (click)=\"update('phone')\"> \n          <ion-item>\n              <ion-icon name=\"md-call\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['phone']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       \n      </div>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AccountPage = /** @class */ (function () {
-    function AccountPage(camera, file, webview, actionSheetController, toastController, plateform, loadingController, ref, filePath) {
+    function AccountPage(camera, file, webview, actionSheetController, toastController, plateform, loadingController, ref, filePath, alertCtr) {
         this.camera = camera;
         this.file = file;
         this.webview = webview;
@@ -108,6 +108,7 @@ var AccountPage = /** @class */ (function () {
         this.loadingController = loadingController;
         this.ref = ref;
         this.filePath = filePath;
+        this.alertCtr = alertCtr;
     }
     AccountPage.prototype.ngOnInit = function () {
         this.data = {
@@ -179,6 +180,48 @@ var AccountPage = /** @class */ (function () {
             }
         });
     };
+    AccountPage.prototype.update = function (type) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtr.create({
+                            header: 'Change your ' + type,
+                            buttons: [
+                                'Cancel',
+                                {
+                                    text: 'Ok',
+                                    handler: function (d) {
+                                        console.log(type);
+                                        if (type == "email") {
+                                            _this.data["email"] = d["email"];
+                                        }
+                                        else if (type == "password") {
+                                            _this.data["password"] = d["password"];
+                                        }
+                                        else if (type == "phone") {
+                                            _this.data["phone"] = d["phone"];
+                                        }
+                                    }
+                                }
+                            ],
+                            inputs: [
+                                {
+                                    type: 'text',
+                                    name: type,
+                                    placeholder: this.data[type]
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     AccountPage.ctorParameters = function () { return [
         { type: _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_2__["Camera"] },
         { type: _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_4__["File"] },
@@ -188,7 +231,8 @@ var AccountPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] },
-        { type: _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__["FilePath"] }
+        { type: _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__["FilePath"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] }
     ]; };
     AccountPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -199,7 +243,8 @@ var AccountPage = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_2__["Camera"], _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_4__["File"], _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_5__["WebView"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ActionSheetController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__["FilePath"]])
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__["FilePath"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], AccountPage);
     return AccountPage;
 }());
