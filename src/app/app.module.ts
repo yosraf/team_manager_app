@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -19,10 +19,12 @@ import * as firebase from 'firebase';
 import { from } from 'rxjs';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+
 firebase.initializeApp(environment.firbase);
 
 @NgModule({
@@ -33,13 +35,15 @@ firebase.initializeApp(environment.firbase);
      AppRoutingModule,
      AngularFireAuthModule,
      ReactiveFormsModule,
-    
+     
      AngularFireModule.initializeApp(environment.firbase),
      AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+   
 
 
 ],
+
   providers: [
     StatusBar,
     SplashScreen,
@@ -48,6 +52,7 @@ firebase.initializeApp(environment.firbase);
     File,
     WebView,    
     FilePath,
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import { HomeContentComponent } from '../../Components/home-content/home-content
 import{HContentComponent} from '../../Components/h-content/h-content.component'
 import{ProjectsComponent} from '../../Components/projects/projects.component'
 import{TeamComponent} from '../../Components/team/team.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
   import { from } from 'rxjs';
@@ -55,7 +56,12 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 50,
+      
+    }),
   ],
   declarations: [HomesPage,
     HomeContentComponent,
