@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.page.html',
-  styleUrls: ['./project.page.scss'],
+  selector: 'app-task-form',
+  templateUrl: './task-form.page.html',
+  styleUrls: ['./task-form.page.scss'],
 })
-export class ProjectPage implements OnInit {
+export class TaskFormPage implements OnInit {
   team:any[];
   validation: FormGroup;
-
   constructor(public route:Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.team=[
       { 
         "id":"123",
-         "name":"team_1"
+         "name":"yosrf"
       },
       { 
         "id":"124",
-         "name":"team_2"
+         "name":"sirine"
       }
 
     ];
@@ -35,15 +34,16 @@ export class ProjectPage implements OnInit {
         Validators.required,
 
       ])),
-      Type: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
      
+      Person: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
     }); 
   }
   add(value){
     console.log(value);
-    this.route.navigate(["/homes/projects"]);
+    this.route.navigate(["/task"]);
   }
+
 
 }
