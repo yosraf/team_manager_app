@@ -8,20 +8,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="this.data.length>0">
-  
-    <div class="card" *ngFor="let d of data">
-      <div class="task-info" [ngStyle]="{'background-color':color(d['state'])}">
-        <h6 class="text">{{d['state']}}</h6>
-      </div>
-      <div class="container">
-        <h5 ><b>{{d['name']}}</b></h5>
-         <p>{{d['description']}}</p>
+        <ion-list *ngIf="this.data.length>0">
+          
+        <ion-chip (click)="filter(0)">
+          <ion-label color="default">All </ion-label>
+        </ion-chip>
 
-      </div>
-     
-      
-    </div>
+        <ion-chip  color="danger" (click)="filter(1)"> 
+          <ion-label color="danger">To do</ion-label>
+        </ion-chip>
+
+        <ion-chip color="tertiary" (click)="filter(2)">
+          <ion-label color="tertiary">Doing</ion-label>
+        </ion-chip>
+        <ion-chip color="warning" (click)="filter(3)">
+          <ion-label color="warning">Done</ion-label>
+        </ion-chip>
+
+    <ion-item *ngFor="let d of data">
+      <ion-avatar slot="start">
+        <img src="./../../assets/icon/user.png">
+
+      </ion-avatar>
+      <ion-badge  color="{{color(d['state'])}}" slot="end">{{d['state']}}</ion-badge>
+
+      <ion-label>
+        <h5 ><b>{{d['name']}}</b></h5>
+        <p>{{d['description']}}</p>
+       
+      </ion-label>
+    </ion-item>
   </ion-list>
   <ion-list-header *ngIf="this.data.length==0" class="no-project">
     No project Found
