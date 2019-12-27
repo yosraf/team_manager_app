@@ -1,6 +1,9 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { Router} from "@angular/router";
-import { from } from 'rxjs';
+import { Router, NavigationEnd} from "@angular/router";
+import {ProjectsService} from '../../Services/projects.service';
+import{Observable}from 'rxjs'
+import {AngularFirestore,AngularFirestoreDocument ,AngularFirestoreCollection}from '@angular/fire/firestore';
+import{Project} from '../../Models/IProjects'
 
 @Component({
   selector: 'app-projects',
@@ -8,42 +11,43 @@ import { from } from 'rxjs';
   styleUrls: ['./projects.component.scss'],
 })
 
-
 export class ProjectsComponent implements OnInit {
-  data:any=[];
-  constructor(public route:Router) { }
+ 
+  projects:any=[];
+
+  constructor(public route:Router,private service:ProjectsService,private afs: AngularFirestore) {
+   
+   
+  }
 
   ngOnInit() {
-    this.data=[
-      {
-        "id":'1',
-        "name":"app gestion fichier",
-        "description":"create a web app that ...",
-        "type":"web",
-        "progress":"20"
-      },
-      {
-        "id":'1',
-        "name":"app gestion fichier",
-        "description":"create a web app that ...",
-        "type":"data",
-        "progess":"0"
-      },
-      {
-        "id":'1',
-        "name":"app gestion fichier",
-        "description":"create a web app that ...",
-        "type":"mobile",
-        "progess":"55"
-      }
-    ];
+   
+    this.getProjects();
+   
+  }
+   getProjects() {
+    this.projects=[];
+
+     this.service.getProjects().then(res=>{
+      console.log(res);
+       res.forEach(element => {
+         
+       this.projects.push(element);
+
+      });
+      
+    
+    },
+    err => { 
+       console.log(err);}
+    );
   }
   color(type){
    if(type=="web"){
-     return "#feca57";
+     return "#e67e22";
    }
    if(type=="mobile"){
-     return "#ce82ed";
+     return "#a55eea";
    }
    if(type=="data"){
      return "#8e44ad";
@@ -51,7 +55,23 @@ export class ProjectsComponent implements OnInit {
   }
   
   
-  openTask(){
-     this.route.navigate(["/task"])
+  
+  openTask(id){
+    let url="/task/"+id;
+     this.route.navigate([url])
   }
+  ionRefresh(event) {
+    setTimeout(() => {
+     this.getProjects();
+      event.target.complete();
+    }, 2000);
+}
+ionPull(event){
+  //Emitted while the user is pulling down the content and exposing the refresher.
+  console.log('ionPull Event Triggered!');
+}
+ionStart(event){
+  //Emitted when the user begins to start pulling down.
+  console.log('ionStart Event Triggered!');
+}
 }

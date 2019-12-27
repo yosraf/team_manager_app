@@ -9,7 +9,10 @@ import { HomesPage } from './homes.page';
 import { HomeContentComponent } from '../../Components/home-content/home-content.component';
 import{HContentComponent} from '../../Components/h-content/h-content.component'
 import{ProjectsComponent} from '../../Components/projects/projects.component'
-import{TeamComponent} from '../../Components/team/team.component';
+import{ClientHContentComponent} from '../../Components/client-hcontent/client-hcontent.component'
+import {ClientProjectsComponent} from '../../Components/client-projects/client-projects.component'
+import{ClientHomeContentComponent} from '../../Components/client-home-content/client-home-content.component';
+
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
@@ -30,24 +33,29 @@ const routes: Routes = [
         path:'projects',
         component:ProjectsComponent,
       },
-      {
-        path:'teams',
-        component:TeamComponent,
-      },
-      {
+    
+     /* {
         path: '',
         redirectTo: '/homes/home',
         pathMatch: 'full'
+      },*/
+      {
+        path:'clientProjects',
+        component:ClientProjectsComponent
+      },
+      {
+        path:'clientHome',
+        component:ClientHContentComponent
       }
     ],
     
 
   },
-  {
+  /*{
     path: '',
     redirectTo: '/homes/home',
     pathMatch: 'full'
-  }
+  }*/
  
 ];
 
@@ -67,7 +75,9 @@ const routes: Routes = [
     HomeContentComponent,
     HContentComponent,
     ProjectsComponent,
-    TeamComponent,
+    ClientHomeContentComponent,
+    ClientHContentComponent,
+    ClientProjectsComponent
   ],
   entryComponents:[
   ]

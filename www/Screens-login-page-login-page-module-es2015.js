@@ -29,7 +29,7 @@ module.exports = "<app-login-form></app-login-form>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-icon {\n  color: #ff7300;\n}\n\nion-input {\n  --color:#462373;\n}\n\nion-input:hover {\n  border-bottom-color: #462373;\n}\n\nion-button {\n  height: 50px;\n  text-transform: none;\n  --background:#ff7300;\n  --background-hover:#ff7300;\n}\n\na {\n  color: #462373;\n  text-decoration: none;\n}\n\n.validation-errors {\n  color: #ff6b6b;\n  size: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2xvZ2luLWZvcm0vbG9naW4tZm9ybS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvQ29tcG9uZW50cy9sb2dpbi1mb3JtL2xvZ2luLWZvcm0uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0FDQ0o7O0FERUE7RUFDRyw0QkFBQTtBQ0NIOztBREdBO0VBQ0ksWUFBQTtFQUNBLG9CQUFBO0VBQ0Esb0JBQUE7RUFDQSwwQkFBQTtBQ0FKOztBREVBO0VBRUksY0FBQTtFQUNBLHFCQUFBO0FDQUo7O0FERUE7RUFDSSxjQUFBO0VBQ0EsVUFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvQ29tcG9uZW50cy9sb2dpbi1mb3JtL2xvZ2luLWZvcm0uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24taWNvbntcbiAgICBjb2xvcjojZmY3MzAwO1xuICAgIFxufVxuaW9uLWlucHV0e1xuICAgIC0tY29sb3I6IzQ2MjM3MztcbiAgICBcbn1cbmlvbi1pbnB1dDpob3ZlcntcbiAgIGJvcmRlci1ib3R0b20tY29sb3I6ICM0NjIzNzM7XG4gICAgXG59XG5cbmlvbi1idXR0b257XG4gICAgaGVpZ2h0OiA1MHB4O1xuICAgIHRleHQtdHJhbnNmb3JtOiBub25lO1xuICAgIC0tYmFja2dyb3VuZDojZmY3MzAwO1xuICAgIC0tYmFja2dyb3VuZC1ob3ZlcjojZmY3MzAwO1xufVxuYVxue1xuICAgIGNvbG9yOiM0NjIzNzM7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xufVxuLnZhbGlkYXRpb24tZXJyb3Jze1xuICAgIGNvbG9yOiNmZjZiNmI7XG4gICAgc2l6ZTogMTBweDtcbn0iLCJpb24taWNvbiB7XG4gIGNvbG9yOiAjZmY3MzAwO1xufVxuXG5pb24taW5wdXQge1xuICAtLWNvbG9yOiM0NjIzNzM7XG59XG5cbmlvbi1pbnB1dDpob3ZlciB7XG4gIGJvcmRlci1ib3R0b20tY29sb3I6ICM0NjIzNzM7XG59XG5cbmlvbi1idXR0b24ge1xuICBoZWlnaHQ6IDUwcHg7XG4gIHRleHQtdHJhbnNmb3JtOiBub25lO1xuICAtLWJhY2tncm91bmQ6I2ZmNzMwMDtcbiAgLS1iYWNrZ3JvdW5kLWhvdmVyOiNmZjczMDA7XG59XG5cbmEge1xuICBjb2xvcjogIzQ2MjM3MztcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xufVxuXG4udmFsaWRhdGlvbi1lcnJvcnMge1xuICBjb2xvcjogI2ZmNmI2YjtcbiAgc2l6ZTogMTBweDtcbn0iXX0= */"
+module.exports = "ion-icon {\n  color: #ff7300; }\n\nion-input {\n  --color:#462373; }\n\nion-input:hover {\n  border-bottom-color: #462373; }\n\nion-button {\n  height: 50px;\n  text-transform: none;\n  --background:#ff7300;\n  --background-hover:#ff7300; }\n\na {\n  color: #462373;\n  text-decoration: none; }\n\n.validation-errors {\n  color: #ff6b6b;\n  size: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2xvZ2luLWZvcm0vbG9naW4tZm9ybS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQWEsRUFBQTs7QUFHakI7RUFDSSxlQUFRLEVBQUE7O0FBR1o7RUFDRyw0QkFBNEIsRUFBQTs7QUFJL0I7RUFDSSxZQUFZO0VBQ1osb0JBQW9CO0VBQ3BCLG9CQUFhO0VBQ2IsMEJBQW1CLEVBQUE7O0FBRXZCO0VBRUksY0FBYTtFQUNiLHFCQUFxQixFQUFBOztBQUV6QjtFQUNJLGNBQWE7RUFDYixVQUFVLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9Db21wb25lbnRzL2xvZ2luLWZvcm0vbG9naW4tZm9ybS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1pY29ue1xuICAgIGNvbG9yOiNmZjczMDA7XG4gICAgXG59XG5pb24taW5wdXR7XG4gICAgLS1jb2xvcjojNDYyMzczO1xuICAgIFxufVxuaW9uLWlucHV0OmhvdmVye1xuICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzQ2MjM3MztcbiAgICBcbn1cblxuaW9uLWJ1dHRvbntcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgdGV4dC10cmFuc2Zvcm06IG5vbmU7XG4gICAgLS1iYWNrZ3JvdW5kOiNmZjczMDA7XG4gICAgLS1iYWNrZ3JvdW5kLWhvdmVyOiNmZjczMDA7XG59XG5hXG57XG4gICAgY29sb3I6IzQ2MjM3MztcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4udmFsaWRhdGlvbi1lcnJvcnN7XG4gICAgY29sb3I6I2ZmNmI2YjtcbiAgICBzaXplOiAxMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -83,20 +83,17 @@ let LoginFormComponent = class LoginFormComponent {
         });
     }
     login(value) {
-        this.router.navigate(["/homes"]);
-        /*this.authService.loginUser(value)
-        .then(res => {
-         this.errorMessage = "";
-         this.authService.getUser(res.user.uid).then(re=>{
-          this.router.navigate(["/homes"],{state:{data:{re}}});
-    
-         })
+        // this.router.navigate(["/homes"]);
+        this.authService.loginUser(value)
+            .then(res => {
+            this.errorMessage = "";
+            this.authService.getUser().then(re => {
+                this.router.navigate(["/homes"], { state: { data: { re } } });
+            });
         }, err => {
-         this.errorMessage = err.message;
-    
-          console.log(err);
-         
-        })*/
+            this.errorMessage = err.message;
+            console.log(err);
+        });
     }
 };
 LoginFormComponent.ctorParameters = () => [

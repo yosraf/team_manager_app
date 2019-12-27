@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from '../../Services/authentification.service';
 import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-login-form',
@@ -12,6 +15,7 @@ export class LoginFormComponent implements OnInit {
   validation: FormGroup;
   errorMessage: string = '';
   constructor(private authService: AuthentificationService,
+    public loadingController: LoadingController,
     private formBuilder: FormBuilder,private router: Router) { }
 
   ngOnInit() {
@@ -40,13 +44,19 @@ export class LoginFormComponent implements OnInit {
     ]
   };
   login(value){
-    this.router.navigate(["/homes"]);
 
-    /*this.authService.loginUser(value)
+    this.authService.loginUser(value)
     .then(res => {
      this.errorMessage = "";
-     this.authService.getUser(res.user.uid).then(re=>{
+     this.authService.getUser().then(re=>{
       this.router.navigate(["/homes"],{state:{data:{re}}});
+
+      //this.presentLoadingWithOptions().then(res=>{
+       
+
+        
+
+      //})
 
      })    
     }, err => {
@@ -54,7 +64,17 @@ export class LoginFormComponent implements OnInit {
 
       console.log(err);
      
-    })*/
+    })
+  }
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      showBackdrop:true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
   }
 
 }

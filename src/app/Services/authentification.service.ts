@@ -26,7 +26,9 @@ export class AuthentificationService {
       this.afs.collection('users').add({
         uid:currentUser.uid,
         username: value.username,
-        role: value.role
+        role: value.role,
+        image:null,
+        phone:null
       })
       .then(
         res => {
@@ -47,7 +49,9 @@ export class AuthentificationService {
         err => reject(err))
     })
    }
-   getUser(value){
+   getUser(){
+     let value= firebase.auth().currentUser.uid;
+
     return new Promise<any>((resolve, reject) => {
       this.afs.collection('users').get().forEach(doc=>{
        

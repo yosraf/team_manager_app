@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Account</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"avatar\">\n            <img src=\"../../../assets/icon/user.png\" alt=\"\" *ngIf=\"this.data['img']==null\">\n          </div>\n          <div class=\"update\">\n            <ion-icon name=\"md-create\" (click)=\"selectImage()\"></ion-icon>\n          </div>\n          <div class=\"description\">\n             <h3>{{data[\"name\"]}}</h3>\n          </div>\n          <div class=\"position\">\n              <h4>                \n                  <ion-icon name=\"md-ribbon\" slot=\"start\"></ion-icon>\n                  {{data['position']}}\n              </h4>\n          </div>\n        </div>\n       <ion-card (click)=\"update('email')\">\n          <ion-item>\n              <ion-icon name=\"mail\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['email']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card (click)=\"update('password')\">\n          <ion-item>\n              <ion-icon name=\"md-lock\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['password']}}\n              </ion-label>\n          </ion-item>\n       </ion-card >\n       <ion-card (click)=\"update('phone')\"> \n          <ion-item>\n              <ion-icon name=\"md-call\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{data['phone']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       \n      </div>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Account</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"avatar\">\n            <img src=\"../../../assets/icon/user.png\" alt=\"\" *ngIf=\"this.account['img']==null\">\n          </div>\n          <div class=\"update\">\n            <ion-icon name=\"reverse-camera\" (click)=\"selectImage()\"></ion-icon>\n          </div>\n          <div class=\"description\">\n             <h3>{{account[\"username\"]}}</h3>\n          </div>\n          <div class=\"position\">\n              <h4>                \n                  <ion-icon name=\"md-ribbon\" slot=\"start\"></ion-icon>\n                  {{account['role']}}\n              </h4>\n          </div>\n        </div>\n       <ion-card (click)=\"update('email')\">\n          <ion-item>\n              <ion-icon name=\"mail\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{account['email']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card (click)=\"update('password')\">\n          <ion-item>\n              <ion-icon name=\"md-lock\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{account['password']}}\n              </ion-label>\n          </ion-item>\n       </ion-card >\n       <ion-card (click)=\"update('phone')\"> \n          <ion-item>\n              <ion-icon name=\"md-call\" slot=\"start\"></ion-icon>\n\n              <ion-label *ngIf=\"account['phone']==null\">\n                  no phone number\n              </ion-label>\n              <ion-label>\n                {{account['phone']}}\n            </ion-label>\n          </ion-item>\n       </ion-card>\n       \n      </div>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var AccountPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-title {\n  color: #462373;\n}\n\n.card {\n  margin: 0 auto;\n}\n\n.card .header {\n  height: 200px;\n}\n\n.card .header .avatar {\n  width: 130px;\n  height: 130px;\n  position: relative;\n  margin: 0 auto;\n}\n\n.card .header .avatar img {\n  display: block;\n  border-radius: 50%;\n  position: absolute;\n  bottom: calc(-1*(10px));\n  background-color: #fff;\n}\n\n.card .header .update {\n  position: relative;\n  margin: 0 auto;\n  display: block;\n  right: 9%;\n  text-align: center;\n  bottom: 7%;\n}\n\n.card .header .update ion-icon {\n  font-size: 27px;\n  color: #9980FA;\n}\n\n.card .header .description {\n  bottom: 15%;\n  position: relative;\n}\n\n.card .header .description h3 {\n  text-align: center;\n  font-weight: bold;\n  color: #462373;\n}\n\n.card .header .position {\n  bottom: 25%;\n  position: relative;\n}\n\n.card .header .position h4 {\n  text-align: center;\n  color: #ff7300;\n}\n\n.card .header .position ion-icon {\n  font-size: 25px;\n  color: #ff7300;\n}\n\n.card ion-card {\n  box-shadow: none !important;\n}\n\n.card ion-card ion-icon {\n  color: #ff7300;\n}\n\n.card ion-card ion-label {\n  color: #462373;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL2FjY291bnQvYWNjb3VudC5wYWdlLnNjc3MiLCJzcmMvYXBwL1NjcmVlbnMvYWNjb3VudC9hY2NvdW50LnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQUE7QUNDSjs7QURDQTtFQUNJLGNBQUE7QUNFSjs7QURBSTtFQUNJLGFBQUE7QUNFUjs7QURBUTtFQUNJLFlBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0FDRVo7O0FEQVk7RUFDSSxjQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtFQUNBLHVCQUFBO0VBQ0Esc0JBQUE7QUNFaEI7O0FEQ1E7RUFDSSxrQkFBQTtFQUNBLGNBQUE7RUFDQSxjQUFBO0VBQ0EsU0FBQTtFQUNBLGtCQUFBO0VBQ0EsVUFBQTtBQ0NaOztBREFZO0VBQ0ksZUFBQTtFQUNBLGNBQUE7QUNFaEI7O0FEQ1E7RUFFRyxXQUFBO0VBQ0Esa0JBQUE7QUNBWDs7QURDVztFQUNJLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FDQ2Y7O0FER1E7RUFDSSxXQUFBO0VBQ0Esa0JBQUE7QUNEWjs7QURFWTtFQUNJLGtCQUFBO0VBQ0EsY0FBQTtBQ0FoQjs7QURHZTtFQUNDLGVBQUE7RUFDQSxjQUFBO0FDRGhCOztBRE1JO0VBQ0ksMkJBQUE7QUNKUjs7QURLUTtFQUNJLGNBQUE7QUNIWjs7QURNUTtFQUNJLGNBQUE7QUNKWiIsImZpbGUiOiJzcmMvYXBwL1NjcmVlbnMvYWNjb3VudC9hY2NvdW50LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi10aXRsZXtcbiAgICBjb2xvcjojNDYyMzczO1xufVxuLmNhcmQge1xuICAgIG1hcmdpbjogMCBhdXRvO1xuXG4gICAgLmhlYWRlciB7XG4gICAgICAgIGhlaWdodDogMjAwcHg7XG5cbiAgICAgICAgLmF2YXRhciB7XG4gICAgICAgICAgICB3aWR0aDogMTMwcHg7XG4gICAgICAgICAgICBoZWlnaHQ6IDEzMHB4O1xuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgICAgICAgbWFyZ2luOiAwIGF1dG87XG5cbiAgICAgICAgICAgIGltZyB7XG4gICAgICAgICAgICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgICAgICAgICAgICBib3R0b206IGNhbGMoLTEqKDEwcHgpKTtcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICAgIC51cGRhdGV7XG4gICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgICAgICBtYXJnaW46IDAgYXV0bztcbiAgICAgICAgICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgICAgICAgICAgcmlnaHQ6IDklO1xuICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICAgICAgYm90dG9tOiA3JTtcbiAgICAgICAgICAgIGlvbi1pY29ue1xuICAgICAgICAgICAgICAgIGZvbnQtc2l6ZToyN3B4O1xuICAgICAgICAgICAgICAgIGNvbG9yOiAjOTk4MEZBO1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICAgIC5kZXNjcmlwdGlvbntcbiAgICAgICAgICBcbiAgICAgICAgICAgYm90dG9tOiAxNSU7XG4gICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgICAgaDN7XG4gICAgICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICAgICAgICAgICAgIGNvbG9yOiAjNDYyMzczO1xuICAgICAgICAgICB9XG4gICAgICAgICAgXG4gICAgICAgIH1cbiAgICAgICAgLnBvc2l0aW9ue1xuICAgICAgICAgICAgYm90dG9tOiAyNSU7XG4gICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgICAgICBoNHtcbiAgICAgICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgICAgICAgY29sb3I6ICNmZjczMDA7XG5cbiAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgIGlvbi1pY29ue1xuICAgICAgICAgICAgICAgIGZvbnQtc2l6ZToyNXB4O1xuICAgICAgICAgICAgICAgIGNvbG9yOiAjZmY3MzAwO1xuICAgICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICAgXG4gICAgfVxuICAgIGlvbi1jYXJke1xuICAgICAgICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XG4gICAgICAgIGlvbi1pY29ue1xuICAgICAgICAgICAgY29sb3I6ICNmZjczMDA7XG5cbiAgICAgICAgfVxuICAgICAgICBpb24tbGFiZWx7XG4gICAgICAgICAgICBjb2xvcjogIzQ2MjM3MztcblxuXG4gICAgICAgIH1cblxuICAgIH1cbiAgXG59IiwiaW9uLXRpdGxlIHtcbiAgY29sb3I6ICM0NjIzNzM7XG59XG5cbi5jYXJkIHtcbiAgbWFyZ2luOiAwIGF1dG87XG59XG4uY2FyZCAuaGVhZGVyIHtcbiAgaGVpZ2h0OiAyMDBweDtcbn1cbi5jYXJkIC5oZWFkZXIgLmF2YXRhciB7XG4gIHdpZHRoOiAxMzBweDtcbiAgaGVpZ2h0OiAxMzBweDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXJnaW46IDAgYXV0bztcbn1cbi5jYXJkIC5oZWFkZXIgLmF2YXRhciBpbWcge1xuICBkaXNwbGF5OiBibG9jaztcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGJvdHRvbTogY2FsYygtMSooMTBweCkpO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xufVxuLmNhcmQgLmhlYWRlciAudXBkYXRlIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXJnaW46IDAgYXV0bztcbiAgZGlzcGxheTogYmxvY2s7XG4gIHJpZ2h0OiA5JTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBib3R0b206IDclO1xufVxuLmNhcmQgLmhlYWRlciAudXBkYXRlIGlvbi1pY29uIHtcbiAgZm9udC1zaXplOiAyN3B4O1xuICBjb2xvcjogIzk5ODBGQTtcbn1cbi5jYXJkIC5oZWFkZXIgLmRlc2NyaXB0aW9uIHtcbiAgYm90dG9tOiAxNSU7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cbi5jYXJkIC5oZWFkZXIgLmRlc2NyaXB0aW9uIGgzIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBmb250LXdlaWdodDogYm9sZDtcbiAgY29sb3I6ICM0NjIzNzM7XG59XG4uY2FyZCAuaGVhZGVyIC5wb3NpdGlvbiB7XG4gIGJvdHRvbTogMjUlO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4uY2FyZCAuaGVhZGVyIC5wb3NpdGlvbiBoNCB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6ICNmZjczMDA7XG59XG4uY2FyZCAuaGVhZGVyIC5wb3NpdGlvbiBpb24taWNvbiB7XG4gIGZvbnQtc2l6ZTogMjVweDtcbiAgY29sb3I6ICNmZjczMDA7XG59XG4uY2FyZCBpb24tY2FyZCB7XG4gIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcbn1cbi5jYXJkIGlvbi1jYXJkIGlvbi1pY29uIHtcbiAgY29sb3I6ICNmZjczMDA7XG59XG4uY2FyZCBpb24tY2FyZCBpb24tbGFiZWwge1xuICBjb2xvcjogIzQ2MjM3Mztcbn0iXX0= */"
+module.exports = "ion-title {\n  color: #462373; }\n\n.card {\n  margin: 0 auto; }\n\n.card .header {\n    height: 200px; }\n\n.card .header .avatar {\n      width: 130px;\n      height: 130px;\n      position: relative;\n      margin: 0 auto; }\n\n.card .header .avatar img {\n        display: block;\n        border-radius: 50%;\n        position: absolute;\n        bottom: calc(-1*(10px));\n        background-color: #fff; }\n\n.card .header .update {\n      position: relative;\n      margin: 0 auto;\n      display: block;\n      text-align: center;\n      bottom: 3%; }\n\n.card .header .update ion-icon {\n        font-size: 27px;\n        color: #9980FA; }\n\n.card .header .description {\n      bottom: 15%;\n      position: relative; }\n\n.card .header .description h3 {\n        text-align: center;\n        font-weight: bold;\n        color: #462373; }\n\n.card .header .position {\n      bottom: 25%;\n      position: relative; }\n\n.card .header .position h4 {\n        text-align: center;\n        color: #ff7300; }\n\n.card .header .position ion-icon {\n        font-size: 25px;\n        color: #ff7300; }\n\n.card ion-card {\n    box-shadow: none !important; }\n\n.card ion-card ion-icon {\n      color: #ff7300; }\n\n.card ion-card ion-label {\n      color: #462373; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL2FjY291bnQvYWNjb3VudC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUE7O0FBRWpCO0VBQ0ksY0FBYyxFQUFBOztBQURsQjtJQUlRLGFBQWEsRUFBQTs7QUFKckI7TUFPWSxZQUFZO01BQ1osYUFBYTtNQUNiLGtCQUFrQjtNQUNsQixjQUFjLEVBQUE7O0FBVjFCO1FBYWdCLGNBQWM7UUFDZCxrQkFBa0I7UUFDbEIsa0JBQWtCO1FBQ2xCLHVCQUF1QjtRQUN2QixzQkFBc0IsRUFBQTs7QUFqQnRDO01BcUJZLGtCQUFrQjtNQUNsQixjQUFjO01BQ2QsY0FBYztNQUNkLGtCQUFrQjtNQUNsQixVQUFVLEVBQUE7O0FBekJ0QjtRQTJCZ0IsZUFBYztRQUNkLGNBQWMsRUFBQTs7QUE1QjlCO01BaUNXLFdBQVc7TUFDWCxrQkFBa0IsRUFBQTs7QUFsQzdCO1FBb0NlLGtCQUFrQjtRQUNsQixpQkFBaUI7UUFDakIsY0FBYyxFQUFBOztBQXRDN0I7TUEyQ1ksV0FBVztNQUNYLGtCQUFrQixFQUFBOztBQTVDOUI7UUE4Q2dCLGtCQUFrQjtRQUNsQixjQUFjLEVBQUE7O0FBL0M5QjtRQW1EZ0IsZUFBYztRQUNkLGNBQWMsRUFBQTs7QUFwRDlCO0lBMERRLDJCQUEyQixFQUFBOztBQTFEbkM7TUE0RFksY0FBYyxFQUFBOztBQTVEMUI7TUFnRVksY0FBYyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvU2NyZWVucy9hY2NvdW50L2FjY291bnQucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG4uY2FyZCB7XG4gICAgbWFyZ2luOiAwIGF1dG87XG5cbiAgICAuaGVhZGVyIHtcbiAgICAgICAgaGVpZ2h0OiAyMDBweDtcblxuICAgICAgICAuYXZhdGFyIHtcbiAgICAgICAgICAgIHdpZHRoOiAxMzBweDtcbiAgICAgICAgICAgIGhlaWdodDogMTMwcHg7XG4gICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgICAgICBtYXJnaW46IDAgYXV0bztcblxuICAgICAgICAgICAgaW1nIHtcbiAgICAgICAgICAgICAgICBkaXNwbGF5OiBibG9jaztcbiAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgICAgICAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICAgICAgICAgIGJvdHRvbTogY2FsYygtMSooMTBweCkpO1xuICAgICAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgICAgLnVwZGF0ZXtcbiAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgICAgIG1hcmdpbjogMCBhdXRvO1xuICAgICAgICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgICBib3R0b206IDMlO1xuICAgICAgICAgICAgaW9uLWljb257XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOjI3cHg7XG4gICAgICAgICAgICAgICAgY29sb3I6ICM5OTgwRkE7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgICAgLmRlc2NyaXB0aW9ue1xuICAgICAgICAgIFxuICAgICAgICAgICBib3R0b206IDE1JTtcbiAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgICAgICBoM3tcbiAgICAgICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgICAgICAgICAgICAgY29sb3I6ICM0NjIzNzM7XG4gICAgICAgICAgIH1cbiAgICAgICAgICBcbiAgICAgICAgfVxuICAgICAgICAucG9zaXRpb257XG4gICAgICAgICAgICBib3R0b206IDI1JTtcbiAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgICAgIGg0e1xuICAgICAgICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgICAgICAgICBjb2xvcjogI2ZmNzMwMDtcblxuICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgaW9uLWljb257XG4gICAgICAgICAgICAgICAgZm9udC1zaXplOjI1cHg7XG4gICAgICAgICAgICAgICAgY29sb3I6ICNmZjczMDA7XG4gICAgICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgICBcbiAgICB9XG4gICAgaW9uLWNhcmR7XG4gICAgICAgIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcbiAgICAgICAgaW9uLWljb257XG4gICAgICAgICAgICBjb2xvcjogI2ZmNzMwMDtcblxuICAgICAgICB9XG4gICAgICAgIGlvbi1sYWJlbHtcbiAgICAgICAgICAgIGNvbG9yOiAjNDYyMzczO1xuXG5cbiAgICAgICAgfVxuXG4gICAgfVxuICBcbn0iXX0= */"
 
 /***/ }),
 
@@ -90,6 +90,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 /* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
 /* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
+/* harmony import */ var _Services_authentification_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Services/authentification.service */ "./src/app/Services/authentification.service.ts");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _Services_account_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Services/account.service */ "./src/app/Services/account.service.ts");
+
+
+
 
 
 
@@ -98,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AccountPage = /** @class */ (function () {
-    function AccountPage(camera, file, webview, actionSheetController, toastController, plateform, loadingController, ref, filePath, alertCtr) {
+    function AccountPage(camera, file, webview, actionSheetController, toastController, plateform, loadingController, ref, filePath, alertCtr, authService, service) {
         this.camera = camera;
         this.file = file;
         this.webview = webview;
@@ -109,16 +116,12 @@ var AccountPage = /** @class */ (function () {
         this.ref = ref;
         this.filePath = filePath;
         this.alertCtr = alertCtr;
+        this.authService = authService;
+        this.service = service;
+        this.account = {};
     }
     AccountPage.prototype.ngOnInit = function () {
-        this.data = {
-            "img": null,
-            "name": "yosra fatnassi",
-            "position": "manager",
-            "email": "yosrafatnassi@gmail.com",
-            "password": "00000",
-            "phone": "58784044"
-        };
+        this.getUser();
     };
     AccountPage.prototype.selectImage = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -193,15 +196,17 @@ var AccountPage = /** @class */ (function () {
                                 {
                                     text: 'Ok',
                                     handler: function (d) {
-                                        console.log(type);
                                         if (type == "email") {
-                                            _this.data["email"] = d["email"];
+                                            _this.account["email"] = d["email"];
+                                            _this.service.updateEmail(d["email"]);
                                         }
                                         else if (type == "password") {
-                                            _this.data["password"] = d["password"];
+                                            _this.account["password"] = d["password"];
+                                            _this.service.updatePassword(d["password"]);
                                         }
                                         else if (type == "phone") {
-                                            _this.data["phone"] = d["phone"];
+                                            _this.account["phone"] = d["phone"];
+                                            _this.service.updatePhone(d["phone"]);
                                         }
                                     }
                                 }
@@ -210,7 +215,7 @@ var AccountPage = /** @class */ (function () {
                                 {
                                     type: 'text',
                                     name: type,
-                                    placeholder: this.data[type]
+                                    placeholder: this.account[type]
                                 }
                             ]
                         })];
@@ -222,6 +227,20 @@ var AccountPage = /** @class */ (function () {
             });
         });
     };
+    AccountPage.prototype.getUser = function () {
+        var _this = this;
+        this.authService.getUser().then(function (res) {
+            _this.account = {
+                "img": res.image,
+                "username": res.username,
+                "role": res.role,
+                "email": firebase_app__WEBPACK_IMPORTED_MODULE_8__["auth"]().currentUser.email,
+                "password": "*****",
+                "phone": res.phone
+            };
+        });
+        console.log(this.account);
+    };
     AccountPage.ctorParameters = function () { return [
         { type: _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_2__["Camera"] },
         { type: _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_4__["File"] },
@@ -232,7 +251,9 @@ var AccountPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] },
         { type: _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__["FilePath"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
+        { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_7__["AuthentificationService"] },
+        { type: _Services_account_service__WEBPACK_IMPORTED_MODULE_9__["AccountService"] }
     ]; };
     AccountPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -244,9 +265,69 @@ var AccountPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ActionSheetController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_6__["FilePath"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _Services_authentification_service__WEBPACK_IMPORTED_MODULE_7__["AuthentificationService"],
+            _Services_account_service__WEBPACK_IMPORTED_MODULE_9__["AccountService"]])
     ], AccountPage);
     return AccountPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/Services/account.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/Services/account.service.ts ***!
+  \*********************************************/
+/*! exports provided: AccountService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccountService", function() { return AccountService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+
+
+
+
+var AccountService = /** @class */ (function () {
+    function AccountService(afs) {
+        this.afs = afs;
+    }
+    AccountService.prototype.updateEmail = function (email) {
+        firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.updateEmail(email);
+    };
+    AccountService.prototype.updatePassword = function (password) {
+        firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.updateEmail(password);
+    };
+    AccountService.prototype.updatePhone = function (phone) {
+        var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+        this.afs.collection('users').get().forEach(function (doc) {
+            doc.docs.forEach(function (d) {
+                var obj = JSON.parse(JSON.stringify(d.data()));
+                if (obj['uid'] == value) {
+                    d.ref.update({ phone: phone });
+                }
+            });
+        });
+    };
+    AccountService.prototype.updateImage = function (image) {
+    };
+    AccountService.ctorParameters = function () { return [
+        { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
+    ]; };
+    AccountService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"]])
+    ], AccountService);
+    return AccountService;
 }());
 
 

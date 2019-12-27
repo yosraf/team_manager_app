@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="end">
+          <ion-button color="dark" routerLink="/homes/clientProjects" >
+            <ion-icon slot="icon-only" name="close" class="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="validation" (ngSubmit)="add(validation.value)" >
+    <div class="ion-padding">
+        <ion-item>
+           <ion-icon slot="start" name="clipboard"></ion-icon>
+            <ion-input type="text" formControlName="Name" placeholder="Project name" required></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-icon slot="start" name="create"></ion-icon>
+              <ion-input type="text" placeholder="Task description"  formControlName="Description" required></ion-input>
+            </ion-item>
+          
+            <ion-item>
+                <ion-icon slot="start" name="contacts"></ion-icon>
+                <ion-select placeholder="Select a person" formControlName="Person" >
+                  <ion-select-option *ngFor="let t of team" value="{{t['name']}}">{{t["name"]}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+      </div>
+    
+    <div class="ion-padding">
+      <ion-button size="medium" type="submit" expand="block" class="submit">Create proposition</ion-button>
+  
+    </div>
+  </form>
+</ion-content>

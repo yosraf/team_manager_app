@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { Router,ActivatedRoute } from '@angular/router';
+import{ProjectsService } from '../../Services/projects.service';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.page.html',
@@ -10,7 +10,15 @@ import { Router } from '@angular/router';
 export class TaskFormPage implements OnInit {
   team:any[];
   validation: FormGroup;
-  constructor(public route:Router, private formBuilder: FormBuilder) { }
+  id:any;
+  constructor(public route:Router, private formBuilder: FormBuilder,private active: ActivatedRoute,
+    private service:ProjectsService) {
+    this.active.params.subscribe( params => {
+      this.id=params["id"]
+
+      console.log(params["id"])} );
+
+   }
 
   ngOnInit() {
     this.team=[
@@ -41,8 +49,14 @@ export class TaskFormPage implements OnInit {
     }); 
   }
   add(value){
-    console.log(value);
-    this.route.navigate(["/task"]);
+    let url="/task/"+this.id;
+    this.service.createTask(value,this.id);
+    this.route.navigate([url]);
+  }
+  open(){
+    let url="/task/"+this.id;
+    console.log(url)
+    this.route.navigate([url]);
   }
 
 

@@ -401,6 +401,80 @@ var findCheckedOption = function (el, tagName) {
 
 
 
+/***/ }),
+
+/***/ "./src/app/Services/projects.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/Services/projects.service.ts ***!
+  \**********************************************/
+/*! exports provided: ProjectsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjectsService", function() { return ProjectsService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+
+
+
+
+var ProjectsService = /** @class */ (function () {
+    function ProjectsService(afs) {
+        this.afs = afs;
+    }
+    ProjectsService.prototype.createProject = function (value) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            _this.afs.collection('projects').add({
+                manager: currentUser.uid,
+                name: value.Name,
+                description: value.Description,
+                type: value.Type,
+                client: value.Client,
+                progress: 0
+            })
+                .then(function (res) {
+                resolve(currentUser.uid);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.getProjects = function () {
+        var _this = this;
+        var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+        var projects = [];
+        return new Promise(function (resolve, reject) {
+            _this.afs.collection('projects').get().forEach(function (doc) {
+                doc.docs.forEach(function (d) {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['manager'] == value.uid) {
+                        projects.push(obj);
+                    }
+                });
+                resolve(projects);
+            });
+        });
+    };
+    ProjectsService.prototype.createTask = function () {
+    };
+    ProjectsService.ctorParameters = function () { return [
+        { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
+    ]; };
+    ProjectsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"]])
+    ], ProjectsService);
+    return ProjectsService;
+}());
+
+
+
 /***/ })
 
 }]);

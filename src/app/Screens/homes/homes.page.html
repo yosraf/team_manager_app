@@ -1,4 +1,4 @@
 
- <app-home-content ></app-home-content>
-
+<app-home-content *ngIf="data['role']=='manager'"></app-home-content>
+<app-client-home-content *ngIf="data['role']=='client'"></app-client-home-content>
 

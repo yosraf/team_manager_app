@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Discussions</ion-title>\n    </ion-toolbar>\n      \n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Discussions</ion-title>\n    </ion-toolbar>\n      \n</ion-header>\n\n<ion-content>\n    <ion-searchbar [(ngModel)]=\"queryText\" (ionChange)=\"search()\"></ion-searchbar>\n    <ion-list class=\"list-header\">\n        <ion-list-header class=\"title\">\n            Contacts\n        </ion-list-header>\n        </ion-list>\n    <div class=\"thumnails\">\n        <div class=\"list-thumbnail\">\n          <div class=\"list\" *ngFor=\"let x of data\">\n              <div class=\"img-thumb\" >\n                  <img [src]=\"x['img']\">\n      \n              </div>\n              <ion-label class=\"name\" >{{x[\"name\"]}}</ion-label>\n\n          </div>\n\n        </div>\n\n    </div>\n     \n      <ion-list>\n          <ion-list-header class=\"title\">\n              Last discussions\n          </ion-list-header>\n          <ion-card *ngIf=\"this.discussions.length==0 ; else notempty;\" class=\"no-chat\">\n              <ion-card-content>\n                  No discussion Found\n               </ion-card-content>\n          </ion-card>\n          <ng-template #notempty>\n                  <ion-item *ngFor=\"let x of discussions\">\n                      <ion-avatar slot=\"start\">\n                          <img [src]=\"x['img']\">\n                      </ion-avatar>\n                      <ion-label>\n                        <h2>{{x[\"name\"]}}</h2>\n                        <p>{{x[\"chat\"]}}</p>\n                      </ion-label>\n                  </ion-item>\n          </ng-template>\n      </ion-list>\n      \n  \n</ion-content>\n"
 
 /***/ }),
 
@@ -66,7 +66,7 @@ ChatPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-back-button, ion-title {\n  color: #462373;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL2NoYXQvY2hhdC5wYWdlLnNjc3MiLCJzcmMvYXBwL1NjcmVlbnMvY2hhdC9jaGF0LnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL1NjcmVlbnMvY2hhdC9jaGF0LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1iYWNrLWJ1dHRvbiAsIGlvbi10aXRsZXtcbiAgICBjb2xvcjojNDYyMzczO1xufSIsImlvbi1iYWNrLWJ1dHRvbiwgaW9uLXRpdGxlIHtcbiAgY29sb3I6ICM0NjIzNzM7XG59Il19 */"
+module.exports = "ion-back-button, ion-title {\n  color: #462373; }\n\n.thumnails {\n  overflow-x: scroll;\n  overflow-y: hidden; }\n\n.thumnails .list-thumbnail {\n    height: 100%;\n    white-space: nowrap; }\n\n.thumnails .list-thumbnail .img-thumb {\n      box-shadow: 2px 2px 2px #FFFF;\n      display: inline-block;\n      border: 2px solid #462373;\n      border-radius: 50%;\n      width: 65px;\n      height: 65px;\n      margin: 0 5px 0 0;\n      line-height: 60px; }\n\n.thumnails .list-thumbnail .list {\n      display: inline-grid; }\n\n.thumnails .list-thumbnail .list .name {\n        margin: 0 5px 0 0;\n        text-align: center;\n        color: #462373; }\n\n::-webkit-scrollbar {\n  display: none; }\n\n.title {\n  padding: 15px;\n  color: #462373; }\n\n.list-header {\n  padding-top: 0px;\n  padding-bottom: 0px; }\n\n.no-chat {\n  bottom: 3%;\n  font-size: medium;\n  color: #ff7300; }\n\nion-label h2 {\n  font-size: medium;\n  color: #ff7300;\n  font-weight: bold; }\n\nion-label p {\n  font-size: medium;\n  color: #e67e22;\n  font-weight: lighter; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL2NoYXQvY2hhdC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUE7O0FBR2pCO0VBQ0ksa0JBQWtCO0VBQ2xCLGtCQUFrQixFQUFBOztBQUZ0QjtJQUlNLFlBQVk7SUFDWixtQkFBbUIsRUFBQTs7QUFMekI7TUFPUSw2QkFBNkI7TUFDN0IscUJBQXFCO01BQ3JCLHlCQUF5QjtNQUN6QixrQkFBa0I7TUFDbEIsV0FBVztNQUNYLFlBQVk7TUFDWixpQkFBZ0I7TUFDaEIsaUJBQWlCLEVBQUE7O0FBZHpCO01BaUJRLG9CQUFvQixFQUFBOztBQWpCNUI7UUFtQlksaUJBQWdCO1FBQ2hCLGtCQUFrQjtRQUNsQixjQUFjLEVBQUE7O0FBT3hCO0VBQ0UsYUFBYSxFQUFBOztBQUVoQjtFQUNJLGFBQWE7RUFDYixjQUFjLEVBQUE7O0FBRW5CO0VBQ0ksZ0JBQWdCO0VBQ2hCLG1CQUFtQixFQUFBOztBQUd2QjtFQUNJLFVBQVU7RUFDVixpQkFBaUI7RUFDakIsY0FBYyxFQUFBOztBQUVsQjtFQUNJLGlCQUFpQjtFQUNqQixjQUFjO0VBQ2QsaUJBQWlCLEVBQUE7O0FBRXJCO0VBQ0ksaUJBQWlCO0VBQ2pCLGNBQWM7RUFDZCxvQkFBb0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL1NjcmVlbnMvY2hhdC9jaGF0LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1iYWNrLWJ1dHRvbiAsIGlvbi10aXRsZXtcbiAgICBjb2xvcjojNDYyMzczO1xufVxuXG4udGh1bW5haWxze1xuICAgIG92ZXJmbG93LXg6IHNjcm9sbDtcbiAgICBvdmVyZmxvdy15OiBoaWRkZW47XG4gICAgLmxpc3QtdGh1bWJuYWlse1xuICAgICAgaGVpZ2h0OiAxMDAlO1xuICAgICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgICAgIC5pbWctdGh1bWJ7XG4gICAgICAgIGJveC1zaGFkb3c6IDJweCAycHggMnB4ICNGRkZGO1xuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICAgIGJvcmRlcjogMnB4IHNvbGlkICM0NjIzNzM7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICAgICAgd2lkdGg6IDY1cHg7XG4gICAgICAgIGhlaWdodDogNjVweDtcbiAgICAgICAgbWFyZ2luOjAgNXB4IDAgMDsgXG4gICAgICAgIGxpbmUtaGVpZ2h0OiA2MHB4O1xuICAgICAgfVxuICAgICAgLmxpc3R7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ncmlkO1xuICAgICAgICAubmFtZXtcbiAgICAgICAgICAgIG1hcmdpbjowIDVweCAwIDA7IFxuICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICAgICAgY29sb3I6ICM0NjIzNzM7XG4gICAgICAgIFxuICAgICAgICB9XG4gICAgICB9XG4gICAgIFxuICAgIH1cbiAgfVxuICA6Oi13ZWJraXQtc2Nyb2xsYmFyIHsgXG4gICAgZGlzcGxheTogbm9uZTsgXG4gIH1cbiAudGl0bGV7XG4gICAgIHBhZGRpbmc6IDE1cHg7XG4gICAgIGNvbG9yOiAjNDYyMzczO1xufVxuLmxpc3QtaGVhZGVye1xuICAgIHBhZGRpbmctdG9wOiAwcHg7XG4gICAgcGFkZGluZy1ib3R0b206IDBweDtcbn1cblxuLm5vLWNoYXR7XG4gICAgYm90dG9tOiAzJTtcbiAgICBmb250LXNpemU6IG1lZGl1bTtcbiAgICBjb2xvcjogI2ZmNzMwMDtcbn1cbmlvbi1sYWJlbCBoMntcbiAgICBmb250LXNpemU6IG1lZGl1bTtcbiAgICBjb2xvcjogI2ZmNzMwMDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cbmlvbi1sYWJlbCBwe1xuICAgIGZvbnQtc2l6ZTogbWVkaXVtO1xuICAgIGNvbG9yOiAjZTY3ZTIyO1xuICAgIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -85,8 +85,52 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ChatPage = class ChatPage {
-    constructor() { }
+    constructor() {
+        this.data = [];
+        this.queryText = '';
+    }
+    loadData() {
+        this.discussions = [
+            { "img": "./../../assets/icon/user.png",
+                "name": "yosra",
+                "chat": "hello world"
+            },
+            { "img": "./../../assets/icon/user.png",
+                "name": "nasus",
+                "chat": "hello world"
+            }
+        ];
+    }
     ngOnInit() {
+        this.data = [
+            { "img": "./../../assets/icon/user.png",
+                "name": "yosra"
+            },
+            { "img": "./../../assets/icon/user.png",
+                "name": "yosra"
+            }, { "img": "./../../assets/icon/user.png",
+                "name": "yosra"
+            }, { "img": "./../../assets/icon/user.png",
+                "name": "yosra"
+            }, { "img": "./../../assets/icon/user.png",
+                "name": "yosra"
+            },
+        ];
+        this.loadData();
+    }
+    search() {
+        var d = [];
+        if (this.queryText.length != 0) {
+            this.discussions.forEach(el => {
+                if (el["name"].includes(this.queryText)) {
+                    d.push(el);
+                }
+            });
+            this.discussions = d;
+        }
+        else {
+            this.loadData();
+        }
     }
 };
 ChatPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

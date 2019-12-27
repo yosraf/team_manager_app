@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "728240243777",
+    "firebase_url": "https://gestioncollab.firebaseio.com",
+    "project_id": "gestioncollab",
+    "storage_bucket": "gestioncollab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728240243777:android:4d9fcd9f89e32ff68cf2c0",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728240243777-6s3r7ukpuucqnv5bvlc2i7o1gjpt6c7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "4e7b11647bc7c0919f518d6846f99e7f396b5a47"
+          }
+        },
+        {
+          "client_id": "728240243777-cq89p41l6gnf84j1hq9cgaqfsohfs0br.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmOUZ7s4wrD0gMG9jzBj4XuHnSRbeGgP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728240243777-cq89p41l6gnf84j1hq9cgaqfsohfs0br.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

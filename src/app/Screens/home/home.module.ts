@@ -7,6 +7,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { HomePage } from './home.page';
 import{RegisterFormComponent} from '../../Components/register-form/register-form.component';
   import { from } from 'rxjs';
+
 @NgModule({
   imports: [
     CommonModule,

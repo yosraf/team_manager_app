@@ -29,7 +29,7 @@ module.exports = "\n\n<app-register-form></app-register-form>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-icon {\n  color: #ff7300;\n}\n\nion-input {\n  --color:#462373;\n}\n\nion-input:hover {\n  border-bottom-color: #462373;\n}\n\nion-button {\n  height: 50px;\n  text-transform: none;\n  --background:#ff7300;\n  --background-hover:#ff7300;\n}\n\na {\n  color: #462373;\n  text-decoration: none;\n}\n\n.validation-errors {\n  color: #ff6b6b;\n  size: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL3JlZ2lzdGVyLWZvcm0vcmVnaXN0ZXItZm9ybS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvQ29tcG9uZW50cy9yZWdpc3Rlci1mb3JtL3JlZ2lzdGVyLWZvcm0uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxjQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0FDQUo7O0FER0E7RUFDRyw0QkFBQTtBQ0FIOztBRElBO0VBQ0ksWUFBQTtFQUNBLG9CQUFBO0VBQ0Esb0JBQUE7RUFDQSwwQkFBQTtBQ0RKOztBREdBO0VBRUksY0FBQTtFQUNBLHFCQUFBO0FDREo7O0FER0E7RUFDSSxjQUFBO0VBQ0EsVUFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvQ29tcG9uZW50cy9yZWdpc3Rlci1mb3JtL3JlZ2lzdGVyLWZvcm0uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbmlvbi1pY29ue1xuICAgIGNvbG9yOiNmZjczMDA7XG4gICAgXG59XG5pb24taW5wdXR7XG4gICAgLS1jb2xvcjojNDYyMzczO1xuICAgIFxufVxuaW9uLWlucHV0OmhvdmVye1xuICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzQ2MjM3MztcbiAgICBcbn1cblxuaW9uLWJ1dHRvbntcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgdGV4dC10cmFuc2Zvcm06IG5vbmU7XG4gICAgLS1iYWNrZ3JvdW5kOiNmZjczMDA7XG4gICAgLS1iYWNrZ3JvdW5kLWhvdmVyOiNmZjczMDA7XG59XG5hXG57XG4gICAgY29sb3I6IzQ2MjM3MztcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4udmFsaWRhdGlvbi1lcnJvcnN7XG4gICAgY29sb3I6I2ZmNmI2YjtcbiAgICBzaXplOiAxMHB4O1xufSIsImlvbi1pY29uIHtcbiAgY29sb3I6ICNmZjczMDA7XG59XG5cbmlvbi1pbnB1dCB7XG4gIC0tY29sb3I6IzQ2MjM3Mztcbn1cblxuaW9uLWlucHV0OmhvdmVyIHtcbiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzQ2MjM3Mztcbn1cblxuaW9uLWJ1dHRvbiB7XG4gIGhlaWdodDogNTBweDtcbiAgdGV4dC10cmFuc2Zvcm06IG5vbmU7XG4gIC0tYmFja2dyb3VuZDojZmY3MzAwO1xuICAtLWJhY2tncm91bmQtaG92ZXI6I2ZmNzMwMDtcbn1cblxuYSB7XG4gIGNvbG9yOiAjNDYyMzczO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG5cbi52YWxpZGF0aW9uLWVycm9ycyB7XG4gIGNvbG9yOiAjZmY2YjZiO1xuICBzaXplOiAxMHB4O1xufSJdfQ== */"
+module.exports = "ion-icon {\n  color: #ff7300; }\n\nion-input {\n  --color:#462373; }\n\nion-input:hover {\n  border-bottom-color: #462373; }\n\nion-button {\n  height: 50px;\n  text-transform: none;\n  --background:#ff7300;\n  --background-hover:#ff7300; }\n\na {\n  color: #462373;\n  text-decoration: none; }\n\n.validation-errors {\n  color: #ff6b6b;\n  size: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL3JlZ2lzdGVyLWZvcm0vcmVnaXN0ZXItZm9ybS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLGNBQWEsRUFBQTs7QUFHakI7RUFDSSxlQUFRLEVBQUE7O0FBR1o7RUFDRyw0QkFBNEIsRUFBQTs7QUFJL0I7RUFDSSxZQUFZO0VBQ1osb0JBQW9CO0VBQ3BCLG9CQUFhO0VBQ2IsMEJBQW1CLEVBQUE7O0FBRXZCO0VBRUksY0FBYTtFQUNiLHFCQUFxQixFQUFBOztBQUV6QjtFQUNJLGNBQWE7RUFDYixVQUFVLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9Db21wb25lbnRzL3JlZ2lzdGVyLWZvcm0vcmVnaXN0ZXItZm9ybS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW9uLWljb257XG4gICAgY29sb3I6I2ZmNzMwMDtcbiAgICBcbn1cbmlvbi1pbnB1dHtcbiAgICAtLWNvbG9yOiM0NjIzNzM7XG4gICAgXG59XG5pb24taW5wdXQ6aG92ZXJ7XG4gICBib3JkZXItYm90dG9tLWNvbG9yOiAjNDYyMzczO1xuICAgIFxufVxuXG5pb24tYnV0dG9ue1xuICAgIGhlaWdodDogNTBweDtcbiAgICB0ZXh0LXRyYW5zZm9ybTogbm9uZTtcbiAgICAtLWJhY2tncm91bmQ6I2ZmNzMwMDtcbiAgICAtLWJhY2tncm91bmQtaG92ZXI6I2ZmNzMwMDtcbn1cbmFcbntcbiAgICBjb2xvcjojNDYyMzczO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbn1cbi52YWxpZGF0aW9uLWVycm9yc3tcbiAgICBjb2xvcjojZmY2YjZiO1xuICAgIHNpemU6IDEwcHg7XG59Il19 */"
 
 /***/ }),
 
@@ -97,27 +97,22 @@ var RegisterFormComponent = /** @class */ (function () {
         });
     };
     RegisterFormComponent.prototype.register = function (value) {
-        this.router.navigate(["/homes"]);
-        /*this.authService.registerUser(value)
-         .then(res => {
-          this.errorMessage = "";
-          this.authService.createUser(value).then(
-           output=> {
-             this.router.navigate(["/homes"],{state:{data:{output}}});
-    
-            },
-            erro=>{
-              console.log(erro);
-    
-            }
-          );
-         
-         }, err => {
-          this.errorMessage = err.message;
-    
-           console.log(err);
-          
-         })*/
+        //this.router.navigate(["/homes"]);
+        var _this = this;
+        this.authService.registerUser(value)
+            .then(function (res) {
+            _this.errorMessage = "";
+            _this.authService.createUser(value).then(function (re) {
+                _this.authService.getUser().then(function (re) {
+                    _this.router.navigate(["/homes"], { state: { data: { re: re } } });
+                });
+            }, function (erro) {
+                console.log(erro);
+            });
+        }, function (err) {
+            _this.errorMessage = err.message;
+            console.log(err);
+        });
     };
     RegisterFormComponent.ctorParameters = function () { return [
         { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"] },

@@ -18,6 +18,7 @@ var map = {
 	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
+		"common",
 		"Screens-homes-homes-module"
 	],
 	"./Screens/login-page/login-page.module": [
@@ -30,15 +31,24 @@ var map = {
 	],
 	"./Screens/project/project.module": [
 		"./src/app/Screens/project/project.module.ts",
+		"common",
 		"Screens-project-project-module"
 	],
 	"./Screens/settings/settings.module": [
 		"./src/app/Screens/settings/settings.module.ts",
 		"Screens-settings-settings-module"
 	],
+	"./Screens/task-form/task-form.module": [
+		"./src/app/Screens/task-form/task-form.module.ts",
+		"Screens-task-form-task-form-module"
+	],
 	"./Screens/task/task.module": [
 		"./src/app/Screens/task/task.module.ts",
 		"Screens-task-task-module"
+	],
+	"./Screens/team-form/team-form.module": [
+		"./src/app/Screens/team-form/team-form.module.ts",
+		"Screens-team-form-team-form-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -51,7 +61,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__(id);
 	});
 }
@@ -521,7 +531,9 @@ let AuthentificationService = class AuthentificationService {
             this.afs.collection('users').add({
                 uid: currentUser.uid,
                 username: value.username,
-                role: value.role
+                role: value.role,
+                image: null,
+                phone: null
             })
                 .then(res => {
                 resolve(currentUser.uid);
@@ -536,7 +548,8 @@ let AuthentificationService = class AuthentificationService {
             }, err => reject(err));
         });
     }
-    getUser(value) {
+    getUser() {
+        let value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
         return new Promise((resolve, reject) => {
             this.afs.collection('users').get().forEach(doc => {
                 doc.docs.forEach(d => {
@@ -590,6 +603,8 @@ const routes = [
     { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
     { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
     { path: 'task', loadChildren: './Screens/task/task.module#TaskPageModule' },
+    { path: 'task-form', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
+    { path: 'team-form', loadChildren: './Screens/team-form/team-form.module#TeamFormPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -613,7 +628,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  color: #462373;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZXtcbiAgICBjb2xvcjojNDYyMzczO1xufSIsIi50aXRsZSB7XG4gIGNvbG9yOiAjNDYyMzczO1xufSJdfQ== */"
+module.exports = ".title {\n  color: #462373; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGl0bGV7XG4gICAgY29sb3I6IzQ2MjM3Mztcbn0iXX0= */"
 
 /***/ }),
 
@@ -767,7 +782,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_12__["ReactiveFormsModule"],
             _angular_fire__WEBPACK_IMPORTED_MODULE_13__["AngularFireModule"].initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].firbase),
             _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__["AngularFirestoreModule"],
-            _angular_fire_database__WEBPACK_IMPORTED_MODULE_14__["AngularFireDatabaseModule"]
+            _angular_fire_database__WEBPACK_IMPORTED_MODULE_14__["AngularFireDatabaseModule"],
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],

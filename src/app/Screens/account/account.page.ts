@@ -4,32 +4,32 @@ import { ActionSheetController, ToastController, Platform, LoadingController ,Al
 import { File, FileEntry } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import {AuthentificationService} from '../../Services/authentification.service'
+import * as firebase from 'firebase/app';
+import {AccountService} from '../../Services/account.service'
+
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.page.html',
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
-  data:any;
-
+  account={};
 
   constructor(
     private camera:Camera, private file: File,private webview: WebView,
     private actionSheetController: ActionSheetController, private toastController: ToastController,
     public plateform: Platform, private loadingController: LoadingController,
     private ref: ChangeDetectorRef, private filePath: FilePath,
-    public alertCtr:AlertController
+    public alertCtr:AlertController,
+    private authService:AuthentificationService,
+    private service:AccountService
+
     ) { }
 
   ngOnInit() {
-    this.data={
-      "img":null,
-      "name":"yosra fatnassi",
-      "position":"manager",
-      "email":"yosrafatnassi@gmail.com",
-      "password":"00000",
-      "phone":"58784044"
-    }
+    this.getUser();
    
   }
   async selectImage() {
@@ -85,18 +85,21 @@ takePicture(sourceType: PictureSourceType) {
         {
           text: 'Ok',
           handler: (d: any) => {
-            console.log(type);
 
 
               if(type=="email"){
-                this.data["email"]=d["email"];
+                this.account["email"]=d["email"];
+                this.service.updateEmail(d["email"]);
+                
               }
               else if(type=="password"){
-                this.data["password"]=d["password"];
+                this.account["password"]=d["password"];
+                this.service.updatePassword(d["password"]);
               }
               else
               if(type=="phone"){
-                this.data["phone"]=d["phone"];
+                this.account["phone"]=d["phone"];
+                this.service.updatePhone(d["phone"]);
               }
             
             
@@ -107,7 +110,7 @@ takePicture(sourceType: PictureSourceType) {
         {
           type: 'text',
           name: type,
-          placeholder: this.data[type]
+          placeholder: this.account[type]
         }
       ]
     });
@@ -115,5 +118,19 @@ takePicture(sourceType: PictureSourceType) {
 
   }
  
+ getUser(){
+  this.authService.getUser().then(res=>{
+    this.account={
+      "img":res.image,
+      "username":res.username,
+      "role":res.role,
+      "email":firebase.auth().currentUser.email,
+      "password":"*****",
+      "phone":res.phone
+    }
 
+  });
+  console.log(this.account);
+ }
+ 
 }

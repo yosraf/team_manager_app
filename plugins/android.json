@@ -46,13 +46,13 @@
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-support-google-services": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {
     "cordova-support-android-plugin": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-support-google-services": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   }

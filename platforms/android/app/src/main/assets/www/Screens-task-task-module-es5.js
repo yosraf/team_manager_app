@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>task</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>    \n    <ion-title>tasks</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n        <ion-list *ngIf=\"this.data.length>0\">\n          \n        <ion-chip (click)=\"filter(0)\">\n          <ion-label color=\"default\">All </ion-label>\n        </ion-chip>\n\n        <ion-chip  color=\"danger\" (click)=\"filter(1)\"> \n          <ion-label color=\"danger\">To do</ion-label>\n        </ion-chip>\n\n        <ion-chip color=\"tertiary\" (click)=\"filter(2)\">\n          <ion-label color=\"tertiary\">Doing</ion-label>\n        </ion-chip>\n        <ion-chip color=\"warning\" (click)=\"filter(3)\">\n          <ion-label color=\"warning\">Done</ion-label>\n        </ion-chip>\n\n    <ion-item *ngFor=\"let d of data\">\n      <ion-avatar slot=\"start\">\n        <img src=\"./../../assets/icon/user.png\">\n\n      </ion-avatar>\n      <ion-badge  color=\"{{color(d['state'])}}\" slot=\"end\">{{d['state']}}</ion-badge>\n\n      <ion-label>\n        <h5 ><b>{{d['name']}}</b></h5>\n        <p>{{d['description']}}</p>\n       \n      </ion-label>\n    </ion-item>\n  </ion-list>\n  <ion-list-header *ngIf=\"this.data.length==0\" class=\"no-project\">\n    No project Found\n  </ion-list-header>\n\n<ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n    <ion-fab-button>\n      <ion-icon name=\"add\" routerLink=\"/task-form\"></ion-icon>\n    </ion-fab-button>\n  \n  </ion-fab>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var TaskPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL1NjcmVlbnMvdGFzay90YXNrLnBhZ2Uuc2NzcyJ9 */"
+module.exports = "ion-back-button {\n  color: #462373; }\n\nion-title {\n  color: #462373; }\n\nion-fab-button {\n  --background: #ff7300; }\n\n.no-project {\n  font-size: medium;\n  color: #ff7300; }\n\nh5 {\n  color: #462373; }\n\np {\n  color: #8395a7; }\n\nion-chip {\n  width: 20%;\n  text-align: center; }\n\nion-chip ion-label {\n    text-align: center;\n    margin: 0 auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL3Rhc2svdGFzay5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDQSxjQUFhLEVBQUE7O0FBRWI7RUFDSSxjQUFhLEVBQUE7O0FBR2pCO0VBQ0kscUJBQWEsRUFBQTs7QUFHakI7RUFDSSxpQkFBaUI7RUFDakIsY0FBYyxFQUFBOztBQUVsQjtFQUNJLGNBQWEsRUFBQTs7QUFFakI7RUFDSSxjQUFjLEVBQUE7O0FBRWxCO0VBQ0ksVUFBUztFQUNULGtCQUFrQixFQUFBOztBQUZ0QjtJQUlRLGtCQUFrQjtJQUNsQixjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9TY3JlZW5zL3Rhc2svdGFzay5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tYmFjay1idXR0b257XG5jb2xvcjojNDYyMzczO1xufVxuaW9uLXRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG5cbn1cbmlvbi1mYWItYnV0dG9ue1xuICAgIC0tYmFja2dyb3VuZDogI2ZmNzMwMDtcblxufVxuLm5vLXByb2plY3R7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG4gICAgY29sb3I6ICNmZjczMDA7XG59XG5oNXtcbiAgICBjb2xvcjojNDYyMzczO1xufVxucHtcbiAgICBjb2xvcjogIzgzOTVhNztcbn1cbmlvbi1jaGlwe1xuICAgIHdpZHRoOjIwJTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgaW9uLWxhYmVse1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgIG1hcmdpbjogMCBhdXRvO1xuXG4gICAgfVxufSJdfQ== */"
 
 /***/ }),
 
@@ -89,8 +89,76 @@ __webpack_require__.r(__webpack_exports__);
 
 var TaskPage = /** @class */ (function () {
     function TaskPage() {
+        this.data = [];
     }
     TaskPage.prototype.ngOnInit = function () {
+        this.laod();
+    };
+    TaskPage.prototype.laod = function () {
+        this.data = [
+            {
+                "id": '1',
+                "name": "crud project",
+                "description": "create a web app that ...",
+                "state": "to do"
+            },
+            {
+                "id": '1',
+                "name": "crud project",
+                "description": "create a web app that ...",
+                "state": "doing"
+            },
+            {
+                "id": '1',
+                "name": "crud project",
+                "description": "create a web app that ...",
+                "state": "done"
+            }
+        ];
+    };
+    TaskPage.prototype.color = function (progress) {
+        if (progress == "to do") {
+            return "danger";
+        }
+        if (progress == "doing") {
+            return "tertiary";
+        }
+        if (progress == "done") {
+            return "warning";
+        }
+    };
+    TaskPage.prototype.filter = function (n) {
+        var fil = [];
+        if (n == 0) {
+            this.laod();
+        }
+        if (n == 1) {
+            this.laod();
+            this.data.forEach(function (element) {
+                if (element['state'] == "to do") {
+                    fil.push(element);
+                }
+            });
+            this.data = fil;
+        }
+        if (n == 2) {
+            this.laod();
+            this.data.forEach(function (element) {
+                if (element['state'] == "doing") {
+                    fil.push(element);
+                }
+            });
+            this.data = fil;
+        }
+        if (n == 3) {
+            this.laod();
+            this.data.forEach(function (element) {
+                if (element['state'] == "done") {
+                    fil.push(element);
+                }
+            });
+            this.data = fil;
+        }
     };
     TaskPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

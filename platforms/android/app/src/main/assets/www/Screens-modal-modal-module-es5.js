@@ -70,7 +70,7 @@ var ModalPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  color: #462373;\n}\n\nion-button {\n  color: #0984e3;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL21vZGFsL21vZGFsLnBhZ2Uuc2NzcyIsInNyYy9hcHAvU2NyZWVucy9tb2RhbC9tb2RhbC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0FDQ0o7O0FEQ0E7RUFDSSxjQUFBO0FDRUoiLCJmaWxlIjoic3JjL2FwcC9TY3JlZW5zL21vZGFsL21vZGFsLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZXtcbiAgICBjb2xvcjogIzQ2MjM3Mztcbn1cbmlvbi1idXR0b257XG4gICAgY29sb3I6ICMwOTg0ZTM7XG59IiwiLnRpdGxlIHtcbiAgY29sb3I6ICM0NjIzNzM7XG59XG5cbmlvbi1idXR0b24ge1xuICBjb2xvcjogIzA5ODRlMztcbn0iXX0= */"
+module.exports = ".title {\n  color: #462373; }\n\nion-button {\n  color: #0984e3; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL21vZGFsL21vZGFsLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQWMsRUFBQTs7QUFFbEI7RUFDSSxjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9TY3JlZW5zL21vZGFsL21vZGFsLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZXtcbiAgICBjb2xvcjogIzQ2MjM3Mztcbn1cbmlvbi1idXR0b257XG4gICAgY29sb3I6ICMwOTg0ZTM7XG59Il19 */"
 
 /***/ }),
 

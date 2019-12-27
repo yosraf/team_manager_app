@@ -12,7 +12,10 @@ const routes: Routes = [
   { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
   { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
   { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
-  { path: 'task', loadChildren: './Screens/task/task.module#TaskPageModule' },
+  { path: 'task/:id', loadChildren: './Screens/task/task.module#TaskPageModule' },
+  { path: 'task-form/:id', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
+  { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
+  { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
 ];
 
 @NgModule({

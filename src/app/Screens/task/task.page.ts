@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute,Router} from "@angular/router";
+import{ProjectsService} from '../../Services/projects.service';
 
 @Component({
   selector: 'app-task',
@@ -7,32 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskPage implements OnInit {
   data:any=[]
-  constructor() { }
+  id:any;
+  constructor(private route: ActivatedRoute,private router:Router,private service:ProjectsService) {
+    this.route.params.subscribe( params => {
+      console.log(params["id"])
+      this.id=params["id"]
+  } );
+}
 
   ngOnInit() {
     this.laod();
+   
   }
   laod(){
-    this.data=[
-      {
-        "id":'1',
-        "name":"crud project",
-        "description":"create a web app that ...",
-        "state":"to do"
-      },
-      {
-        "id":'1',
-        "name":"crud project",
-        "description":"create a web app that ...",
-        "state":"doing"
-      },
-      {
-        "id":'1',
-        "name":"crud project",
-        "description":"create a web app that ...",
-        "state":"done"
-      }
-    ]
+    this.data=[];
+    this.service.getTasks(this.id).then(res=>{
+       res.forEach(element => {
+         
+       this.data.push(element);
+
+      });
+      
+    
+    },
+    err => { 
+       console.log(err);}
+    );
+  
   }
   color(progress){
     if(progress=="to do"){
@@ -84,4 +87,23 @@ export class TaskPage implements OnInit {
     }
 
    }
+   open(){
+    let url="/task-form/"+this.id;
+    console.log(url);
+    this.router.navigate([url]);
+   }
+   ionRefresh(event) {
+    setTimeout(() => {
+     this.laod();
+      event.target.complete();
+    }, 2000);
+}
+ionPull(event){
+  //Emitted while the user is pulling down the content and exposing the refresher.
+  console.log('ionPull Event Triggered!');
+}
+ionStart(event){
+  //Emitted when the user begins to start pulling down.
+  console.log('ionStart Event Triggered!');
+}
 }

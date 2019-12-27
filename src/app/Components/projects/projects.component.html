@@ -9,9 +9,20 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-   <ion-list *ngIf="this.data.length>0">
+  <ion-refresher slot="fixed" 
+  (ionRefresh)="ionRefresh($event)" 
+  (ionPull)="ionPull($event)" 
+  (ionStart)="ionStart($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+   <ion-list *ngIf="this.projects.length>0">
   
-        <div class="card" *ngFor="let d of data" (click)="openTask()">
+        <div class="card" *ngFor="let d of projects" (click)="openTask(d['id'])">
           <div class="project-info">
             <circle-progress
                 [percent]="d['progress']"
@@ -35,13 +46,13 @@
         </div>
       </ion-list>
       
-    <ion-list-header *ngIf="this.data.length==0" class="no-project">
+    <ion-list-header *ngIf="this.projects.length==0" class="no-project">
         No project Found
       </ion-list-header>
     
     <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
-        <ion-fab-button>
-          <ion-icon name="add" routerLink="/project"></ion-icon>
+        <ion-fab-button routerLink="/project">
+          <ion-icon name="add" ></ion-icon>
         </ion-fab-button>
       
       </ion-fab>
