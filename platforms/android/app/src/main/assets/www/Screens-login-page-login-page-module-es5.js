@@ -48,14 +48,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Services/authentification.service */ "./src/app/Services/authentification.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 
 var LoginFormComponent = /** @class */ (function () {
-    function LoginFormComponent(authService, formBuilder, router) {
+    function LoginFormComponent(authService, loadingController, formBuilder, router) {
         this.authService = authService;
+        this.loadingController = loadingController;
         this.formBuilder = formBuilder;
         this.router = router;
         this.errorMessage = '';
@@ -83,21 +86,43 @@ var LoginFormComponent = /** @class */ (function () {
         });
     };
     LoginFormComponent.prototype.login = function (value) {
-        // this.router.navigate(["/homes"]);
         var _this = this;
         this.authService.loginUser(value)
             .then(function (res) {
             _this.errorMessage = "";
             _this.authService.getUser().then(function (re) {
                 _this.router.navigate(["/homes"], { state: { data: { re: re } } });
+                //this.presentLoadingWithOptions().then(res=>{
+                //})
             });
         }, function (err) {
             _this.errorMessage = err.message;
             console.log(err);
         });
     };
+    LoginFormComponent.prototype.presentLoadingWithOptions = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            duration: 5000,
+                            message: 'Please wait...',
+                            translucent: true,
+                            showBackdrop: true,
+                            cssClass: 'custom-class custom-loading'
+                        })];
+                    case 1:
+                        loading = _a.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     LoginFormComponent.ctorParameters = function () { return [
         { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"] },
         { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
     ]; };
@@ -108,6 +133,7 @@ var LoginFormComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./login-form.component.scss */ "./src/app/Components/login-form/login-form.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], LoginFormComponent);
     return LoginFormComponent;

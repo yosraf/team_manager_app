@@ -23,7 +23,6 @@ export class ClientProjectsComponent implements OnInit {
     this.projects=[{
       "name":"project",
       "description":"blabla",
-      "state":"to do",
       "type":"web",
     
 

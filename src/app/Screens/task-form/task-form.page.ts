@@ -21,17 +21,9 @@ export class TaskFormPage implements OnInit {
    }
 
   ngOnInit() {
-    this.team=[
-      { 
-        "id":"123",
-         "name":"yosrf"
-      },
-      { 
-        "id":"124",
-         "name":"sirine"
-      }
-
-    ];
+    this.service.getDevs().then(res=>{
+      this.team=res;
+    });
     this.validation =this.formBuilder.group({
      
       Name: new FormControl('', Validators.compose([
@@ -55,7 +47,6 @@ export class TaskFormPage implements OnInit {
   }
   open(){
     let url="/task/"+this.id;
-    console.log(url)
     this.route.navigate([url]);
   }
 

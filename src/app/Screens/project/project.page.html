@@ -30,7 +30,9 @@
                 </ion-item>
                 <ion-item>
                   <ion-icon slot="start" name="contact"></ion-icon>
-                  <ion-input type="text" placeholder="client username"  formControlName="Client" required></ion-input>
+                  <ion-select placeholder="Select a client" formControlName="Client" >
+                    <ion-select-option *ngFor="let c of clients" value="{{c['uid']}}">{{c["username"]}}</ion-select-option>
+                  </ion-select>
                 </ion-item>
           </div>
         

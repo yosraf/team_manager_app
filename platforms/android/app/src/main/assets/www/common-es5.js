@@ -439,27 +439,93 @@ var ProjectsService = /** @class */ (function () {
                 progress: 0
             })
                 .then(function (res) {
-                resolve(currentUser.uid);
+                resolve(res);
             }, function (err) { return reject(err); });
         });
     };
+    ProjectsService.prototype.AsyncProjects = function () {
+        return this.afs.collection('projects').snapshotChanges();
+        ;
+    };
     ProjectsService.prototype.getProjects = function () {
         var _this = this;
-        var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
-        var projects = [];
         return new Promise(function (resolve, reject) {
+            var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            var projects = [];
+            var project = {};
             _this.afs.collection('projects').get().forEach(function (doc) {
                 doc.docs.forEach(function (d) {
                     var obj = JSON.parse(JSON.stringify(d.data()));
                     if (obj['manager'] == value.uid) {
-                        projects.push(obj);
+                        project = {
+                            "name": obj.name,
+                            "description": obj.description,
+                            "manager": obj.manager,
+                            "client": obj.client,
+                            "progress": obj.progress,
+                            "type": obj.type,
+                            "id": d.id
+                        };
+                        projects.push(project);
                     }
                 });
+            })
+                .then(function (res) {
                 resolve(projects);
-            });
+            }, function (err) { return reject(err); });
         });
     };
-    ProjectsService.prototype.createTask = function () {
+    ProjectsService.prototype.createTask = function (value, id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.afs.collection('projects').doc(id).collection("tasks").add({
+                state: "to do",
+                name: value.Name,
+                description: value.Description,
+                person: value.Person
+            })
+                .then(function (res) {
+                resolve(res);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.getTasks = function (id) {
+        return this.afs.collection('projects').doc(id).collection('tasks').snapshotChanges();
+    };
+    ProjectsService.prototype.getClients = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var clients = [];
+            _this.afs.collection('users').get().forEach(function (doc) {
+                doc.docs.forEach(function (d) {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['role'] == "client") {
+                        console.log(obj);
+                        clients.push(obj);
+                    }
+                });
+            })
+                .then(function (res) {
+                resolve(clients);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.getDevs = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var devs = [];
+            _this.afs.collection('users').get().forEach(function (doc) {
+                doc.docs.forEach(function (d) {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['role'] == "developer") {
+                        devs.push(obj);
+                    }
+                });
+            })
+                .then(function (res) {
+                resolve(devs);
+            }, function (err) { return reject(err); });
+        });
     };
     ProjectsService.ctorParameters = function () { return [
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }

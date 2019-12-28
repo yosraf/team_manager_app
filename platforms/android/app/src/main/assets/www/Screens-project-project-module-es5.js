@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"end\">\n          <ion-button color=\"dark\" routerLink=\"/homes/projects\">\n            <ion-icon slot=\"icon-only\" name=\"close\" class=\"close\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <form [formGroup]=\"validation\" (ngSubmit)=\"add(validation.value)\" >\n        <div class=\"ion-padding\">\n            <ion-item>\n               <ion-icon slot=\"start\" name=\"clipboard\"></ion-icon>\n                <ion-input type=\"text\" formControlName=\"Name\" placeholder=\"Project name\" required></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-icon slot=\"start\" name=\"create\"></ion-icon>\n                  <ion-input type=\"text\" placeholder=\"Project description\"  formControlName=\"Description\" required></ion-input>\n                </ion-item>\n                <ion-item>\n                    <ion-icon slot=\"start\" name=\"list-box\"></ion-icon>\n                    <ion-select placeholder=\"Project type\" formControlName=\"Type\">\n                      <ion-select-option value=\"web\">web</ion-select-option>\n                      <ion-select-option value=\"mobile\">mobile</ion-select-option>\n                      <ion-select-option value=\"data\">data</ion-select-option>\n\n                    </ion-select>\n                </ion-item>\n                <ion-item>\n                  <ion-icon slot=\"start\" name=\"contact\"></ion-icon>\n                  <ion-input type=\"text\" placeholder=\"client username\"  formControlName=\"Client\" required></ion-input>\n                </ion-item>\n          </div>\n        \n        <div class=\"ion-padding\">\n          <ion-button size=\"medium\" type=\"submit\" expand=\"block\" class=\"submit\">Create project</ion-button>\n      \n        </div>\n      </form>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"end\">\n          <ion-button color=\"dark\" routerLink=\"/homes/projects\">\n            <ion-icon slot=\"icon-only\" name=\"close\" class=\"close\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <form [formGroup]=\"validation\" (ngSubmit)=\"add(validation.value)\" >\n        <div class=\"ion-padding\">\n            <ion-item>\n               <ion-icon slot=\"start\" name=\"clipboard\"></ion-icon>\n                <ion-input type=\"text\" formControlName=\"Name\" placeholder=\"Project name\" required></ion-input>\n              </ion-item>\n              <ion-item>\n                  <ion-icon slot=\"start\" name=\"create\"></ion-icon>\n                  <ion-input type=\"text\" placeholder=\"Project description\"  formControlName=\"Description\" required></ion-input>\n                </ion-item>\n                <ion-item>\n                    <ion-icon slot=\"start\" name=\"list-box\"></ion-icon>\n                    <ion-select placeholder=\"Project type\" formControlName=\"Type\">\n                      <ion-select-option value=\"web\">web</ion-select-option>\n                      <ion-select-option value=\"mobile\">mobile</ion-select-option>\n                      <ion-select-option value=\"data\">data</ion-select-option>\n\n                    </ion-select>\n                </ion-item>\n                <ion-item>\n                  <ion-icon slot=\"start\" name=\"contact\"></ion-icon>\n                  <ion-select placeholder=\"Select a client\" formControlName=\"Client\" >\n                    <ion-select-option *ngFor=\"let c of clients\" value=\"{{c['uid']}}\">{{c[\"username\"]}}</ion-select-option>\n                  </ion-select>\n                </ion-item>\n          </div>\n        \n        <div class=\"ion-padding\">\n          <ion-button size=\"medium\" type=\"submit\" expand=\"block\" class=\"submit\">Create project</ion-button>\n      \n        </div>\n      </form>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -100,8 +100,14 @@ var ProjectPage = /** @class */ (function () {
         this.route = route;
         this.formBuilder = formBuilder;
         this.service = service;
+        this.clients = [];
     }
     ProjectPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.service.getClients().then(function (res) {
+            _this.clients = res;
+        });
+        console.log(this.clients);
         this.validation = this.formBuilder.group({
             Name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
@@ -120,7 +126,10 @@ var ProjectPage = /** @class */ (function () {
     ProjectPage.prototype.add = function (value) {
         var _this = this;
         this.service.createProject(value).then(function (res) {
-            _this.route.navigateByUrl("/homes/projects");
+            if (res) {
+                console.log(res);
+                _this.route.navigate(["/homes/projects"]);
+            }
         }, function (err) {
             console.log(err);
         });

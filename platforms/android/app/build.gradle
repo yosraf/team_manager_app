@@ -18,7 +18,7 @@
 */
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 
 buildscript {
     repositories {
@@ -100,6 +100,9 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-support-google-services/starter-build.gradle"
+apply from: "../cordova-plugin-fcm-with-dependecy-updated/starter-FCMPlugin.gradle"
+apply from: "../cordova-plugin-badge/starter-badge.gradle"
+apply from: "../cordova-plugin-local-notification/starter-localnotification.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -296,9 +299,11 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "com.google.firebase:firebase-analytics:17.2.+"
+    implementation "com.google.firebase:firebase-analytics:17.2.1"
     implementation "com.google.firebase:firebase-config:19.0.+"
-    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation "com.google.firebase:firebase-core:17.2.1"
+    implementation "com.google.firebase:firebase-messaging:20.1.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"end\">\n          <ion-button color=\"dark\" routerLink=\"/task\">\n            <ion-icon slot=\"icon-only\" name=\"close\" class=\"close\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]=\"validation\" (ngSubmit)=\"add(validation.value)\" >\n    <div class=\"ion-padding\">\n        <ion-item>\n           <ion-icon slot=\"start\" name=\"clipboard\"></ion-icon>\n            <ion-input type=\"text\" formControlName=\"Name\" placeholder=\"Task name\" required></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-icon slot=\"start\" name=\"create\"></ion-icon>\n              <ion-input type=\"text\" placeholder=\"Task description\"  formControlName=\"Description\" required></ion-input>\n            </ion-item>\n          \n            <ion-item>\n                <ion-icon slot=\"start\" name=\"contacts\"></ion-icon>\n                <ion-select placeholder=\"Select a person\" formControlName=\"Person\" >\n                  <ion-select-option *ngFor=\"let t of team\" value=\"{{t['name']}}\">{{t[\"name\"]}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n      </div>\n    \n    <div class=\"ion-padding\">\n      <ion-button size=\"medium\" type=\"submit\" expand=\"block\" class=\"submit\">Create task</ion-button>\n  \n    </div>\n  </form>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"end\">\n          <ion-button color=\"dark\" (click)=\"open()\">\n            <ion-icon slot=\"icon-only\" name=\"close\" class=\"close\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]=\"validation\" (ngSubmit)=\"add(validation.value)\" >\n    <div class=\"ion-padding\">\n        <ion-item>\n           <ion-icon slot=\"start\" name=\"clipboard\"></ion-icon>\n            <ion-input type=\"text\" formControlName=\"Name\" placeholder=\"Task name\" required></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-icon slot=\"start\" name=\"create\"></ion-icon>\n              <ion-input type=\"text\" placeholder=\"Task description\"  formControlName=\"Description\" required></ion-input>\n            </ion-item>\n          \n            <ion-item>\n                <ion-icon slot=\"start\" name=\"contacts\"></ion-icon>\n                <ion-select placeholder=\"Select a person\" formControlName=\"Person\" >\n                  <ion-select-option *ngFor=\"let t of team\" value=\"{{t['name']}}\">{{t[\"name\"]}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n      </div>\n    \n    <div class=\"ion-padding\">\n      <ion-button size=\"medium\" type=\"submit\" expand=\"block\" class=\"submit\">Create task</ion-button>\n  \n    </div>\n  </form>\n</ion-content>"
 
 /***/ }),
 
@@ -86,26 +86,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
+
 
 
 
 
 let TaskFormPage = class TaskFormPage {
-    constructor(route, formBuilder) {
+    constructor(route, formBuilder, active, service) {
         this.route = route;
         this.formBuilder = formBuilder;
+        this.active = active;
+        this.service = service;
+        this.active.params.subscribe(params => {
+            this.id = params["id"];
+            console.log(params["id"]);
+        });
     }
     ngOnInit() {
-        this.team = [
-            {
-                "id": "123",
-                "name": "yosrf"
-            },
-            {
-                "id": "124",
-                "name": "sirine"
-            }
-        ];
+        this.service.getDevs().then(res => {
+            this.team = res;
+        });
         this.validation = this.formBuilder.group({
             Name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
@@ -119,13 +120,20 @@ let TaskFormPage = class TaskFormPage {
         });
     }
     add(value) {
-        console.log(value);
-        this.route.navigate(["/task"]);
+        let url = "/task/" + this.id;
+        this.service.createTask(value, this.id);
+        this.route.navigate([url]);
+    }
+    open() {
+        let url = "/task/" + this.id;
+        this.route.navigate([url]);
     }
 };
 TaskFormPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] }
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
+    { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"] }
 ];
 TaskFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -133,7 +141,8 @@ TaskFormPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./task-form.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/task-form/task-form.page.html"),
         styles: [__webpack_require__(/*! ./task-form.page.scss */ "./src/app/Screens/task-form/task-form.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+        _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"]])
 ], TaskFormPage);
 
 

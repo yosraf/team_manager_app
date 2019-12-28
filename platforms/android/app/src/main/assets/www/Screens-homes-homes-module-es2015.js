@@ -34224,6 +34224,17 @@ NgCircleProgressModule.ctorParameters = function () { return []; };
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/Components/client-hcontent/client-hcontent.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/Components/client-hcontent/client-hcontent.component.html ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n      </ion-buttons>\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-refresher slot=\"fixed\" \n(ionRefresh)=\"ionRefresh($event)\" \n(ionPull)=\"ionPull($event)\" \n(ionStart)=\"ionStart($event)\">\n  <ion-refresher-content\n    pullingIcon=\"arrow-dropdown\"\n    pullingText=\"Pull to refresh\"\n    refreshingSpinner=\"circles\"\n    refreshingText=\"Refreshing...\">\n  </ion-refresher-content>\n</ion-refresher>\n  <div>\n      <ion-list-header class=\"stats\">Statistics</ion-list-header>\n     <!-- <ion-card class=\"welcome-card\">\n        <ion-card-header>\n          <ion-card-title class=\"projects\">Number of projects</ion-card-title>\n        </ion-card-header>\n        <ion-card-content>\n          <canvas #barChart></canvas>\n        </ion-card-content>\n      </ion-card>-->\n      <ion-card class=\"welcome-card\">\n        <!--<ion-card-header>\n          <ion-card-title class=\"projects\">Number of projects per type</ion-card-title>\n        </ion-card-header>-->\n        <ion-card-content>\n          <canvas #dognutChart></canvas>\n        </ion-card-content>\n      </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Recently added</ion-list-header>\n    <ion-list *ngIf=\"this.projects.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openproject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{d['name']}}</b></h5>\n           <p>{{d['description']}}</p>\n\n        </div>\n        \n      </div>\n    </ion-list>\n   \n   \n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.projects.length==0\">\n    <ion-label  >No projects yet</ion-label>\n  </div > \n</ion-content>"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/Components/client-home-content/client-home-content.component.html":
 /*!*************************************************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/Components/client-home-content/client-home-content.component.html ***!
@@ -34231,7 +34242,18 @@ NgCircleProgressModule.ctorParameters = function () { return []; };
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"home\">\n      <ion-icon name=\"home\" ></ion-icon>\n      <ion-label> Home</ion-label>\n    </ion-tab-button>\n    <ion-tab-button tab=\"\">\n          <ion-icon name=\"laptop\"></ion-icon>\n          <ion-label>Projects</ion-label>\n    </ion-tab-button>\n   \n  </ion-tab-bar>\n</ion-tabs>\n"
+module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"clientHome\">\n      <ion-icon name=\"home\" ></ion-icon>\n      <ion-label> Home</ion-label>\n    </ion-tab-button>\n    <ion-tab-button tab=\"clientProjects\">\n          <ion-icon name=\"laptop\"></ion-icon>\n          <ion-label>Projects</ion-label>\n    </ion-tab-button>\n   \n  </ion-tab-bar>\n</ion-tabs>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/Components/client-projects/client-projects.component.html":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/Components/client-projects/client-projects.component.html ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n      </ion-buttons>\n    <ion-title class=\"title\">\n      Projects\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-refresher slot=\"fixed\" \n(ionRefresh)=\"ionRefresh($event)\" \n(ionPull)=\"ionPull($event)\" \n(ionStart)=\"ionStart($event)\">\n  <ion-refresher-content\n    pullingIcon=\"arrow-dropdown\"\n    pullingText=\"Pull to refresh\"\n    refreshingSpinner=\"circles\"\n    refreshingText=\"Refreshing...\">\n  </ion-refresher-content>\n</ion-refresher>\n <ion-list *ngIf=\"this.projects.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"open(d['name'])\" >\n        <div class=\"project-info\">\n          <circle-progress\n              [percent]=\"d['progress']\"\n              [radius]=\"30\"\n              [outerStrokeWidth]=\"6\"\n              [innerStrokeWidth]=\"1\"\n              [showSubtitle]=\"false\"\n              [titleColor]=\"color(d['type'])\"\n              [unitsColor]=\"'#8e44ad'\"\n              [outerStrokeColor]=\"color(d['type'])\"\n              [innerStrokeColor]=\"color(d['type'])\"\n              [animation]=\"false\"\n              [animationDuration]=\"300\"></circle-progress>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{d['name']}}</b></h5>\n           <p>{{d['description']}}</p>\n\n        </div>\n        \n      </div>\n    </ion-list>\n    \n  <ion-list-header *ngIf=\"this.projects.length==0\" class=\"no-project\">\n      No project Found\n    </ion-list-header>\n  \n  <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n      <ion-fab-button  routerLink=\"/project-proposition\">\n        <ion-icon name=\"add\"></ion-icon>\n      </ion-fab-button>\n    \n    </ion-fab>\n</ion-content>"
 
 /***/ }),
 
@@ -34242,7 +34264,7 @@ module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-butt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n      <ion-title class=\"title\">\n        Home\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n<ion-content>\n    <div>\n        <ion-list-header class=\"stats\">Statistics</ion-list-header>\n       <!-- <ion-card class=\"welcome-card\">\n          <ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects</ion-card-title>\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #barChart></canvas>\n          </ion-card-content>\n        </ion-card>-->\n        <ion-card class=\"welcome-card\">\n          <!--<ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects per type</ion-card-title>\n          </ion-card-header>-->\n          <ion-card-content>\n            <canvas #dognutChart></canvas>\n          </ion-card-content>\n        </ion-card>\n    </div>\n    <div>\n      <ion-list-header class=\"stats\">Recently added</ion-list-header>\n      <ion-list *ngIf=\"this.projects.length>0\">\n  \n        <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openproject()\">\n          <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n            <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n          </div>\n          <div class=\"container\">\n            <h5 ><b>{{d['name']}}</b></h5>\n             <p>{{d['description']}}</p>\n\n          </div>\n          \n        </div>\n      </ion-list>\n     \n     \n\n    </div>\n    <div class=\"no-project\" *ngIf=\"this.projects.length==0\">\n      <ion-label  >No projects yet</ion-label>\n    </div > \n</ion-content>"
+module.exports = "\n<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n      <ion-title class=\"title\">\n        Home\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" \n  (ionRefresh)=\"ionRefresh($event)\" \n  (ionPull)=\"ionPull($event)\" \n  (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content\n      pullingIcon=\"arrow-dropdown\"\n      pullingText=\"Pull to refresh\"\n      refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n    <div>\n        <ion-list-header class=\"stats\">Statistics</ion-list-header>\n       <!-- <ion-card class=\"welcome-card\">\n          <ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects</ion-card-title>\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #barChart></canvas>\n          </ion-card-content>\n        </ion-card>-->\n        <ion-card class=\"welcome-card\">\n          <!--<ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects per type</ion-card-title>\n          </ion-card-header>-->\n          <ion-card-content>\n            <canvas #dognutChart></canvas>\n          </ion-card-content>\n        </ion-card>\n    </div>\n    <div>\n      <ion-list-header class=\"stats\">Recently added</ion-list-header>\n      <ion-list *ngIf=\"this.projects.length>0\">\n  \n        <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openproject(d['id'])\">\n          <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n            <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n          </div>\n          <div class=\"container\">\n            <h5 ><b>{{d['name']}}</b></h5>\n             <p>{{d['description']}}</p>\n\n          </div>\n          \n        </div>\n      </ion-list>\n     \n     \n\n    </div>\n    <div class=\"no-project\" *ngIf=\"this.projects.length==0\">\n      <ion-label  >No projects yet</ion-label>\n    </div > \n</ion-content>"
 
 /***/ }),
 
@@ -34253,7 +34275,7 @@ module.exports = "\n<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-tabs>\n        <ion-tab-bar slot=\"bottom\">\n          <ion-tab-button tab=\"home\">\n            <ion-icon name=\"home\" ></ion-icon>\n            <ion-label> Home</ion-label>\n          </ion-tab-button>\n          <ion-tab-button tab=\"projects\">\n                <ion-icon name=\"laptop\"></ion-icon>\n                <ion-label>Projects</ion-label>\n          </ion-tab-button>\n          <ion-tab-button tab=\"teams\">\n                <ion-icon name=\"people\"></ion-icon>\n                <ion-label>Team</ion-label>\n          </ion-tab-button>\n        </ion-tab-bar>\n</ion-tabs>\n"
+module.exports = "<ion-tabs>\n        <ion-tab-bar slot=\"bottom\">\n          <ion-tab-button tab=\"home\">\n            <ion-icon name=\"home\" ></ion-icon>\n            <ion-label> Home</ion-label>\n          </ion-tab-button>\n          <ion-tab-button tab=\"projects\">\n                <ion-icon name=\"laptop\"></ion-icon>\n                <ion-label>Projects</ion-label>\n          </ion-tab-button>\n          \n        </ion-tab-bar>\n</ion-tabs>\n"
 
 /***/ }),
 
@@ -34264,18 +34286,7 @@ module.exports = "<ion-tabs>\n        <ion-tab-bar slot=\"bottom\">\n          <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n      <ion-title class=\"title\">\n        Projects\n      </ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n   <ion-list *ngIf=\"this.projects.length>0\">\n  \n        <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openTask()\">\n          <div class=\"project-info\">\n            <circle-progress\n                [percent]=\"d['progress']\"\n                [radius]=\"30\"\n                [outerStrokeWidth]=\"6\"\n                [innerStrokeWidth]=\"1\"\n                [showSubtitle]=\"false\"\n                [titleColor]=\"color(d['type'])\"\n                [unitsColor]=\"'#8e44ad'\"\n                [outerStrokeColor]=\"color(d['type'])\"\n                [innerStrokeColor]=\"color(d['type'])\"\n                [animation]=\"false\"\n                [animationDuration]=\"300\"></circle-progress>\n          </div>\n          <div class=\"container\">\n            <h5 ><b>{{d['name']}}</b></h5>\n             <p>{{d['description']}}</p>\n\n          </div>\n          \n        </div>\n      </ion-list>\n      \n    <ion-list-header *ngIf=\"this.projects.length==0\" class=\"no-project\">\n        No project Found\n      </ion-list-header>\n    \n    <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n        <ion-fab-button>\n          <ion-icon name=\"add\" routerLink=\"/project\"></ion-icon>\n        </ion-fab-button>\n      \n      </ion-fab>\n</ion-content>"
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/index.js!./src/app/Components/team/team.component.html":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/Components/team/team.component.html ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n      <ion-title class=\"title\">\n        Team\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n    <div>\n      <ion-list-header *ngIf=\"this.team.length==0 && this.client.length==0\" class=\"no-team\">\n        No team and client Found\n      </ion-list-header>\n    </div>\n    <ion-list *ngIf=\"this.team.length>0 \">\n      <ion-list-header  class=\"team\">\n        Team\n      </ion-list-header>\n      <ion-item *ngFor=\"let d of team\">\n        <ion-avatar slot=\"start\">\n          <img src=\"./../../assets/icon/user.png\">\n  \n        </ion-avatar>\n  \n        <ion-label>\n          <h5 ><b>{{d['name']}}</b></h5>\n          <p>{{d['email']}}</p>\n         \n        </ion-label>\n      </ion-item>\n    </ion-list>\n    <ion-list *ngIf=\"this.client.length>0 \">\n      <ion-list-header  class=\"team\">\n        Client\n      </ion-list-header>\n      <ion-item *ngFor=\"let d of client\">\n        <ion-avatar slot=\"start\">\n          <img src=\"./../../assets/icon/user.png\">\n  \n        </ion-avatar>\n  \n        <ion-label>\n          <h5 ><b>{{d['name']}}</b></h5>\n          <p>{{d['email']}}</p>\n         \n        </ion-label>\n      </ion-item>\n    </ion-list>\n    <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n      <ion-fab-button>\n        <ion-icon name=\"add\" routerLink=\"/team-form\"></ion-icon>\n      </ion-fab-button>\n    \n    </ion-fab>\n  </ion-content>"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n      <ion-title class=\"title\">\n        Projects\n      </ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" \n  (ionRefresh)=\"ionRefresh($event)\" \n  (ionPull)=\"ionPull($event)\" \n  (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content\n      pullingIcon=\"arrow-dropdown\"\n      pullingText=\"Pull to refresh\"\n      refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n   <ion-list *ngIf=\"this.projects.length>0\">\n  \n        <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openTask(d['id'])\">\n          <div class=\"project-info\">\n            <circle-progress\n                [percent]=\"d['progress']\"\n                [radius]=\"30\"\n                [outerStrokeWidth]=\"6\"\n                [innerStrokeWidth]=\"1\"\n                [showSubtitle]=\"false\"\n                [titleColor]=\"color(d['type'])\"\n                [unitsColor]=\"'#8e44ad'\"\n                [outerStrokeColor]=\"color(d['type'])\"\n                [innerStrokeColor]=\"color(d['type'])\"\n                [animation]=\"false\"\n                [animationDuration]=\"300\"></circle-progress>\n          </div>\n          <div class=\"container\">\n            <h5 ><b>{{d['name']}}</b></h5>\n             <p>{{d['description']}}</p>\n\n          </div>\n          \n        </div>\n      </ion-list>\n      \n    <ion-list-header *ngIf=\"this.projects.length==0\" class=\"no-project\">\n        No project Found\n      </ion-list-header>\n    \n    <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n        <ion-fab-button routerLink=\"/project\">\n          <ion-icon name=\"add\" ></ion-icon>\n        </ion-fab-button>\n      \n      </ion-fab>\n</ion-content>"
 
 /***/ }),
 
@@ -40562,6 +40573,152 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./src/app/Components/client-hcontent/client-hcontent.component.scss":
+/*!***************************************************************************!*\
+  !*** ./src/app/Components/client-hcontent/client-hcontent.component.scss ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".title {\n  color: #462373; }\n\n.stats {\n  color: #ff7300;\n  font-size: medium; }\n\n.projects {\n  color: #ff7300;\n  font-size: 15px; }\n\nion-card, .card-ios, .card-md {\n  border: 0 !important;\n  box-shadow: none !important;\n  border: none !important;\n  border-style: none !important;\n  position: relative; }\n\n.welcome-card {\n  margin: 0 auto; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  height: 75px;\n  width: 90%;\n  display: -webkit-box;\n  display: flex; }\n\n.card .container {\n    width: 75%;\n    padding-left: 5px; }\n\n.card .container h5 {\n      color: #462373; }\n\n.card .container p {\n      color: #8395a7; }\n\n.card .project-info {\n    width: 25%;\n    text-align: center;\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px; }\n\n.card .project-info .icon {\n      font-size: 30px;\n      margin-top: 25%;\n      color: white; }\n\n.no-project {\n  padding-left: 5%; }\n\n.no-project ion-label {\n    color: #462373;\n    font-size: 15px;\n    text-align: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2NsaWVudC1oY29udGVudC9jbGllbnQtaGNvbnRlbnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUE7O0FBRWpCO0VBQ0ksY0FBYTtFQUNiLGlCQUFpQixFQUFBOztBQUVyQjtFQUNJLGNBQWE7RUFDYixlQUFlLEVBQUE7O0FBRW5CO0VBQ0ksb0JBQW9CO0VBQ3BCLDJCQUEyQjtFQUMzQix1QkFBdUI7RUFDdkIsNkJBQTZCO0VBQzdCLGtCQUFrQixFQUFBOztBQUVwQjtFQUNJLGNBQWMsRUFBQTs7QUFFbEI7RUFDRSw2Q0FBNkM7RUFDN0Msa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxtQkFBbUI7RUFDbkIsWUFBVztFQUNYLFVBQVU7RUFDVixvQkFBYTtFQUFiLGFBQWEsRUFBQTs7QUFQZjtJQVNNLFVBQVU7SUFDVixpQkFBaUIsRUFBQTs7QUFWdkI7TUFZVSxjQUFhLEVBQUE7O0FBWnZCO01BZVUsY0FBYyxFQUFBOztBQWZ4QjtJQTRCUSxVQUFTO0lBQ1Qsa0JBQWtCO0lBQ2xCLDJCQUEyQjtJQUMzQiw4QkFBOEIsRUFBQTs7QUEvQnRDO01BdUJZLGVBQWU7TUFDZixlQUFlO01BQ2YsWUFBWSxFQUFBOztBQVd4QjtFQUNJLGdCQUFlLEVBQUE7O0FBRG5CO0lBR00sY0FBYTtJQUNiLGVBQWU7SUFDZixrQkFBa0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL0NvbXBvbmVudHMvY2xpZW50LWhjb250ZW50L2NsaWVudC1oY29udGVudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZXtcbiAgICBjb2xvcjojNDYyMzczO1xufVxuLnN0YXRze1xuICAgIGNvbG9yOiNmZjczMDA7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG59XG4ucHJvamVjdHN7XG4gICAgY29sb3I6I2ZmNzMwMDtcbiAgICBmb250LXNpemU6IDE1cHg7O1xufVxuaW9uLWNhcmQsIC5jYXJkLWlvcywgLmNhcmQtbWQge1xuICAgIGJvcmRlcjogMCAhaW1wb3J0YW50O1xuICAgIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcbiAgICBib3JkZXI6IG5vbmUgIWltcG9ydGFudDtcbiAgICBib3JkZXItc3R5bGU6IG5vbmUgIWltcG9ydGFudDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIH1cbiAgLndlbGNvbWUtY2FyZHtcbiAgICAgIG1hcmdpbjogMCBhdXRvO1xuICB9XG4gIC5jYXJkIHtcbiAgICBib3gtc2hhZG93OiAwIDRweCA4cHggLTRweCByZ2JhKDAsIDAsIDAsIDAuNCk7XG4gICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgaGVpZ2h0Ojc1cHg7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIC5jb250YWluZXIge1xuICAgICAgICB3aWR0aDogNzUlO1xuICAgICAgICBwYWRkaW5nLWxlZnQ6IDVweDtcbiAgICAgICAgaDV7XG4gICAgICAgICAgICBjb2xvcjojNDYyMzczO1xuICAgICAgICB9XG4gICAgICAgIHB7XG4gICAgICAgICAgICBjb2xvcjogIzgzOTVhNztcbiAgICAgICAgfVxuICAgICAgICAgICAgIFxuIFxuXG4gICAgICB9XG4gICAgICAucHJvamVjdC1pbmZve1xuICAgICAgICAgICAgLmljb257XG4gICAgICAgICAgICAgIGZvbnQtc2l6ZTogMzBweDtcbiAgICAgICAgICAgICAgbWFyZ2luLXRvcDogMjUlO1xuICAgICAgICAgICAgICBjb2xvcjogd2hpdGU7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgd2lkdGg6MjUlO1xuICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgICBib3JkZXItdG9wLWxlZnQtcmFkaXVzOiA2cHg7XG4gICAgICAgICAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czogNnB4O1xuXG5cbiAgICAgIH1cbiAgfVxuICAubm8tcHJvamVjdHtcbiAgICAgIHBhZGRpbmctbGVmdDo1JTtcbiAgICAgaW9uLWxhYmVse1xuICAgICAgICBjb2xvcjojNDYyMzczO1xuICAgICAgICBmb250LXNpemU6IDE1cHg7XG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgfVxuICB9XG4iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/Components/client-hcontent/client-hcontent.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/Components/client-hcontent/client-hcontent.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: ClientHContentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientHContentComponent", function() { return ClientHContentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+let ClientHContentComponent = class ClientHContentComponent {
+    constructor(route) {
+        this.route = route;
+        this.projects = [];
+        this.web = 0;
+        this.mobile = 0;
+        this.data = 0;
+    }
+    ngOnInit() {
+        this.getProjects();
+    }
+    ionViewDidEnter() {
+        this.createDonutsChart();
+    }
+    getProjects() {
+        this.projects = [{
+                "id": "123",
+                "name": "project",
+                "description": "blabla",
+                "type": "web",
+            }];
+        this.projects.forEach(element => {
+            if (element['type'] == "web") {
+                this.web += 1;
+            }
+            if (element['type'] == "mobile") {
+                this.mobile += 1;
+            }
+            if (element['type'] == "data") {
+                this.data += 1;
+            }
+        });
+    }
+    createDonutsChart() {
+        this.dognut = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](this.dognutChart.nativeElement, {
+            type: 'doughnut',
+            data: {
+                labels: ['Done', 'Doing', 'To do'],
+                datasets: [{
+                        label: 'Projects types',
+                        data: [this.web, this.mobile, this.data],
+                        backgroundColor: ['#e67e22', '#a55eea', '#8e44ad'],
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                }
+            }
+        });
+    }
+    color(type) {
+        if (type == "web") {
+            return "#e67e22";
+        }
+        if (type == "mobile") {
+            return "#a55eea";
+        }
+        if (type == "data") {
+            return "#8e44ad";
+        }
+    }
+    icon(type) {
+        if (type == "web") {
+            return "md-desktop";
+        }
+        if (type == "mobile") {
+            return "md-phone-portrait";
+        }
+        if (type == "data") {
+            return "md-analytics";
+        }
+    }
+    openproject(id) {
+        this.route.navigate(["/project-details"]);
+    }
+    ionRefresh(event) {
+        setTimeout(() => {
+            this.getProjects();
+            event.target.complete();
+        }, 2000);
+    }
+    ionPull(event) {
+        //Emitted while the user is pulling down the content and exposing the refresher.
+        console.log('ionPull Event Triggered!');
+    }
+    ionStart(event) {
+        //Emitted when the user begins to start pulling down.
+        console.log('ionStart Event Triggered!');
+    }
+};
+ClientHContentComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('dognutChart', { static: false }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], ClientHContentComponent.prototype, "dognutChart", void 0);
+ClientHContentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-client-hcontent',
+        template: __webpack_require__(/*! raw-loader!./client-hcontent.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/client-hcontent/client-hcontent.component.html"),
+        styles: [__webpack_require__(/*! ./client-hcontent.component.scss */ "./src/app/Components/client-hcontent/client-hcontent.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+], ClientHContentComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/Components/client-home-content/client-home-content.component.scss":
 /*!***********************************************************************************!*\
   !*** ./src/app/Components/client-home-content/client-home-content.component.scss ***!
@@ -40604,6 +40761,93 @@ ClientHomeContentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/Components/client-projects/client-projects.component.scss":
+/*!***************************************************************************!*\
+  !*** ./src/app/Components/client-projects/client-projects.component.scss ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".title {\n  color: #462373; }\n\n.no-project {\n  font-size: medium;\n  color: #ff7300; }\n\nion-fab-button {\n  --background: #ff7300; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  height: 75px;\n  width: 90%;\n  display: -webkit-box;\n  display: flex; }\n\n.card .container {\n    width: 75%;\n    padding-left: 5px; }\n\n.card .container h5 {\n      color: #462373; }\n\n.card .container p {\n      color: #8395a7; }\n\n.card .project-info {\n    width: 25%;\n    text-align: center;\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px; }\n\n.card .project-info .icon {\n      font-size: 30px;\n      margin-top: 25%;\n      color: white; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2NsaWVudC1wcm9qZWN0cy9jbGllbnQtcHJvamVjdHMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUE7O0FBRWpCO0VBQ0ksaUJBQWlCO0VBQ2pCLGNBQWMsRUFBQTs7QUFHbEI7RUFDSSxxQkFBYSxFQUFBOztBQUdqQjtFQUNJLDZDQUE2QztFQUM3QyxrQkFBa0I7RUFDbEIsY0FBYztFQUNkLG1CQUFtQjtFQUNuQixZQUFXO0VBQ1gsVUFBVTtFQUNWLG9CQUFhO0VBQWIsYUFBYSxFQUFBOztBQVBqQjtJQVNRLFVBQVU7SUFDVixpQkFBaUIsRUFBQTs7QUFWekI7TUFZWSxjQUFhLEVBQUE7O0FBWnpCO01BZVksY0FBYyxFQUFBOztBQWYxQjtJQTRCVSxVQUFTO0lBQ1Qsa0JBQWtCO0lBQ2xCLDJCQUEyQjtJQUMzQiw4QkFBOEIsRUFBQTs7QUEvQnhDO01BdUJjLGVBQWU7TUFDZixlQUFlO01BQ2YsWUFBWSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvQ29tcG9uZW50cy9jbGllbnQtcHJvamVjdHMvY2xpZW50LXByb2plY3RzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG4ubm8tcHJvamVjdHtcbiAgICBmb250LXNpemU6IG1lZGl1bTtcbiAgICBjb2xvcjogI2ZmNzMwMDtcbn1cblxuaW9uLWZhYi1idXR0b257XG4gICAgLS1iYWNrZ3JvdW5kOiAjZmY3MzAwO1xuXG59XG4uY2FyZCB7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IC00cHggcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgICBtYXJnaW46IDAgYXV0bztcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICAgIGhlaWdodDo3NXB4O1xuICAgIHdpZHRoOiA5MCU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICAuY29udGFpbmVyIHtcbiAgICAgICAgd2lkdGg6IDc1JTtcbiAgICAgICAgcGFkZGluZy1sZWZ0OiA1cHg7XG4gICAgICAgIGg1e1xuICAgICAgICAgICAgY29sb3I6IzQ2MjM3MztcbiAgICAgICAgfVxuICAgICAgICBwe1xuICAgICAgICAgICAgY29sb3I6ICM4Mzk1YTc7XG4gICAgICAgIH1cbiAgICAgICAgICAgICBcbiBcblxuICAgICAgfVxuICAgICAgLnByb2plY3QtaW5mb3tcbiAgICAgICAgICAgIC5pY29ue1xuICAgICAgICAgICAgICBmb250LXNpemU6IDMwcHg7XG4gICAgICAgICAgICAgIG1hcmdpbi10b3A6IDI1JTtcbiAgICAgICAgICAgICAgY29sb3I6IHdoaXRlO1xuICAgICAgICAgIH1cblxuICAgICAgICAgIHdpZHRoOjI1JTtcbiAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNnB4O1xuICAgICAgICAgIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDZweDtcblxuXG4gICAgICB9XG4gIH1cbiJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/Components/client-projects/client-projects.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/Components/client-projects/client-projects.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: ClientProjectsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientProjectsComponent", function() { return ClientProjectsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+let ClientProjectsComponent = class ClientProjectsComponent {
+    constructor(route) {
+        this.route = route;
+        this.projects = [];
+    }
+    ngOnInit() {
+        this.getProjects();
+    }
+    getProjects() {
+        this.projects = [{
+                "name": "project",
+                "description": "blabla",
+                "type": "web",
+            }];
+    }
+    color(type) {
+        if (type == "web") {
+            return "#e67e22";
+        }
+        if (type == "mobile") {
+            return "#a55eea";
+        }
+        if (type == "data") {
+            return "#8e44ad";
+        }
+    }
+    ionRefresh(event) {
+        setTimeout(() => {
+            this.getProjects();
+            event.target.complete();
+        }, 2000);
+    }
+    ionPull(event) {
+        //Emitted while the user is pulling down the content and exposing the refresher.
+        console.log('ionPull Event Triggered!');
+    }
+    ionStart(event) {
+        //Emitted when the user begins to start pulling down.
+        console.log('ionStart Event Triggered!');
+    }
+    open(value) {
+        this.route.navigate(["/project-details"]);
+    }
+};
+ClientProjectsComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
+ClientProjectsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-client-projects',
+        template: __webpack_require__(/*! raw-loader!./client-projects.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/client-projects/client-projects.component.html"),
+        styles: [__webpack_require__(/*! ./client-projects.component.scss */ "./src/app/Components/client-projects/client-projects.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+], ClientProjectsComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/Components/h-content/h-content.component.scss":
 /*!***************************************************************!*\
   !*** ./src/app/Components/h-content/h-content.component.scss ***!
@@ -40631,6 +40875,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -40641,58 +40888,82 @@ let HContentComponent = class HContentComponent {
         this.route = route;
         this.service = service;
         this.projects = [];
-        this.mobile = 0;
-        this.web = 0;
-        this.data = 0;
     }
     ngOnInit() {
-        this.getProjects();
+        this.service.AsyncProjects().subscribe(data => {
+            this.projects = data.map(e => {
+                let value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
+                var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
+                console.log(obj);
+                if (obj['manager'] == value.uid) {
+                    return {
+                        "name": obj.name,
+                        "description": obj.description,
+                        "manager": obj.manager,
+                        "client": obj.client,
+                        "progress": obj.progress,
+                        "type": obj.type,
+                        "id": e.payload.doc.id
+                    };
+                }
+            });
+        });
     }
     ionViewDidEnter() {
         this.createDonutsChart();
     }
     getProjects() {
+        this.projects = [];
         this.service.getProjects().then(res => {
             res.forEach(element => {
                 this.projects.push(element);
-                if (element['type'] == "mobile") {
-                    this.mobile += 1;
-                    console.log(this.mobile);
-                }
-                if (element['type'] == "web") {
-                    this.web += 1;
-                    console.log(this.web);
-                }
-                if (element['type'] == "data") {
-                    this.data += 1;
-                    console.log("data");
-                }
             });
         }, err => {
             console.log(err);
         });
     }
     createDonutsChart() {
-        this.dognut = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](this.dognutChart.nativeElement, {
-            type: 'doughnut',
-            data: {
-                labels: ['mobile', 'web', 'data'],
-                datasets: [{
-                        label: 'Projects types',
-                        data: [this.mobile, this.web, this.data],
-                        backgroundColor: ['#e67e22', '#a55eea', '#8e44ad'],
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            let web = 0;
+            let mobile = 0;
+            let data = 0;
+            var projs = yield this.service.getProjects();
+            console.log("get projects");
+            projs.forEach(element => {
+                console.log("fetch projects");
+                if (element['type'] == "mobile") {
+                    mobile += 1;
                 }
-            }
+                if (element['type'] == "web") {
+                    web += 1;
+                }
+                if (element['type'] == "data") {
+                    data += 1;
+                }
+            });
+            console.log(mobile + " " + data + " " + web);
+            console.log("show dognut");
+            this.dognut = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](this.dognutChart.nativeElement, {
+                type: 'doughnut',
+                data: {
+                    labels: ['mobile', 'web', 'data'],
+                    datasets: [{
+                            label: 'Projects types',
+                            data: [mobile, web, data],
+                            backgroundColor: ['#e67e22', '#a55eea', '#8e44ad'],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                    }
+                }
+            });
         });
     }
     color(type) {
@@ -40717,8 +40988,23 @@ let HContentComponent = class HContentComponent {
             return "md-analytics";
         }
     }
-    openproject() {
-        this.route.navigate(["/task"]);
+    openproject(id) {
+        let url = "/task/" + id;
+        this.route.navigate([url]);
+    }
+    ionRefresh(event) {
+        setTimeout(() => {
+            this.getProjects();
+            event.target.complete();
+        }, 2000);
+    }
+    ionPull(event) {
+        //Emitted while the user is pulling down the content and exposing the refresher.
+        console.log('ionPull Event Triggered!');
+    }
+    ionStart(event) {
+        //Emitted when the user begins to start pulling down.
+        console.log('ionStart Event Triggered!');
     }
 };
 HContentComponent.ctorParameters = () => [
@@ -40813,29 +41099,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/es2015/index.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+
+
 
 
 
 
 let ProjectsComponent = class ProjectsComponent {
-    constructor(route, service) {
+    constructor(route, service, afs) {
         this.route = route;
         this.service = service;
+        this.afs = afs;
         this.projects = [];
-        this.route.routeReuseStrategy.shouldReuseRoute = function () {
-            return false;
-        };
-        this.mySubscription = this.route.events.subscribe((event) => {
-            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]) {
-                this.route.navigated = false;
-            }
-        });
     }
     ngOnInit() {
-        this.getProjects();
+        this.service.AsyncProjects().subscribe(data => {
+            this.projects = data.map(e => {
+                let value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
+                var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
+                console.log(obj);
+                if (obj['manager'] == value.uid) {
+                    return {
+                        "name": obj.name,
+                        "description": obj.description,
+                        "manager": obj.manager,
+                        "client": obj.client,
+                        "progress": obj.progress,
+                        "type": obj.type,
+                        "id": e.payload.doc.id
+                    };
+                }
+            });
+        });
     }
-    getProjects() {
+    getProjectsOnce() {
+        this.projects = [];
         this.service.getProjects().then(res => {
+            console.log(res);
             res.forEach(element => {
                 this.projects.push(element);
             });
@@ -40854,18 +41157,29 @@ let ProjectsComponent = class ProjectsComponent {
             return "#8e44ad";
         }
     }
-    openTask() {
-        this.route.navigate(["/task"]);
+    openTask(id) {
+        let url = "/task/" + id;
+        this.route.navigate([url]);
     }
-    ngOnDestroy() {
-        if (this.mySubscription) {
-            this.mySubscription.unsubscribe();
-        }
+    ionRefresh(event) {
+        setTimeout(() => {
+            this.getProjectsOnce();
+            event.target.complete();
+        }, 2000);
+    }
+    ionPull(event) {
+        //Emitted while the user is pulling down the content and exposing the refresher.
+        console.log('ionPull Event Triggered!');
+    }
+    ionStart(event) {
+        //Emitted when the user begins to start pulling down.
+        console.log('ionStart Event Triggered!');
     }
 };
 ProjectsComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] }
+    { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] },
+    { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_4__["AngularFirestore"] }
 ];
 ProjectsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -40873,65 +41187,8 @@ ProjectsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./projects.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/projects/projects.component.html"),
         styles: [__webpack_require__(/*! ./projects.component.scss */ "./src/app/Components/projects/projects.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"], _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_4__["AngularFirestore"]])
 ], ProjectsComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/Components/team/team.component.scss":
-/*!*****************************************************!*\
-  !*** ./src/app/Components/team/team.component.scss ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".title {\n  color: #462373; }\n\n.no-team {\n  font-size: medium;\n  color: #ff7300; }\n\n.team {\n  color: #ff7300;\n  font-size: 15px; }\n\nion-fab-button {\n  --background: #ff7300; }\n\nh5 {\n  color: #462373; }\n\np {\n  color: #8395a7; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL3RlYW0vdGVhbS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQWEsRUFBQTs7QUFFakI7RUFDSSxpQkFBaUI7RUFDakIsY0FBYyxFQUFBOztBQUVsQjtFQUNJLGNBQWM7RUFDZCxlQUFlLEVBQUE7O0FBR25CO0VBQ0kscUJBQWEsRUFBQTs7QUFHakI7RUFDSSxjQUFhLEVBQUE7O0FBRWpCO0VBQ0ksY0FBYyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvQ29tcG9uZW50cy90ZWFtL3RlYW0uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGl0bGV7XG4gICAgY29sb3I6IzQ2MjM3Mztcbn1cbi5uby10ZWFte1xuICAgIGZvbnQtc2l6ZTogbWVkaXVtO1xuICAgIGNvbG9yOiAjZmY3MzAwO1xufVxuLnRlYW17XG4gICAgY29sb3I6ICNmZjczMDA7XG4gICAgZm9udC1zaXplOiAxNXB4O1xufVxuXG5pb24tZmFiLWJ1dHRvbntcbiAgICAtLWJhY2tncm91bmQ6ICNmZjczMDA7XG5cbn1cbmg1e1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG5we1xuICAgIGNvbG9yOiAjODM5NWE3O1xufVxuIl19 */"
-
-/***/ }),
-
-/***/ "./src/app/Components/team/team.component.ts":
-/*!***************************************************!*\
-  !*** ./src/app/Components/team/team.component.ts ***!
-  \***************************************************/
-/*! exports provided: TeamComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeamComponent", function() { return TeamComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let TeamComponent = class TeamComponent {
-    constructor() {
-        this.team = [];
-        this.client = [];
-        this.team = [
-            {
-                "name": "yosra",
-                "email": "yosra@gmail.com"
-            }
-        ];
-        this.client = [
-            {
-                "name": "yosra",
-                "email": "yosra@gmail.com"
-            }
-        ];
-    }
-    ngOnInit() { }
-};
-TeamComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-team',
-        template: __webpack_require__(/*! raw-loader!./team.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/team/team.component.html"),
-        styles: [__webpack_require__(/*! ./team.component.scss */ "./src/app/Components/team/team.component.scss")]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], TeamComponent);
 
 
 
@@ -40957,9 +41214,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_home_content_home_content_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Components/home-content/home-content.component */ "./src/app/Components/home-content/home-content.component.ts");
 /* harmony import */ var _Components_h_content_h_content_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Components/h-content/h-content.component */ "./src/app/Components/h-content/h-content.component.ts");
 /* harmony import */ var _Components_projects_projects_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/projects/projects.component */ "./src/app/Components/projects/projects.component.ts");
-/* harmony import */ var _Components_team_team_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/team/team.component */ "./src/app/Components/team/team.component.ts");
-/* harmony import */ var _Components_client_home_content_client_home_content_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Components/client-home-content/client-home-content.component */ "./src/app/Components/client-home-content/client-home-content.component.ts");
-/* harmony import */ var ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ng-circle-progress */ "./node_modules/ng-circle-progress/index.js");
+/* harmony import */ var _Components_client_hcontent_client_hcontent_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/client-hcontent/client-hcontent.component */ "./src/app/Components/client-hcontent/client-hcontent.component.ts");
+/* harmony import */ var _Components_client_projects_client_projects_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Components/client-projects/client-projects.component */ "./src/app/Components/client-projects/client-projects.component.ts");
+/* harmony import */ var _Components_client_home_content_client_home_content_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Components/client-home-content/client-home-content.component */ "./src/app/Components/client-home-content/client-home-content.component.ts");
+/* harmony import */ var ng_circle_progress__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ng-circle-progress */ "./node_modules/ng-circle-progress/index.js");
+
 
 
 
@@ -40986,22 +41245,21 @@ const routes = [
                 path: 'projects',
                 component: _Components_projects_projects_component__WEBPACK_IMPORTED_MODULE_9__["ProjectsComponent"],
             },
+            /* {
+               path: '',
+               redirectTo: '/homes/home',
+               pathMatch: 'full'
+             },*/
             {
-                path: 'teams',
-                component: _Components_team_team_component__WEBPACK_IMPORTED_MODULE_10__["TeamComponent"],
+                path: 'clientProjects',
+                component: _Components_client_projects_client_projects_component__WEBPACK_IMPORTED_MODULE_11__["ClientProjectsComponent"]
             },
             {
-                path: '',
-                redirectTo: '/homes/home',
-                pathMatch: 'full'
+                path: 'clientHome',
+                component: _Components_client_hcontent_client_hcontent_component__WEBPACK_IMPORTED_MODULE_10__["ClientHContentComponent"]
             }
         ],
     },
-    {
-        path: '',
-        redirectTo: '/homes/home',
-        pathMatch: 'full'
-    }
 ];
 let HomesPageModule = class HomesPageModule {
 };
@@ -41012,7 +41270,7 @@ HomesPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes),
-            ng_circle_progress__WEBPACK_IMPORTED_MODULE_12__["NgCircleProgressModule"].forRoot({
+            ng_circle_progress__WEBPACK_IMPORTED_MODULE_13__["NgCircleProgressModule"].forRoot({
                 // set defaults here
                 radius: 50,
             }),
@@ -41021,8 +41279,9 @@ HomesPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _Components_home_content_home_content_component__WEBPACK_IMPORTED_MODULE_7__["HomeContentComponent"],
             _Components_h_content_h_content_component__WEBPACK_IMPORTED_MODULE_8__["HContentComponent"],
             _Components_projects_projects_component__WEBPACK_IMPORTED_MODULE_9__["ProjectsComponent"],
-            _Components_team_team_component__WEBPACK_IMPORTED_MODULE_10__["TeamComponent"],
-            _Components_client_home_content_client_home_content_component__WEBPACK_IMPORTED_MODULE_11__["ClientHomeContentComponent"]
+            _Components_client_home_content_client_home_content_component__WEBPACK_IMPORTED_MODULE_12__["ClientHomeContentComponent"],
+            _Components_client_hcontent_client_hcontent_component__WEBPACK_IMPORTED_MODULE_10__["ClientHContentComponent"],
+            _Components_client_projects_client_projects_component__WEBPACK_IMPORTED_MODULE_11__["ClientProjectsComponent"]
         ],
         entryComponents: []
     })
@@ -41056,20 +41315,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
 
 
 
 let HomesPage = class HomesPage {
-    constructor(menu) {
+    constructor(menu, loadingController, router) {
         this.menu = menu;
+        this.loadingController = loadingController;
+        this.router = router;
     }
     ngOnInit() {
         this.his = history.state['data'];
         this.data = this.his['re'];
+        /* if(this.data['role']=='client'){
+           this.router.navigate(["/homes/clientHome"])
+         }
+         if(this.data['role']=='manager'){
+           this.router.navigate(["/homes/home"])
+         }*/
+        this.presentLoadingWithOptions(this.data['role']);
+    }
+    presentLoadingWithOptions(role) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const loading = yield this.loadingController.create({
+                duration: 4000,
+                message: 'Wait please...',
+                translucent: true,
+                showBackdrop: true,
+            }).then((res) => {
+                res.present();
+                res.onDidDismiss().then((dis) => {
+                    if (role == 'client') {
+                        this.router.navigate(["/homes/clientHome"]);
+                        res.dismiss();
+                    }
+                    if (role == 'manager') {
+                        this.router.navigate(["/homes/home"]);
+                        res.dismiss();
+                    }
+                });
+            });
+        });
     }
 };
 HomesPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 HomesPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -41077,7 +41372,7 @@ HomesPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./homes.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/homes/homes.page.html"),
         styles: [__webpack_require__(/*! ./homes.page.scss */ "./src/app/Screens/homes/homes.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], HomesPage);
 
 

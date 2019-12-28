@@ -96,13 +96,70 @@ export class ProjectsService {
 
   }
   getTasks(id){
-    
+
     return this.afs.collection('projects').doc(id).collection('tasks').snapshotChanges();
     
    
     
 
   }
- 
+  getClients(){
+    return new Promise<any>((resolve, reject) => {
+      let clients:any=[]; 
+      
+      this.afs.collection('users').get(   ).forEach(doc=>{
+        
+        doc.docs.forEach(d=>{
+
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          if(obj['role']=="client"){
+            console.log(obj);
+            clients.push(obj);
+            
+          }
+
+        })
+     
+    })
+     
+      .then(
+        res => {
+        
+          resolve(clients)
+        },
+        err => reject(err)
+      )
+    })
+
+  }
+  getDevs(){
+    return new Promise<any>((resolve, reject) => {
+      let devs:any=[]; 
+      
+      this.afs.collection('users').get().forEach(doc=>{
+        
+        doc.docs.forEach(d=>{
+
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          if(obj['role']=="developer"){
+           
+            devs.push(obj);
+            
+          }
+
+        })
+     
+    })
+     
+      .then(
+        res => {
+        
+          resolve(devs)
+        },
+        err => reject(err)
+      )
+    })
+
+  }
   
 }

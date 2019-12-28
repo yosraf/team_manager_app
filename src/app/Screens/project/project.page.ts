@@ -10,10 +10,15 @@ import { identifierModuleUrl } from '@angular/compiler';
 })
 export class ProjectPage implements OnInit {
   validation: FormGroup;
+  clients:any=[];
   constructor(public route:Router, private formBuilder: FormBuilder,
-    private service:ProjectsService) { }
-
+  private service:ProjectsService) { }
+ 
   ngOnInit() {
+   this.service.getClients().then(res=>{
+     this.clients=res;
+   })
+    console.log(this.clients);
     
     this.validation =this.formBuilder.group({
      
@@ -47,5 +52,4 @@ export class ProjectPage implements OnInit {
     );
   }
  
-
 }

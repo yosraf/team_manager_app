@@ -12,9 +12,9 @@ export class ClientHContentComponent implements OnInit {
   dognut:any;
   colorArray: any;
   projects:any=[];
-  to_do=0;
-  doing=0;
-  done=0;
+  web=0;
+  mobile=0;
+  data=0;
 
   constructor(private route:Router) { }
 
@@ -31,20 +31,19 @@ export class ClientHContentComponent implements OnInit {
       "id":"123",
       "name":"project",
       "description":"blabla",
-      "state":"to do",
       "type":"web",
     
 
     }]
     this.projects.forEach(element => {
-      if(element['state']=="to do"){
-        this.to_do+=1;
+      if(element['type']=="web"){
+        this.web+=1;
       }
-      if(element['state']=="doing"){
-        this.doing+=1;
+      if(element['type']=="mobile"){
+        this.mobile+=1;
       }
-      if(element['state']=="done"){
-        this.done+=1;
+      if(element['type']=="data"){
+        this.data+=1;
       }
       
     });
@@ -57,7 +56,7 @@ export class ClientHContentComponent implements OnInit {
         labels: ['Done', 'Doing', 'To do'],
         datasets: [{
           label: 'Projects types',
-          data: [this.done,this.doing,this.to_do],
+          data: [this.web,this.mobile,this.data],
           backgroundColor: ['#e67e22','#a55eea','#8e44ad'], // array should have same number of elements as number of dataset
           borderWidth: 1
         }]

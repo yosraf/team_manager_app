@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
 import { from } from 'rxjs';
+import { ToastController } from '@ionic/angular';
+import {FcmService} from '../app/Services/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -16,19 +18,39 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
+    public toastController: ToastController,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public route:Router
+    public route:Router,
+    private fcm:FcmService,
   ) {
     this.initializeApp();
     this.sideMenu();
   }
-
+  private async presentToast(message) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000
+    });
+    toast.present();
+  }
+  private notificationSetup() {
+    //this.fcm.getToken();
+    this.fcm.onNotifications().subscribe(
+      (msg) => {
+        if (this.platform.is('ios')) {
+          this.presentToast(msg.aps.alert);
+        } else {
+          this.presentToast(msg.body);
+        }
+      });
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.notificationSetup();
   }
   sideMenu()
   {

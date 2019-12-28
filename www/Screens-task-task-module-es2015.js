@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>    \n    <ion-title>tasks</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n        <ion-list *ngIf=\"this.data.length>0\">\n          \n        <ion-chip (click)=\"filter(0)\">\n          <ion-label color=\"default\">All </ion-label>\n        </ion-chip>\n\n        <ion-chip  color=\"danger\" (click)=\"filter(1)\"> \n          <ion-label color=\"danger\">To do</ion-label>\n        </ion-chip>\n\n        <ion-chip color=\"tertiary\" (click)=\"filter(2)\">\n          <ion-label color=\"tertiary\">Doing</ion-label>\n        </ion-chip>\n        <ion-chip color=\"warning\" (click)=\"filter(3)\">\n          <ion-label color=\"warning\">Done</ion-label>\n        </ion-chip>\n\n    <ion-item *ngFor=\"let d of data\">\n      <ion-avatar slot=\"start\">\n        <img src=\"./../../assets/icon/user.png\">\n\n      </ion-avatar>\n      <ion-badge  color=\"{{color(d['state'])}}\" slot=\"end\">{{d['state']}}</ion-badge>\n\n      <ion-label>\n        <h5 ><b>{{d['name']}}</b></h5>\n        <p>{{d['description']}}</p>\n       \n      </ion-label>\n    </ion-item>\n  </ion-list>\n  <ion-list-header *ngIf=\"this.data.length==0\" class=\"no-project\">\n    No project Found\n  </ion-list-header>\n\n<ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n    <ion-fab-button>\n      <ion-icon name=\"add\" routerLink=\"/task-form\"></ion-icon>\n    </ion-fab-button>\n  \n  </ion-fab>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>    \n    <ion-title>tasks</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-chip (click)=\"filter(0)\">\n    <ion-label color=\"default\">All </ion-label>\n  </ion-chip>\n\n  <ion-chip  color=\"danger\" (click)=\"filter(1)\"> \n    <ion-label color=\"danger\">To do</ion-label>\n  </ion-chip>\n\n  <ion-chip color=\"tertiary\" (click)=\"filter(2)\">\n    <ion-label color=\"tertiary\">Doing</ion-label>\n  </ion-chip>\n  <ion-chip color=\"warning\" (click)=\"filter(3)\">\n    <ion-label color=\"warning\">Done</ion-label>\n  </ion-chip>\n        <ion-refresher slot=\"fixed\" \n        (ionRefresh)=\"ionRefresh($event)\" \n        (ionPull)=\"ionPull($event)\" \n        (ionStart)=\"ionStart($event)\">\n          <ion-refresher-content\n            pullingIcon=\"arrow-dropdown\"\n            pullingText=\"Pull to refresh\"\n            refreshingSpinner=\"circles\"\n            refreshingText=\"Refreshing...\">\n          </ion-refresher-content>\n        </ion-refresher>\n        <ion-list *ngIf=\"this.data.length>0\">\n          \n       \n\n    <ion-item *ngFor=\"let d of data\">\n      <ion-avatar slot=\"start\">\n        <img src=\"./../../assets/icon/user.png\">\n\n      </ion-avatar>\n      <ion-badge  color=\"{{color(d['state'])}}\" slot=\"end\">{{d['state']}}</ion-badge>\n\n      <ion-label>\n        <h5 ><b>{{d['name']}}</b></h5>\n        <p>{{d['description']}}</p>\n       \n      </ion-label>\n    </ion-item>\n  </ion-list>\n  <ion-list-header *ngIf=\"this.data.length==0\" class=\"no-project\">\n    No task Found\n  </ion-list-header>\n\n<ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n    <ion-fab-button>\n      <ion-icon name=\"add\" (click)=\"open()\"></ion-icon>\n    </ion-fab-button>\n  \n  </ion-fab>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -82,37 +82,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskPage", function() { return TaskPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
+
+
 
 
 let TaskPage = class TaskPage {
-    constructor() {
+    constructor(route, router, service) {
+        this.route = route;
+        this.router = router;
+        this.service = service;
         this.data = [];
+        this.cachedata = [];
+        this.route.params.subscribe(params => {
+            console.log(params["id"]);
+            this.id = params["id"];
+        });
     }
     ngOnInit() {
-        this.laod();
+        this.service.getTasks(this.id).subscribe(doc => {
+            this.data = doc.map(element => {
+                var obj = JSON.parse(JSON.stringify(element.payload.doc.data()));
+                return obj;
+            });
+            this.cachedata = this.data;
+        });
     }
-    laod() {
-        this.data = [
-            {
-                "id": '1',
-                "name": "crud project",
-                "description": "create a web app that ...",
-                "state": "to do"
-            },
-            {
-                "id": '1',
-                "name": "crud project",
-                "description": "create a web app that ...",
-                "state": "doing"
-            },
-            {
-                "id": '1',
-                "name": "crud project",
-                "description": "create a web app that ...",
-                "state": "done"
-            }
-        ];
-    }
+    /*laod(){
+      this.data=[];
+      this.service.getTasks(this.id).then(res=>{
+         res.forEach(element => {
+           
+         this.data.push(element);
+  
+        });
+        
+      
+      },
+      err => {
+         console.log(err);}
+      );
+    
+    }*/
     color(progress) {
         if (progress == "to do") {
             return "danger";
@@ -127,10 +139,11 @@ let TaskPage = class TaskPage {
     filter(n) {
         var fil = [];
         if (n == 0) {
-            this.laod();
+            //this.laod();
+            this.data = this.cachedata;
         }
         if (n == 1) {
-            this.laod();
+            this.data = this.cachedata;
             this.data.forEach(element => {
                 if (element['state'] == "to do") {
                     fil.push(element);
@@ -139,7 +152,7 @@ let TaskPage = class TaskPage {
             this.data = fil;
         }
         if (n == 2) {
-            this.laod();
+            this.data = this.cachedata;
             this.data.forEach(element => {
                 if (element['state'] == "doing") {
                     fil.push(element);
@@ -148,7 +161,7 @@ let TaskPage = class TaskPage {
             this.data = fil;
         }
         if (n == 3) {
-            this.laod();
+            this.data = this.cachedata;
             this.data.forEach(element => {
                 if (element['state'] == "done") {
                     fil.push(element);
@@ -157,14 +170,38 @@ let TaskPage = class TaskPage {
             this.data = fil;
         }
     }
+    open() {
+        let url = "/task-form/" + this.id;
+        console.log(url);
+        this.router.navigate([url]);
+    }
+    ionRefresh(event) {
+        setTimeout(() => {
+            // this.laod();
+            event.target.complete();
+        }, 2000);
+    }
+    ionPull(event) {
+        //Emitted while the user is pulling down the content and exposing the refresher.
+        console.log('ionPull Event Triggered!');
+    }
+    ionStart(event) {
+        //Emitted when the user begins to start pulling down.
+        console.log('ionStart Event Triggered!');
+    }
 };
+TaskPage.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] }
+];
 TaskPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-task',
         template: __webpack_require__(/*! raw-loader!./task.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/task/task.page.html"),
         styles: [__webpack_require__(/*! ./task.page.scss */ "./src/app/Screens/task/task.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"]])
 ], TaskPage);
 
 

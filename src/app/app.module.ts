@@ -18,7 +18,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import * as firebase from 'firebase';
 import { from } from 'rxjs';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-
+import { FCM } from '@ionic-native/fcm//ngx'
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
@@ -52,7 +52,7 @@ firebase.initializeApp(environment.firbase);
     File,
     WebView,    
     FilePath,
-    
+    FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
