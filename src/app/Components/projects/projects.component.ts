@@ -4,7 +4,7 @@ import {ProjectsService} from '../../Services/projects.service';
 import{Observable}from 'rxjs'
 import {AngularFirestore,AngularFirestoreDocument ,AngularFirestoreCollection}from '@angular/fire/firestore';
 import{Project} from '../../Models/IProjects'
-
+import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -22,10 +22,35 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
    
-    this.getProjects();
+     this.service.AsyncProjects().subscribe(
+      data=>{
+        this.projects= data.map(
+          e=>{
+            let value = firebase.auth().currentUser;
+            var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
+            console.log(obj);
+          if(obj['manager']==value.uid){
+            return {
+              "name":obj.name,
+              "description":obj.description,
+              "manager":obj.manager,
+              "client":obj.client,
+              "progress":obj.progress,
+              "type":obj.type,
+              "id":e.payload.doc.id
+            }
+          
+            
+          }
+          }
+        );
+        
+      }
+   );
+    console.log(this.projects);
    
   }
-   getProjects() {
+   getProjectsOnce() {
     this.projects=[];
 
      this.service.getProjects().then(res=>{
@@ -62,7 +87,7 @@ export class ProjectsComponent implements OnInit {
   }
   ionRefresh(event) {
     setTimeout(() => {
-     this.getProjects();
+     this.getProjectsOnce();
       event.target.complete();
     }, 2000);
 }

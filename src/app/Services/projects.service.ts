@@ -32,6 +32,12 @@ export class ProjectsService {
       )
     })
    }
+
+   AsyncProjects(){    
+  
+   return  this.afs.collection('projects').snapshotChanges();;
+   }
+
   getProjects() {
     return new Promise<any>((resolve, reject) => {
       let value = firebase.auth().currentUser;
