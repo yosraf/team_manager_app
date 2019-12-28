@@ -747,6 +747,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _app_Services_fcm_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app/Services/fcm.service */ "./src/app/Services/fcm.service.ts");
+/* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
+
 
 
 
@@ -756,30 +758,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, toastController, splashScreen, statusBar, route, fcm) {
+    function AppComponent(platform, toastController, splashScreen, statusBar, route, fcm, localNotifications) {
         this.platform = platform;
         this.toastController = toastController;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.route = route;
         this.fcm = fcm;
+        this.localNotifications = localNotifications;
         this.initializeApp();
         this.sideMenu();
     }
-    AppComponent.prototype.presentToast = function (message) {
+    AppComponent.prototype.presentToast = function (title, message) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var toast;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.toastController.create({
-                            message: message,
-                            duration: 3000
-                        })];
-                    case 1:
-                        toast = _a.sent();
-                        toast.present();
-                        return [2 /*return*/];
-                }
+                // Schedule a single notification
+                this.localNotifications.schedule({
+                    id: 1,
+                    title: title,
+                    text: message,
+                });
+                return [2 /*return*/];
             });
         });
     };
@@ -788,10 +787,10 @@ var AppComponent = /** @class */ (function () {
         //this.fcm.getToken();
         this.fcm.onNotifications().subscribe(function (msg) {
             if (_this.platform.is('ios')) {
-                _this.presentToast(msg.aps.alert);
+                _this.presentToast(msg.title, msg.aps.alert);
             }
             else {
-                _this.presentToast(msg.body);
+                _this.presentToast(msg.title, msg.body);
             }
         });
     };
@@ -832,7 +831,8 @@ var AppComponent = /** @class */ (function () {
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
         { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
-        { type: _app_Services_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"] }
+        { type: _app_Services_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"] },
+        { type: _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_7__["LocalNotifications"] }
     ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -845,7 +845,8 @@ var AppComponent = /** @class */ (function () {
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
-            _app_Services_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"]])
+            _app_Services_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"],
+            _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_7__["LocalNotifications"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -887,6 +888,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 /* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
 /* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
+/* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
+
 
 
 
@@ -935,6 +938,7 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_20__["WebView"],
                 _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__["FilePath"],
                 _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__["FCM"],
+                _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__["LocalNotifications"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]

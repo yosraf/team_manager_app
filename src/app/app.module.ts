@@ -24,7 +24,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
-
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 firebase.initializeApp(environment.firbase);
 
 @NgModule({
@@ -53,6 +53,7 @@ firebase.initializeApp(environment.firbase);
     WebView,    
     FilePath,
     FCM,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
