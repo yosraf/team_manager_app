@@ -1,5 +1,5 @@
 import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -25,6 +25,7 @@ import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import {IonicGestureConfig} from "../app/utils/IonicGestureConfig";
 firebase.initializeApp(environment.firbase);
 
 @NgModule({
@@ -54,7 +55,14 @@ firebase.initializeApp(environment.firbase);
     FilePath,
     FCM,
     LocalNotifications,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {
+      provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig,
+    }
+    ,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy 
+      
+    }
+  
   ],
   bootstrap: [AppComponent]
 })

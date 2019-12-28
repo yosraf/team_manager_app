@@ -45,4 +45,16 @@ ion-fab-button{
 
 
       }
+      .delete{
+          width: 30%;
+          display: flex;
+          .deleteIcon{
+              font-size: 25px;
+              margin: 0 auto;
+              margin-top: 40%;
+              
+              color:#eb4d4b;
+          }
+
+      }
   }

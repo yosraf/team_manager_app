@@ -14,6 +14,7 @@ import * as firebase from 'firebase/app';
 export class ProjectsComponent implements OnInit {
  
   projects:any=[];
+  isShow:any;
 
   constructor(public route:Router,private service:ProjectsService,private afs: AngularFirestore) {
    
@@ -21,6 +22,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isShow=true;
    
      this.service.AsyncProjects().subscribe(
       data=>{
@@ -77,9 +79,17 @@ export class ProjectsComponent implements OnInit {
      return "#8e44ad";
    }
   }
+   active(){
+     console.log("ok");
+     this.isShow=false;
+   }
+   released(){
+     this.isShow=true;
+   }
   
-  
-  
+  delete(id){
+    console.log(id);
+  }
   openTask(id){
     let url="/task/"+id;
      this.route.navigate([url])

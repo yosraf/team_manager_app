@@ -12,6 +12,7 @@ import{ProjectsComponent} from '../../Components/projects/projects.component'
 import{ClientHContentComponent} from '../../Components/client-hcontent/client-hcontent.component'
 import {ClientProjectsComponent} from '../../Components/client-projects/client-projects.component'
 import{ClientHomeContentComponent} from '../../Components/client-home-content/client-home-content.component';
+import { LongPressModule } from 'ionic-long-press';
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
@@ -65,6 +66,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    LongPressModule,
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 50,
