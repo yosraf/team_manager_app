@@ -9,6 +9,7 @@ import{ProjectsService} from '../../Services/projects.service';
 })
 export class TaskPage implements OnInit {
   data:any=[]
+  cachedata:any=[]
   id:any;
   constructor(private route: ActivatedRoute,private router:Router,private service:ProjectsService) {
     this.route.params.subscribe( params => {
@@ -18,10 +19,20 @@ export class TaskPage implements OnInit {
 }
 
   ngOnInit() {
-    this.laod();
+    this.service.getTasks(this.id).subscribe(
+      doc=>{
+        this.data=doc.map(
+            element=>{
+              var obj = JSON.parse(JSON.stringify(element.payload.doc.data()));
+              return obj;
+            }
+        );
+        this.cachedata=this.data;
+      }
+    );
    
   }
-  laod(){
+  /*laod(){
     this.data=[];
     this.service.getTasks(this.id).then(res=>{
        res.forEach(element => {
@@ -36,7 +47,7 @@ export class TaskPage implements OnInit {
        console.log(err);}
     );
   
-  }
+  }*/
   color(progress){
     if(progress=="to do"){
       return "danger";
@@ -51,10 +62,12 @@ export class TaskPage implements OnInit {
    filter(n){
      var fil:any=[];
     if(n==0){
-      this.laod();
+      //this.laod();
+      this.data=this.cachedata;
     }
+    
     if(n==1){
-      this.laod();
+      this.data=this.cachedata;
       this.data.forEach(element => {
         if(element['state']=="to do"){
           fil.push(element);
@@ -64,7 +77,7 @@ export class TaskPage implements OnInit {
       this.data=fil;
     }
     if(n==2){
-      this.laod();
+      this.data=this.cachedata;
       this.data.forEach(element => {
         if(element['state']=="doing"){
           fil.push(element);
@@ -75,7 +88,7 @@ export class TaskPage implements OnInit {
 
     }
     if(n==3){
-      this.laod();
+      this.data=this.cachedata;
       this.data.forEach(element => {
         if(element['state']=="done"){
           fil.push(element);
@@ -94,7 +107,7 @@ export class TaskPage implements OnInit {
    }
    ionRefresh(event) {
     setTimeout(() => {
-     this.laod();
+    // this.laod();
       event.target.complete();
     }, 2000);
 }

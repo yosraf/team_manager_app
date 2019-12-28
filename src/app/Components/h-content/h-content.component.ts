@@ -2,6 +2,7 @@ import { Component, OnInit, Input,ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import {Router} from '@angular/router';
 import {ProjectsService} from '../../Services/projects.service';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-h-content',
@@ -16,14 +17,35 @@ export class HContentComponent implements OnInit {
   dognut:any;
   colorArray: any;
   projects:any=[];
-  mobile=0;
-  web=0;
-  data=0;
   constructor(public route:Router,private service:ProjectsService) { }
 
   ngOnInit() {
     
-      this.getProjects();
+    this.service.AsyncProjects().subscribe(
+      data=>{
+        this.projects= data.map(
+          e=>{
+            let value = firebase.auth().currentUser;
+            var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
+            console.log(obj);
+          if(obj['manager']==value.uid){
+            return {
+              "name":obj.name,
+              "description":obj.description,
+              "manager":obj.manager,
+              "client":obj.client,
+              "progress":obj.progress,
+              "type":obj.type,
+              "id":e.payload.doc.id
+            }
+          
+            
+          }
+          }
+        );
+        
+      }
+   );
      
 
   }
@@ -33,56 +55,54 @@ export class HContentComponent implements OnInit {
   
 
   getProjects() {
-    this.service.getProjects().then(res=>{
+    this.projects=[];
+    this.service.getProjects() .then(res=>{
      
       res.forEach(element => {
         this.projects.push(element);
-        if(element['type']=="mobile"){
-          this.mobile+=1;
-          console.log(this.mobile);
-        }
-        if(element['type']=="web"){
-         this.web+=1;
-         console.log(this.web);
-  
-       }
-       if(element['type']=="data"){
-         this.data+=1;
-         console.log("data")
-  
-       }
+      
        
       });
-      
     
     },
     err => { 
        console.log(err);}
     );
-    this.projects.forEach(element => {
+    
+
+  }
+  async createDonutsChart() {
+    let web=0;
+    let mobile=0;
+    let data=0;
+    var projs=await this.service.getProjects();
+    console.log("get projects");
+    projs.forEach(element => {
+      console.log("fetch projects");
       if(element['type']=="mobile"){
-        this.mobile+=1;
+          mobile+=1;
       }
       if(element['type']=="web"){
-       this.web+=1;
+       web+=1;
 
      }
      if(element['type']=="data"){
-       this.data+=1;
+       data+=1;
 
      }
      
     });
 
-  }
-  createDonutsChart() {
+    console.log(mobile+" "+data+" "+web);
+  
+    console.log("show dognut");
     this.dognut = new Chart(this.dognutChart.nativeElement, {
       type: 'doughnut',
       data: {
         labels: ['mobile', 'web', 'data'],
         datasets: [{
           label: 'Projects types',
-          data: [this.mobile,this.web,this.data],
+          data: [mobile,web,data],
           backgroundColor: ['#e67e22','#a55eea','#8e44ad'], // array should have same number of elements as number of dataset
           borderWidth: 1
         }]

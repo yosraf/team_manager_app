@@ -47,7 +47,6 @@ export class ProjectsComponent implements OnInit {
         
       }
    );
-    console.log(this.projects);
    
   }
    getProjectsOnce() {

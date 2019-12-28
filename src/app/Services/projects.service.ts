@@ -96,23 +96,8 @@ export class ProjectsService {
 
   }
   getTasks(id){
-    let tasks:any=[]; 
-    return new Promise<any>((resolve, reject) => {
-      this.afs.collection('projects').doc(id).collection('tasks').get().forEach(doc=>{
-      
-        doc.docs.forEach(d=>{
-          var obj = JSON.parse(JSON.stringify(d.data()));
-           tasks.push(obj);
-        }
-        )})
-      .then(
-        res => {
-        
-          resolve(tasks)
-        },
-        err => reject(err)
-      )
-    })
+    
+    return this.afs.collection('projects').doc(id).collection('tasks').snapshotChanges();
     
    
     
