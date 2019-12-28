@@ -785,6 +785,9 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.notificationSetup = function () {
         var _this = this;
         //this.fcm.getToken();
+        this.localNotifications.on('click').subscribe(function (data) {
+            _this.route.navigate(["/project-proposition"]);
+        });
         this.fcm.onNotifications().subscribe(function (msg) {
             if (_this.platform.is('ios')) {
                 _this.presentToast(msg.title, msg.aps.alert);

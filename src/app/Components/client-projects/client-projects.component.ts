@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import {ProjectsService} from '../../Services/projects.service';
+import * as firebase from 'firebase/app';
+
 @Component({
   selector: 'app-client-projects',
   templateUrl: './client-projects.component.html',
@@ -9,24 +12,55 @@ export class ClientProjectsComponent implements OnInit {
 
   projects:any=[];
 
-  constructor(public route:Router) {
+  constructor(public route:Router,private service:ProjectsService) {
    
    
   }
 
   ngOnInit() {
    
-    this.getProjects();
+    this.service.AsyncProjects().subscribe(
+      data=>{
+        this.projects= data.map(
+          e=>{
+            let value = firebase.auth().currentUser;
+            var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
+            console.log(obj);
+          if(obj['client']==value.uid){
+            return {
+              "name":obj.name,
+              "description":obj.description,
+              "manager":obj.manager,
+              "client":obj.client,
+              "progress":obj.progress,
+              "type":obj.type,
+              "id":e.payload.doc.id
+            }
+          
+            
+          }
+          }
+        );
+        
+      }
+   );
    
   }
    getProjects() {
-    this.projects=[{
-      "name":"project",
-      "description":"blabla",
-      "type":"web",
-    
+    this.projects=[];
+    this.service.getClientProjects().then(res=>{
+      console.log(res);
+       res.forEach(element => {
+         
+       this.projects.push(element);
 
-    }]
+      });
+      
+    
+    },
+    err => { 
+       console.log(err);}
+    );
 
   }
   color(type){

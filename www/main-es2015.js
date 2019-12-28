@@ -756,6 +756,9 @@ let AppComponent = class AppComponent {
     }
     notificationSetup() {
         //this.fcm.getToken();
+        this.localNotifications.on('click').subscribe(data => {
+            this.route.navigate(["/project-proposition"]);
+        });
         this.fcm.onNotifications().subscribe((msg) => {
             if (this.platform.is('ios')) {
                 this.presentToast(msg.title, msg.aps.alert);

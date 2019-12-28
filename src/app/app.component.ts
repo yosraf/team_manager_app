@@ -38,6 +38,9 @@ export class AppComponent {
   }
   private notificationSetup() {
     //this.fcm.getToken();
+    this.localNotifications.on('click').subscribe(data=>{
+        this.route.navigate(["/homes/clientHome"]);
+    });
     this.fcm.onNotifications().subscribe(
       (msg) => {
         if (this.platform.is('ios')) {

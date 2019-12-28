@@ -76,7 +76,6 @@ export class HContentComponent implements OnInit {
     let mobile=0;
     let data=0;
     var projs=await this.service.getProjects();
-    console.log("get projects");
     projs.forEach(element => {
       console.log("fetch projects");
       if(element['type']=="mobile"){
@@ -93,13 +92,11 @@ export class HContentComponent implements OnInit {
      
     });
 
-    console.log(mobile+" "+data+" "+web);
   
-    console.log("show dognut");
     this.dognut = new Chart(this.dognutChart.nativeElement, {
       type: 'doughnut',
       data: {
-        labels: ['mobile', 'web', 'data'],
+        labels: ['Mobile', 'Web', 'Data'],
         datasets: [{
           label: 'Projects types',
           data: [mobile,web,data],
