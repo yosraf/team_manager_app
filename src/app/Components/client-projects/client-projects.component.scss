@@ -10,6 +10,10 @@ ion-fab-button{
     --background: #ff7300;
 
 }
+.list-header{
+    color: #ff7300;
+    font-size: medium;
+}
 .card {
     box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
     border-radius: 6px;
@@ -45,4 +49,18 @@ ion-fab-button{
 
 
       }
+      .delete{
+        width: 30%;
+        display: flex;
+        .deleteIcon{
+            font-size: 25px;
+            margin: 0 auto;
+            margin-top: 40%;
+            
+            color:#eb4d4b;
+        }
+    
+    }
+    
   }
+ 

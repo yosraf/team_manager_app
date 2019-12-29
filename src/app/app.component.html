@@ -16,15 +16,6 @@
           </ion-menu-toggle>
           </ion-list>
           <ion-list>
-              <ion-menu-toggle auto-hide="true" >
-                  <ion-item  routerDirection="forward" class="title" (click)="logout()">
-                      <ion-icon name="log-out" slot="start" class="title"></ion-icon>
-                        Logout
-                  </ion-item>
-                   
-                </ion-menu-toggle>
-          </ion-list>
-          <ion-list>
             <ion-menu-toggle auto-hide="true" >
                 <ion-item  class="title" routerDirection="forward" >
                    
@@ -36,6 +27,16 @@
                  
               </ion-menu-toggle>
         </ion-list>
+          <ion-list>
+              <ion-menu-toggle auto-hide="true" >
+                  <ion-item  routerDirection="forward" class="title" (click)="logout()">
+                      <ion-icon name="log-out" slot="start" class="title"></ion-icon>
+                        Logout
+                  </ion-item>
+                   
+                </ion-menu-toggle>
+          </ion-list>
+         
         </ion-content>
       </ion-menu>
   <ion-router-outlet id="content1"></ion-router-outlet>

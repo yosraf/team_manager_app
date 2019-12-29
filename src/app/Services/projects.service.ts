@@ -37,6 +37,10 @@ export class ProjectsService {
   
    return  this.afs.collection('projects').snapshotChanges();;
    }
+   AsyncPropositions(){    
+    
+    return  this.afs.collection('propositions').snapshotChanges();
+    }
 
   getProjects() {
     return new Promise<any>((resolve, reject) => {
@@ -200,5 +204,53 @@ export class ProjectsService {
     })
     
   }
-  
+  getManagers(){
+    return new Promise<any>((resolve, reject) => {
+      let managers:any=[]; 
+      
+      this.afs.collection('users').get(   ).forEach(doc=>{
+        
+        doc.docs.forEach(d=>{
+
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          if(obj['role']=="manager"){
+            console.log(obj);
+            managers.push(obj);
+            
+          }
+
+        })
+     
+    })
+     
+      .then(
+        res => {
+        
+          resolve(managers)
+        },
+        err => reject(err)
+      )
+    })
+
+  }
+  createProposition(value){
+    return new Promise<any>((resolve, reject) => {
+      let currentUser = firebase.auth().currentUser;
+      this.afs.collection('propositions').add({
+        manager:value.Person,
+        name: value.Name,
+        description: value.Description,
+        type:value.Type,
+        client:currentUser.uid,
+       
+      })
+      .then(
+        res => {
+        
+          resolve(res)
+        },
+        err => reject(err)
+      )
+    })
+   }
 }

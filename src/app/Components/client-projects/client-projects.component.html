@@ -20,6 +20,9 @@
     refreshingText="Refreshing...">
   </ion-refresher-content>
 </ion-refresher>
+<ion-list-header class="list-header">
+  Projects
+</ion-list-header>
  <ion-list *ngIf="this.projects.length>0">
 
       <div class="card" *ngFor="let d of projects" (click)="open(d['name'])" >
@@ -42,14 +45,38 @@
            <p>{{d['description']}}</p>
 
         </div>
+       
         
       </div>
     </ion-list>
     
   <ion-list-header *ngIf="this.projects.length==0" class="no-project">
       No project Found
-    </ion-list-header>
-  
+  </ion-list-header>
+  <ion-list-header class="list-header">
+    Propositions
+  </ion-list-header>
+  <ion-list-header *ngIf="this.propositions.length==0" class="no-project">
+    No proposition Found
+</ion-list-header>
+<ion-list *ngIf="this.propositions.length>0">
+
+  <div  ion-long-press [interval]="400" class="card" *ngFor="let d of propositions" (click)="open(d['id'])"  (longPressed)="active()"   (pressEnded)="released()">
+    <div class="project-info" [ngStyle]="{'background-color':color(d['type'])}">
+      <ion-icon [name]="icon(d['type'])" class="icon"></ion-icon>
+    </div>
+    <div class="container">
+      <h5 ><b>{{d['name']}}</b></h5>
+      <p>{{d['description']}}</p>
+
+    </div>
+    <div [hidden] = isShow class="delete">
+      <ion-icon name="md-trash" class="deleteIcon" (click)="delete(d['id'])"></ion-icon>
+
+    </div>
+    
+  </div>
+</ion-list>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
       <ion-fab-button  routerLink="/project-proposition">
         <ion-icon name="add"></ion-icon>

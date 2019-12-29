@@ -11,6 +11,8 @@ import * as firebase from 'firebase/app';
 export class ClientProjectsComponent implements OnInit {
 
   projects:any=[];
+  propositions:any[];
+  isShow=true;
 
   constructor(public route:Router,private service:ProjectsService) {
    
@@ -18,49 +20,76 @@ export class ClientProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
-   
-    this.service.AsyncProjects().subscribe(
-      data=>{
-        this.projects= data.map(
-          e=>{
-            let value = firebase.auth().currentUser;
-            var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
-            console.log(obj);
-          if(obj['client']==value.uid){
-            return {
-              "name":obj.name,
-              "description":obj.description,
-              "manager":obj.manager,
-              "client":obj.client,
-              "progress":obj.progress,
-              "type":obj.type,
-              "id":e.payload.doc.id
-            }
-          
-            
+
+    this.projects=[];
+    this.propositions=[];
+    this.isShow=true;
+    let value = firebase.auth().currentUser;
+    this.service.AsyncPropositions().subscribe(
+
+      data => {
+        this.propositions=[];
+        data.map(d=>{
+         
+          var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
+          if (obj['client'] == value.uid) {
+            var p= {
+              "name": obj.name,
+              "description": obj.description,
+              "manager": obj.manager,
+              "client": obj.client,
+              "type": obj.type,
+              "id": d.payload.doc.id
+            };
+            this.propositions.push(p);
+
           }
-          }
-        );
+        });
         
+
       }
-   );
+    );
+
+    this.service.AsyncProjects().subscribe(
+      data => {
+        data.forEach(d=>{
+          let value = firebase.auth().currentUser;
+          var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
+          if (obj['client'] == value.uid) {
+            var p= {
+              "name": obj.name,
+              "description": obj.description,
+              "manager": obj.manager,
+              "client": obj.client,
+              "progress": obj.progress,
+              "type": obj.type,
+              "id": d.payload.doc.id
+            };
+            this.projects.push(p);
+
+          }
+        });
+        
+
+      }
+    );
    
   }
    getProjects() {
     this.projects=[];
-    this.service.getClientProjects().then(res=>{
-      console.log(res);
-       res.forEach(element => {
-         
-       this.projects.push(element);
-
-      });
+    this.service.getClientProjects() .then(res=>{
+     
+      res.forEach(element => {
+        this.projects.push(element);
       
+       
+      });
     
     },
     err => { 
        console.log(err);}
     );
+    
 
   }
   color(type){
@@ -94,6 +123,28 @@ ionStart(event){
 }
 open(value){
   this.route.navigate(["/project-details"])
+}
+active(){
+  console.log("ok");
+  this.isShow=false;
+}
+released(){
+  this.isShow=true;
+}
+
+delete(id){
+ console.log(id);
+}
+icon(type) {
+  if (type == "web") {
+    return "md-desktop";
+  }
+  if (type == "mobile") {
+    return "md-phone-portrait";
+  }
+  if (type == "data") {
+    return "md-analytics";
+  }
 }
 
 }

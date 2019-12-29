@@ -16,13 +16,21 @@
           </ion-item>
           <ion-item>
               <ion-icon slot="start" name="create"></ion-icon>
-              <ion-input type="text" placeholder="Task description"  formControlName="Description" required></ion-input>
+              <ion-input type="text" placeholder="Project description"  formControlName="Description" required></ion-input>
             </ion-item>
-          
+            <ion-item>
+              <ion-icon slot="start" name="list-box"></ion-icon>
+              <ion-select placeholder="Project type" formControlName="Type">
+                <ion-select-option value="web">web</ion-select-option>
+                <ion-select-option value="mobile">mobile</ion-select-option>
+                <ion-select-option value="data">data</ion-select-option>
+
+              </ion-select>
+          </ion-item>
             <ion-item>
                 <ion-icon slot="start" name="contacts"></ion-icon>
                 <ion-select placeholder="Select a person" formControlName="Person" >
-                  <ion-select-option *ngFor="let t of team" value="{{t['name']}}">{{t["name"]}}</ion-select-option>
+                  <ion-select-option *ngFor="let t of managers" value="{{t['uid']}}">{{t["username"]}}</ion-select-option>
                 </ion-select>
               </ion-item>
       </div>
