@@ -724,6 +724,9 @@ let ProjectsService = class ProjectsService {
         return this.afs.collection('projects').snapshotChanges();
         ;
     }
+    AsyncPropositions() {
+        return this.afs.collection('propositions').snapshotChanges();
+    }
     getProjects() {
         return new Promise((resolve, reject) => {
             let value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
@@ -797,6 +800,65 @@ let ProjectsService = class ProjectsService {
             })
                 .then(res => {
                 resolve(devs);
+            }, err => reject(err));
+        });
+    }
+    getClientProjects() {
+        return new Promise((resolve, reject) => {
+            let value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            let projects = [];
+            let project = {};
+            this.afs.collection('projects').get().forEach(doc => {
+                doc.docs.forEach(d => {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['client'] == value.uid) {
+                        project = {
+                            "name": obj.name,
+                            "description": obj.description,
+                            "manager": obj.manager,
+                            "client": obj.client,
+                            "progress": obj.progress,
+                            "type": obj.type,
+                            "id": d.id
+                        };
+                        projects.push(project);
+                    }
+                });
+            })
+                .then(res => {
+                resolve(projects);
+            }, err => reject(err));
+        });
+    }
+    getManagers() {
+        return new Promise((resolve, reject) => {
+            let managers = [];
+            this.afs.collection('users').get().forEach(doc => {
+                doc.docs.forEach(d => {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['role'] == "manager") {
+                        console.log(obj);
+                        managers.push(obj);
+                    }
+                });
+            })
+                .then(res => {
+                resolve(managers);
+            }, err => reject(err));
+        });
+    }
+    createProposition(value) {
+        return new Promise((resolve, reject) => {
+            let currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            this.afs.collection('propositions').add({
+                manager: value.Person,
+                name: value.Name,
+                description: value.Description,
+                type: value.Type,
+                client: currentUser.uid,
+            })
+                .then(res => {
+                resolve(res);
             }, err => reject(err));
         });
     }

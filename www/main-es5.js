@@ -35,6 +35,7 @@ var map = {
 	],
 	"./Screens/project-proposition/project-proposition.module": [
 		"./src/app/Screens/project-proposition/project-proposition.module.ts",
+		"common",
 		"Screens-project-proposition-project-proposition-module"
 	],
 	"./Screens/project/project.module": [
@@ -503,7 +504,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n    <ion-menu side=\"start\" menuId=\"first\" contentId=\"content1\">\n        <ion-header>\n          <ion-toolbar>\n            <ion-title class=\"title\">Menu</ion-title>\n          </ion-toolbar>\n        </ion-header>\n        <ion-content>\n          <ion-list >\n          <ion-menu-toggle auto-hide=\"true\" *ngFor=\"let pages of navigate\">\n            <ion-item [routerLink]=\"pages.url\" routerDirection=\"forward\" class=\"title\">\n                <ion-icon [name]=\"pages.icon\" slot=\"start\" class=\"title\"></ion-icon>\n                   {{pages.title}} \n            </ion-item>\n             \n          </ion-menu-toggle>\n          </ion-list>\n          <ion-list>\n              <ion-menu-toggle auto-hide=\"true\" >\n                  <ion-item  routerDirection=\"forward\" class=\"title\" (click)=\"logout()\">\n                      <ion-icon name=\"log-out\" slot=\"start\" class=\"title\"></ion-icon>\n                        Logout\n                  </ion-item>\n                   \n                </ion-menu-toggle>\n          </ion-list>\n        </ion-content>\n      </ion-menu>\n  <ion-router-outlet id=\"content1\"></ion-router-outlet>\n</ion-app>\n"
+module.exports = "<ion-app>\n    <ion-menu side=\"start\" menuId=\"first\" contentId=\"content1\">\n        <ion-header>\n          <ion-toolbar>\n            <ion-title class=\"title\">Menu</ion-title>\n          </ion-toolbar>\n        </ion-header>\n        <ion-content>\n          <ion-list >\n          <ion-menu-toggle auto-hide=\"true\" *ngFor=\"let pages of navigate\">\n            <ion-item [routerLink]=\"pages.url\" routerDirection=\"forward\" class=\"title\">\n                <ion-icon [name]=\"pages.icon\" slot=\"start\" class=\"title\"></ion-icon>\n                   {{pages.title}} \n            </ion-item>\n             \n          </ion-menu-toggle>\n          </ion-list>\n          <ion-list>\n            <ion-menu-toggle auto-hide=\"true\" >\n                <ion-item  class=\"title\" routerDirection=\"forward\" >\n                   \n                  <ion-icon name=\"md-notifications\" class=\"title\"></ion-icon>\n                 <ion-label> Notification</ion-label>\n                      <ion-toggle color=\"tertiary\"></ion-toggle>\n\n                </ion-item>\n                 \n              </ion-menu-toggle>\n        </ion-list>\n          <ion-list>\n              <ion-menu-toggle auto-hide=\"true\" >\n                  <ion-item  routerDirection=\"forward\" class=\"title\" (click)=\"logout()\">\n                      <ion-icon name=\"log-out\" slot=\"start\" class=\"title\"></ion-icon>\n                        Logout\n                  </ion-item>\n                   \n                </ion-menu-toggle>\n          </ion-list>\n         \n        </ion-content>\n      </ion-menu>\n  <ion-router-outlet id=\"content1\"></ion-router-outlet>\n</ion-app>\n"
 
 /***/ }),
 
@@ -687,7 +688,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'login-page', pathMatch: 'full' },
     { path: 'home', loadChildren: function () { return __webpack_require__.e(/*! import() | Screens-home-home-module */ "Screens-home-home-module").then(__webpack_require__.bind(null, /*! ./Screens/home/home.module */ "./src/app/Screens/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); } },
     { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
     { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
@@ -786,7 +787,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         //this.fcm.getToken();
         this.localNotifications.on('click').subscribe(function (data) {
-            _this.route.navigate(["/project-proposition"]);
+            _this.route.navigate(["/homes/clientHome"]);
         });
         this.fcm.onNotifications().subscribe(function (msg) {
             if (_this.platform.is('ios')) {
@@ -804,6 +805,7 @@ var AppComponent = /** @class */ (function () {
             _this.splashScreen.hide();
         });
         this.notificationSetup();
+        this.notifmanager();
     };
     AppComponent.prototype.sideMenu = function () {
         this.navigate =
@@ -818,15 +820,38 @@ var AppComponent = /** @class */ (function () {
                     url: "/chat",
                     icon: "chatboxes"
                 },
-                {
-                    title: "Settings",
-                    url: "/settings",
-                    icon: "settings"
-                },
             ];
     };
     AppComponent.prototype.logout = function () {
         this.route.navigate(["/login-page"]);
+    };
+    AppComponent.prototype.sendNotifManager = function (title, message) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // Schedule a single notification
+                this.localNotifications.schedule({
+                    id: 1,
+                    title: title,
+                    text: message,
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    AppComponent.prototype.notifmanager = function () {
+        var _this = this;
+        //this.fcm.getToken();
+        this.localNotifications.on('click').subscribe(function (data) {
+            _this.route.navigate([""]);
+        });
+        this.fcm.onNotifications().subscribe(function (msg) {
+            if (_this.platform.is('ios')) {
+                _this.sendNotifManager(msg.title, msg.aps.alert);
+            }
+            else {
+                _this.sendNotifManager(msg.title, msg.body);
+            }
+        });
     };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
@@ -892,6 +917,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
 /* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
+/* harmony import */ var _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/utils/IonicGestureConfig */ "./src/app/utils/IonicGestureConfig.ts");
+
 
 
 
@@ -942,13 +969,61 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__["FilePath"],
                 _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__["FCM"],
                 _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__["LocalNotifications"],
-                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+                {
+                    provide: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["HAMMER_GESTURE_CONFIG"], useClass: _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__["IonicGestureConfig"],
+                },
+                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
+                }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
 }());
+
+
+
+/***/ }),
+
+/***/ "./src/app/utils/IonicGestureConfig.ts":
+/*!*********************************************!*\
+  !*** ./src/app/utils/IonicGestureConfig.ts ***!
+  \*********************************************/
+/*! exports provided: IonicGestureConfig */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IonicGestureConfig", function() { return IonicGestureConfig; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+
+
+
+/**
+ * @hidden
+ * This class overrides the default Angular gesture config.
+ */
+var IonicGestureConfig = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](IonicGestureConfig, _super);
+    function IonicGestureConfig() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    IonicGestureConfig.prototype.buildHammer = function (element) {
+        var mc = new window.Hammer(element);
+        for (var eventName in this.overrides) {
+            if (eventName) {
+                mc.get(eventName).set(this.overrides[eventName]);
+            }
+        }
+        return mc;
+    };
+    IonicGestureConfig = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], IonicGestureConfig);
+    return IonicGestureConfig;
+}(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["HammerGestureConfig"]));
 
 
 

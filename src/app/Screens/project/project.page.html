@@ -13,15 +13,15 @@
         <div class="ion-padding">
             <ion-item>
                <ion-icon slot="start" name="clipboard"></ion-icon>
-                <ion-input type="text" formControlName="Name" placeholder="Project name" required></ion-input>
+                <ion-input type="text" formControlName="name" placeholder="Project name" required></ion-input>
               </ion-item>
               <ion-item>
                   <ion-icon slot="start" name="create"></ion-icon>
-                  <ion-input type="text" placeholder="Project description"  formControlName="Description" required></ion-input>
+                  <ion-input type="text" placeholder="Project description"  formControlName="description" required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-icon slot="start" name="list-box"></ion-icon>
-                    <ion-select placeholder="Project type" formControlName="Type">
+                    <ion-select placeholder="Project type" formControlName="type">
                       <ion-select-option value="web">web</ion-select-option>
                       <ion-select-option value="mobile">mobile</ion-select-option>
                       <ion-select-option value="data">data</ion-select-option>
@@ -30,7 +30,7 @@
                 </ion-item>
                 <ion-item>
                   <ion-icon slot="start" name="contact"></ion-icon>
-                  <ion-select placeholder="Select a client" formControlName="Client" >
+                  <ion-select placeholder="Select a client" formControlName="client" >
                     <ion-select-option *ngFor="let c of clients" value="{{c['uid']}}">{{c["username"]}}</ion-select-option>
                   </ion-select>
                 </ion-item>

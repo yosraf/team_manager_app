@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"end\">\n          <ion-button color=\"dark\" routerLink=\"/homes/clientProjects\" >\n            <ion-icon slot=\"icon-only\" name=\"close\" class=\"close\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]=\"validation\" (ngSubmit)=\"add(validation.value)\" >\n    <div class=\"ion-padding\">\n        <ion-item>\n           <ion-icon slot=\"start\" name=\"clipboard\"></ion-icon>\n            <ion-input type=\"text\" formControlName=\"Name\" placeholder=\"Project name\" required></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-icon slot=\"start\" name=\"create\"></ion-icon>\n              <ion-input type=\"text\" placeholder=\"Task description\"  formControlName=\"Description\" required></ion-input>\n            </ion-item>\n          \n            <ion-item>\n                <ion-icon slot=\"start\" name=\"contacts\"></ion-icon>\n                <ion-select placeholder=\"Select a person\" formControlName=\"Person\" >\n                  <ion-select-option *ngFor=\"let t of team\" value=\"{{t['name']}}\">{{t[\"name\"]}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n      </div>\n    \n    <div class=\"ion-padding\">\n      <ion-button size=\"medium\" type=\"submit\" expand=\"block\" class=\"submit\">Create proposition</ion-button>\n  \n    </div>\n  </form>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"end\">\n          <ion-button color=\"dark\" routerLink=\"/homes/clientProjects\" >\n            <ion-icon slot=\"icon-only\" name=\"close\" class=\"close\"></ion-icon>\n          </ion-button>\n        </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]=\"validation\" (ngSubmit)=\"add(validation.value)\" >\n    <div class=\"ion-padding\">\n        <ion-item>\n           <ion-icon slot=\"start\" name=\"clipboard\"></ion-icon>\n            <ion-input type=\"text\" formControlName=\"Name\" placeholder=\"Project name\" required></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-icon slot=\"start\" name=\"create\"></ion-icon>\n              <ion-input type=\"text\" placeholder=\"Project description\"  formControlName=\"Description\" required></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-icon slot=\"start\" name=\"list-box\"></ion-icon>\n              <ion-select placeholder=\"Project type\" formControlName=\"Type\">\n                <ion-select-option value=\"web\">web</ion-select-option>\n                <ion-select-option value=\"mobile\">mobile</ion-select-option>\n                <ion-select-option value=\"data\">data</ion-select-option>\n\n              </ion-select>\n          </ion-item>\n            <ion-item>\n                <ion-icon slot=\"start\" name=\"contacts\"></ion-icon>\n                <ion-select placeholder=\"Select a person\" formControlName=\"Person\" >\n                  <ion-select-option *ngFor=\"let t of managers\" value=\"{{t['uid']}}\">{{t[\"username\"]}}</ion-select-option>\n                </ion-select>\n              </ion-item>\n      </div>\n    \n    <div class=\"ion-padding\">\n      <ion-button size=\"medium\" type=\"submit\" expand=\"block\" class=\"submit\">Create proposition</ion-button>\n  \n    </div>\n  </form>\n</ion-content>"
 
 /***/ }),
 
@@ -89,27 +89,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
+
 
 
 
 
 var ProjectPropositionPage = /** @class */ (function () {
-    function ProjectPropositionPage(route, formBuilder) {
+    function ProjectPropositionPage(route, formBuilder, service) {
         this.route = route;
         this.formBuilder = formBuilder;
-        this.team = [];
+        this.service = service;
+        this.managers = [];
     }
     ProjectPropositionPage.prototype.ngOnInit = function () {
-        this.team = [
-            {
-                "id": "123",
-                "name": "yosrf"
-            },
-            {
-                "id": "124",
-                "name": "sirine"
-            }
-        ];
+        var _this = this;
+        this.service.getManagers().then(function (res) {
+            _this.managers = res;
+        });
         this.validation = this.formBuilder.group({
             Name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
@@ -119,15 +116,22 @@ var ProjectPropositionPage = /** @class */ (function () {
             ])),
             Person: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
+            ])),
+            Type: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
             ]))
         });
     };
     ProjectPropositionPage.prototype.add = function (value) {
-        console.log(value);
+        var _this = this;
+        this.service.createProposition(value).then(function (res) {
+            _this.route.navigate(["/homes/clientProjects"]);
+        });
     };
     ProjectPropositionPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] }
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+        { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"] }
     ]; };
     ProjectPropositionPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -135,7 +139,7 @@ var ProjectPropositionPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./project-proposition.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/project-proposition/project-proposition.page.html"),
             styles: [__webpack_require__(/*! ./project-proposition.page.scss */ "./src/app/Screens/project-proposition/project-proposition.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"]])
     ], ProjectPropositionPage);
     return ProjectPropositionPage;
 }());

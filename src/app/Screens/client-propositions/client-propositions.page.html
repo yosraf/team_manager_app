@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="title">Project propositions</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="title"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="this.propositions.length>0">
+
+    <div *ngFor="let d of propositions">
+     <div class="card">
+        <ion-item>
+          <ion-icon [name]="icon(d['type'])" [ngStyle]="{'color':color(d['type'])}" slot="start"></ion-icon>
+          <h3 [ngStyle]="{'color':color(d['type'])}" class="project-name">{{d['name']}}</h3>    
+          <ion-badge color="tertiary" slot="end">{{d['client']}}</ion-badge>
+     
+        </ion-item>
+               
+      
+        <div class="content">
+          <p class="project-description">{{d["description"]}}</p>
+          
+        </div>
+        <ion-item class="buttons">
+          <div class="accept">
+            <ion-icon name="md-checkmark-circle-outline" (click)="accept(d)" ></ion-icon>
+
+          </div>
+          <div class="refuse">
+            <ion-icon name="ios-close-circle-outline" (click)="refuse(d)" ></ion-icon>
+
+          </div>
+        </ion-item>
+      </div>
+     
+    </div>
+  </ion-list>
+
+  <ion-list-header *ngIf="this.propositions.length==0" class="no-project">
+    No proposition Found
+  </ion-list-header>
+
+
+</ion-content>

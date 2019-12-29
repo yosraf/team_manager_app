@@ -22,18 +22,18 @@ export class ProjectPage implements OnInit {
     
     this.validation =this.formBuilder.group({
      
-      Name: new FormControl('', Validators.compose([
+      name: new FormControl('', Validators.compose([
         Validators.required,
 
       ])),
-      Description: new FormControl('', Validators.compose([
+      description: new FormControl('', Validators.compose([
         Validators.required,
 
       ])),
-      Type: new FormControl('', Validators.compose([
+      type: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      Client:new FormControl('', Validators.compose([
+      client:new FormControl('', Validators.compose([
         Validators.required
       ])),
      

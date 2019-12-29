@@ -21,32 +21,30 @@ export class HContentComponent implements OnInit {
 
   ngOnInit() {
     
-    this.service.AsyncProjects().subscribe(
-      data=>{
-        this.projects= data.map(
-          e=>{
-            let value = firebase.auth().currentUser;
-            var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
-            console.log(obj);
-          if(obj['manager']==value.uid){
-            return {
-              "name":obj.name,
-              "description":obj.description,
-              "manager":obj.manager,
-              "client":obj.client,
-              "progress":obj.progress,
-              "type":obj.type,
-              "id":e.payload.doc.id
-            }
-          
-            
-          }
-          }
-        );
-        
-      }
-   );
-     
+    
+   this.service.AsyncProjects().subscribe(
+    data => {
+      data.forEach(d=>{
+        let value = firebase.auth().currentUser;
+        var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
+        if(obj['manager']==value.uid){
+          var p= {
+            "name": obj.name,
+            "description": obj.description,
+            "manager": obj.manager,
+            "client": obj.client,
+            "progress": obj.progress,
+            "type": obj.type,
+            "id": d.payload.doc.id
+          };
+          this.projects.push(p);
+
+        }
+      });
+      
+
+    }
+  );
 
   }
   ionViewDidEnter() {
@@ -154,5 +152,8 @@ ionPull(event){
 ionStart(event){
   //Emitted when the user begins to start pulling down.
   console.log('ionStart Event Triggered!');
+}
+openProp(){
+  this.route.navigate(["/client-propositions"]);
 }
 }

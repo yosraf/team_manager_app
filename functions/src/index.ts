@@ -43,7 +43,49 @@ exports.newProjectAdded=functions.firestore.document("projects/{projectsId}")
             const payload = {
             notification: {
                 title: `New project ${projectname}`,
-                body: `${managername} is adding to new project`,
+                body: `${managername} assigned you  to a new project`,
+                icon: 'https://goo.gl/Fz9nrQ'
+            }
+            }
+
+            
+
+            return admin.messaging().sendToDevice(token, payload)
+    }catch(e){
+        return null;
+    }
+})
+
+exports.newPropositionAdded=functions.firestore.document("propositions/{propositionId}")
+.onCreate(async (event,context) =>{
+    //const data =    event.data();
+    
+    try{
+                var snap= await admin.firestore().collection("propositions").doc(context.params.propositionId).get();
+
+
+
+            const projectname = snap.data()?.name;
+            const clientuid = snap.data()?.client;
+            const manager = snap.data()?.manager;
+            
+
+            
+            var token="";
+            var clientname=""
+            
+            // ref to the device collection for the user
+            const db = admin.firestore()
+            var clientRef = db.collection('users').where('uid', '==', clientuid)
+            var manageRef = db.collection('users').where('uid', '==', manager)
+            token=(await manageRef.get()).docs[0].data().token;
+            clientname=(await clientRef.get()).docs[0].data().username;
+            
+            // Notification content
+            const payload = {
+            notification: {
+                title: `New project ${projectname}`,
+                body: `${clientname} assigned you  to a new project`,
                 icon: 'https://goo.gl/Fz9nrQ'
             }
             }

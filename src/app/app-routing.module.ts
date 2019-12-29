@@ -3,12 +3,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login-page', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./Screens/home/home.module').then( m => m.HomePageModule)},
   { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
   { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
   { path: 'modal', loadChildren: './Screens/modal/modal.module#ModalPageModule' },
-  { path: 'settings', loadChildren: './Screens/settings/settings.module#SettingsPageModule' },
   { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
   { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
   { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
@@ -16,6 +15,7 @@ const routes: Routes = [
   { path: 'task-form/:id', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
   { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
   { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+  { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
 ];
 
 @NgModule({

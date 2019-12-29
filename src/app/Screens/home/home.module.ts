@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HomePage } from './home.page';
-import{LoginFormComponent} from '../../Components/login-form/login-form.component';
+import{RegisterFormComponent} from '../../Components/register-form/register-form.component';
   import { from } from 'rxjs';
 
 @NgModule({
@@ -21,7 +21,7 @@ import{LoginFormComponent} from '../../Components/login-form/login-form.componen
       }
     ])
   ],
-  declarations: [HomePage,LoginFormComponent  ]
+  declarations: [HomePage,RegisterFormComponent  ]
 })
 export class HomePageModule {
 

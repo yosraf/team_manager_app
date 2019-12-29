@@ -18,7 +18,7 @@ module.exports = "<ion-grid>\n  <ion-row justify-content-center>\n        <ion-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<app-register-form></app-register-form>"
+module.exports = "<app-register-form></app-register-form>"
 
 /***/ }),
 

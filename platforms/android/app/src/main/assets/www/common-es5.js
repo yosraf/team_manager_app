@@ -447,6 +447,9 @@ var ProjectsService = /** @class */ (function () {
         return this.afs.collection('projects').snapshotChanges();
         ;
     };
+    ProjectsService.prototype.AsyncPropositions = function () {
+        return this.afs.collection('propositions').snapshotChanges();
+    };
     ProjectsService.prototype.getProjects = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -524,6 +527,68 @@ var ProjectsService = /** @class */ (function () {
             })
                 .then(function (res) {
                 resolve(devs);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.getClientProjects = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            var projects = [];
+            var project = {};
+            _this.afs.collection('projects').get().forEach(function (doc) {
+                doc.docs.forEach(function (d) {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['client'] == value.uid) {
+                        project = {
+                            "name": obj.name,
+                            "description": obj.description,
+                            "manager": obj.manager,
+                            "client": obj.client,
+                            "progress": obj.progress,
+                            "type": obj.type,
+                            "id": d.id
+                        };
+                        projects.push(project);
+                    }
+                });
+            })
+                .then(function (res) {
+                resolve(projects);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.getManagers = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var managers = [];
+            _this.afs.collection('users').get().forEach(function (doc) {
+                doc.docs.forEach(function (d) {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['role'] == "manager") {
+                        console.log(obj);
+                        managers.push(obj);
+                    }
+                });
+            })
+                .then(function (res) {
+                resolve(managers);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.createProposition = function (value) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            _this.afs.collection('propositions').add({
+                manager: value.Person,
+                name: value.Name,
+                description: value.Description,
+                type: value.Type,
+                client: currentUser.uid,
+            })
+                .then(function (res) {
+                resolve(res);
             }, function (err) { return reject(err); });
         });
     };

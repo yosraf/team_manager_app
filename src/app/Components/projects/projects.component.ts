@@ -24,32 +24,30 @@ export class ProjectsComponent implements OnInit {
   ngOnInit() {
     this.isShow=true;
    
-     this.service.AsyncProjects().subscribe(
-      data=>{
-        this.projects= data.map(
-          e=>{
-            let value = firebase.auth().currentUser;
-            var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
-            console.log(obj);
+    this.service.AsyncProjects().subscribe(
+      data => {
+        data.forEach(d=>{
+          let value = firebase.auth().currentUser;
+          var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
           if(obj['manager']==value.uid){
-            return {
-              "name":obj.name,
-              "description":obj.description,
-              "manager":obj.manager,
-              "client":obj.client,
-              "progress":obj.progress,
-              "type":obj.type,
-              "id":e.payload.doc.id
-            }
-          
-            
+            var p= {
+              "name": obj.name,
+              "description": obj.description,
+              "manager": obj.manager,
+              "client": obj.client,
+              "progress": obj.progress,
+              "type": obj.type,
+              "id": d.payload.doc.id
+            };
+            this.projects.push(p);
+  
           }
-          }
-        );
+        });
         
+  
       }
-   );
-   
+    );
+  
   }
    getProjectsOnce() {
     this.projects=[];

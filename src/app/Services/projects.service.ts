@@ -17,10 +17,10 @@ export class ProjectsService {
       let currentUser = firebase.auth().currentUser;
       this.afs.collection('projects').add({
         manager:currentUser.uid,
-        name: value.Name,
-        description: value.Description,
-        type:value.Type,
-        client:value.Client,
+        name: value.name,
+        description: value.description,
+        type:value.type,
+        client:value.client,
         progress:0
       })
       .then(
@@ -111,7 +111,7 @@ export class ProjectsService {
     return new Promise<any>((resolve, reject) => {
       let clients:any=[]; 
       
-      this.afs.collection('users').get(   ).forEach(doc=>{
+      this.afs.collection('users').get().forEach(doc=>{
         
         doc.docs.forEach(d=>{
 
@@ -253,4 +253,33 @@ export class ProjectsService {
       )
     })
    }
+   getClient(id){
+    return new Promise<any>((resolve, reject) => {
+      let client:any;
+      
+      this.afs.collection('users').get().forEach(doc=>{
+        
+        doc.docs.forEach(d=>{
+
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          if(obj['uid']==id){
+            
+           client=obj['username'];
+            
+          }
+
+        })
+     
+    })
+     
+      .then(
+        res => {
+          console.log(client)
+          resolve(client)
+        },
+        err => reject(err)
+      )
+    })
+
+  }
 }

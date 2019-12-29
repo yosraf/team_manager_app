@@ -56,6 +56,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
     this.notificationSetup();
+    this.notifmanager();
   }
   sideMenu() {
     this.navigate =
@@ -77,5 +78,27 @@ export class AppComponent {
   logout() {
     this.route.navigate(["/login-page"]);
 
+  }
+  private async sendNotifManager(title, message) {
+    // Schedule a single notification
+    this.localNotifications.schedule({
+      id: 1,
+      title: title,
+      text: message,
+    });
+  }
+  private notifmanager() {
+    //this.fcm.getToken();
+    this.localNotifications.on('click').subscribe(data=>{
+        this.route.navigate(["/client-propositions"]);
+    });
+    this.fcm.onNotifications().subscribe(
+      (msg) => {
+        if (this.platform.is('ios')) {
+          this.sendNotifManager(msg.title, msg.aps.alert);
+        } else {
+          this.sendNotifManager(msg.title, msg.body);
+        }
+      });
   }
 }
