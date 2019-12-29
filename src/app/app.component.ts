@@ -70,11 +70,7 @@ export class AppComponent {
           url: "/chat",
           icon: "chatboxes"
         },
-        {
-          title: "Settings",
-          url: "/settings",
-          icon: "settings"
-        },
+       
 
       ]
   }
