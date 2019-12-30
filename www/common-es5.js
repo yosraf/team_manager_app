@@ -432,10 +432,10 @@ var ProjectsService = /** @class */ (function () {
             var currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
             _this.afs.collection('projects').add({
                 manager: currentUser.uid,
-                name: value.Name,
-                description: value.Description,
-                type: value.Type,
-                client: value.Client,
+                name: value.name,
+                description: value.description,
+                type: value.type,
+                client: value.client,
                 progress: 0
             })
                 .then(function (res) {
@@ -588,6 +588,47 @@ var ProjectsService = /** @class */ (function () {
                 client: currentUser.uid,
             })
                 .then(function (res) {
+                resolve(res);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.getClient = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var client;
+            _this.afs.collection('users').get().forEach(function (doc) {
+                doc.docs.forEach(function (d) {
+                    var obj = JSON.parse(JSON.stringify(d.data()));
+                    if (obj['uid'] == id) {
+                        client = obj['username'];
+                    }
+                });
+            })
+                .then(function (res) {
+                console.log(client);
+                resolve(client);
+            }, function (err) { return reject(err); });
+        });
+    };
+    ProjectsService.prototype.deletePropostion = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.afs.collection("propositions").doc(id).delete().then(function (res) {
+                resolve(res);
+            });
+        });
+    };
+    ProjectsService.prototype.declinePropositon = function (value) {
+        var _this = this;
+        var user = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+        return new Promise(function (resolve, reject) {
+            _this.afs.collection("refusedprops").add({
+                manager: user.uid,
+                name: value.name,
+                description: value.description,
+                type: value.type,
+                client: value.client,
+            }).then(function (res) {
                 resolve(res);
             }, function (err) { return reject(err); });
         });

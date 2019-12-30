@@ -26,6 +26,8 @@ export class ProjectsComponent implements OnInit {
    
     this.service.AsyncProjects().subscribe(
       data => {
+        this.projects=[];
+
         data.forEach(d=>{
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
@@ -86,7 +88,10 @@ export class ProjectsComponent implements OnInit {
    }
   
   delete(id){
-    console.log(id);
+    this.service.deleteProject(id).then(res=>{
+      console.log(res);
+    })
+    console.log(id)
   }
   openTask(id){
     let url="/task/"+id;
@@ -100,10 +105,8 @@ export class ProjectsComponent implements OnInit {
 }
 ionPull(event){
   //Emitted while the user is pulling down the content and exposing the refresher.
-  console.log('ionPull Event Triggered!');
 }
 ionStart(event){
   //Emitted when the user begins to start pulling down.
-  console.log('ionStart Event Triggered!');
 }
 }

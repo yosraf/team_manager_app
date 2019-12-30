@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="title">Rejections</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="title"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="this.rejections.length>0">
+
+    <div *ngFor="let d of rejections">
+      <div class="card" >
+        <ion-item>
+          <ion-icon [name]="icon(d['type'])" [ngStyle]="{'color':color(d['type'])}" slot="start"></ion-icon>
+          <h3 [ngStyle]="{'color':color(d['type'])}" class="project-name">{{d['name']}}</h3>    
+          <ion-badge color="tertiary" slot="end">manager</ion-badge>
+     
+        </ion-item>
+               
+      
+        <div class="content">
+          <p class="project-description">{{d["description"]}}</p>
+          
+        </div>
+      
+     
+    </div>
+    </div>
+  </ion-list>
+
+  <ion-list-header *ngIf="this.rejections.length==0" class="no-project">
+    No rejection Found
+  </ion-list-header>
+
+
+</ion-content>

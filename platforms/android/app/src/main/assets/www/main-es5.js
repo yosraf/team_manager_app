@@ -16,6 +16,11 @@ var map = {
 		"./src/app/Screens/chat/chat.module.ts",
 		"Screens-chat-chat-module"
 	],
+	"./Screens/client-propositions/client-propositions.module": [
+		"./src/app/Screens/client-propositions/client-propositions.module.ts",
+		"common",
+		"Screens-client-propositions-client-propositions-module"
+	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
 		"common",
@@ -42,10 +47,6 @@ var map = {
 		"./src/app/Screens/project/project.module.ts",
 		"common",
 		"Screens-project-project-module"
-	],
-	"./Screens/settings/settings.module": [
-		"./src/app/Screens/settings/settings.module.ts",
-		"Screens-settings-settings-module"
 	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
@@ -693,7 +694,6 @@ var routes = [
     { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
     { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
     { path: 'modal', loadChildren: './Screens/modal/modal.module#ModalPageModule' },
-    { path: 'settings', loadChildren: './Screens/settings/settings.module#SettingsPageModule' },
     { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
     { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
     { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
@@ -701,6 +701,7 @@ var routes = [
     { path: 'task-form/:id', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
     { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
     { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+    { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -842,7 +843,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         //this.fcm.getToken();
         this.localNotifications.on('click').subscribe(function (data) {
-            _this.route.navigate([""]);
+            _this.route.navigate(["/client-propositions"]);
         });
         this.fcm.onNotifications().subscribe(function (msg) {
             if (_this.platform.is('ios')) {

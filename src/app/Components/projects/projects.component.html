@@ -22,7 +22,8 @@
   </ion-refresher>
    <ion-list *ngIf="this.projects.length>0">
   
-        <div  ion-long-press [interval]="400" class="card" *ngFor="let d of projects" (click)="openTask(d['id'])" (longPressed)="active()"   (pressEnded)="released()"        >
+       <div *ngFor="let d of projects">
+        <div  ion-long-press [interval]="400" class="card"   (longPressed)="active()"   (pressEnded)="released()"  (click)="openTask(d['id'])"  >
           <div class="project-info">
             <circle-progress
                 [percent]="d['progress']"
@@ -37,16 +38,16 @@
                 [animation]="false"
                 [animationDuration]="300"></circle-progress>
           </div>
-          <div class="container">
+          <div class="container" >
             <h5 ><b>{{d['name']}}</b></h5>
              <p>{{d['description']}}</p>
 
           </div>
-          <div [hidden] = isShow class="delete">
-            <ion-icon name="md-trash" class="deleteIcon" (click)="delete(d['id'])"></ion-icon>
-
+          <div [hidden] =isShow class="delete" (click)="delete(d['id'])">
+            <ion-icon name="md-trash" class="deleteIcon" ></ion-icon>
           </div>
         </div>
+       </div>
       </ion-list>
       
     <ion-list-header *ngIf="this.projects.length==0" class="no-project">

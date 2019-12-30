@@ -147,5 +147,7 @@ export class ClientHContentComponent implements OnInit {
     //Emitted when the user begins to start pulling down.
     console.log('ionStart Event Triggered!');
   }
-
+  openRejected(){
+    this.route.navigate(["/rejected-propositions"]);
+  }
 }

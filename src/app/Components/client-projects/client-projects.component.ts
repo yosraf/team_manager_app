@@ -133,7 +133,9 @@ released(){
 }
 
 delete(id){
- console.log(id);
+  this.service.deletePropostion(id).then(res=>{
+    console.log(res);
+  })
 }
 icon(type) {
   if (type == "web") {

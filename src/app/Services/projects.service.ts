@@ -282,4 +282,46 @@ export class ProjectsService {
     })
 
   }
+  deletePropostion(id){
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection("propositions").doc(id).delete().then((res)=>{
+        resolve(res);
+      });
+
+    })
+
+  }
+  deleteProject(id){
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection("projects").doc(id).delete().then((res)=>{
+        resolve(res);
+      });
+
+    })
+
+  }
+  declinePropositon(value){
+    let user = firebase.auth().currentUser;
+
+    return new Promise<any>((resolve,reject)=>{
+    this.afs.collection("refusedprops").add({
+      manager:user.uid,
+      name: value.name,
+      description: value.description,
+      type:value.type,
+      client:value.client,
+     
+    }) .then(
+      res => {
+      
+        resolve(res)
+      },
+      err => reject(err)
+    )
+    })
+  }
+  getRejections() {
+   return  this.afs.collection("refusedprops").snapshotChanges();
+    
+  }
 }

@@ -24,9 +24,12 @@ export class HContentComponent implements OnInit {
     
    this.service.AsyncProjects().subscribe(
     data => {
+      this.projects=[];
+
       data.forEach(d=>{
         let value = firebase.auth().currentUser;
         var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
+
         if(obj['manager']==value.uid){
           var p= {
             "name": obj.name,

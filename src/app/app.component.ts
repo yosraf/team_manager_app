@@ -57,6 +57,7 @@ export class AppComponent {
     });
     this.notificationSetup();
     this.notifmanager();
+    this.notifclient();
   }
   sideMenu() {
     this.navigate =
@@ -100,5 +101,19 @@ export class AppComponent {
           this.sendNotifManager(msg.title, msg.body);
         }
       });
+  } private notifclient() {
+    //this.fcm.getToken();
+    this.localNotifications.on('click').subscribe(data=>{
+        this.route.navigate(["/"]);
+    });
+    this.fcm.onNotifications().subscribe(
+      (msg) => {
+        if (this.platform.is('ios')) {
+          this.sendNotifManager(msg.title, msg.aps.alert);
+        } else {
+          this.sendNotifManager(msg.title, msg.body);
+        }
+      });
   }
+
 }

@@ -14,10 +14,10 @@ export class ClientPropositionsPage implements OnInit {
   ngOnInit() {
     this.service.AsyncPropositions().subscribe(
       data => {
+        this.propositions=[];
         data.forEach(d=>{
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
-          this.propositions=[];
           if(obj['manager']==value.uid){
             let name:any;
             name=Promise.resolve(this.service.getClient(obj.client).then(res=>{
@@ -67,9 +67,23 @@ export class ClientPropositionsPage implements OnInit {
      this.service.createProject(d).then(res=>{
        console.log(res);
      })
+     this.service.deletePropostion(d.id).then(
+      res=>{
+        console.log(res);
+
+      })
    }
    refuse(d){
+    this.service.deletePropostion(d.id).then(
+      res=>{
+        console.log(res);
 
+      })
+      this.service.declinePropositon(d).then(
+        res=>{
+          console.log(res);
+  
+        })
    }
 
 }

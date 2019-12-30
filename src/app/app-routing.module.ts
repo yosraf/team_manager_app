@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
   { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
   { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
+  { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
 ];
 
 @NgModule({

@@ -37049,7 +37049,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n      <ion-title class=\"title\">\n        Home\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" \n  (ionRefresh)=\"ionRefresh($event)\" \n  (ionPull)=\"ionPull($event)\" \n  (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content\n      pullingIcon=\"arrow-dropdown\"\n      pullingText=\"Pull to refresh\"\n      refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n    <div>\n        <ion-list-header class=\"stats\">Statistics</ion-list-header>\n       <!-- <ion-card class=\"welcome-card\">\n          <ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects</ion-card-title>\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #barChart></canvas>\n          </ion-card-content>\n        </ion-card>-->\n        <ion-card class=\"welcome-card\">\n          <!--<ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects per type</ion-card-title>\n          </ion-card-header>-->\n          <ion-card-content>\n            <canvas #dognutChart></canvas>\n          </ion-card-content>\n        </ion-card>\n    </div>\n    <div>\n      <ion-list-header class=\"stats\">Recently added</ion-list-header>\n      <ion-list *ngIf=\"this.projects.length>0\">\n  \n        <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openproject(d['id'])\">\n          <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n            <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n          </div>\n          <div class=\"container\">\n            <h5 ><b>{{d['name']}}</b></h5>\n             <p>{{d['description']}}</p>\n\n          </div>\n          \n        </div>\n      </ion-list>\n     \n     \n\n    </div>\n    <div class=\"no-project\" *ngIf=\"this.projects.length==0\">\n      <ion-label  >No projects yet</ion-label>\n    </div > \n</ion-content>"
+module.exports = "\n<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n        <ion-menu-button class=\"title\"></ion-menu-button>\n        </ion-buttons>\n       \n            <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openProp()\" class=\"btn\"></ion-icon>\n\n      <ion-title class=\"title\">\n        Home\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" \n  (ionRefresh)=\"ionRefresh($event)\" \n  (ionPull)=\"ionPull($event)\" \n  (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content\n      pullingIcon=\"arrow-dropdown\"\n      pullingText=\"Pull to refresh\"\n      refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n    <div>\n        <ion-list-header class=\"stats\">Statistics</ion-list-header>\n       <!-- <ion-card class=\"welcome-card\">\n          <ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects</ion-card-title>\n          </ion-card-header>\n          <ion-card-content>\n            <canvas #barChart></canvas>\n          </ion-card-content>\n        </ion-card>-->\n        <ion-card class=\"welcome-card\">\n          <!--<ion-card-header>\n            <ion-card-title class=\"projects\">Number of projects per type</ion-card-title>\n          </ion-card-header>-->\n          <ion-card-content>\n            <canvas #dognutChart></canvas>\n          </ion-card-content>\n        </ion-card>\n    </div>\n    <div>\n      <ion-list-header class=\"stats\">Recently added</ion-list-header>\n      <ion-list *ngIf=\"this.projects.length>0\">\n  \n        <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"openproject(d['id'])\">\n          <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n            <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n          </div>\n          <div class=\"container\">\n            <h5 ><b>{{d['name']}}</b></h5>\n             <p>{{d['description']}}</p>\n\n          </div>\n          \n        </div>\n      </ion-list>\n     \n     \n\n    </div>\n    <div class=\"no-project\" *ngIf=\"this.projects.length==0\">\n      <ion-label  >No projects yet</ion-label>\n    </div > \n</ion-content>"
 
 /***/ }),
 
@@ -43945,7 +43945,7 @@ var ClientProjectsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  color: #462373; }\n\n.stats {\n  color: #ff7300;\n  font-size: medium; }\n\n.projects {\n  color: #ff7300;\n  font-size: 15px; }\n\nion-card, .card-ios, .card-md {\n  border: 0 !important;\n  box-shadow: none !important;\n  border: none !important;\n  border-style: none !important;\n  position: relative; }\n\n.welcome-card {\n  margin: 0 auto; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  height: 75px;\n  width: 90%;\n  display: -webkit-box;\n  display: flex; }\n\n.card .container {\n    width: 75%;\n    padding-left: 5px; }\n\n.card .container h5 {\n      color: #462373; }\n\n.card .container p {\n      color: #8395a7; }\n\n.card .project-info {\n    width: 25%;\n    text-align: center;\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px; }\n\n.card .project-info .icon {\n      font-size: 30px;\n      margin-top: 25%;\n      color: white; }\n\n.no-project {\n  padding-left: 5%; }\n\n.no-project ion-label {\n    color: #462373;\n    font-size: 15px;\n    text-align: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2gtY29udGVudC9oLWNvbnRlbnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUE7O0FBRWpCO0VBQ0ksY0FBYTtFQUNiLGlCQUFpQixFQUFBOztBQUVyQjtFQUNJLGNBQWE7RUFDYixlQUFlLEVBQUE7O0FBRW5CO0VBQ0ksb0JBQW9CO0VBQ3BCLDJCQUEyQjtFQUMzQix1QkFBdUI7RUFDdkIsNkJBQTZCO0VBQzdCLGtCQUFrQixFQUFBOztBQUVwQjtFQUNJLGNBQWMsRUFBQTs7QUFFbEI7RUFDRSw2Q0FBNkM7RUFDN0Msa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxtQkFBbUI7RUFDbkIsWUFBVztFQUNYLFVBQVU7RUFDVixvQkFBYTtFQUFiLGFBQWEsRUFBQTs7QUFQZjtJQVNNLFVBQVU7SUFDVixpQkFBaUIsRUFBQTs7QUFWdkI7TUFZVSxjQUFhLEVBQUE7O0FBWnZCO01BZVUsY0FBYyxFQUFBOztBQWZ4QjtJQTRCUSxVQUFTO0lBQ1Qsa0JBQWtCO0lBQ2xCLDJCQUEyQjtJQUMzQiw4QkFBOEIsRUFBQTs7QUEvQnRDO01BdUJZLGVBQWU7TUFDZixlQUFlO01BQ2YsWUFBWSxFQUFBOztBQVd4QjtFQUNJLGdCQUFlLEVBQUE7O0FBRG5CO0lBR00sY0FBYTtJQUNiLGVBQWU7SUFDZixrQkFBa0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL0NvbXBvbmVudHMvaC1jb250ZW50L2gtY29udGVudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZXtcbiAgICBjb2xvcjojNDYyMzczO1xufVxuLnN0YXRze1xuICAgIGNvbG9yOiNmZjczMDA7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG59XG4ucHJvamVjdHN7XG4gICAgY29sb3I6I2ZmNzMwMDtcbiAgICBmb250LXNpemU6IDE1cHg7O1xufVxuaW9uLWNhcmQsIC5jYXJkLWlvcywgLmNhcmQtbWQge1xuICAgIGJvcmRlcjogMCAhaW1wb3J0YW50O1xuICAgIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcbiAgICBib3JkZXI6IG5vbmUgIWltcG9ydGFudDtcbiAgICBib3JkZXItc3R5bGU6IG5vbmUgIWltcG9ydGFudDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIH1cbiAgLndlbGNvbWUtY2FyZHtcbiAgICAgIG1hcmdpbjogMCBhdXRvO1xuICB9XG4gIC5jYXJkIHtcbiAgICBib3gtc2hhZG93OiAwIDRweCA4cHggLTRweCByZ2JhKDAsIDAsIDAsIDAuNCk7XG4gICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgaGVpZ2h0Ojc1cHg7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIC5jb250YWluZXIge1xuICAgICAgICB3aWR0aDogNzUlO1xuICAgICAgICBwYWRkaW5nLWxlZnQ6IDVweDtcbiAgICAgICAgaDV7XG4gICAgICAgICAgICBjb2xvcjojNDYyMzczO1xuICAgICAgICB9XG4gICAgICAgIHB7XG4gICAgICAgICAgICBjb2xvcjogIzgzOTVhNztcbiAgICAgICAgfVxuICAgICAgICAgICAgIFxuIFxuXG4gICAgICB9XG4gICAgICAucHJvamVjdC1pbmZve1xuICAgICAgICAgICAgLmljb257XG4gICAgICAgICAgICAgIGZvbnQtc2l6ZTogMzBweDtcbiAgICAgICAgICAgICAgbWFyZ2luLXRvcDogMjUlO1xuICAgICAgICAgICAgICBjb2xvcjogd2hpdGU7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgd2lkdGg6MjUlO1xuICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgICBib3JkZXItdG9wLWxlZnQtcmFkaXVzOiA2cHg7XG4gICAgICAgICAgYm9yZGVyLWJvdHRvbS1sZWZ0LXJhZGl1czogNnB4O1xuXG5cbiAgICAgIH1cbiAgfVxuICAubm8tcHJvamVjdHtcbiAgICAgIHBhZGRpbmctbGVmdDo1JTtcbiAgICAgaW9uLWxhYmVse1xuICAgICAgICBjb2xvcjojNDYyMzczO1xuICAgICAgICBmb250LXNpemU6IDE1cHg7XG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgfVxuICB9XG4iXX0= */"
+module.exports = ".title {\n  color: #462373; }\n\n.stats {\n  color: #ff7300;\n  font-size: medium; }\n\n.projects {\n  color: #ff7300;\n  font-size: 15px; }\n\nion-card, .card-ios, .card-md {\n  border: 0 !important;\n  box-shadow: none !important;\n  border: none !important;\n  border-style: none !important;\n  position: relative; }\n\n.welcome-card {\n  margin: 0 auto; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  height: 75px;\n  width: 90%;\n  display: -webkit-box;\n  display: flex; }\n\n.card .container {\n    width: 75%;\n    padding-left: 5px; }\n\n.card .container h5 {\n      color: #462373; }\n\n.card .container p {\n      color: #8395a7; }\n\n.card .project-info {\n    width: 25%;\n    text-align: center;\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px; }\n\n.card .project-info .icon {\n      font-size: 30px;\n      margin-top: 25%;\n      color: white; }\n\n.no-project {\n  padding-left: 5%; }\n\n.no-project ion-label {\n    color: #462373;\n    font-size: 15px;\n    text-align: center; }\n\n.btn {\n  color: #462373;\n  font-size: 30px;\n  padding-right: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2gtY29udGVudC9oLWNvbnRlbnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFhLEVBQUE7O0FBRWpCO0VBQ0ksY0FBYTtFQUNiLGlCQUFpQixFQUFBOztBQUVyQjtFQUNJLGNBQWE7RUFDYixlQUFlLEVBQUE7O0FBRW5CO0VBQ0ksb0JBQW9CO0VBQ3BCLDJCQUEyQjtFQUMzQix1QkFBdUI7RUFDdkIsNkJBQTZCO0VBQzdCLGtCQUFrQixFQUFBOztBQUVwQjtFQUNJLGNBQWMsRUFBQTs7QUFFbEI7RUFDRSw2Q0FBNkM7RUFDN0Msa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxtQkFBbUI7RUFDbkIsWUFBVztFQUNYLFVBQVU7RUFDVixvQkFBYTtFQUFiLGFBQWEsRUFBQTs7QUFQZjtJQVNNLFVBQVU7SUFDVixpQkFBaUIsRUFBQTs7QUFWdkI7TUFZVSxjQUFhLEVBQUE7O0FBWnZCO01BZVUsY0FBYyxFQUFBOztBQWZ4QjtJQTRCUSxVQUFTO0lBQ1Qsa0JBQWtCO0lBQ2xCLDJCQUEyQjtJQUMzQiw4QkFBOEIsRUFBQTs7QUEvQnRDO01BdUJZLGVBQWU7TUFDZixlQUFlO01BQ2YsWUFBWSxFQUFBOztBQVd4QjtFQUNJLGdCQUFlLEVBQUE7O0FBRG5CO0lBR00sY0FBYTtJQUNiLGVBQWU7SUFDZixrQkFBa0IsRUFBQTs7QUFHMUI7RUFFRyxjQUFhO0VBQ2IsZUFBZTtFQUNmLG1CQUFtQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvQ29tcG9uZW50cy9oLWNvbnRlbnQvaC1jb250ZW50LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG4uc3RhdHN7XG4gICAgY29sb3I6I2ZmNzMwMDtcbiAgICBmb250LXNpemU6IG1lZGl1bTtcbn1cbi5wcm9qZWN0c3tcbiAgICBjb2xvcjojZmY3MzAwO1xuICAgIGZvbnQtc2l6ZTogMTVweDs7XG59XG5pb24tY2FyZCwgLmNhcmQtaW9zLCAuY2FyZC1tZCB7XG4gICAgYm9yZGVyOiAwICFpbXBvcnRhbnQ7XG4gICAgYm94LXNoYWRvdzogbm9uZSAhaW1wb3J0YW50O1xuICAgIGJvcmRlcjogbm9uZSAhaW1wb3J0YW50O1xuICAgIGJvcmRlci1zdHlsZTogbm9uZSAhaW1wb3J0YW50O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgfVxuICAud2VsY29tZS1jYXJke1xuICAgICAgbWFyZ2luOiAwIGF1dG87XG4gIH1cbiAgLmNhcmQge1xuICAgIGJveC1zaGFkb3c6IDAgNHB4IDhweCAtNHB4IHJnYmEoMCwgMCwgMCwgMC40KTtcbiAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgbWFyZ2luLWJvdHRvbTogMTBweDtcbiAgICBoZWlnaHQ6NzVweDtcbiAgICB3aWR0aDogOTAlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgLmNvbnRhaW5lciB7XG4gICAgICAgIHdpZHRoOiA3NSU7XG4gICAgICAgIHBhZGRpbmctbGVmdDogNXB4O1xuICAgICAgICBoNXtcbiAgICAgICAgICAgIGNvbG9yOiM0NjIzNzM7XG4gICAgICAgIH1cbiAgICAgICAgcHtcbiAgICAgICAgICAgIGNvbG9yOiAjODM5NWE3O1xuICAgICAgICB9XG4gICAgICAgICAgICAgXG4gXG5cbiAgICAgIH1cbiAgICAgIC5wcm9qZWN0LWluZm97XG4gICAgICAgICAgICAuaWNvbntcbiAgICAgICAgICAgICAgZm9udC1zaXplOiAzMHB4O1xuICAgICAgICAgICAgICBtYXJnaW4tdG9wOiAyNSU7XG4gICAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTtcbiAgICAgICAgICB9XG5cbiAgICAgICAgICB3aWR0aDoyNSU7XG4gICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICAgIGJvcmRlci10b3AtbGVmdC1yYWRpdXM6IDZweDtcbiAgICAgICAgICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiA2cHg7XG5cblxuICAgICAgfVxuICB9XG4gIC5uby1wcm9qZWN0e1xuICAgICAgcGFkZGluZy1sZWZ0OjUlO1xuICAgICBpb24tbGFiZWx7XG4gICAgICAgIGNvbG9yOiM0NjIzNzM7XG4gICAgICAgIGZvbnQtc2l6ZTogMTVweDtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICB9XG4gIH1cbi5idG57XG4gICBcbiAgIGNvbG9yOiM0NjIzNzM7XG4gICBmb250LXNpemU6IDMwcHg7XG4gICBwYWRkaW5nLXJpZ2h0OiAxMHB4O1xuICAgIFxufSJdfQ== */"
 
 /***/ }),
 
@@ -43982,20 +43982,21 @@ var HContentComponent = /** @class */ (function () {
     HContentComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.service.AsyncProjects().subscribe(function (data) {
-            _this.projects = data.map(function (e) {
+            _this.projects = [];
+            data.forEach(function (d) {
                 var value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
-                var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
-                console.log(obj);
+                var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['manager'] == value.uid) {
-                    return {
+                    var p = {
                         "name": obj.name,
                         "description": obj.description,
                         "manager": obj.manager,
                         "client": obj.client,
                         "progress": obj.progress,
                         "type": obj.type,
-                        "id": e.payload.doc.id
+                        "id": d.payload.doc.id
                     };
+                    _this.projects.push(p);
                 }
             });
         });
@@ -44104,6 +44105,9 @@ var HContentComponent = /** @class */ (function () {
     HContentComponent.prototype.ionStart = function (event) {
         //Emitted when the user begins to start pulling down.
         console.log('ionStart Event Triggered!');
+    };
+    HContentComponent.prototype.openProp = function () {
+        this.route.navigate(["/client-propositions"]);
     };
     HContentComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
@@ -44221,20 +44225,21 @@ var ProjectsComponent = /** @class */ (function () {
         var _this = this;
         this.isShow = true;
         this.service.AsyncProjects().subscribe(function (data) {
-            _this.projects = data.map(function (e) {
+            _this.projects = [];
+            data.forEach(function (d) {
                 var value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
-                var obj = JSON.parse(JSON.stringify(e.payload.doc.data()));
-                console.log(obj);
+                var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['manager'] == value.uid) {
-                    return {
+                    var p = {
                         "name": obj.name,
                         "description": obj.description,
                         "manager": obj.manager,
                         "client": obj.client,
                         "progress": obj.progress,
                         "type": obj.type,
-                        "id": e.payload.doc.id
+                        "id": d.payload.doc.id
                     };
+                    _this.projects.push(p);
                 }
             });
         });
