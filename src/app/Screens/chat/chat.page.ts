@@ -1,44 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-
+import {AuthentificationService} from '../../Services/authentification.service'
+import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-  data:any=[];
+  users:any=[];
   discussions:any[];
   queryText = '';
-  constructor() { }
-  loadData() {
-    this.discussions=[
-      {"img":"./../../assets/icon/user.png",
-       "name":"yosra",
-       "chat":"hello world"
-      },
-      {"img":"./../../assets/icon/user.png",
-       "name":"nasus",
-       "chat":"hello world"
-      }]
-
-  }
+  constructor(private service:AuthentificationService) { }
+  
   ngOnInit() {
-    this.data=[
-     {"img":"./../../assets/icon/user.png",
-      "name":"yosra"
-     },
-     {"img":"./../../assets/icon/user.png",
-      "name":"yosra"
-     },{"img":"./../../assets/icon/user.png",
-     "name":"yosra"
-    },{"img":"./../../assets/icon/user.png",
-    "name":"yosra"
-   },{"img":"./../../assets/icon/user.png",
-   "name":"yosra"
-   },
-    ];
-    this.loadData();
-    
+    this.discussions=[]
+    this.service.getUsers().subscribe(
+
+      data => {
+        this.users=[]
+        data.forEach(d=>{
+          let value = firebase.auth().currentUser;
+          var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
+          if(obj['uid']!=value.uid ){
+           
+            var p= {
+              "username": obj.username,
+              "image": obj.image,
+               "role":obj.role
+            };
+            this.users.push(p);
+  
+          }
+        });
+  
+      }
+     )
+  
     
   }
   search(){
@@ -55,8 +52,7 @@ export class ChatPage implements OnInit {
     }
     else{
       
-      this.loadData();
-
+     
     }
    
     

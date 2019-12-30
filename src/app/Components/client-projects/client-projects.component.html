@@ -49,16 +49,22 @@
         
       </div>
     </ion-list>
+    <ion-card *ngIf="this.projects.length==0"  class="no-project">
+      <ion-card-content>
+        No project Found
+      </ion-card-content>
+  </ion-card>
     
-  <ion-list-header *ngIf="this.projects.length==0" class="no-project">
-      No project Found
-  </ion-list-header>
+  
   <ion-list-header class="list-header">
     Propositions
   </ion-list-header>
-  <ion-list-header *ngIf="this.propositions.length==0" class="no-project">
-    No proposition Found
-</ion-list-header>
+  <ion-card *ngIf="this.propositions.length==0"  class="no-project">
+    <ion-card-content>
+      No proposition Found
+    </ion-card-content>
+</ion-card>
+ 
 <ion-list *ngIf="this.propositions.length>0">
 
   <div  ion-long-press [interval]="400" class="card" *ngFor="let d of propositions" (click)="open(d['id'])"  (longPressed)="active()"   (pressEnded)="released()">

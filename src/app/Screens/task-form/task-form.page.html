@@ -22,7 +22,7 @@
             <ion-item>
                 <ion-icon slot="start" name="contacts"></ion-icon>
                 <ion-select placeholder="Select a person" formControlName="Person" >
-                  <ion-select-option *ngFor="let t of team" value="{{t['name']}}">{{t["name"]}}</ion-select-option>
+                  <ion-select-option *ngFor="let t of team" value="{{t['uid']}}">{{t["username"]}}</ion-select-option>
                 </ion-select>
               </ion-item>
       </div>

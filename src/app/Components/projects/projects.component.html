@@ -49,10 +49,11 @@
         </div>
        </div>
       </ion-list>
-      
-    <ion-list-header *ngIf="this.projects.length==0" class="no-project">
-        No project Found
-      </ion-list-header>
+      <ion-card *ngIf="this.projects.length==0"  class="no-project">
+        <ion-card-content>
+          No project Found
+        </ion-card-content>
+    </ion-card>
     
     <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
         <ion-fab-button routerLink="/project">

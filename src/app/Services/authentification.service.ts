@@ -90,5 +90,7 @@ export class AuthentificationService {
       });
     })
    }
- 
+   getUsers(){
+    return this.afs.collection("users").snapshotChanges();
+  }
 }

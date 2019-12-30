@@ -104,7 +104,7 @@ export class AppComponent {
   } private notifclient() {
     //this.fcm.getToken();
     this.localNotifications.on('click').subscribe(data=>{
-        this.route.navigate(["/"]);
+        this.route.navigate(["/rejected-propositions"]);
     });
     this.fcm.onNotifications().subscribe(
       (msg) => {

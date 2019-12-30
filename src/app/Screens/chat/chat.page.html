@@ -17,12 +17,16 @@
         </ion-list>
     <div class="thumnails">
         <div class="list-thumbnail">
-          <div class="list" *ngFor="let x of data">
+          <div class="list" *ngFor="let x of users">
               <div class="img-thumb" >
-                  <img [src]="x['img']">
+                  <img  *ngIf="x['image']!=null else notnull" [src]="x['image']">
+                  <ng-template #notnull>
+                    <img   src="../../../assets/icon/user.png" >
+
+                  </ng-template>
       
               </div>
-              <ion-label class="name" >{{x["name"]}}</ion-label>
+              <ion-label class="name" >{{x["username"]}}</ion-label>
 
           </div>
 

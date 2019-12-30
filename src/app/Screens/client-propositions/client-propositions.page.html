@@ -36,10 +36,12 @@
      
     </div>
   </ion-list>
+  <ion-card *ngIf="this.propositions.length==0"  class="no-project">
+    <ion-card-content>
+      No proposition Found
+    </ion-card-content>
+</ion-card>
 
-  <ion-list-header *ngIf="this.propositions.length==0" class="no-project">
-    No proposition Found
-  </ion-list-header>
 
 
 </ion-content>

@@ -6,6 +6,8 @@ ion-back-button , ion-title{
     overflow-x: scroll;
     overflow-y: hidden;
     .list-thumbnail{
+      width:80%;
+      margin-left: 10px;
       height: 100%;
       white-space: nowrap;
       .img-thumb{

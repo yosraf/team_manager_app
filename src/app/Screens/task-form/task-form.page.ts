@@ -16,7 +16,8 @@ export class TaskFormPage implements OnInit {
     this.active.params.subscribe( params => {
       this.id=params["id"]
 
-      console.log(params["id"])} );
+      console.log(params["id"])} 
+      );
 
    }
 
