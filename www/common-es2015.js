@@ -886,6 +886,13 @@ let ProjectsService = class ProjectsService {
             });
         });
     }
+    deleteProject(id) {
+        return new Promise((resolve, reject) => {
+            this.afs.collection("projects").doc(id).delete().then((res) => {
+                resolve(res);
+            });
+        });
+    }
     declinePropositon(value) {
         let user = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
         return new Promise((resolve, reject) => {
@@ -899,6 +906,9 @@ let ProjectsService = class ProjectsService {
                 resolve(res);
             }, err => reject(err));
         });
+    }
+    getRejections() {
+        return this.afs.collection("refusedprops").snapshotChanges();
     }
 };
 ProjectsService.ctorParameters = () => [

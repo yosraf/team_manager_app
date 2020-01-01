@@ -48,6 +48,11 @@ var map = {
 		"common",
 		"Screens-project-project-module"
 	],
+	"./Screens/rejected-propositions/rejected-propositions.module": [
+		"./src/app/Screens/rejected-propositions/rejected-propositions.module.ts",
+		"common",
+		"Screens-rejected-propositions-rejected-propositions-module"
+	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
 		"common",
@@ -591,6 +596,9 @@ let AuthentificationService = class AuthentificationService {
             });
         });
     }
+    getUsers() {
+        return this.afs.collection("users").snapshotChanges();
+    }
 };
 AuthentificationService.ctorParameters = () => [
     { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] },
@@ -680,6 +688,7 @@ const routes = [
     { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
     { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
     { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
+    { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -746,37 +755,12 @@ let AppComponent = class AppComponent {
         this.initializeApp();
         this.sideMenu();
     }
-    presentToast(title, message) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            // Schedule a single notification
-            this.localNotifications.schedule({
-                id: 1,
-                title: title,
-                text: message,
-            });
-        });
-    }
-    notificationSetup() {
-        //this.fcm.getToken();
-        this.localNotifications.on('click').subscribe(data => {
-            this.route.navigate(["/homes/clientHome"]);
-        });
-        this.fcm.onNotifications().subscribe((msg) => {
-            if (this.platform.is('ios')) {
-                this.presentToast(msg.title, msg.aps.alert);
-            }
-            else {
-                this.presentToast(msg.title, msg.body);
-            }
-        });
-    }
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
-        this.notificationSetup();
-        this.notifmanager();
+        this.notificationApp();
     }
     sideMenu() {
         this.navigate =
@@ -796,27 +780,29 @@ let AppComponent = class AppComponent {
     logout() {
         this.route.navigate(["/login-page"]);
     }
-    sendNotifManager(title, message) {
+    showNotif(title, message, icon, des) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.localNotifications.on('click').subscribe(data => {
+                this.route.navigate([des]);
+            });
             // Schedule a single notification
             this.localNotifications.schedule({
-                id: 1,
+                id: Math.floor((Math.random() * 9999)),
                 title: title,
                 text: message,
+                icon: icon
             });
         });
     }
-    notifmanager() {
+    notificationApp() {
         //this.fcm.getToken();
-        this.localNotifications.on('click').subscribe(data => {
-            this.route.navigate(["/client-propositions"]);
-        });
         this.fcm.onNotifications().subscribe((msg) => {
             if (this.platform.is('ios')) {
-                this.sendNotifManager(msg.title, msg.aps.alert);
+                this.showNotif(msg.title, msg.aps.alert, msg.icon, msg.route);
             }
             else {
-                this.sendNotifManager(msg.title, msg.body);
+                console.log(msg.type);
+                this.showNotif(msg.title, msg.body, msg.icon, msg.route);
             }
         });
     }

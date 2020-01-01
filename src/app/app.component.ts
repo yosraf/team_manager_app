@@ -15,7 +15,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 })
 export class AppComponent {
   navigate: any;
-
+  routenotif:String;
   constructor(
     private platform: Platform,
     public toastController: ToastController,
@@ -27,37 +27,16 @@ export class AppComponent {
   ) {
     this.initializeApp();
     this.sideMenu();
+    
   }
-  private async presentToast(title, message) {
-    // Schedule a single notification
-    this.localNotifications.schedule({
-      id: 1,
-      title: title,
-      text: message,
-    });
-  }
-  private notificationSetup() {
-    //this.fcm.getToken();
-    this.localNotifications.on('click').subscribe(data=>{
-        this.route.navigate(["/homes/clientHome"]);
-    });
-    this.fcm.onNotifications().subscribe(
-      (msg) => {
-        if (this.platform.is('ios')) {
-          this.presentToast(msg.title, msg.aps.alert);
-        } else {
-          this.presentToast(msg.title, msg.body);
-        }
-      });
-  }
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.notificationSetup();
-    this.notifmanager();
-    this.notifclient();
+    
+    this.notificationApp();
   }
   sideMenu() {
     this.navigate =
@@ -80,38 +59,33 @@ export class AppComponent {
     this.route.navigate(["/login-page"]);
 
   }
-  private async sendNotifManager(title, message) {
+  private async showNotif(title, message,icon,des) {
+    this.localNotifications.on('click').subscribe(data=>{
+      this.route.navigate([des]);
+  });
     // Schedule a single notification
     this.localNotifications.schedule({
-      id: 1,
+      id:  Math.floor((Math.random()*9999)),
       title: title,
       text: message,
+      icon:icon
     });
   }
-  private notifmanager() {
+
+  private notificationApp() {
     //this.fcm.getToken();
-    this.localNotifications.on('click').subscribe(data=>{
-        this.route.navigate(["/client-propositions"]);
-    });
+    
     this.fcm.onNotifications().subscribe(
       (msg) => {
         if (this.platform.is('ios')) {
-          this.sendNotifManager(msg.title, msg.aps.alert);
+          
+          this.showNotif(msg.title, msg.aps.alert,msg.icon,msg.route);
         } else {
-          this.sendNotifManager(msg.title, msg.body);
-        }
-      });
-  } private notifclient() {
-    //this.fcm.getToken();
-    this.localNotifications.on('click').subscribe(data=>{
-        this.route.navigate(["/rejected-propositions"]);
-    });
-    this.fcm.onNotifications().subscribe(
-      (msg) => {
-        if (this.platform.is('ios')) {
-          this.sendNotifManager(msg.title, msg.aps.alert);
-        } else {
-          this.sendNotifManager(msg.title, msg.body);
+          console.log(msg.type);
+          
+          this.showNotif(msg.title, msg.body,msg.icon,msg.route);
+          
+          
         }
       });
   }

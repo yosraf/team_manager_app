@@ -13,6 +13,7 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp(functions.config().firebase);
 
+var image="https://firebasestorage.googleapis.com/v0/b/gestioncollab.appspot.com/o/logo_1.png?alt=media&token=75690521-fe12-4ab3-9528-05099d098783"
 
 exports.newProjectAdded=functions.firestore.document("projects/{projectsId}")
 .onCreate(async (event,context) =>{
@@ -44,10 +45,12 @@ exports.newProjectAdded=functions.firestore.document("projects/{projectsId}")
             notification: {
                 title: `New project ${projectname}`,
                 body: `${managername} assigned you  to a new project`,
-                icon: 'https://drive.google.com/file/d/1Hj6sItZwm6DQjOeBCe0OBhWKxNkLNI9v/view?usp=sharing'
+                route:"/homes/clientProjects",
+                icon: image
             }
             }
 
+            console.log(payload);
             
 
             return admin.messaging().sendToDevice(token, payload)
@@ -86,10 +89,12 @@ exports.newPropositionAdded=functions.firestore.document("propositions/{proposit
             notification: {
                 title: `New project ${projectname}`,
                 body: `${clientname} assigned you  to a new project`,
-                icon: 'https://drive.google.com/file/d/1Hj6sItZwm6DQjOeBCe0OBhWKxNkLNI9v/view?usp=sharing'
+                route:"/client-propositions",
+                icon: image
             }
             }
 
+            console.log(payload);
             
 
             return admin.messaging().sendToDevice(token, payload)
@@ -128,10 +133,11 @@ exports.propsitionRefused=functions.firestore.document("refusedprops/{propositio
             notification: {
                 title: `New project ${projectname}`,
                 body: `${managername} refused your propositon`,
-                icon: 'https://drive.google.com/file/d/1Hj6sItZwm6DQjOeBCe0OBhWKxNkLNI9v/view?usp=sharing'
+                route:"/rejected-propositions",
+                icon: image
             }
             }
-
+            console.log(payload);
             
 
             return admin.messaging().sendToDevice(token, payload)

@@ -618,6 +618,14 @@ var ProjectsService = /** @class */ (function () {
             });
         });
     };
+    ProjectsService.prototype.deleteProject = function (id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.afs.collection("projects").doc(id).delete().then(function (res) {
+                resolve(res);
+            });
+        });
+    };
     ProjectsService.prototype.declinePropositon = function (value) {
         var _this = this;
         var user = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
@@ -632,6 +640,9 @@ var ProjectsService = /** @class */ (function () {
                 resolve(res);
             }, function (err) { return reject(err); });
         });
+    };
+    ProjectsService.prototype.getRejections = function () {
+        return this.afs.collection("refusedprops").snapshotChanges();
     };
     ProjectsService.ctorParameters = function () { return [
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
