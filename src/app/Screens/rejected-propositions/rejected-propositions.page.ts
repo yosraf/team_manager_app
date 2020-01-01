@@ -8,6 +8,7 @@ import * as firebase from 'firebase/app';
 })
 export class RejectedPropositionsPage implements OnInit {
   rejections:any=[];
+  managers:any=[];
   constructor(private service:ProjectsService) { }
 
   ngOnInit() {
@@ -25,10 +26,14 @@ export class RejectedPropositionsPage implements OnInit {
             "description": obj.description,
             "client":obj.client,
             "type": obj.type,
-            "id": d.payload.doc.id
+            "id": d.payload.doc.id,
+            "manager":obj.manager
           };
           this.rejections.push(p);
-
+          this.service.getClient(p.manager).then(res=>{
+              
+            this.managers.push(res)
+          })
         }
       });
 

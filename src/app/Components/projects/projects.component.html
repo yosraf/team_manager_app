@@ -23,7 +23,7 @@
    <ion-list *ngIf="this.projects.length>0">
   
        <div *ngFor="let d of projects">
-        <div  ion-long-press [interval]="400" class="card"   (longPressed)="active()"   (pressEnded)="released()"  (click)="openTask(d['id'])"  >
+        <div   class="card"    >
           <div class="project-info">
             <circle-progress
                 [percent]="d['progress']"
@@ -38,12 +38,12 @@
                 [animation]="false"
                 [animationDuration]="300"></circle-progress>
           </div>
-          <div class="container" >
+          <div class="container"  (click)="openTask(d['id'])"  >
             <h5 ><b>{{d['name']}}</b></h5>
              <p>{{d['description']}}</p>
 
           </div>
-          <div [hidden] =isShow class="delete" (click)="delete(d['id'])">
+          <div  class="delete" (click)="delete(d['id'])">
             <ion-icon name="md-trash" class="deleteIcon" ></ion-icon>
           </div>
         </div>

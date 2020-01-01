@@ -67,16 +67,16 @@
  
 <ion-list *ngIf="this.propositions.length>0">
 
-  <div  ion-long-press [interval]="400" class="card" *ngFor="let d of propositions" (click)="open(d['id'])"  (longPressed)="active()"   (pressEnded)="released()">
+  <div  class="card" *ngFor="let d of propositions"  >
     <div class="project-info" [ngStyle]="{'background-color':color(d['type'])}">
       <ion-icon [name]="icon(d['type'])" class="icon"></ion-icon>
     </div>
-    <div class="container" >
+    <div class="container" (click)="open(d['id'])" >
       <h5 ><b>{{d['name']}}</b></h5>
       <p>{{d['description']}}</p>
 
     </div>
-    <div [hidden] = isShow class="delete">
+    <div class="delete">
       <ion-icon name="md-trash" class="deleteIcon" (click)="delete(d['id'])"></ion-icon>
 
     </div>

@@ -21,6 +21,7 @@ export class ClientHContentComponent implements OnInit {
 
     this.service.AsyncProjects().subscribe(
       data => {
+        this.projects=[];
         data.forEach(d=>{
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));

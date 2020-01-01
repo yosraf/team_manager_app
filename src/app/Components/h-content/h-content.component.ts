@@ -20,8 +20,6 @@ export class HContentComponent implements OnInit {
   constructor(public route:Router,private service:ProjectsService) { }
 
   ngOnInit() {
-    
-    
    this.service.AsyncProjects().subscribe(
     data => {
       this.projects=[];
@@ -47,7 +45,9 @@ export class HContentComponent implements OnInit {
       
 
     }
+    
   );
+
 
   }
   ionViewDidEnter() {
@@ -69,7 +69,6 @@ export class HContentComponent implements OnInit {
     err => { 
        console.log(err);}
     );
-    
 
   }
   async createDonutsChart() {
@@ -97,10 +96,10 @@ export class HContentComponent implements OnInit {
     this.dognut = new Chart(this.dognutChart.nativeElement, {
       type: 'doughnut',
       data: {
-        labels: ['Mobile', 'Web', 'Data'],
+        labels: ['Web', 'Mobile', 'Data'],
         datasets: [{
           label: 'Projects types',
-          data: [mobile,web,data],
+          data: [web,mobile,data],
           backgroundColor: ['#e67e22','#a55eea','#8e44ad'], // array should have same number of elements as number of dataset
           borderWidth: 1
         }]

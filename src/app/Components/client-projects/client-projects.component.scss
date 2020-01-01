@@ -1,3 +1,6 @@
+ion-toolbar{
+    --background:#e67e22;
+}
 .title{
     color:#462373;
 }
@@ -53,7 +56,7 @@ ion-fab-button{
         width: 30%;
         display: flex;
         .deleteIcon{
-            font-size: 25px;
+            font-size: 30px;
             margin: 0 auto;
             margin-top: 40%;
             

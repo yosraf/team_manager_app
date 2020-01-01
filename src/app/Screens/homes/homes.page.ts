@@ -28,7 +28,7 @@ export class HomesPage implements OnInit {
   }
   async presentLoadingWithOptions(role) {
     const loading = await this.loadingController.create({
-      duration: 4000,
+      duration: 3000,
       message: 'Wait please...',
       translucent: true,
       showBackdrop:true,

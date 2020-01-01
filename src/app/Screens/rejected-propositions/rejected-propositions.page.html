@@ -10,23 +10,20 @@
 <ion-content>
   <ion-list *ngIf="this.rejections.length>0">
 
-    <div *ngFor="let d of rejections">
-      <div class="card">
+    <div *ngFor="let d of rejections ; let i = index;">
+     
         <ion-item>
           <ion-icon [name]="icon(d['type'])" [ngStyle]="{'color':color(d['type'])}" slot="start"></ion-icon>
-          <h3 [ngStyle]="{'color':color(d['type'])}" class="project-name">{{d['name']}}</h3>
-          <ion-badge color="tertiary" slot="end">manager</ion-badge>
+          <ion-badge color="tertiary" slot="end">{{managers[i]}}</ion-badge>
 
+         <ion-label>
+           <h5 [ngStyle]="{'color':color(d['type'])}" class="project-name"><b>{{d['name']}}</b></h5>
+           <p class="project-description">{{d['description']}}</p>
+          
+         </ion-label>
         </ion-item>
+      
 
-
-        <div class="content">
-          <p class="project-description">{{d["description"]}}</p>
-
-        </div>
-
-
-      </div>
     </div>
   </ion-list>
   <ion-card *ngIf="this.rejections.length==0" class="no-project">

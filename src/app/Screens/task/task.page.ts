@@ -10,6 +10,7 @@ import{ProjectsService} from '../../Services/projects.service';
 export class TaskPage implements OnInit {
   data:any=[]
   cachedata:any=[]
+  donetask:any=[]
   id:any;
   constructor(private route: ActivatedRoute,private router:Router,private service:ProjectsService) {
     this.route.params.subscribe( params => {
@@ -28,26 +29,29 @@ export class TaskPage implements OnInit {
             }
         );
         this.cachedata=this.data;
+        console.log(this.data.length)
       }
     );
-   
-  }
-  /*laod(){
-    this.data=[];
-    this.service.getTasks(this.id).then(res=>{
-       res.forEach(element => {
-         
-       this.data.push(element);
+    this.service.getDoneTasks(this.id).then(res=>{
+      this.donetask=res;
+      this.calculProgres()
 
-      });
-      
-    
-    },
-    err => { 
-       console.log(err);}
-    );
-  
-  }*/
+    })
+   
+
+  }
+  calculProgres(){
+    let progress=0;
+    if(this.data.length!=0){
+      if(this.donetask.length!=0){
+        progress=(this.donetask.length/this.data.length)*100;
+        this.service.updateProject(this.id,progress).then(res=>{
+          console.log(res)
+        })
+      }
+    }
+  }
+ 
   color(progress){
     if(progress=="to do"){
       return "danger";

@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 })
 export class ClientPropositionsPage implements OnInit {
   propositions:any=[]
+  client:any=[]
   constructor(private service:ProjectsService) { }
 
   ngOnInit() {
@@ -19,11 +20,7 @@ export class ClientPropositionsPage implements OnInit {
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
           if(obj['manager']==value.uid){
-            let name:any;
-            name=Promise.resolve(this.service.getClient(obj.client).then(res=>{
-              console.log(res)
-              return res;
-            }));
+           
             var p= {
               "name": obj.name,
               "description": obj.description,
@@ -32,10 +29,14 @@ export class ClientPropositionsPage implements OnInit {
               "id": d.payload.doc.id
             };
             this.propositions.push(p);
+            this.service.getClient(p.client).then(res=>{
+              
+              this.client.push(res)
+            })
   
           }
         });
-        
+
   
       }
     );

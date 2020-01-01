@@ -274,7 +274,6 @@ export class ProjectsService {
      
       .then(
         res => {
-          console.log(client)
           resolve(client)
         },
         err => reject(err)
@@ -324,5 +323,48 @@ export class ProjectsService {
    return  this.afs.collection("refusedprops").snapshotChanges();
     
   }
+  getDoneTasks(id){
+    let tasks=[];
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection("projects").doc(id).collection("tasks").get().forEach((res)=>{
+        res.docs.forEach(d=>{
 
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          if(obj['state']=="done"){
+            console.log(obj);
+            tasks.push(obj)
+            
+          }
+
+        })
+     
+    })
+     
+      .then(
+        res => {
+        
+          resolve(tasks)
+        },
+        err => reject(err)
+      )
+    })
+  }
+ updateProject(id,progress){
+  return new Promise<any>((resolve,reject)=>{
+    this.afs.collection("projects").doc(id).update(
+      {
+        'progress':progress
+      }
+    )
+   
+    .then(
+      res => {
+      
+        resolve(res)
+      },
+      err => reject(err)
+    )
+  })
+
+ }
 }

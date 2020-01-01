@@ -1,7 +1,9 @@
 ion-back-button , ion-title{
     color:#462373;
 }
-
+ion-toolbar{
+  --background:#e67e22;
+}
 .thumnails{
     overflow-x: scroll;
     overflow-y: hidden;

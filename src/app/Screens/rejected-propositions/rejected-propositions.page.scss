@@ -1,3 +1,6 @@
+ion-toolbar{
+    --background:#e67e22;
+}
 .title{
     color:#462373;
 }
@@ -9,24 +12,16 @@
  font-weight: bold;
 }
 .project-description{
-    font-size: 18px;
+    font-size: 15px;
     color: #8395a7;
     margin-left: 10px;
 
 }
-.accept{
-   color: #2ecc71;
-    width: 50%;
-    text-align: center;
-    font-size: 35px;
+.buttons{
+    display: flex;
 }
-.refuse{
-   color: #e74c3c;
-    width: 50%;
-    text-align: center;
-    font-size: 35px;
 
-}
+
 
 .card{
     box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
@@ -35,3 +30,6 @@
     margin-bottom: 10px;
     width: 90%;
 }
+ion-badge{
+    margin-left:10px;
+   }

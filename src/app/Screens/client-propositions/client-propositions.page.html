@@ -9,13 +9,36 @@
 
 <ion-content>
   <ion-list *ngIf="this.propositions.length>0">
+      <div *ngFor="let d of propositions;let i = index;">
+        <ion-badge color="tertiary" slot="end">{{client[i]}}</ion-badge>
+        <ion-item>
+          <ion-icon [name]="icon(d['type'])" [ngStyle]="{'color':color(d['type'])}" slot="start"></ion-icon>
+          <div class="buttons" slot="end">
+           <div class="accept">
+             <ion-icon name="md-checkmark-circle-outline" (click)="accept(d)" ></ion-icon>
+ 
+           </div>
+           <div class="refuse">
+             <ion-icon name="ios-close-circle-outline" (click)="refuse(d)" ></ion-icon>
+ 
+           </div>
+         </div>
+         <ion-label>
+           <h5 [ngStyle]="{'color':color(d['type'])}" class="project-name"><b>{{d['name']}}</b></h5>
+           <p class="project-description">{{d['description']}}</p>
+          
+         </ion-label>
+        </ion-item>
 
-     <div class="card" *ngFor="let d of propositions">
+      </div>
+     <!--<div class="card" *ngFor="let d of propositions">
         <ion-item>
           <ion-icon [name]="icon(d['type'])" [ngStyle]="{'color':color(d['type'])}" slot="start"></ion-icon>
           <h3 [ngStyle]="{'color':color(d['type'])}" class="project-name">{{d['name']}}</h3>    
           <ion-badge color="tertiary" slot="end">client</ion-badge>
-     
+          <ion-icon name="md-checkmark-circle-outline" (click)="accept(d)" ></ion-icon>
+          <ion-icon name="ios-close-circle-outline" (click)="refuse(d)" ></ion-icon>
+
         </ion-item>
                
       
@@ -23,7 +46,7 @@
           <p class="project-description">{{d["description"]}}</p>
           
         </div>
-        <ion-item class="buttons">
+         <ion-item class="buttons">
           <div class="accept">
             <ion-icon name="md-checkmark-circle-outline" (click)="accept(d)" ></ion-icon>
 
@@ -34,7 +57,7 @@
           </div>
         </ion-item>
      
-    </div>
+    </div>-->
   </ion-list>
   <ion-card *ngIf="this.propositions.length==0"  class="no-project">
     <ion-card-content>
