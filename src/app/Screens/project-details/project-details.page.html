@@ -8,5 +8,55 @@
 </ion-header>
 
 <ion-content>
-
+<div class="header">
+</div>
+<div class="tasks">
+  
+  <div *ngIf="tasks.length>0">
+    <ion-list-header>
+      Done tasks
+    </ion-list-header>
+   <ion-list >
+     <div *ngFor="let task of tasks; let i = index;">
+      <ion-item *ngIf="task['state']=='done'">
+        <ion-icon name="checkmark-circle" slot="start" class="icon" color="warning"></ion-icon>
+        <ion-badge color="tertiary" slot="end">{{team[i]}}</ion-badge>
+        <ion-label> 
+          <h3 class="name">{{task["name"]}}</h3>
+         <p class="description">{{task["description"]}}</p>
+        </ion-label>
+      </ion-item>
+     </div>
+   
+  </ion-list>
+  <ion-list-header>
+      Pending tasks
+    </ion-list-header>
+   <ion-list>
+    <div  *ngFor="let task of tasks; let i = index;">
+      <ion-item *ngIf="task['state']=='to do'">
+        <ion-icon name="checkmark-circle" slot="start" class="icon" color="danger"></ion-icon>
+        <ion-badge color="tertiary" slot="end">{{team[i]}}</ion-badge>
+        <ion-label> 
+          <h3 class="name">{{task["name"]}}</h3>
+         <p class="description">{{task["description"]}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="task['state']=='doing'">
+        <ion-icon name="checkmark-circle" slot="start" class="icon" color="tertiary"></ion-icon>
+        <ion-badge color="tertiary" slot="end">{{team[i]}}</ion-badge>
+        <ion-label> 
+          <h3 class="name">{{task["name"]}}</h3>
+         <p class="description">{{task["description"]}}</p>
+        </ion-label>
+      </ion-item>
+    </div>   
+   </ion-list>
+  </div>
+  <ion-card *ngIf="this.tasks.length==0"  class="no-project">
+    <ion-card-content>
+      No tasks Found
+    </ion-card-content>
+</ion-card>
+</div>
 </ion-content>

@@ -367,4 +367,43 @@ export class ProjectsService {
   })
 
  }
+ getProject(id){
+   let project:any;
+   let result:any;
+   return new Promise<any>((resolve,reject)=>{
+    this.afs.collection('projects').get().forEach(doc=>{
+        
+      doc.docs.forEach(d=>{
+  
+        if(d.id==id){
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          project={
+            "name":obj.name,
+            "description":obj.description,
+            "manager":obj.manager,
+            "client":obj.client,
+            "progress":obj.progress,
+            "type":obj.type,
+            "id":d.id
+          }
+        result=project;
+          
+        }
+        
+  
+      })
+   
+  })
+   
+    .then(
+      res => {
+      
+        resolve(result)
+      },
+      err => reject(err)
+    )
+  })
+
+   }
+   
 }

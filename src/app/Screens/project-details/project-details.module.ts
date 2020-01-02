@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProjectDetailsPage } from './project-details.page';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 50,
+      
+    }),
     RouterModule.forChild(routes)
   ],
   declarations: [ProjectDetailsPage]

@@ -122,7 +122,8 @@ ionStart(event){
   console.log('ionStart Event Triggered!');
 }
 open(value){
-  this.route.navigate(["/project-details"])
+  let url='/project-details/'+value
+  this.route.navigate([url])
 }
 active(){
   console.log("ok");
@@ -148,5 +149,7 @@ icon(type) {
     return "md-analytics";
   }
 }
-
+openProp(id){
+  console.log(id)
+}
 }

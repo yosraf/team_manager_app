@@ -7,4 +7,33 @@ ion-back-button{
     }
     ion-toolbar{
         --background:#e67e22;
+        box-shadow: none !important;
+
+    }
+    .header{
+        width: 80%;
+        height: 30%;
+        margin: 0 auto;
+        text-align: center;
+      
+    }
+    ion-list-header{
+        color:#ff7300;
+        font-size: medium;
+    }
+    .name{
+        font-weight: bold;
+        color:  #462373;
+
+    }
+    .description{
+        font-size: 15px;
+        color: #8395a7;
+    }
+    .icon{
+        font-size: 25px;
+    }
+    .no-project{
+        font-size: medium;
+        color: #ff7300;
     }
