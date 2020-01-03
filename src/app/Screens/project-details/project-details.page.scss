@@ -10,13 +10,7 @@ ion-back-button{
         box-shadow: none !important;
 
     }
-    .header{
-        width: 80%;
-        height: 30%;
-        margin: 0 auto;
-        text-align: center;
-      
-    }
+   
     ion-list-header{
         color:#ff7300;
         font-size: medium;
@@ -36,4 +30,8 @@ ion-back-button{
     .no-project{
         font-size: medium;
         color: #ff7300;
+    }
+    .type-icon{
+        font-size: 25px;
+        color:#a55eea ;
     }

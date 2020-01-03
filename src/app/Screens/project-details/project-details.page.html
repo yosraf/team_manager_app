@@ -9,6 +9,17 @@
 
 <ion-content>
 <div class="header">
+  <ion-list-header>
+    Project informations
+  </ion-list-header>
+  <ion-item>
+   
+    <ion-icon [name]="icon(project['type'])" class="type-icon" slot="start"></ion-icon>
+    <ion-label> 
+      <h3 class="name">{{project['name']}}</h3>
+     <p class="description">{{project['description']}}</p>
+    </ion-label>
+  </ion-item>
 </div>
 <div class="tasks">
   
@@ -17,7 +28,7 @@
       Done tasks
     </ion-list-header>
    <ion-list >
-     <div *ngFor="let task of tasks; let i = index;">
+     <div *ngFor="let task of done; let i = index;">
       <ion-item *ngIf="task['state']=='done'">
         <ion-icon name="checkmark-circle" slot="start" class="icon" color="warning"></ion-icon>
         <ion-badge color="tertiary" slot="end">{{team[i]}}</ion-badge>
@@ -27,7 +38,11 @@
         </ion-label>
       </ion-item>
      </div>
-   
+     <ion-card *ngIf="this.done.length==0"  class="no-project">
+      <ion-card-content>
+        No task done yet
+      </ion-card-content>
+  </ion-card>
   </ion-list>
   <ion-list-header>
       Pending tasks
@@ -50,13 +65,14 @@
          <p class="description">{{task["description"]}}</p>
         </ion-label>
       </ion-item>
-    </div>   
+    </div>  
+    <ion-card *ngIf="this.tasks.length==0"  class="no-project">
+      <ion-card-content>
+        No tasks Found
+      </ion-card-content>
+  </ion-card> 
    </ion-list>
   </div>
-  <ion-card *ngIf="this.tasks.length==0"  class="no-project">
-    <ion-card-content>
-      No tasks Found
-    </ion-card-content>
-</ion-card>
+  
 </div>
 </ion-content>

@@ -8,10 +8,11 @@ import {ActivatedRoute,Router} from "@angular/router";
   styleUrls: ['./project-details.page.scss'],
 })
 export class ProjectDetailsPage implements OnInit {
-  project:any;
+  project:any={};
   id:any;
   tasks:any=[];
   team:any=[];
+  done:any=[];
   constructor(private service:ProjectsService,private route: ActivatedRoute,private router:Router) { 
     this.route.params.subscribe( params => {
       console.log(params["id"])
@@ -46,7 +47,13 @@ export class ProjectDetailsPage implements OnInit {
           "person":obj.person,
           "state":obj.state
         };
-        this.tasks.push(p);
+        if(p['state']!="done"){
+          this.tasks.push(p);
+        }
+        else{
+          this.done.push(p);
+        }
+       
         this.service.getClient(p.person).then(res=>{
               
           this.team.push(res)
