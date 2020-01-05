@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="dark"(click)="back(id)">
+        <ion-icon slot="icon-only" name="close" class="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="validation"  (ngSubmit)="modify(validation.value)" >
+    <div class="ion-padding">
+        <ion-item>
+           <ion-icon slot="start" name="clipboard"></ion-icon>
+            <ion-input type="text" formControlName="name" [(ngModel)]="project.name" ></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-icon slot="start" name="create"></ion-icon>
+              <ion-input type="text" formControlName="description"  [(ngModel)]="project.description"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon slot="start" name="list-box"></ion-icon>
+              <ion-select  formControlName="type"  [(ngModel)]="project.type" name="type">
+                <ion-select-option value="web">web</ion-select-option>
+                <ion-select-option value="mobile">mobile</ion-select-option>
+                <ion-select-option value="data">data</ion-select-option>
+
+              </ion-select>
+          </ion-item>
+            <ion-item>
+                <ion-icon slot="start" name="contacts"></ion-icon>
+                <ion-select formControlName="client"  [(ngModel)]="client"  >
+                  <ion-select-option *ngFor="let c of clients" [value]="c.uid">{{ c.username}}</ion-select-option>-->
+                </ion-select>
+              </ion-item>
+      </div>
+    
+    <div class="ion-padding">
+      <ion-button size="medium" type="submit" expand="block" class="submit">Modify project</ion-button>
+  
+    </div>
+  </form>
+</ion-content>

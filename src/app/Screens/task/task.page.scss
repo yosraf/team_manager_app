@@ -1,9 +1,14 @@
 ion-back-button{
-color:#462373;
+--color:#462373;
 }
 ion-title{
     color:#462373;
 
+}
+.modify{
+    color: #462373;
+    font-size: 25px;
+    padding-right: 15px;
 }
 ion-fab-button{
     --background: #ff7300;

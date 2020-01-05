@@ -3,8 +3,9 @@ import { Router, NavigationEnd} from "@angular/router";
 import {ProjectsService} from '../../Services/projects.service';
 import{Observable}from 'rxjs'
 import {AngularFirestore,AngularFirestoreDocument ,AngularFirestoreCollection}from '@angular/fire/firestore';
-import{Project} from '../../Models/IProjects'
 import * as firebase from 'firebase/app';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -16,9 +17,10 @@ export class ProjectsComponent implements OnInit {
   projects:any=[];
   isShow:any;
 
-  constructor(public route:Router,private service:ProjectsService,private afs: AngularFirestore) {
-   
-   
+  constructor(public route:Router,private service:ProjectsService,
+    private afs: AngularFirestore,
+    public alertController: AlertController) {
+  
   }
 
   ngOnInit() {
@@ -91,7 +93,22 @@ export class ProjectsComponent implements OnInit {
     this.service.deleteProject(id).then(res=>{
       console.log(res);
     })
-    console.log(id)
+  }
+  async deleteAlert(id) {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: "Are you sure you want to delete this project?",
+      buttons: [
+        {text:'Cancel'}
+      , {text: 'Delete',
+      handler: () => {
+               this.delete(id);
+      }
+        }
+    ]
+    });
+
+    await alert.present();
   }
   openTask(id){
     let url="/task/"+id;

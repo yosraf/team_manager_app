@@ -405,5 +405,26 @@ export class ProjectsService {
   })
 
    }
+   update(value,id){
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection('projects').doc(id).update({
+        "name":value.name,
+        "description":value.description,
+        "type":value.type,
+        "client":value.client,
+        "manager":value.manager,
+        "progress":value.progress
+
+      })
+     
+      .then(
+        res => {
+        
+          resolve(res)
+        },
+        err => reject(err)
+      )
+    })
+   }
    
 }

@@ -7,7 +7,6 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./Screens/home/home.module').then( m => m.HomePageModule)},
   { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
   { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
-  { path: 'modal', loadChildren: './Screens/modal/modal.module#ModalPageModule' },
   { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
   { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
   { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
@@ -17,6 +16,7 @@ const routes: Routes = [
   { path: 'project-details/:id', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
   { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
   { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
+  { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
 ];
 
 @NgModule({

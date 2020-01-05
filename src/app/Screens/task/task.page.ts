@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from "@angular/router";
 import{ProjectsService} from '../../Services/projects.service';
-
 @Component({
   selector: 'app-task',
   templateUrl: './task.page.html',
@@ -122,5 +121,9 @@ ionPull(event){
 ionStart(event){
   //Emitted when the user begins to start pulling down.
   console.log('ionStart Event Triggered!');
+}
+openModify(id){
+  let url="/modify-project/"+id;
+   this.router.navigate([url])
 }
 }

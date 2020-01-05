@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProjectsService} from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-client-propositions',
@@ -10,7 +11,7 @@ import * as firebase from 'firebase/app';
 export class ClientPropositionsPage implements OnInit {
   propositions:any=[]
   client:any=[]
-  constructor(private service:ProjectsService) { }
+  constructor(private service:ProjectsService, public alertController: AlertController) { }
 
   ngOnInit() {
     this.service.AsyncPropositions().subscribe(
@@ -86,5 +87,20 @@ export class ClientPropositionsPage implements OnInit {
   
         })
    }
+   async refuseAlert(d) {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: "Are you sure you want to delete this project?",
+      buttons: [
+        {text:'Cancel'}
+      , {text: 'Delete',
+      handler: () => {
+        this.refuse(d);
+      }
+        }
+    ]
+    });
 
+    await alert.present();
+  }
 }

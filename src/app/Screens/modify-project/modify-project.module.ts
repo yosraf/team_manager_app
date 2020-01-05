@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ModalPage } from './modal.page';
+import { ModifyProjectPage } from './modify-project.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ModalPage
+    component: ModifyProjectPage
   }
 ];
 
@@ -19,9 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ModalPage,
-  ]
+  declarations: [ModifyProjectPage]
 })
-export class ModalPageModule {}
+export class ModifyProjectPageModule {}
