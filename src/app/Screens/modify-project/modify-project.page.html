@@ -31,10 +31,10 @@
           </ion-item>
             <ion-item>
                 <ion-icon slot="start" name="contacts"></ion-icon>
-                <ion-select formControlName="client"  [(ngModel)]="client"  >
-                  <ion-select-option *ngFor="let c of clients" [value]="c.uid">{{ c.username}}</ion-select-option>-->
+                <ion-select formControlName="client"   [(ngModel)]="owner"  name="client">
+                <ion-select-option *ngFor="let c of clients" [value]="c.username" >{{ c.username}}</ion-select-option>
                 </ion-select>
-              </ion-item>
+            </ion-item>
       </div>
     
     <div class="ion-padding">

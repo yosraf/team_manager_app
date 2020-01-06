@@ -12,8 +12,9 @@ import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
 export class ModifyProjectPage implements OnInit {
   id:any;
   project:any={};
-  client:any="";
+  owner:any="";
   clients:any=[];
+  uid:any="";
   validation: FormGroup;
   constructor(private route: ActivatedRoute,private router:Router,
     private service:ProjectsService,private formBuilder: FormBuilder) {
@@ -25,8 +26,13 @@ export class ModifyProjectPage implements OnInit {
   ngOnInit() {
     this.service.getProject(this.id).then(res=>{
       this.project=res;
-      
-  
+      this.uid=this.project.client;
+       console.log(this.project.client)
+      this.service.getClient(this.uid).then(cl=>{
+        this.owner=cl;
+        console.log(this.owner)
+        console.log(cl)
+      })
 
     })
     this.service.getClients().then(res=>{
@@ -34,10 +40,7 @@ export class ModifyProjectPage implements OnInit {
         this.clients.push(element);
       });
     })
-    this.service.getClient(this.project.client).then(cl=>{
-      this.client=cl;
-      console.log(cl)
-    })
+    
     this.validation =this.formBuilder.group({
      
       name: new FormControl('', Validators.compose([
@@ -57,15 +60,26 @@ export class ModifyProjectPage implements OnInit {
    
   }
   modify(value){
+    let client;
+    if(value.client==undefined){
+      client=this.project.client;
+    }
+    else{
+      this.clients.forEach(element => {
+        if(element.username==value.client){
+          client=element.uid;
+        }
+        
+      });
+    }
     let data={
       "name":value.name,
       "description":value.description,
-      "client":value.client,
+      "client":client,
       "manager":this.project.manager,
       "progress":this.project.progress,
       "type":value.type
     }
-    console.log(value);
     this.service.update(data,this.id).then(res=>{
       this.back(this.id);
 

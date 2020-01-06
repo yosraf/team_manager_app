@@ -117,7 +117,7 @@ export class ProjectsService {
 
           var obj = JSON.parse(JSON.stringify(d.data()));
           if(obj['role']=="client"){
-            console.log(obj);
+         
             clients.push(obj);
             
           }
@@ -331,7 +331,6 @@ export class ProjectsService {
 
           var obj = JSON.parse(JSON.stringify(d.data()));
           if(obj['state']=="done"){
-            console.log(obj);
             tasks.push(obj)
             
           }
