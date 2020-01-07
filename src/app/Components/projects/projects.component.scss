@@ -1,16 +1,17 @@
 ion-toolbar{
-    --background:#e67e22;
+    --background:#d6b0ff;
 }
+
 .title{
     color:#462373;
 }
 .no-project{
     font-size: medium;
-    color: #ff7300;
+    color: #462373;
 }
 
 ion-fab-button{
-    --background: #ff7300;
+    --background: #462373;
 
 }
 .card {
@@ -54,7 +55,7 @@ ion-fab-button{
           .deleteIcon{
               font-size: 30px;
               margin: 0 auto;
-              margin-top: 40%;
+              margin-top: 50%;
               
               color:#eb4d4b;
           }

@@ -28,8 +28,9 @@ export class ProjectPropositionPage implements OnInit {
           Validators.required,
   
         ])),
+
        
-        Person: new FormControl('', Validators.compose([
+        Specifications: new FormControl('', Validators.compose([
           Validators.required
         ])),
         Type: new FormControl('', Validators.compose([
@@ -39,6 +40,7 @@ export class ProjectPropositionPage implements OnInit {
       
   }
   add(value){
+   
    this.service.createProposition(value).then(res=>{
       this.route.navigate(["/homes/clientProjects"])
    })

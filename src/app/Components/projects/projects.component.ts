@@ -71,16 +71,16 @@ export class ProjectsComponent implements OnInit {
     );
   }
   color(type){
-   if(type=="web"){
-     return "#e67e22";
+    if(type=="web"){
+      return "#462373";
+    }
+    if(type=="mobile"){
+      return "#a55eea";
+    }
+    if(type=="data"){
+      return "#8e44ad";
+    }
    }
-   if(type=="mobile"){
-     return "#a55eea";
-   }
-   if(type=="data"){
-     return "#8e44ad";
-   }
-  }
    active(){
      console.log("ok");
      this.isShow=false;

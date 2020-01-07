@@ -6,8 +6,9 @@ ion-back-button{
 
 }
 ion-toolbar{
-  --background:#e67e22;
+  --background:#d6b0ff;
 }
+
 .thumnails{
     overflow-x: scroll;
     overflow-y: hidden;
@@ -53,15 +54,15 @@ ion-toolbar{
 .no-chat{
     bottom: 3%;
     font-size: medium;
-    color: #ff7300;
+    color: #462373;
 }
 ion-label h2{
     font-size: medium;
-    color: #ff7300;
+    color: #462373;
     font-weight: bold;
 }
 ion-label p{
     font-size: medium;
-    color: #e67e22;
+    color: #462373;
     font-weight: lighter;
 }

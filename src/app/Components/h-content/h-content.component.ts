@@ -100,7 +100,7 @@ export class HContentComponent implements OnInit {
         datasets: [{
           label: 'Projects types',
           data: [web,mobile,data],
-          backgroundColor: ['#e67e22','#a55eea','#8e44ad'], // array should have same number of elements as number of dataset
+          backgroundColor: ['#462373','#a55eea','#8e44ad'], // array should have same number of elements as number of dataset
           borderWidth: 1
         }]
       },
@@ -117,7 +117,7 @@ export class HContentComponent implements OnInit {
   }
   color(type){
     if(type=="web"){
-      return "#e67e22";
+      return "#462373";
     }
     if(type=="mobile"){
       return "#a55eea";

@@ -4,10 +4,13 @@
 .submit{
     height: 50px;
     text-transform: none;
-    --background:#ff7300;
-    --background-hover:#ff7300;
+    --background:#462373;
+    --background-hover:#462373;
 
 }
 ion-item ion-icon{
-    color:#ff7300;
+    color:#d6b0ff;
+}
+ion-toolbar{
+    --background:#d6b0ff;
 }

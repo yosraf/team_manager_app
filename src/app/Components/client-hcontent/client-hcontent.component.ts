@@ -93,7 +93,7 @@ export class ClientHContentComponent implements OnInit {
         datasets: [{
           label: 'Projects types',
           data: [web, mobile, data],
-          backgroundColor: ['#e67e22', '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
+          backgroundColor: ['#462373', '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
           borderWidth: 1
         }]
       },
@@ -108,17 +108,17 @@ export class ClientHContentComponent implements OnInit {
       }
     });
   }
-  color(type) {
-    if (type == "web") {
-      return "#e67e22";
+  color(type){
+    if(type=="web"){
+      return "#462373";
     }
-    if (type == "mobile") {
+    if(type=="mobile"){
       return "#a55eea";
     }
-    if (type == "data") {
+    if(type=="data"){
       return "#8e44ad";
     }
-  }
+   }
   icon(type) {
     if (type == "web") {
       return "md-desktop";
@@ -150,5 +150,9 @@ export class ClientHContentComponent implements OnInit {
   }
   openRejected(){
     this.route.navigate(["/rejected-propositions"]);
+  }
+  openProject(value){
+    let url='/project-details/'+value
+    this.route.navigate([url])
   }
 }

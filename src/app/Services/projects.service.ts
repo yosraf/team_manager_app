@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import {AngularFirestore }from '@angular/fire/firestore';
+
 import{Observable} from 'rxjs'
 
 @Injectable({
@@ -237,10 +238,11 @@ export class ProjectsService {
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
       this.afs.collection('propositions').add({
-        manager:value.Person,
+     //   manager:value.Person,
         name: value.Name,
         description: value.Description,
         type:value.Type,
+        state:'not treated',
         client:currentUser.uid,
        
       })
@@ -425,5 +427,14 @@ export class ProjectsService {
       )
     })
    }
-   
+   uploadFile(file){
+     let storageRef= firebase.storage().ref();
+    return new Promise<any>((resolve, reject) => {
+      storageRef.put(file).then(function(snapshot) {
+        console.log('Uploaded a blob or file!');
+      });
+
+    })
+  }
+ 
 }

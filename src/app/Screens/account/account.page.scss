@@ -52,12 +52,12 @@ ion-back-button{
             position: relative;
             h4{
                 text-align: center;
-                color: #ff7300;
+                color: #462373;
 
                }
                ion-icon{
                 font-size:25px;
-                color: #ff7300;
+                color: #462373;
                }
         }
        
@@ -65,7 +65,7 @@ ion-back-button{
     ion-card{
         box-shadow: none !important;
         ion-icon{
-            color: #ff7300;
+            color: #d6b0ff;
 
         }
         ion-label{
@@ -78,5 +78,5 @@ ion-back-button{
   
 }
 ion-toolbar{
-    --background:#e67e22;
+    --background:#d6b0ff;
 }

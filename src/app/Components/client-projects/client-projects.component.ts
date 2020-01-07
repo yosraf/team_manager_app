@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import {ProjectsService} from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-client-projects',
@@ -14,7 +16,7 @@ export class ClientProjectsComponent implements OnInit {
   propositions:any[];
   isShow=true;
 
-  constructor(public route:Router,private service:ProjectsService) {
+  constructor(public route:Router,private service:ProjectsService,private alertConroller:AlertController) {
    
    
   }
@@ -93,18 +95,32 @@ export class ClientProjectsComponent implements OnInit {
 
   }
   color(type){
-   if(type=="web"){
-     return "#e67e22";
+    if(type=="web"){
+      return "#462373";
+    }
+    if(type=="mobile"){
+      return "#a55eea";
+    }
+    if(type=="data"){
+      return "#8e44ad";
+    }
    }
-   if(type=="mobile"){
-     return "#a55eea";
-   }
-   if(type=="data"){
-     return "#8e44ad";
-   }
+   async deleteAlert(id) {
+    const alert = await this.alertConroller.create({
+      header: 'Confirm',
+      message: "Are you sure you want to delete this project?",
+      buttons: [
+        {text:'Cancel'}
+      , {text: 'Delete',
+      handler: () => {
+               this.delete(id);
+      }
+        }
+    ]
+    });
+
+    await alert.present();
   }
-  
-  
   
  
   ionRefresh(event) {
@@ -150,6 +166,7 @@ icon(type) {
   }
 }
 openProp(id){
-  console.log(id)
+  let url="/proposition-details/"+id;
+  this.route.navigate([url]);
 }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {ProjectsService} from '../../Services/projects.service'
 import {ActivatedRoute,Router} from "@angular/router";
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-project-details',
@@ -8,17 +9,24 @@ import {ActivatedRoute,Router} from "@angular/router";
   styleUrls: ['./project-details.page.scss'],
 })
 export class ProjectDetailsPage implements OnInit {
+  chart:any;
   project:any={};
   id:any;
   tasks:any=[];
   team:any=[];
   done:any=[];
+  doing:any=[];
+  to_do:any=[];
+  data:any=[];
+  @ViewChild('lineChart', { static: false }) lineChart;
+
   constructor(private service:ProjectsService,private route: ActivatedRoute,private router:Router) { 
     this.route.params.subscribe( params => {
       console.log(params["id"])
       this.id=params["id"]
   } );
   }
+  
 
   ngOnInit() {
     this.service.getProject(this.id).then(res=>{
@@ -49,10 +57,21 @@ export class ProjectDetailsPage implements OnInit {
         };
         if(p['state']!="done"){
           this.tasks.push(p);
+          if(p['state']=='to do'){
+            this.to_do.push(p);
+
+          }
+          else{
+            this.doing.push(p);
+            
+          }
         }
         else{
           this.done.push(p);
         }
+        this.data=[this.to_do.length,this.doing.length,this.done.length]
+        this.createLineChart()
+
        
         this.service.getClient(p.person).then(res=>{
               
@@ -76,5 +95,37 @@ export class ProjectDetailsPage implements OnInit {
     if(type=="data"){
       return "md-analytics";
     }
+   }
+   createLineChart(){
+     
+    this.chart = new Chart(this.lineChart.nativeElement, {
+      type: 'line',
+      data: {
+        
+       
+        labels: ['to do','doing','doine'],
+        datasets:[{
+          fill	:false,
+          borderColor	:'#a55eea',
+          data: this.data,
+          borderWidth: 2
+        }]
+
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true,
+            stacked: true
+          }],
+        }
+      }
+    });
    }
 }

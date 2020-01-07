@@ -20,7 +20,7 @@ export class ClientPropositionsPage implements OnInit {
         data.forEach(d=>{
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
-          if(obj['manager']==value.uid){
+          if(obj['state']=="not treated"){
            
             var p= {
               "name": obj.name,
@@ -45,7 +45,7 @@ export class ClientPropositionsPage implements OnInit {
   
   color(type){
     if(type=="web"){
-      return "#e67e22";
+      return "#462373";
     }
     if(type=="mobile"){
       return "#a55eea";

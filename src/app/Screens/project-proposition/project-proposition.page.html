@@ -19,6 +19,11 @@
               <ion-input type="text" placeholder="Project description"  formControlName="Description" required></ion-input>
             </ion-item>
             <ion-item>
+              <ion-icon slot="start" name="document"></ion-icon>
+              <ion-input type="file" placeholder="upload specifications" formControlName="Specifications" required></ion-input>
+              
+            </ion-item>
+            <ion-item>
               <ion-icon slot="start" name="list-box"></ion-icon>
               <ion-select placeholder="Project type" formControlName="Type">
                 <ion-select-option value="web">web</ion-select-option>
@@ -27,12 +32,12 @@
 
               </ion-select>
           </ion-item>
-            <ion-item>
+            <!--<ion-item>
                 <ion-icon slot="start" name="contacts"></ion-icon>
                 <ion-select placeholder="Select a person" formControlName="Person" >
                   <ion-select-option *ngFor="let t of managers" value="{{t['uid']}}">{{t["username"]}}</ion-select-option>
                 </ion-select>
-              </ion-item>
+              </ion-item>-->
       </div>
     
     <div class="ion-padding">

@@ -18,6 +18,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import * as firebase from 'firebase';
 import { from } from 'rxjs';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { FCM } from '@ionic-native/fcm//ngx'
 
 import { Camera } from '@ionic-native/camera/ngx';
@@ -26,6 +27,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import {IonicGestureConfig} from "../app/utils/IonicGestureConfig";
+
 firebase.initializeApp(environment.firbase);
 
 @NgModule({

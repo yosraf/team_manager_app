@@ -6,14 +6,23 @@ ion-back-button{
     
     }
     ion-toolbar{
-        --background:#e67e22;
-        box-shadow: none !important;
-
+        --background:#d6b0ff;
     }
+    
    
     ion-list-header{
-        color:#ff7300;
+        color:#462373;
         font-size: medium;
+    }
+    ion-card, .card-ios, .card-md {
+        border: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-style: none !important;
+        position: relative;
+      }
+    .welcome-card{
+        margin: 0 auto;
     }
     .name{
         font-weight: bold;
@@ -29,7 +38,7 @@ ion-back-button{
     }
     .no-project{
         font-size: medium;
-        color: #ff7300;
+        color: #462373;
     }
     .type-icon{
         font-size: 25px;
