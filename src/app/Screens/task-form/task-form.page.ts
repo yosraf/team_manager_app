@@ -38,6 +38,9 @@ export class TaskFormPage implements OnInit {
      
       Person: new FormControl('', Validators.compose([
         Validators.required
+      ])),
+      Hours: new FormControl('', Validators.compose([
+        Validators.required
       ]))
     }); 
   }

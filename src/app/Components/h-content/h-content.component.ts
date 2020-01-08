@@ -10,19 +10,24 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./h-content.component.scss'],
 })
 export class HContentComponent implements OnInit {
-  @ViewChild('dognutChart',{static: false}) dognutChart;
- 
+  @ViewChild('lineChart',{static: false}) lineChart;
+
 
   bars: any;
-  dognut:any;
-  colorArray: any;
   projects:any=[];
+  cost:number=0;
+  labels:any=[];
+  costs:any=[];
+  highest_pro:any=[];
   constructor(public route:Router,private service:ProjectsService) { }
 
   ngOnInit() {
+    let cache:any;
    this.service.AsyncProjects().subscribe(
     data => {
       this.projects=[];
+      this.costs=[];
+      this.labels=[];
 
       data.forEach(d=>{
         let value = firebase.auth().currentUser;
@@ -36,24 +41,31 @@ export class HContentComponent implements OnInit {
             "client": obj.client,
             "progress": obj.progress,
             "type": obj.type,
-            "id": d.payload.doc.id
+            "id": d.payload.doc.id,
+            "cost":obj.cost
           };
+          if(cache){
+            if(cache.cost<p.cost){
+              this.highest_pro.push(p)
+            }
+          }          
+          this.cost+=p.cost;
           this.projects.push(p);
+          this.labels.push(p.name);
+          this.costs.push(p.cost)
+          this.createLine();
+          cache=p;
 
         }
       });
-      
-
+   
     }
     
   );
 
 
   }
-  ionViewDidEnter() {
-    this.createDonutsChart();
-  }
-  
+ 
 
   getProjects() {
     this.projects=[];
@@ -71,37 +83,17 @@ export class HContentComponent implements OnInit {
     );
 
   }
-  async createDonutsChart() {
-    let web=0;
-    let mobile=0;
-    let data=0;
-    var projs=await this.service.getProjects();
-    projs.forEach(element => {
-      console.log("fetch projects");
-      if(element['type']=="mobile"){
-          mobile+=1;
-      }
-      if(element['type']=="web"){
-       web+=1;
-
-     }
-     if(element['type']=="data"){
-       data+=1;
-
-     }
-     
-    });
-
-  
-    this.dognut = new Chart(this.dognutChart.nativeElement, {
-      type: 'doughnut',
+  createLine(){
+    this.bars = new Chart(this.lineChart.nativeElement, {
+      type: 'line',
       data: {
-        labels: ['Web', 'Mobile', 'Data'],
+        labels: this.labels,
         datasets: [{
-          label: 'Projects types',
-          data: [web,mobile,data],
-          backgroundColor: ['#462373','#a55eea','#8e44ad'], // array should have same number of elements as number of dataset
-          borderWidth: 1
+          label: 'Projects with their costs',
+          data:this.costs,
+          borderColor	:'#a55eea',
+          backgroundColor: '#d6b0ff', 
+          borderWidth: 2
         }]
       },
       options: {
@@ -115,6 +107,7 @@ export class HContentComponent implements OnInit {
       }
     });
   }
+
   color(type){
     if(type=="web"){
       return "#462373";
@@ -148,11 +141,9 @@ export class HContentComponent implements OnInit {
     }, 2000);
 }
 ionPull(event){
-  //Emitted while the user is pulling down the content and exposing the refresher.
   console.log('ionPull Event Triggered!');
 }
 ionStart(event){
-  //Emitted when the user begins to start pulling down.
   console.log('ionStart Event Triggered!');
 }
 openProp(){

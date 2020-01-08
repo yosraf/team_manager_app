@@ -30,6 +30,10 @@ export class ProjectPage implements OnInit {
         Validators.required,
 
       ])),
+      cost: new FormControl('', Validators.compose([
+        Validators.required,
+
+      ])),
       type: new FormControl('', Validators.compose([
         Validators.required
       ])),

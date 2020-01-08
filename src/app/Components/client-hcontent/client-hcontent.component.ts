@@ -14,6 +14,8 @@ export class ClientHContentComponent implements OnInit {
   dognut: any;
   colorArray: any;
   projects: any = [];
+  finished:any=[];
+  doing:any=[];
 
   constructor(private route: Router, private service: ProjectsService) { }
 
@@ -36,16 +38,20 @@ export class ClientHContentComponent implements OnInit {
               "id": d.payload.doc.id
             };
             this.projects.push(p);
+            if(p.progress==100){
+              this.finished.push(p)
+            }
+            else{
+              this.doing.push(p)
+            }
 
           }
         });
-        
+        this.createDonutsChart();
+
 
       }
     );
-  }
-  ionViewDidEnter() {
-    this.createDonutsChart();
   }
 
 
@@ -68,32 +74,15 @@ export class ClientHContentComponent implements OnInit {
 
   }
   async createDonutsChart() {
-    let web = 0;
-    let mobile = 0;
-    let data = 0;
-    var projs = await this.service.getClientProjects();
-    projs.forEach(element => {
-      if (element['type'] == "mobile") {
-        mobile += 1;
-      }
-      if (element['type'] == "web") {
-        web += 1;
-
-      }
-      if (element['type'] == "data") {
-        data += 1;
-
-      }
-
-    });
+   
     this.dognut = new Chart(this.dognutChart.nativeElement, {
       type: 'doughnut',
       data: {
-        labels: ['Web', 'Mobile', 'Data'],
+        labels: ['finished projects', 'upgoing projects'],
         datasets: [{
-          label: 'Projects types',
-          data: [web, mobile, data],
-          backgroundColor: ['#462373', '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
+          label: 'Projects',
+          data: [this.finished.length,this.doing.length],
+          backgroundColor: [ '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
           borderWidth: 1
         }]
       },
@@ -141,11 +130,9 @@ export class ClientHContentComponent implements OnInit {
     }, 2000);
   }
   ionPull(event) {
-    //Emitted while the user is pulling down the content and exposing the refresher.
     console.log('ionPull Event Triggered!');
   }
   ionStart(event) {
-    //Emitted when the user begins to start pulling down.
     console.log('ionStart Event Triggered!');
   }
   openRejected(){

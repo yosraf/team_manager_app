@@ -22,7 +22,8 @@ export class ProjectsService {
         description: value.description,
         type:value.type,
         client:value.client,
-        progress:0
+        progress:0,
+        cost:value.cost
       })
       .then(
         res => {
@@ -88,7 +89,8 @@ export class ProjectsService {
         state:"to do",
         name:value.Name,
         description:value.Description,
-        person:value.Person
+        person:value.Person,
+        hours:value.Hours
       })
       .then(
         res => {

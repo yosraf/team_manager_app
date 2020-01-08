@@ -25,29 +25,26 @@
     </ion-refresher-content>
   </ion-refresher>
     <div>
-        <ion-list-header class="stats">Statistics</ion-list-header>
-       <!-- <ion-card class="welcome-card">
-          <ion-card-header>
-            <ion-card-title class="projects">Number of projects</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <canvas #barChart></canvas>
-          </ion-card-content>
-        </ion-card>-->
+      <div class="income-card">
+        <ion-list-header class="stats">Total income</ion-list-header>
+       <div >
+        <h3>{{cost}} DT</h3>
+       </div>
+      </div>
+     
         <ion-card class="welcome-card">
-          <!--<ion-card-header>
-            <ion-card-title class="projects">Number of projects per type</ion-card-title>
-          </ion-card-header>-->
+        
           <ion-card-content>
-            <canvas #dognutChart></canvas>
+            <canvas #lineChart></canvas>
           </ion-card-content>
         </ion-card>
+       
     </div>
     <div>
-      <ion-list-header class="stats">Recently added</ion-list-header>
-      <ion-list *ngIf="this.projects.length>0">
+      <ion-list-header class="high-paid">Most Costly projects</ion-list-header>
+      <ion-list *ngIf="this.highest_pro.length>0">
   
-        <div class="card" *ngFor="let d of projects" (click)="openproject(d['id'])">
+        <div class="card" *ngFor="let d of highest_pro" (click)="openproject(d['id'])">
           <div class="project-info" [ngStyle]="{'background-color':color(d['type'])}">
             <ion-icon [name]="icon(d['type'])" class="icon"></ion-icon>
           </div>
@@ -56,6 +53,11 @@
              <p>{{d['description']}}</p>
 
           </div>
+          <div class="solt-end">
+            <ion-badge color="warning" >{{d.cost}} DT</ion-badge>
+
+          </div>
+
           
         </div>
       </ion-list>
@@ -63,7 +65,7 @@
      
 
     </div>
-    <div class="no-project" *ngIf="this.projects.length==0">
+    <div class="no-project" *ngIf="this.highest_pro.length==0">
       <ion-label  >No projects yet</ion-label>
     </div > 
 </ion-content>

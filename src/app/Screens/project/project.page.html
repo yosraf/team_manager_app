@@ -29,6 +29,10 @@
                     </ion-select>
                 </ion-item>
                 <ion-item>
+                  <ion-icon name="cash" slot="start"></ion-icon>
+                  <ion-input type="number" placeholder="cost of the project"  formControlName="cost" required></ion-input>
+                </ion-item>
+                <ion-item>
                   <ion-icon slot="start" name="contact"></ion-icon>
                   <ion-select placeholder="Select a client" formControlName="client" >
                     <ion-select-option *ngFor="let c of clients" value="{{c['uid']}}">{{c["username"]}}</ion-select-option>

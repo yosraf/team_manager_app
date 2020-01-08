@@ -39,7 +39,6 @@ export class ProjectDetailsPage implements OnInit {
         "progress":res.progress
       }
       this.project=p;
-      console.log(this.project)
 
 
     });

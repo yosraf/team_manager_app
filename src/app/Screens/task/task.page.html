@@ -2,43 +2,59 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons>    
+    </ion-buttons>
     <ion-title>tasks</ion-title>
     <ion-icon name="create" slot="end" class="modify" (click)="openModify(id)"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-chip (click)="filter(0)">
-    <ion-label color="default">All </ion-label>
-  </ion-chip>
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-  <ion-chip  color="danger" (click)="filter(1)"> 
-    <ion-label color="danger">To do</ion-label>
-  </ion-chip>
+  <ion-list *ngIf="this.task.length>0">
 
-  <ion-chip color="tertiary" (click)="filter(2)">
-    <ion-label color="tertiary">Doing</ion-label>
-  </ion-chip>
-  <ion-chip color="warning" (click)="filter(3)">
-    <ion-label color="warning">Done</ion-label>
-  </ion-chip>
-        <ion-refresher slot="fixed" 
-        (ionRefresh)="ionRefresh($event)" 
-        (ionPull)="ionPull($event)" 
-        (ionStart)="ionStart($event)">
-          <ion-refresher-content
-            pullingIcon="arrow-dropdown"
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="Refreshing...">
-          </ion-refresher-content>
-        </ion-refresher>
-        <ion-list *ngIf="this.data.length>0">
-          
-       
 
-    <ion-item *ngFor="let d of data">
+    <ion-chip color="warning" (click)="filter(0)">
+      <ion-label color="warning">Generals </ion-label>
+    </ion-chip>
+
+    <ion-chip color="tertiary" *ngFor="let t of team">
+      <ion-label color="tertiary" (click)="filter(t)">{{t}}</ion-label>
+    </ion-chip>
+    <div class="stats" *ngIf="clicked==true">
+      <div class="income-card">
+        <ion-list-header class="stats">Budget</ion-list-header>
+        <div>
+          <h3>2000 DT</h3>
+        </div>
+      </div>
+
+    </div>
+    <ion-card class="welcome-card" [hidden]="!clicked">
+
+      <ion-card-content>
+        <canvas #lineChart></canvas>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card class="welcome-card" [hidden]="!dev">
+
+      <ion-card-content>
+        <canvas #dognut></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- <ion-list-header>
+    Tasks
+  </ion-list-header>
+  
+   <ion-item *ngFor="let d of task">
       <ion-avatar slot="start">
         <img src="./../../assets/icon/user.png">
 
@@ -50,17 +66,62 @@
         <p>{{d['description']}}</p>
        
       </ion-label>
-    </ion-item>
+    </ion-item>-->
   </ion-list>
-  <ion-list-header *ngIf="this.data.length==0" class="no-project">
-    No task Found
-  </ion-list-header>
 
-<ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
-    <ion-fab-button>
-      <ion-icon name="add" (click)="open()"></ion-icon>
-    </ion-fab-button>
-  
-  </ion-fab>
+    <ion-list-header>
+      Done tasks
+    </ion-list-header>
+    <ion-list>
+      <div *ngFor="let t of task; let i = index;">
+        <ion-item *ngIf="t['state']=='done'">
+          <ion-icon name="checkmark-circle" slot="start" class="icon" color="warning"></ion-icon>
+          <ion-badge color="tertiary" slot="end">{{t["hours"]}} H</ion-badge>
+          <ion-label>
+            <h3 class="name">{{t["name"]}}</h3>
+            <p class="description">{{t["description"]}}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+      <ion-card *ngIf="this.task.length==0" class="no-project">
+        <ion-card-content>
+          No task done yet
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+    <ion-list-header>
+      Pending tasks
+    </ion-list-header>
+    <ion-list>
+      <div *ngFor="let t of task; let i = index;">
+        <ion-item *ngIf="t['state']=='to do'">
+          <ion-icon name="checkmark-circle" slot="start" class="icon" color="danger"></ion-icon>
+          <ion-badge color="tertiary" slot="end">{{t["hours"]}} H</ion-badge>
+          <ion-label>
+            <h3 class="name">{{t["name"]}}</h3>
+            <p class="description">{{t["description"]}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="t['state']=='doing'">
+          <ion-icon name="checkmark-circle" slot="start" class="icon" color="tertiary"></ion-icon>
+          <ion-badge color="tertiary" slot="end">{{t["hours"]}} H</ion-badge>
+          <ion-label>
+            <h3 class="name">{{t["name"]}}</h3>
+            <p class="description">{{t["description"]}}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+      </ion-list>
+
+      <ion-list-header *ngIf="this.task.length==0" class="no-project">
+        No task Found
+      </ion-list-header>
+
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+        <ion-fab-button>
+          <ion-icon name="add" (click)="open()"></ion-icon>
+        </ion-fab-button>
+
+      </ion-fab>
 
 </ion-content>

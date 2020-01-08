@@ -6,8 +6,31 @@ ion-toolbar{
     color:#462373;
 }
 .stats{
+    color:white;
+    font-size: 18px;
+}
+.high-paid{
     color:#462373;
     font-size: 18px;
+}
+.income-card{
+
+    box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    height:13%;
+    width: 90%;
+    background-color: #462373;
+
+    h3{
+        font-weight: bold;
+        margin: 0 auto;
+        margin-left: 18px;
+        font-size: 35px;
+        color: white;
+    }
 }
 .projects{
     color:#462373;
@@ -28,11 +51,11 @@ ion-card, .card-ios, .card-md {
     border-radius: 6px;
     margin: 0 auto;
     margin-bottom: 10px;
-    height:75px;
+    height:13%;
     width: 90%;
     display: flex;
     .container {
-        width: 75%;
+        width: 50%;
         padding-left: 5px;
         h5{
             color:#462373;
@@ -57,6 +80,14 @@ ion-card, .card-ios, .card-md {
           border-bottom-left-radius: 6px;
 
 
+      }
+      .solt-end{
+        width:25%;
+        text-align: center;
+        ion-badge{
+            margin:0 auto;
+            margin-top: 50%;
+        }
       }
   }
   .no-project{
