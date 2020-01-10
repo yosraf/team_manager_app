@@ -9,7 +9,12 @@
 
 <ion-content>
   <div>
-    <ion-list-header>Statistics</ion-list-header>
+    <div class="hello-card">
+      <ion-list-header>Budget</ion-list-header>
+     <div >
+      <h3>{{project["cost"]}} DT</h3>
+     </div>
+    </div>
     <ion-card class="welcome-card">
    
     <ion-card-content>
@@ -49,11 +54,9 @@
         </ion-label>
       </ion-item>
      </div>
-     <ion-card *ngIf="this.done.length==0"  class="no-project">
-      <ion-card-content>
-        No task done yet
-      </ion-card-content>
-  </ion-card>
+     <div *ngIf="this.done.length==0"  class="no-project">
+      <ion-label>No done tajs found  </ion-label>
+    </div> 
   </ion-list>
   <ion-list-header>
       Pending tasks
@@ -77,11 +80,9 @@
         </ion-label>
       </ion-item>
     </div>  
-    <ion-card *ngIf="this.tasks.length==0"  class="no-project">
-      <ion-card-content>
-        No tasks Found
-      </ion-card-content>
-  </ion-card> 
+    <div *ngIf="this.tasks.length==0"  class="no-project">
+      <ion-label>No pending tasks found  </ion-label>
+    </div> 
    </ion-list>
   </div>
   

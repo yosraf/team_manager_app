@@ -21,8 +21,8 @@ export class TaskPage implements OnInit {
   clicked=true;
   totalTask:any=[];
   dev=false;
-  totalhours=0;
-  lefthours=0;
+  totalhours:number=0;
+  lefthours:number=0;
   constructor(private route: ActivatedRoute,private router:Router,private service:ProjectsService) {
     this.route.params.subscribe( params => {
       console.log(params["id"])
@@ -125,17 +125,18 @@ export class TaskPage implements OnInit {
       this.task.forEach(element => {
         if(element.person==n){
           fil.push(element);
-          this.totalhours+=element.hours;
+          this.totalhours=Number(this.totalhours)+Number(element.hours);
        
           if(element.state!='done'){
-            this.lefthours+=element.hours;
+            this.lefthours=Number(this.lefthours)+Number(element.hours);
           }
-
+          console.log(this.lefthours)
         }
        
       });
-      this.creatDognut();
+    
       this.task=fil;
+      this.creatDognut();
 
     }
     
@@ -193,11 +194,11 @@ creatDognut(){
   this.dognut = new Chart(this.dognutChart.nativeElement, {
     type: 'doughnut',
     data: {
-      labels: ['Total hours', 'Left hours'],
+      labels: ['Total hours', 'Hours left'],
       datasets: [{
         label: 'Total tasks hours',
         data: [this.totalhours, this.lefthours],
-        backgroundColor: [ '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
+        backgroundColor: [ '#a55eea', '#f04141'], // array should have same number of elements as number of dataset
         borderWidth: 1
       }]
     },

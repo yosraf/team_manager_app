@@ -48,7 +48,9 @@ export class HContentComponent implements OnInit {
             if(cache.cost<p.cost){
               this.highest_pro.push(p)
             }
-          }          
+          }
+        
+                
           this.cost+=p.cost;
           this.projects.push(p);
           this.labels.push(p.name);

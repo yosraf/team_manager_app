@@ -36,7 +36,8 @@ export class ProjectDetailsPage implements OnInit {
         "client":res.client,
         "manager":res.manager,
         "type":res.type,
-        "progress":res.progress
+        "progress":res.progress,
+        "cost":res.cost
       }
       this.project=p;
 
@@ -102,7 +103,7 @@ export class ProjectDetailsPage implements OnInit {
       data: {
         
        
-        labels: ['to do','doing','doine'],
+        labels: ['to do','doing','done'],
         datasets:[{
           fill	:false,
           borderColor	:'#a55eea',

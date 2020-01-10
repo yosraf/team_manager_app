@@ -297,13 +297,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
-    implementation(project(path: ":CordovaLib"))
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "com.google.firebase:firebase-analytics:17.2.1"
     implementation "com.google.firebase:firebase-config:19.0.+"
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation "com.google.firebase:firebase-core:17.2.1"
     implementation "com.google.firebase:firebase-messaging:20.1.0"
+    compile project(path: ':CordovaLib')
     // SUB-PROJECT DEPENDENCIES END
 }
 

@@ -19,8 +19,8 @@
   <ion-list *ngIf="this.task.length>0">
 
 
-    <ion-chip color="warning" (click)="filter(0)">
-      <ion-label color="warning">Generals </ion-label>
+    <ion-chip color="danger" (click)="filter(0)">
+      <ion-label color="danger">Generals </ion-label>
     </ion-chip>
 
     <ion-chip color="tertiary" *ngFor="let t of team">
@@ -50,23 +50,7 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- <ion-list-header>
-    Tasks
-  </ion-list-header>
   
-   <ion-item *ngFor="let d of task">
-      <ion-avatar slot="start">
-        <img src="./../../assets/icon/user.png">
-
-      </ion-avatar>
-      <ion-badge  color="{{color(d['state'])}}" slot="end">{{d['state']}}</ion-badge>
-
-      <ion-label>
-        <h5 ><b>{{d['name']}}</b></h5>
-        <p>{{d['description']}}</p>
-       
-      </ion-label>
-    </ion-item>-->
   </ion-list>
 
     <ion-list-header>
@@ -82,6 +66,7 @@
             <p class="description">{{t["description"]}}</p>
           </ion-label>
         </ion-item>
+       
       </div>
       <ion-card *ngIf="this.task.length==0" class="no-project">
         <ion-card-content>

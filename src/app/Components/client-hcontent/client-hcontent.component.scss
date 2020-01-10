@@ -64,6 +64,13 @@ ion-card, .card-ios, .card-md {
   }
   .no-project{
       padding-left:5%;
+       box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        margin-top: 30px;
+        height:7%;
+        width: 90%;
      ion-label{
         color:#462373;
         font-size: 15px;
@@ -76,4 +83,26 @@ ion-card, .card-ios, .card-md {
     font-size: 30px;
     padding-right: 10px;
      
+ }
+ .hello-card{
+    box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    height:13%;
+    width: 90%;
+    background-color: #462373;
+
+    h3{
+        font-weight: bold;
+        margin: 0 auto;
+        margin-left: 18px;
+        font-size: 35px;
+        color: white;
+    }
+    ion-list-header{
+        color:white;
+        font-size: 18px;
+    }
  }

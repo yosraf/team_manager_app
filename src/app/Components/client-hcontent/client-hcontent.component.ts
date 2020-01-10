@@ -16,7 +16,7 @@ export class ClientHContentComponent implements OnInit {
   projects: any = [];
   finished:any=[];
   doing:any=[];
-
+  spent:number=0;
   constructor(private route: Router, private service: ProjectsService) { }
 
   ngOnInit() {
@@ -35,8 +35,10 @@ export class ClientHContentComponent implements OnInit {
               "client": obj.client,
               "progress": obj.progress,
               "type": obj.type,
-              "id": d.payload.doc.id
+              "id": d.payload.doc.id,
+              "cost":obj.cost
             };
+            this.spent=+p.cost;
             this.projects.push(p);
             if(p.progress==100){
               this.finished.push(p)

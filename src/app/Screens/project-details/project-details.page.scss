@@ -39,8 +39,36 @@ ion-back-button{
     .no-project{
         font-size: medium;
         color: #462373;
+        box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        margin: 0 auto;
+        width: 90%;
+        height:50px;
+        
     }
     .type-icon{
         font-size: 25px;
         color:#a55eea ;
     }
+    .hello-card{
+        box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        margin-top: 30px;
+        height:13%;
+        width: 90%;
+        background-color: #462373;
+    
+        h3{
+            font-weight: bold;
+            margin: 0 auto;
+            margin-left: 18px;
+            font-size: 35px;
+            color: white;
+        }
+        ion-list-header{
+            color:white;
+            font-size: 18px;
+        }
+     }

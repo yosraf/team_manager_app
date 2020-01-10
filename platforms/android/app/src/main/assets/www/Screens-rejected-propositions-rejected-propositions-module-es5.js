@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"title\">Rejections</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button class=\"title\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list *ngIf=\"this.rejections.length>0\">\n\n    <div *ngFor=\"let d of rejections\">\n      <div class=\"card\">\n        <ion-item>\n          <ion-icon [name]=\"icon(d['type'])\" [ngStyle]=\"{'color':color(d['type'])}\" slot=\"start\"></ion-icon>\n          <h3 [ngStyle]=\"{'color':color(d['type'])}\" class=\"project-name\">{{d['name']}}</h3>\n          <ion-badge color=\"tertiary\" slot=\"end\">manager</ion-badge>\n\n        </ion-item>\n\n\n        <div class=\"content\">\n          <p class=\"project-description\">{{d[\"description\"]}}</p>\n\n        </div>\n\n\n      </div>\n    </div>\n  </ion-list>\n  <ion-card *ngIf=\"this.rejections.length==0\" class=\"no-project\">\n    <ion-card-content>\n      No rejection Found\n    </ion-card-content>\n  </ion-card>\n\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"title\">Rejections</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button class=\"title\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list *ngIf=\"this.rejections.length>0\">\n\n    <div *ngFor=\"let d of rejections ; let i = index;\">\n     \n        <ion-item>\n          <ion-icon [name]=\"icon(d['type'])\" [ngStyle]=\"{'color':color(d['type'])}\" slot=\"start\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{managers[i]}}</ion-badge>\n\n         <ion-label>\n           <h5 [ngStyle]=\"{'color':color(d['type'])}\" class=\"project-name\"><b>{{d['name']}}</b></h5>\n           <p class=\"project-description\">{{d['description']}}</p>\n          \n         </ion-label>\n        </ion-item>\n      \n\n    </div>\n  </ion-list>\n  <ion-card *ngIf=\"this.rejections.length==0\" class=\"no-project\">\n    <ion-card-content>\n      No rejection Found\n    </ion-card-content>\n  </ion-card>\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var RejectedPropositionsPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  color: #462373; }\n\n.no-project {\n  font-size: medium;\n  color: #ff7300; }\n\n.project-name {\n  font-weight: bold; }\n\n.project-description {\n  font-size: 18px;\n  color: #8395a7;\n  margin-left: 10px; }\n\n.accept {\n  color: #2ecc71;\n  width: 50%;\n  text-align: center;\n  font-size: 35px; }\n\n.refuse {\n  color: #e74c3c;\n  width: 50%;\n  text-align: center;\n  font-size: 35px; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  width: 90%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL3JlamVjdGVkLXByb3Bvc2l0aW9ucy9yZWplY3RlZC1wcm9wb3NpdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksY0FBYSxFQUFBOztBQUVqQjtFQUNJLGlCQUFpQjtFQUNqQixjQUFjLEVBQUE7O0FBRWxCO0VBQ0MsaUJBQWlCLEVBQUE7O0FBRWxCO0VBQ0ksZUFBZTtFQUNmLGNBQWM7RUFDZCxpQkFBaUIsRUFBQTs7QUFHckI7RUFDRyxjQUFjO0VBQ2IsVUFBVTtFQUNWLGtCQUFrQjtFQUNsQixlQUFlLEVBQUE7O0FBRW5CO0VBQ0csY0FBYztFQUNiLFVBQVU7RUFDVixrQkFBa0I7RUFDbEIsZUFBZSxFQUFBOztBQUluQjtFQUNJLDZDQUE2QztFQUM3QyxrQkFBa0I7RUFDbEIsY0FBYztFQUNkLG1CQUFtQjtFQUNuQixVQUFVLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9TY3JlZW5zL3JlamVjdGVkLXByb3Bvc2l0aW9ucy9yZWplY3RlZC1wcm9wb3NpdGlvbnMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG4ubm8tcHJvamVjdHtcbiAgICBmb250LXNpemU6IG1lZGl1bTtcbiAgICBjb2xvcjogI2ZmNzMwMDtcbn1cbi5wcm9qZWN0LW5hbWV7XG4gZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG4ucHJvamVjdC1kZXNjcmlwdGlvbntcbiAgICBmb250LXNpemU6IDE4cHg7XG4gICAgY29sb3I6ICM4Mzk1YTc7XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG5cbn1cbi5hY2NlcHR7XG4gICBjb2xvcjogIzJlY2M3MTtcbiAgICB3aWR0aDogNTAlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmb250LXNpemU6IDM1cHg7XG59XG4ucmVmdXNle1xuICAgY29sb3I6ICNlNzRjM2M7XG4gICAgd2lkdGg6IDUwJTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAzNXB4O1xuXG59XG5cbi5jYXJke1xuICAgIGJveC1zaGFkb3c6IDAgNHB4IDhweCAtNHB4IHJnYmEoMCwgMCwgMCwgMC40KTtcbiAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgbWFyZ2luLWJvdHRvbTogMTBweDtcbiAgICB3aWR0aDogOTAlO1xufSJdfQ== */"
+module.exports = "ion-toolbar {\n  --background:#d6b0ff; }\n\n.title {\n  --color:#462373; }\n\n.no-project {\n  font-size: medium;\n  color: #462373; }\n\n.project-name {\n  font-weight: bold; }\n\n.project-description {\n  font-size: 15px;\n  color: #8395a7;\n  margin-left: 10px; }\n\n.buttons {\n  display: -webkit-box;\n  display: flex; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  width: 90%; }\n\nion-badge {\n  margin-left: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL3JlamVjdGVkLXByb3Bvc2l0aW9ucy9yZWplY3RlZC1wcm9wb3NpdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksb0JBQWEsRUFBQTs7QUFHakI7RUFDSSxlQUFRLEVBQUE7O0FBRVo7RUFDSSxpQkFBaUI7RUFDakIsY0FBYyxFQUFBOztBQUVsQjtFQUNDLGlCQUFpQixFQUFBOztBQUVsQjtFQUNJLGVBQWU7RUFDZixjQUFjO0VBQ2QsaUJBQWlCLEVBQUE7O0FBR3JCO0VBQ0ksb0JBQWE7RUFBYixhQUFhLEVBQUE7O0FBS2pCO0VBQ0ksNkNBQTZDO0VBQzdDLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsbUJBQW1CO0VBQ25CLFVBQVUsRUFBQTs7QUFFZDtFQUNJLGlCQUFnQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvU2NyZWVucy9yZWplY3RlZC1wcm9wb3NpdGlvbnMvcmVqZWN0ZWQtcHJvcG9zaXRpb25zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi10b29sYmFye1xuICAgIC0tYmFja2dyb3VuZDojZDZiMGZmO1xufVxuXG4udGl0bGV7XG4gICAgLS1jb2xvcjojNDYyMzczO1xufVxuLm5vLXByb2plY3R7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG4gICAgY29sb3I6ICM0NjIzNzM7XG59XG4ucHJvamVjdC1uYW1le1xuIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuLnByb2plY3QtZGVzY3JpcHRpb257XG4gICAgZm9udC1zaXplOiAxNXB4O1xuICAgIGNvbG9yOiAjODM5NWE3O1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuXG59XG4uYnV0dG9uc3tcbiAgICBkaXNwbGF5OiBmbGV4O1xufVxuXG5cblxuLmNhcmR7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IC00cHggcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgICBtYXJnaW46IDAgYXV0bztcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICAgIHdpZHRoOiA5MCU7XG59XG5pb24tYmFkZ2V7XG4gICAgbWFyZ2luLWxlZnQ6MTBweDtcbiAgIH0iXX0= */"
 
 /***/ }),
 
@@ -96,6 +96,7 @@ var RejectedPropositionsPage = /** @class */ (function () {
     function RejectedPropositionsPage(service) {
         this.service = service;
         this.rejections = [];
+        this.managers = [];
     }
     RejectedPropositionsPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -110,9 +111,13 @@ var RejectedPropositionsPage = /** @class */ (function () {
                         "description": obj.description,
                         "client": obj.client,
                         "type": obj.type,
-                        "id": d.payload.doc.id
+                        "id": d.payload.doc.id,
+                        "manager": obj.manager
                     };
                     _this.rejections.push(p);
+                    _this.service.getClient(p.manager).then(function (res) {
+                        _this.managers.push(res);
+                    });
                 }
             });
         });

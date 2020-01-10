@@ -24,7 +24,12 @@
   </ion-refresher-content>
 </ion-refresher>
   <div>
-      <ion-list-header class="stats">Statistics</ion-list-header>
+    <div class="hello-card">
+      <ion-list-header>Total expenses</ion-list-header>
+     <div >
+      <h3>{{spent}} DT</h3>
+     </div>
+    </div>
   
       <ion-card class="welcome-card">
        
@@ -34,10 +39,10 @@
       </ion-card>
   </div>
   <div>
-    <ion-list-header class="stats">Recently added</ion-list-header>
-    <ion-list *ngIf="this.projects.length>0">
+    <ion-list-header class="stats">Finished projects</ion-list-header>
+    <ion-list *ngIf="this.finished.length>0">
 
-      <div class="card" *ngFor="let d of projects" (click)="openProject(d['id'])">
+      <div class="card" *ngFor="let d of finished" (click)="openProject(d['id'])">
         <div class="project-info" [ngStyle]="{'background-color':color(d['type'])}">
           <ion-icon [name]="icon(d['type'])" class="icon"></ion-icon>
         </div>
@@ -53,7 +58,9 @@
    
 
   </div>
-  <div class="no-project" *ngIf="this.projects.length==0">
-    <ion-label  >No projects yet</ion-label>
+  <div class="no-project" *ngIf="this.finished.length==0">
+  
+    <ion-label>No projects yet  </ion-label>
+  
   </div > 
 </ion-content>

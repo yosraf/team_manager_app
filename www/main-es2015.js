@@ -18,49 +18,60 @@ var map = {
 	],
 	"./Screens/client-propositions/client-propositions.module": [
 		"./src/app/Screens/client-propositions/client-propositions.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-client-propositions-client-propositions-module"
 	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-homes-homes-module"
 	],
 	"./Screens/login-page/login-page.module": [
 		"./src/app/Screens/login-page/login-page.module.ts",
 		"Screens-login-page-login-page-module"
 	],
-	"./Screens/modal/modal.module": [
-		"./src/app/Screens/modal/modal.module.ts",
-		"Screens-modal-modal-module"
+	"./Screens/modify-project/modify-project.module": [
+		"./src/app/Screens/modify-project/modify-project.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-modify-project-modify-project-module"
 	],
 	"./Screens/project-details/project-details.module": [
 		"./src/app/Screens/project-details/project-details.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-project-details-project-details-module"
 	],
 	"./Screens/project-proposition/project-proposition.module": [
 		"./src/app/Screens/project-proposition/project-proposition.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-project-proposition-project-proposition-module"
 	],
 	"./Screens/project/project.module": [
 		"./src/app/Screens/project/project.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-project-project-module"
+	],
+	"./Screens/proposition-details/proposition-details.module": [
+		"./src/app/Screens/proposition-details/proposition-details.module.ts",
+		"Screens-proposition-details-proposition-details-module"
 	],
 	"./Screens/rejected-propositions/rejected-propositions.module": [
 		"./src/app/Screens/rejected-propositions/rejected-propositions.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-rejected-propositions-rejected-propositions-module"
 	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-task-form-task-form-module"
 	],
 	"./Screens/task/task.module": [
 		"./src/app/Screens/task/task.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"Screens-task-task-module"
 	]
 };
@@ -679,16 +690,17 @@ const routes = [
     { path: 'home', loadChildren: () => __webpack_require__.e(/*! import() | Screens-home-home-module */ "Screens-home-home-module").then(__webpack_require__.bind(null, /*! ./Screens/home/home.module */ "./src/app/Screens/home/home.module.ts")).then(m => m.HomePageModule) },
     { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
     { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
-    { path: 'modal', loadChildren: './Screens/modal/modal.module#ModalPageModule' },
     { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
     { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
     { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
     { path: 'task/:id', loadChildren: './Screens/task/task.module#TaskPageModule' },
     { path: 'task-form/:id', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
     { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
-    { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+    { path: 'project-details/:id', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
     { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
     { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
+    { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
+    { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
