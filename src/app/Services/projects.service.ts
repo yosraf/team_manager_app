@@ -236,16 +236,22 @@ export class ProjectsService {
     })
 
   }
-  createProposition(value){
+  async createProposition(value,filetoupload){
+    console.log(filetoupload)
+    let uid= firebase.auth().currentUser.uid;
+    const storageRef=firebase.storage().ref(`/pdf/uid/${filetoupload.name}.pdf`);
+    var uplaodtask=await storageRef.put(filetoupload.data, { contentType: `application/pdf` });
+    var urlFile= (await  uplaodtask.ref.getDownloadURL())
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
       this.afs.collection('propositions').add({
-     //   manager:value.Person,
+    
         name: value.Name,
         description: value.Description,
         type:value.Type,
         state:'not treated',
         client:currentUser.uid,
+        file:urlFile
        
       })
       .then(

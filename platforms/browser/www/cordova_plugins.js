@@ -330,6 +330,14 @@ module.exports = [
         "clobbers": [
             "SQLitePlugin"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-chooser/www/chooser.js",
+        "id": "cordova-plugin-chooser.Chooser",
+        "pluginId": "cordova-plugin-chooser",
+        "clobbers": [
+            "chooser"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -351,7 +359,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-sqlite-storage": "4.0.0",
     "cordova-support-android-plugin": "1.0.1",
-    "cordova-support-google-services": "1.3.2"
+    "cordova-support-google-services": "1.3.2",
+    "cordova-plugin-chooser": "1.2.5"
 }
 // BOTTOM OF METADATA
 });

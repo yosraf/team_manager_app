@@ -19,8 +19,9 @@
               <ion-input type="text" placeholder="Project description"  formControlName="Description" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-icon slot="start" name="document"></ion-icon>
-              <ion-input type="file" placeholder="upload specifications" formControlName="Specifications" required></ion-input>
+              <ion-icon slot="start" name="document"  (click)="selectfile()"></ion-icon>
+              <!--<ion-input type="file" placeholder="upload specifications" formControlName="Specifications" required></ion-input>-->
+             <!-- <div *ngIf="filetoupload!=null">{{ filetoupload.name }}</div> --> 
               
             </ion-item>
             <ion-item>

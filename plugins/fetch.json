@@ -137,5 +137,13 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "cordova-plugin-chooser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-chooser"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

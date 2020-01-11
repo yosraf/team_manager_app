@@ -16,46 +16,62 @@ var map = {
 		"./src/app/Screens/chat/chat.module.ts",
 		"Screens-chat-chat-module"
 	],
+	"./Screens/client-propositions/client-propositions.module": [
+		"./src/app/Screens/client-propositions/client-propositions.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-client-propositions-client-propositions-module"
+	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-homes-homes-module"
 	],
 	"./Screens/login-page/login-page.module": [
 		"./src/app/Screens/login-page/login-page.module.ts",
-		"common",
 		"Screens-login-page-login-page-module"
 	],
-	"./Screens/modal/modal.module": [
-		"./src/app/Screens/modal/modal.module.ts",
-		"Screens-modal-modal-module"
+	"./Screens/modify-project/modify-project.module": [
+		"./src/app/Screens/modify-project/modify-project.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-modify-project-modify-project-module"
 	],
 	"./Screens/project-details/project-details.module": [
 		"./src/app/Screens/project-details/project-details.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-project-details-project-details-module"
 	],
 	"./Screens/project-proposition/project-proposition.module": [
 		"./src/app/Screens/project-proposition/project-proposition.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-project-proposition-project-proposition-module"
 	],
 	"./Screens/project/project.module": [
 		"./src/app/Screens/project/project.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-project-project-module"
 	],
-	"./Screens/settings/settings.module": [
-		"./src/app/Screens/settings/settings.module.ts",
-		"Screens-settings-settings-module"
+	"./Screens/proposition-details/proposition-details.module": [
+		"./src/app/Screens/proposition-details/proposition-details.module.ts",
+		"Screens-proposition-details-proposition-details-module"
+	],
+	"./Screens/rejected-propositions/rejected-propositions.module": [
+		"./src/app/Screens/rejected-propositions/rejected-propositions.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-rejected-propositions-rejected-propositions-module"
 	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-task-form-task-form-module"
 	],
 	"./Screens/task/task.module": [
 		"./src/app/Screens/task/task.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"Screens-task-task-module"
 	]
 };
@@ -611,6 +627,9 @@ var AuthentificationService = /** @class */ (function () {
             });
         });
     };
+    AuthentificationService.prototype.getUsers = function () {
+        return this.afs.collection("users").snapshotChanges();
+    };
     AuthentificationService.ctorParameters = function () { return [
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] },
         { type: _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_4__["FCM"] },
@@ -689,19 +708,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', loadChildren: function () { return Promise.all(/*! import() | Screens-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("Screens-home-home-module")]).then(__webpack_require__.bind(null, /*! ./Screens/home/home.module */ "./src/app/Screens/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); } },
+    { path: '', redirectTo: 'login-page', pathMatch: 'full' },
+    { path: 'home', loadChildren: function () { return __webpack_require__.e(/*! import() | Screens-home-home-module */ "Screens-home-home-module").then(__webpack_require__.bind(null, /*! ./Screens/home/home.module */ "./src/app/Screens/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); } },
     { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
     { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
-    { path: 'modal', loadChildren: './Screens/modal/modal.module#ModalPageModule' },
-    { path: 'settings', loadChildren: './Screens/settings/settings.module#SettingsPageModule' },
     { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
     { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
     { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
     { path: 'task/:id', loadChildren: './Screens/task/task.module#TaskPageModule' },
     { path: 'task-form/:id', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
     { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
-    { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+    { path: 'project-details/:id', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+    { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
+    { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
+    { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
+    { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -771,42 +792,13 @@ var AppComponent = /** @class */ (function () {
         this.initializeApp();
         this.sideMenu();
     }
-    AppComponent.prototype.presentToast = function (title, message) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                // Schedule a single notification
-                this.localNotifications.schedule({
-                    id: 1,
-                    title: title,
-                    text: message,
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    AppComponent.prototype.notificationSetup = function () {
-        var _this = this;
-        //this.fcm.getToken();
-        this.localNotifications.on('click').subscribe(function (data) {
-            _this.route.navigate(["/homes/clientHome"]);
-        });
-        this.fcm.onNotifications().subscribe(function (msg) {
-            if (_this.platform.is('ios')) {
-                _this.presentToast(msg.title, msg.aps.alert);
-            }
-            else {
-                _this.presentToast(msg.title, msg.body);
-            }
-        });
-    };
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
         });
-        this.notificationSetup();
-        this.notifmanager();
+        this.notificationApp();
     };
     AppComponent.prototype.sideMenu = function () {
         this.navigate =
@@ -826,31 +818,34 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.logout = function () {
         this.route.navigate(["/login-page"]);
     };
-    AppComponent.prototype.sendNotifManager = function (title, message) {
+    AppComponent.prototype.showNotif = function (title, message, icon, des) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.localNotifications.on('click').subscribe(function (data) {
+                    _this.route.navigate([des]);
+                });
                 // Schedule a single notification
                 this.localNotifications.schedule({
-                    id: 1,
+                    id: Math.floor((Math.random() * 9999)),
                     title: title,
                     text: message,
+                    icon: icon
                 });
                 return [2 /*return*/];
             });
         });
     };
-    AppComponent.prototype.notifmanager = function () {
-        var _this = this;
+    AppComponent.prototype.notificationApp = function () {
         //this.fcm.getToken();
-        this.localNotifications.on('click').subscribe(function (data) {
-            _this.route.navigate([""]);
-        });
+        var _this = this;
         this.fcm.onNotifications().subscribe(function (msg) {
             if (_this.platform.is('ios')) {
-                _this.sendNotifManager(msg.title, msg.aps.alert);
+                _this.showNotif(msg.title, msg.aps.alert, msg.icon, msg.route);
             }
             else {
-                _this.sendNotifManager(msg.title, msg.body);
+                console.log(msg.type);
+                _this.showNotif(msg.title, msg.body, msg.icon, msg.route);
             }
         });
     };

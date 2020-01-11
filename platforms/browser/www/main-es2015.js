@@ -16,46 +16,62 @@ var map = {
 		"./src/app/Screens/chat/chat.module.ts",
 		"Screens-chat-chat-module"
 	],
+	"./Screens/client-propositions/client-propositions.module": [
+		"./src/app/Screens/client-propositions/client-propositions.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-client-propositions-client-propositions-module"
+	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-homes-homes-module"
 	],
 	"./Screens/login-page/login-page.module": [
 		"./src/app/Screens/login-page/login-page.module.ts",
-		"common",
 		"Screens-login-page-login-page-module"
 	],
-	"./Screens/modal/modal.module": [
-		"./src/app/Screens/modal/modal.module.ts",
-		"Screens-modal-modal-module"
+	"./Screens/modify-project/modify-project.module": [
+		"./src/app/Screens/modify-project/modify-project.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-modify-project-modify-project-module"
 	],
 	"./Screens/project-details/project-details.module": [
 		"./src/app/Screens/project-details/project-details.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-project-details-project-details-module"
 	],
 	"./Screens/project-proposition/project-proposition.module": [
 		"./src/app/Screens/project-proposition/project-proposition.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-project-proposition-project-proposition-module"
 	],
 	"./Screens/project/project.module": [
 		"./src/app/Screens/project/project.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-project-project-module"
 	],
-	"./Screens/settings/settings.module": [
-		"./src/app/Screens/settings/settings.module.ts",
-		"Screens-settings-settings-module"
+	"./Screens/proposition-details/proposition-details.module": [
+		"./src/app/Screens/proposition-details/proposition-details.module.ts",
+		"Screens-proposition-details-proposition-details-module"
+	],
+	"./Screens/rejected-propositions/rejected-propositions.module": [
+		"./src/app/Screens/rejected-propositions/rejected-propositions.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"Screens-rejected-propositions-rejected-propositions-module"
 	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
 		"Screens-task-form-task-form-module"
 	],
 	"./Screens/task/task.module": [
 		"./src/app/Screens/task/task.module.ts",
-		"common",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"Screens-task-task-module"
 	]
 };
@@ -591,6 +607,9 @@ let AuthentificationService = class AuthentificationService {
             });
         });
     }
+    getUsers() {
+        return this.afs.collection("users").snapshotChanges();
+    }
 };
 AuthentificationService.ctorParameters = () => [
     { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] },
@@ -667,19 +686,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', loadChildren: () => Promise.all(/*! import() | Screens-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("Screens-home-home-module")]).then(__webpack_require__.bind(null, /*! ./Screens/home/home.module */ "./src/app/Screens/home/home.module.ts")).then(m => m.HomePageModule) },
+    { path: '', redirectTo: 'login-page', pathMatch: 'full' },
+    { path: 'home', loadChildren: () => __webpack_require__.e(/*! import() | Screens-home-home-module */ "Screens-home-home-module").then(__webpack_require__.bind(null, /*! ./Screens/home/home.module */ "./src/app/Screens/home/home.module.ts")).then(m => m.HomePageModule) },
     { path: 'login-page', loadChildren: './Screens/login-page/login-page.module#LoginPagePageModule' },
     { path: 'homes', loadChildren: './Screens/homes/homes.module#HomesPageModule' },
-    { path: 'modal', loadChildren: './Screens/modal/modal.module#ModalPageModule' },
-    { path: 'settings', loadChildren: './Screens/settings/settings.module#SettingsPageModule' },
     { path: 'account', loadChildren: './Screens/account/account.module#AccountPageModule' },
     { path: 'chat', loadChildren: './Screens/chat/chat.module#ChatPageModule' },
     { path: 'project', loadChildren: './Screens/project/project.module#ProjectPageModule' },
     { path: 'task/:id', loadChildren: './Screens/task/task.module#TaskPageModule' },
     { path: 'task-form/:id', loadChildren: './Screens/task-form/task-form.module#TaskFormPageModule' },
     { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
-    { path: 'project-details', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+    { path: 'project-details/:id', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
+    { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
+    { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
+    { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
+    { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -746,37 +767,12 @@ let AppComponent = class AppComponent {
         this.initializeApp();
         this.sideMenu();
     }
-    presentToast(title, message) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-            // Schedule a single notification
-            this.localNotifications.schedule({
-                id: 1,
-                title: title,
-                text: message,
-            });
-        });
-    }
-    notificationSetup() {
-        //this.fcm.getToken();
-        this.localNotifications.on('click').subscribe(data => {
-            this.route.navigate(["/homes/clientHome"]);
-        });
-        this.fcm.onNotifications().subscribe((msg) => {
-            if (this.platform.is('ios')) {
-                this.presentToast(msg.title, msg.aps.alert);
-            }
-            else {
-                this.presentToast(msg.title, msg.body);
-            }
-        });
-    }
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
-        this.notificationSetup();
-        this.notifmanager();
+        this.notificationApp();
     }
     sideMenu() {
         this.navigate =
@@ -796,27 +792,29 @@ let AppComponent = class AppComponent {
     logout() {
         this.route.navigate(["/login-page"]);
     }
-    sendNotifManager(title, message) {
+    showNotif(title, message, icon, des) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.localNotifications.on('click').subscribe(data => {
+                this.route.navigate([des]);
+            });
             // Schedule a single notification
             this.localNotifications.schedule({
-                id: 1,
+                id: Math.floor((Math.random() * 9999)),
                 title: title,
                 text: message,
+                icon: icon
             });
         });
     }
-    notifmanager() {
+    notificationApp() {
         //this.fcm.getToken();
-        this.localNotifications.on('click').subscribe(data => {
-            this.route.navigate([""]);
-        });
         this.fcm.onNotifications().subscribe((msg) => {
             if (this.platform.is('ios')) {
-                this.sendNotifManager(msg.title, msg.aps.alert);
+                this.showNotif(msg.title, msg.aps.alert, msg.icon, msg.route);
             }
             else {
-                this.sendNotifManager(msg.title, msg.body);
+                console.log(msg.type);
+                this.showNotif(msg.title, msg.body, msg.icon, msg.route);
             }
         });
     }

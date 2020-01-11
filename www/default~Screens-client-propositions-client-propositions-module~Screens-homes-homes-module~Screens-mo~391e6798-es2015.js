@@ -167,20 +167,27 @@ let ProjectsService = class ProjectsService {
             }, err => reject(err));
         });
     }
-    createProposition(value) {
-        return new Promise((resolve, reject) => {
-            let currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
-            this.afs.collection('propositions').add({
-                //   manager:value.Person,
-                name: value.Name,
-                description: value.Description,
-                type: value.Type,
-                state: 'not treated',
-                client: currentUser.uid,
-            })
-                .then(res => {
-                resolve(res);
-            }, err => reject(err));
+    createProposition(value, filetoupload) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            console.log(filetoupload);
+            let uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+            const storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref(`/pdf/uid/${filetoupload.name}.pdf`);
+            var uplaodtask = yield storageRef.put(filetoupload.data, { contentType: `application/pdf` });
+            var urlFile = (yield uplaodtask.ref.getDownloadURL());
+            return new Promise((resolve, reject) => {
+                let currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+                this.afs.collection('propositions').add({
+                    name: value.Name,
+                    description: value.Description,
+                    type: value.Type,
+                    state: 'not treated',
+                    client: currentUser.uid,
+                    file: urlFile
+                })
+                    .then(res => {
+                    resolve(res);
+                }, err => reject(err));
+            });
         });
     }
     getClient(id) {

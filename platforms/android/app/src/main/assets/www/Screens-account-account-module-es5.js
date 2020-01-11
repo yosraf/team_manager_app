@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Account</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"avatar\">\n            <img src=\"../../../assets/icon/user.png\" alt=\"\" *ngIf=\"this.account['img']==null\">\n          </div>\n          <div class=\"update\">\n            <ion-icon name=\"reverse-camera\" (click)=\"selectImage()\"></ion-icon>\n          </div>\n          <div class=\"description\">\n             <h3>{{account[\"username\"]}}</h3>\n          </div>\n          <div class=\"position\">\n              <h4>                \n                  <ion-icon name=\"md-ribbon\" slot=\"start\"></ion-icon>\n                  {{account['role']}}\n              </h4>\n          </div>\n        </div>\n       <ion-card (click)=\"update('email')\">\n          <ion-item>\n              <ion-icon name=\"mail\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{account['email']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card (click)=\"update('password')\">\n          <ion-item>\n              <ion-icon name=\"md-lock\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{account['password']}}\n              </ion-label>\n          </ion-item>\n       </ion-card >\n       <ion-card (click)=\"update('phone')\"> \n          <ion-item>\n              <ion-icon name=\"md-call\" slot=\"start\"></ion-icon>\n\n              <ion-label *ngIf=\"account['phone']==null\">\n                  no phone number\n              </ion-label>\n              <ion-label>\n                {{account['phone']}}\n            </ion-label>\n          </ion-item>\n       </ion-card>\n       \n      </div>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Account</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class=\"card\">\n        <div class=\"header\">\n          <div class=\"avatar\">\n            <img src=\"../../../assets/icon/user.png\" alt=\"\" *ngIf=\"this.account['img']==null\">\n            <img [src]=\"account['img']\" alt=\"\" *ngIf=\"this.account['img']!=null\">\n          </div>\n          <div class=\"update\">\n            <ion-icon name=\"reverse-camera\" (click)=\"selectImage()\"></ion-icon>\n          </div>\n          <div class=\"description\">\n             <h3>{{account[\"username\"]}}</h3>\n          </div>\n          <div class=\"position\">\n              <h4>                \n                  <ion-icon name=\"md-ribbon\" slot=\"start\"></ion-icon>\n                  {{account['role']}}\n              </h4>\n          </div>\n        </div>\n       <ion-card (click)=\"update('email')\">\n          <ion-item>\n              <ion-icon name=\"mail\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{account['email']}}\n              </ion-label>\n          </ion-item>\n       </ion-card>\n       <ion-card (click)=\"update('password')\">\n          <ion-item>\n              <ion-icon name=\"md-lock\" slot=\"start\"></ion-icon>\n\n              <ion-label>\n                  {{account['password']}}\n              </ion-label>\n          </ion-item>\n       </ion-card >\n       <ion-card (click)=\"update('phone')\"> \n          <ion-item>\n              <ion-icon name=\"md-call\" slot=\"start\"></ion-icon>\n\n              <ion-label *ngIf=\"account['phone']==null\">\n                  no phone number\n              </ion-label>\n              <ion-label>\n                {{account['phone']}}\n            </ion-label>\n          </ion-item>\n       </ion-card>\n       \n      </div>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -160,27 +160,27 @@ var AccountPage = /** @class */ (function () {
         });
     };
     AccountPage.prototype.takePicture = function (sourceType) {
-        var _this = this;
-        var options = {
-            quality: 100,
-            sourceType: sourceType,
-            saveToPhotoAlbum: false,
-            correctOrientation: true
-        };
-        this.camera.getPicture(options).then(function (imagePath) {
-            if (_this.plateform.is('android') && sourceType === _this.camera.PictureSourceType.PHOTOLIBRARY) {
-                _this.filePath.resolveNativePath(imagePath)
-                    .then(function (filePath) {
-                    var correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    var currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-                    // this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-                });
-            }
-            else {
-                var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-                var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-                // this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-            }
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var options, imagePath;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = {
+                            quality: 100,
+                            sourceType: sourceType,
+                            destinationType: 0,
+                            saveToPhotoAlbum: false,
+                            correctOrientation: true
+                        };
+                        return [4 /*yield*/, this.camera.getPicture(options)];
+                    case 1:
+                        imagePath = _a.sent();
+                        return [4 /*yield*/, this.service.updateImage(imagePath, this.camera.EncodingType)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     AccountPage.prototype.update = function (type) {
@@ -316,7 +316,23 @@ var AccountService = /** @class */ (function () {
             });
         });
     };
-    AccountService.prototype.updateImage = function (image) {
+    AccountService.prototype.updateImage = function (image, typeimg) {
+        var _this = this;
+        var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+        var storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref("/images-profiles/" + value + "." + typeimg);
+        storageRef.putString(image, 'base64', { contentType: "image/" + typeimg })
+            .then(function () {
+            return storageRef.getDownloadURL().then(function (downloadURL) {
+                _this.afs.collection('users').get().forEach(function (doc) {
+                    doc.docs.forEach(function (d) {
+                        var obj = JSON.parse(JSON.stringify(d.data()));
+                        if (obj['uid'] == value) {
+                            d.ref.update({ image: downloadURL });
+                        }
+                    });
+                });
+            });
+        });
     };
     AccountService.ctorParameters = function () { return [
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }

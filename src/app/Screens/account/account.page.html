@@ -12,6 +12,7 @@
         <div class="header">
           <div class="avatar">
             <img src="../../../assets/icon/user.png" alt="" *ngIf="this.account['img']==null">
+            <img [src]="account['img']" alt="" *ngIf="this.account['img']!=null">
           </div>
           <div class="update">
             <ion-icon name="reverse-camera" (click)="selectImage()"></ion-icon>

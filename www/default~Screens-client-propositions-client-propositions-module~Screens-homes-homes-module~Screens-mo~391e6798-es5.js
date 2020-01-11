@@ -174,21 +174,38 @@ var ProjectsService = /** @class */ (function () {
             }, function (err) { return reject(err); });
         });
     };
-    ProjectsService.prototype.createProposition = function (value) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
-            _this.afs.collection('propositions').add({
-                //   manager:value.Person,
-                name: value.Name,
-                description: value.Description,
-                type: value.Type,
-                state: 'not treated',
-                client: currentUser.uid,
-            })
-                .then(function (res) {
-                resolve(res);
-            }, function (err) { return reject(err); });
+    ProjectsService.prototype.createProposition = function (value, filetoupload) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var uid, storageRef, uplaodtask, urlFile;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(filetoupload);
+                        uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+                        storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref("/pdf/uid/" + filetoupload.name + ".pdf");
+                        return [4 /*yield*/, storageRef.put(filetoupload.data, { contentType: "application/pdf" })];
+                    case 1:
+                        uplaodtask = _a.sent();
+                        return [4 /*yield*/, uplaodtask.ref.getDownloadURL()];
+                    case 2:
+                        urlFile = (_a.sent());
+                        return [2 /*return*/, new Promise(function (resolve, reject) {
+                                var currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+                                _this.afs.collection('propositions').add({
+                                    name: value.Name,
+                                    description: value.Description,
+                                    type: value.Type,
+                                    state: 'not treated',
+                                    client: currentUser.uid,
+                                    file: urlFile
+                                })
+                                    .then(function (res) {
+                                    resolve(res);
+                                }, function (err) { return reject(err); });
+                            })];
+                }
+            });
         });
     };
     ProjectsService.prototype.getClient = function (id) {

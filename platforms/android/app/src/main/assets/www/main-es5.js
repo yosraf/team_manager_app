@@ -914,6 +914,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
 /* harmony import */ var _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/utils/IonicGestureConfig */ "./src/app/utils/IonicGestureConfig.ts");
+/* harmony import */ var _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @ionic-native/chooser/ngx */ "./node_modules/@ionic-native/chooser/ngx/index.js");
+
 
 
 
@@ -969,7 +971,8 @@ var AppModule = /** @class */ (function () {
                     provide: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["HAMMER_GESTURE_CONFIG"], useClass: _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__["IonicGestureConfig"],
                 },
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-                }
+                },
+                _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__["Chooser"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })

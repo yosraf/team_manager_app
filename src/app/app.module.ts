@@ -27,7 +27,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import {IonicGestureConfig} from "../app/utils/IonicGestureConfig";
-
+import { Chooser } from '@ionic-native/chooser/ngx';
 firebase.initializeApp(environment.firbase);
 
 @NgModule({
@@ -63,9 +63,11 @@ firebase.initializeApp(environment.firbase);
     ,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy 
       
-    }
+    },
+    Chooser
   
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {}

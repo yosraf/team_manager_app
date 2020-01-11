@@ -318,6 +318,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
+    },
+    {
+      "id": "cordova-plugin-chooser.Chooser",
+      "file": "plugins/cordova-plugin-chooser/www/chooser.js",
+      "pluginId": "cordova-plugin-chooser",
+      "clobbers": [
+        "chooser"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -337,6 +345,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-sqlite-storage": "4.0.0",
     "cordova-plugin-fcm-with-dependecy-updated": "4.1.1",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2"
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-chooser": "1.2.5"
   };
 });

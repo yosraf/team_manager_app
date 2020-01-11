@@ -59,6 +59,9 @@
     },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-chooser": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {
