@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {ProjectsService} from '../../Services/projects.service'
 import {ActivatedRoute,Router} from "@angular/router";
 import { Chart } from 'chart.js';
+import {Project} from '../../Models/Project'
 
 @Component({
   selector: 'app-project-details',
@@ -10,7 +11,7 @@ import { Chart } from 'chart.js';
 })
 export class ProjectDetailsPage implements OnInit {
   chart:any;
-  project:any={};
+  project:any=new Project();
   id:any;
   tasks:any=[];
   team:any=[];
@@ -29,16 +30,9 @@ export class ProjectDetailsPage implements OnInit {
   
 
   ngOnInit() {
+    let p=new Project();
     this.service.getProject(this.id).then(res=>{
-      var p={
-        "name":res.name,
-        "description":res.description,
-        "client":res.client,
-        "manager":res.manager,
-        "type":res.type,
-        "progress":res.progress,
-        "cost":res.cost
-      }
+       p=res
       this.project=p;
 
 

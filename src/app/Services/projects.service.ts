@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import {AngularFirestore }from '@angular/fire/firestore';
-
-import{Observable} from 'rxjs'
+import {Project} from '../../app/Models/Project';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +15,7 @@ export class ProjectsService {
   createProject(value){
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
+     
       this.afs.collection('projects').add({
         manager:currentUser.uid,
         name: value.name,
@@ -48,7 +48,7 @@ export class ProjectsService {
     return new Promise<any>((resolve, reject) => {
       let value = firebase.auth().currentUser;
       let projects:any=[]; 
-      let project={};
+      let project=new Project();
       
       this.afs.collection('projects').get().forEach(doc=>{
         
@@ -56,15 +56,8 @@ export class ProjectsService {
 
           var obj = JSON.parse(JSON.stringify(d.data()));
           if(obj['manager']==value.uid){
-            project={
-              "name":obj.name,
-              "description":obj.description,
-              "manager":obj.manager,
-              "client":obj.client,
-              "progress":obj.progress,
-              "type":obj.type,
-              "id":d.id
-            }
+           
+            project=obj;
             projects.push(project);
             
           }
@@ -172,7 +165,7 @@ export class ProjectsService {
     return new Promise<any>((resolve, reject) => {
       let value = firebase.auth().currentUser;
       let projects:any=[]; 
-      let project={};
+      let project=new Project();
       
       this.afs.collection('projects').get().forEach(doc=>{
         
@@ -180,15 +173,9 @@ export class ProjectsService {
 
           var obj = JSON.parse(JSON.stringify(d.data()));
           if(obj['client']==value.uid){
-            project={
-              "name":obj.name,
-              "description":obj.description,
-              "manager":obj.manager,
-              "client":obj.client,
-              "progress":obj.progress,
-              "type":obj.type,
-              "id":d.id
-            }
+            project=obj;
+            project.id=d.id;
+           
             projects.push(project);
             
           }
@@ -211,7 +198,7 @@ export class ProjectsService {
     return new Promise<any>((resolve, reject) => {
       let managers:any=[]; 
       
-      this.afs.collection('users').get(   ).forEach(doc=>{
+      this.afs.collection('users').get().forEach(doc=>{
         
         doc.docs.forEach(d=>{
 
@@ -377,7 +364,7 @@ export class ProjectsService {
 
  }
  getProject(id){
-   let project:any;
+   let project=new Project();
    let result:any;
    return new Promise<any>((resolve,reject)=>{
     this.afs.collection('projects').get().forEach(doc=>{
@@ -386,16 +373,9 @@ export class ProjectsService {
   
         if(d.id==id){
           var obj = JSON.parse(JSON.stringify(d.data()));
-          project={
-            "name":obj.name,
-            "description":obj.description,
-            "manager":obj.manager,
-            "client":obj.client,
-            "progress":obj.progress,
-            "type":obj.type,
-            "id":d.id
-          }
-        result=project;
+          project=obj;
+          project.id=d.id;
+          result=project;
           
         }
         
@@ -445,4 +425,19 @@ export class ProjectsService {
     })
   }
  
+   getPropositionDetail(id){
+    
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection('propositions').doc(id).get().subscribe(
+        res => {
+        
+          resolve(JSON.parse(JSON.stringify(res.data())));
+        },
+        err => reject(err)
+      )
+    })
+
+   }
+  
+  
 }

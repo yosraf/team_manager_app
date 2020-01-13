@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import {Router} from '@angular/router';
 import {ProjectsService} from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
+import {Project} from '../../Models/Project';
 
 @Component({
   selector: 'app-h-content',
@@ -22,31 +23,30 @@ export class HContentComponent implements OnInit {
   constructor(public route:Router,private service:ProjectsService) { }
 
   ngOnInit() {
-    let cache:any;
+   
    this.service.AsyncProjects().subscribe(
     data => {
       this.projects=[];
       this.costs=[];
       this.labels=[];
-
+      let cache=new Project();
+      let p=new Project();
       data.forEach(d=>{
         let value = firebase.auth().currentUser;
         var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
 
         if(obj['manager']==value.uid){
-          var p= {
-            "name": obj.name,
-            "description": obj.description,
-            "manager": obj.manager,
-            "client": obj.client,
-            "progress": obj.progress,
-            "type": obj.type,
-            "id": d.payload.doc.id,
-            "cost":obj.cost
-          };
+           p= obj;
+           p.id=d.payload.doc.id;
+           
           if(cache){
             if(cache.cost<p.cost){
               this.highest_pro.push(p)
+
+            }
+            if(cache.cost>p.cost){
+
+              this.highest_pro.push(cache)
             }
           }
         
@@ -57,7 +57,6 @@ export class HContentComponent implements OnInit {
           this.costs.push(p.cost)
           this.createLine();
           cache=p;
-
         }
       });
    

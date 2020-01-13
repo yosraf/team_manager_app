@@ -3,6 +3,7 @@ import {Router} from '@angular/router'
 import {ProjectsService} from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
 import { AlertController } from '@ionic/angular';
+import {Project} from '../../Models/Project';
 
 
 @Component({
@@ -27,22 +28,18 @@ export class ClientProjectsComponent implements OnInit {
     this.propositions=[];
     this.isShow=true;
     let value = firebase.auth().currentUser;
+    let p=new Project();
     this.service.AsyncPropositions().subscribe(
-
+   
       data => {
         this.propositions=[];
         data.map(d=>{
          
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
           if (obj['client'] == value.uid) {
-            var p= {
-              "name": obj.name,
-              "description": obj.description,
-              "manager": obj.manager,
-              "client": obj.client,
-              "type": obj.type,
-              "id": d.payload.doc.id
-            };
+             p= obj;
+             p.id=d.payload.doc.id;
+          
             this.propositions.push(p);
 
           }

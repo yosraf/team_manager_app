@@ -1,10 +1,10 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router, NavigationEnd} from "@angular/router";
 import {ProjectsService} from '../../Services/projects.service';
-import{Observable}from 'rxjs'
 import {AngularFirestore,AngularFirestoreDocument ,AngularFirestoreCollection}from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { AlertController } from '@ionic/angular';
+import {Project} from '../../Models/Project';
 
 @Component({
   selector: 'app-projects',
@@ -25,7 +25,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.isShow=true;
-   
+    let p=new Project();
     this.service.AsyncProjects().subscribe(
       data => {
         this.projects=[];
@@ -34,15 +34,8 @@ export class ProjectsComponent implements OnInit {
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
           if(obj['manager']==value.uid){
-            var p= {
-              "name": obj.name,
-              "description": obj.description,
-              "manager": obj.manager,
-              "client": obj.client,
-              "progress": obj.progress,
-              "type": obj.type,
-              "id": d.payload.doc.id
-            };
+             p= obj;
+             p.id=d.payload.doc.id;
             this.projects.push(p);
   
           }
@@ -121,9 +114,7 @@ export class ProjectsComponent implements OnInit {
     }, 2000);
 }
 ionPull(event){
-  //Emitted while the user is pulling down the content and exposing the refresher.
 }
 ionStart(event){
-  //Emitted when the user begins to start pulling down.
 }
 }

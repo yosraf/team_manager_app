@@ -30,10 +30,6 @@ export class ProjectPropositionPage implements OnInit {
   
         ])),
 
-       
-        /*Specifications: new FormControl('', Validators.compose([
-          Validators.required
-        ])),*/
         Type: new FormControl('', Validators.compose([
           Validators.required
         ]))

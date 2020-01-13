@@ -3,6 +3,10 @@ import { Chart } from 'chart.js';
 import { Router } from '@angular/router';
 import { ProjectsService } from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
+import {Project} from '../../Models/Project';
+
+
+
 @Component({
   selector: 'app-client-hcontent',
   templateUrl: './client-hcontent.component.html',
@@ -20,7 +24,8 @@ export class ClientHContentComponent implements OnInit {
   constructor(private route: Router, private service: ProjectsService) { }
 
   ngOnInit() {
-
+    
+    let p=new Project();
     this.service.AsyncProjects().subscribe(
       data => {
         this.projects=[];
@@ -28,17 +33,11 @@ export class ClientHContentComponent implements OnInit {
           let value = firebase.auth().currentUser;
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
           if (obj['client'] == value.uid) {
-            var p= {
-              "name": obj.name,
-              "description": obj.description,
-              "manager": obj.manager,
-              "client": obj.client,
-              "progress": obj.progress,
-              "type": obj.type,
-              "id": d.payload.doc.id,
-              "cost":obj.cost
-            };
-            this.spent=+p.cost;
+             p= obj;
+             p.id= d.payload.doc.id;
+           
+            this.spent=this.spent+p.cost;
+            console.log(this.spent)
             this.projects.push(p);
             if(p.progress==100){
               this.finished.push(p)
