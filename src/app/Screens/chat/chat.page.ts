@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from '../../Services/authentification.service'
 import * as firebase from 'firebase/app';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
@@ -10,7 +11,7 @@ export class ChatPage implements OnInit {
   users:any=[];
   discussions:any[];
   queryText = '';
-  constructor(private service:AuthentificationService) { }
+  constructor(private service:AuthentificationService,private route:Router) { }
   
   ngOnInit() {
     this.discussions=[]
@@ -26,7 +27,8 @@ export class ChatPage implements OnInit {
             var p= {
               "username": obj.username,
               "image": obj.image,
-               "role":obj.role
+               "role":obj.role,
+               "uid":obj.uid
             };
             this.users.push(p);
   
@@ -56,6 +58,11 @@ export class ChatPage implements OnInit {
     }
    
     
+  }
+  open(id){
+    let url="/discussion/"+id;
+    this.route.navigate([url]);
+  
   }
 
 

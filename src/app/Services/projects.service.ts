@@ -37,7 +37,7 @@ export class ProjectsService {
 
    AsyncProjects(){    
   
-   return  this.afs.collection('projects').snapshotChanges();;
+   return  this.afs.collection('projects').snapshotChanges();
    }
    AsyncPropositions(){    
     

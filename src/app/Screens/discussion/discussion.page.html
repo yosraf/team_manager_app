@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>discussion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <div class="discussion">
+  <div *ngIf="messages.length!=0">
+    <ion-list >
+      <div *ngFor="let msg of messages" class=".sender-msg">
+        <h6>{{msg.date}}</h6>
+        <ion-item  *ngIf="sender==true">
+          <ion-avatar slot="start">
+            <img [src]="sender_image" *ngIf="sender_image!=null">
+            <img src="../../../assets/icon/user.png" *ngIf="sender_image==null">
+          </ion-avatar>
+          <h5>{{msg.text}}</h5>
+         
+        </ion-item>
+        <ion-item  *ngIf="sender==false">
+          <ion-avatar slot="end">
+            <img [src]="receiver_image" *ngIf="receiver_image!=null">
+            <img src="../../../assets/icon/user.png" *ngIf="receiver_image==null">
+          </ion-avatar>
+          <h6>{{msg.text}}</h6>
+         
+        </ion-item>
+        
+      </div>
+     
+    
+       
+    </ion-list>
+  </div>
+  <ion-card *ngIf="this.messages.length==0" class="no-chat">
+    <ion-card-content>
+        No discussion Found
+     </ion-card-content>
+</ion-card>
+ </div>
+<div class="sender">
+ 
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="message"></ion-input>
+      <ion-icon slot="end" name="send"  (click)="send()"></ion-icon>
+    </ion-item>
+  
+  
+</div >
+</ion-content>

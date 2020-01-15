@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Discussions</ion-title>
+        <ion-title>Chat</ion-title>
     </ion-toolbar>
       
 </ion-header>
@@ -19,9 +19,9 @@
         <div class="list-thumbnail">
           <div class="list" *ngFor="let x of users">
               <div class="img-thumb" >
-                  <img  *ngIf="x['image']!=null else notnull" [src]="x['image']">
+                  <img  *ngIf="x['image']!=null else notnull" [src]="x['image']" (click)="open(x['uid'])">
                   <ng-template #notnull>
-                    <img   src="../../../assets/icon/user.png" >
+                    <img   src="../../../assets/icon/user.png"  (click)="open(x['uid'])">
 
                   </ng-template>
       
