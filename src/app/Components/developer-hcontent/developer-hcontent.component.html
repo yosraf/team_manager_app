@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+      <ion-menu-button class="title"></ion-menu-button>
+      </ion-buttons>
+      <ion-icon slot="end" name="md-notifications" (click)="openRejected()" class="btn"></ion-icon>
+
+    <ion-title class="title">
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-refresher slot="fixed" 
+(ionRefresh)="ionRefresh($event)" 
+(ionPull)="ionPull($event)" 
+(ionStart)="ionStart($event)">
+  <ion-refresher-content
+    pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+ 
+  <!--
+     <div>
+     <div class="hello-card">
+      <ion-list-header>Total expenses</ion-list-header>
+     <div >
+      <h3>{{spent}} DT</h3>
+     </div>
+    </div>
+  
+      <ion-card class="welcome-card">
+       
+        <ion-card-content>
+          <canvas #dognutChart></canvas>
+        </ion-card-content>
+      </ion-card>
+  </div>
+  --> 
+
+  <div>
+    <ion-list-header class="stats">Finished projects</ion-list-header>
+    <ion-list *ngIf="this.finished.length>0">
+
+      <div class="card" *ngFor="let d of finished" (click)="openProject(d['id'])">
+        <div class="project-info" [ngStyle]="{'background-color':color(d['type'])}">
+          <ion-icon [name]="icon(d['type'])" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{d['name']}}</b></h5>
+           <p>{{d['description']}}</p>
+
+        </div>
+        
+      </div>
+    </ion-list>
+  </div>
+  <div class="no-project" *ngIf="this.finished.length==0">
+  
+    <ion-label>No projects yet  </ion-label>
+  
+  </div > 
+</ion-content>

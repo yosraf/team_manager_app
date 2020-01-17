@@ -12,6 +12,10 @@ import{ProjectsComponent} from '../../Components/projects/projects.component'
 import{ClientHContentComponent} from '../../Components/client-hcontent/client-hcontent.component'
 import {ClientProjectsComponent} from '../../Components/client-projects/client-projects.component'
 import{ClientHomeContentComponent} from '../../Components/client-home-content/client-home-content.component';
+
+import{DeveloperHcontentComponent} from '../../Components/developer-hcontent/developer-hcontent.component';
+import{DeveloperHomeContentComponent} from '../../Components/developer-home-content/developer-home-content.component';
+
 import { LongPressModule } from 'ionic-long-press';
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
@@ -47,7 +51,11 @@ const routes: Routes = [
       {
         path:'clientHome',
         component:ClientHContentComponent
-      }
+      }, 
+      {
+        path:'developerHome',
+        component:DeveloperHcontentComponent
+      },
     ],
     
 
@@ -79,7 +87,9 @@ const routes: Routes = [
     ProjectsComponent,
     ClientHomeContentComponent,
     ClientHContentComponent,
-    ClientProjectsComponent
+    ClientProjectsComponent, 
+    DeveloperHcontentComponent,
+    DeveloperHomeContentComponent
   ],
   entryComponents:[
   ]
