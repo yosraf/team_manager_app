@@ -13,10 +13,19 @@ export class ChatService {
 
   }
 
-  AsyncMessages(user2: string) {
+    AsyncMessages(user2: string) {
     let currentUser = firebase.auth().currentUser;
-    var iddoc = `${currentUser.uid}_${user2}`;
-    return this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).collection(this.MESSAGES,ref=>ref.orderBy("created_at",'asc')).snapshotChanges();
+    var iddoc_1 = `${currentUser.uid}_${user2}`;
+    var iddoc_2 = `${user2}_${currentUser.uid}`;
+    let bool=false;
+    
+      return  this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc_1).collection(this.MESSAGES,ref=>ref.orderBy("created_at",'asc')).snapshotChanges()
+
+   
+      //return  this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc_2).collection(this.MESSAGES,ref=>ref.orderBy("created_at",'asc')).snapshotChanges();
+
+    
+
   }
 
   async sendMessage(text: string, user2: string) {//uiduser1_uiduser2

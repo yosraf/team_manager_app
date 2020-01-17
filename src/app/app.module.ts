@@ -28,6 +28,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import {IonicGestureConfig} from "../app/utils/IonicGestureConfig";
 import { Chooser } from '@ionic-native/chooser/ngx';
+import{FileTransfer} from '@ionic-native/file-transfer/ngx';
 firebase.initializeApp(environment.firbase);
 
 @NgModule({
@@ -56,6 +57,7 @@ firebase.initializeApp(environment.firbase);
     WebView,    
     FilePath,
     FCM,
+    FileTransfer,
     LocalNotifications,
     {
       provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig,

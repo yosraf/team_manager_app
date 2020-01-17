@@ -12,8 +12,8 @@
   <div *ngIf="messages.length!=0">
     <ion-list >
       <div *ngFor="let msg of messages" class=".sender-msg">
-        <h6>{{msg.date}}</h6>
-        <ion-item  *ngIf="sender==true">
+        <h6 class="date">{{msg.date}}</h6>
+        <ion-item  *ngIf="sender==true"  lines="full" class="send" >
           <ion-avatar slot="start">
             <img [src]="sender_image" *ngIf="sender_image!=null">
             <img src="../../../assets/icon/user.png" *ngIf="sender_image==null">
@@ -21,7 +21,7 @@
           <h5>{{msg.text}}</h5>
          
         </ion-item>
-        <ion-item  *ngIf="sender==false">
+        <ion-item  *ngIf="sender==false" lines="full" class="rece" > 
           <ion-avatar slot="end">
             <img [src]="receiver_image" *ngIf="receiver_image!=null">
             <img src="../../../assets/icon/user.png" *ngIf="receiver_image==null">
@@ -42,7 +42,10 @@
      </ion-card-content>
 </ion-card>
  </div>
-<div class="sender">
+
+</ion-content>
+<ion-footer>
+  <div class="sender">
  
     <ion-item>
       <ion-input type="text" [(ngModel)]="message"></ion-input>
@@ -51,4 +54,4 @@
   
   
 </div >
-</ion-content>
+</ion-footer>

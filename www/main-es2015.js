@@ -18,12 +18,16 @@ var map = {
 	],
 	"./Screens/client-propositions/client-propositions.module": [
 		"./src/app/Screens/client-propositions/client-propositions.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"Screens-client-propositions-client-propositions-module"
+	],
+	"./Screens/discussion/discussion.module": [
+		"./src/app/Screens/discussion/discussion.module.ts",
+		"Screens-discussion-discussion-module"
 	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-homes-homes-module"
@@ -34,43 +38,51 @@ var map = {
 	],
 	"./Screens/modify-project/modify-project.module": [
 		"./src/app/Screens/modify-project/modify-project.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"Screens-modify-project-modify-project-module"
+	],
+	"./Screens/modify-proposition/modify-proposition.module": [
+		"./src/app/Screens/modify-proposition/modify-proposition.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"common",
+		"Screens-modify-proposition-modify-proposition-module"
 	],
 	"./Screens/project-details/project-details.module": [
 		"./src/app/Screens/project-details/project-details.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-project-details-project-details-module"
 	],
 	"./Screens/project-proposition/project-proposition.module": [
 		"./src/app/Screens/project-proposition/project-proposition.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"Screens-project-proposition-project-proposition-module"
 	],
 	"./Screens/project/project.module": [
 		"./src/app/Screens/project/project.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"Screens-project-project-module"
 	],
 	"./Screens/proposition-details/proposition-details.module": [
 		"./src/app/Screens/proposition-details/proposition-details.module.ts",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"common",
 		"Screens-proposition-details-proposition-details-module"
 	],
 	"./Screens/rejected-propositions/rejected-propositions.module": [
 		"./src/app/Screens/rejected-propositions/rejected-propositions.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"Screens-rejected-propositions-rejected-propositions-module"
 	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"Screens-task-form-task-form-module"
 	],
 	"./Screens/task/task.module": [
 		"./src/app/Screens/task/task.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798",
+		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"Screens-task-task-module"
 	]
@@ -701,6 +713,8 @@ const routes = [
     { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
     { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
     { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
+    { path: 'discussion/:id', loadChildren: './Screens/discussion/discussion.module#DiscussionPageModule' },
+    { path: 'modify-proposition/:id', loadChildren: './Screens/modify-proposition/modify-proposition.module#ModifyPropositionPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -883,6 +897,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
 /* harmony import */ var _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/utils/IonicGestureConfig */ "./src/app/utils/IonicGestureConfig.ts");
 /* harmony import */ var _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @ionic-native/chooser/ngx */ "./node_modules/@ionic-native/chooser/ngx/index.js");
+/* harmony import */ var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx */ "./node_modules/@ionic-native/file-transfer/ngx/index.js");
+
 
 
 
@@ -933,6 +949,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_20__["WebView"],
             _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__["FilePath"],
             _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__["FCM"],
+            _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_25__["FileTransfer"],
             _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__["LocalNotifications"],
             {
                 provide: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["HAMMER_GESTURE_CONFIG"], useClass: _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__["IonicGestureConfig"],

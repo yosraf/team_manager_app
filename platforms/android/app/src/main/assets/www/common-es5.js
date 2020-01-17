@@ -401,6 +401,26 @@ var findCheckedOption = function (el, tagName) {
 
 
 
+/***/ }),
+
+/***/ "./src/app/Models/Proposition.ts":
+/*!***************************************!*\
+  !*** ./src/app/Models/Proposition.ts ***!
+  \***************************************/
+/*! exports provided: Proposition */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Proposition", function() { return Proposition; });
+var Proposition = /** @class */ (function () {
+    function Proposition() {
+    }
+    return Proposition;
+}());
+
+
+
 /***/ })
 
 }]);

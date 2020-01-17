@@ -26,13 +26,8 @@ export class DiscussionPage implements OnInit {
   } );
   }
 
-  ngOnInit() {
-     let ids=this.id.split("_");
-     this.myid=ids[0];
-     this.receiverid=ids[1];
-     if(this.myid==firebase.auth().currentUser.uid){
-       this.sender=true;
-     }
+   ngOnInit() {
+    
      this.auth.getUsers().subscribe(
 
       data => {
@@ -65,9 +60,14 @@ export class DiscussionPage implements OnInit {
   
       }
      )
-     
+     /*let ids=this.id.split("_");
+     this.myid=ids[0];
+     this.receiverid=ids[1];
+     if(this.myid==firebase.auth().currentUser.uid){
+       this.sender=true;
+     }*/
     
-      this.service.AsyncMessages(this.id).subscribe((res)=>{
+       this.service.AsyncMessages(this.id).subscribe((res)=>{
           console.log(res);
           this.messages=[];
            res.map(value=>{
@@ -85,6 +85,7 @@ export class DiscussionPage implements OnInit {
             
            })
       });
+     
   }
 
    send() {
@@ -92,6 +93,15 @@ export class DiscussionPage implements OnInit {
 
         this.message="";
      });
+  }
+  color(sender){
+    if(sender==true){
+         return '#d6b0ff'
+    
+    }
+    else{
+      return '#462373'
+    }
   }
   
 }

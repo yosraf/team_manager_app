@@ -1,5 +1,6 @@
  ion-title{
     color:#462373;
+    font-size: 16px;
 }
 ion-back-button{
   --color:#462373;
@@ -8,43 +9,25 @@ ion-back-button{
 ion-toolbar{
   --background:#d6b0ff;
 }
+ion-item{
+  ion-label{
+    font-size: medium;
+    color: #462373;
+  }
+}
+ion-avatar{
+  border: 2px solid #462373;
+}
 
-.thumnails{
-    overflow-x: scroll;
-    overflow-y: hidden;
-    .list-thumbnail{
-      width:80%;
-      margin-left: 10px;
-      height: 100%;
-      white-space: nowrap;
-      .img-thumb{
-        box-shadow: 2px 2px 2px #FFFF;
-        display: inline-block;
-        border: 2px solid #462373;
-        border-radius: 50%;
-        width: 65px;
-        height: 65px;
-        margin:0 5px 0 0; 
-        line-height: 60px;
-      }
-      .list{
-        display: inline-grid;
-        .name{
-            margin:0 5px 0 0; 
-            text-align: center;
-            color: #462373;
-        
-        }
-      }
-     
-    }
-  }
-  ::-webkit-scrollbar { 
-    display: none; 
-  }
+  
  .title{
-     padding: 15px;
+     
      color: #462373;
+     font-size: 17px;
+     font-weight: bold;
+}
+.subtitle{
+  font-size: 12px;
 }
 .list-header{
     padding-top: 0px;

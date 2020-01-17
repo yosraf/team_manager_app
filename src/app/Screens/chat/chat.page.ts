@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from '../../Services/authentification.service'
 import * as firebase from 'firebase/app';
 import {Router} from '@angular/router'
+import {User} from '../../Models/User';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
@@ -9,12 +10,13 @@ import {Router} from '@angular/router'
 })
 export class ChatPage implements OnInit {
   users:any=[];
-  discussions:any[];
+  cache:any=[];
   queryText = '';
   constructor(private service:AuthentificationService,private route:Router) { }
   
   ngOnInit() {
-    this.discussions=[]
+    this.cache=[];
+    let p=new User();
     this.service.getUsers().subscribe(
 
       data => {
@@ -24,15 +26,11 @@ export class ChatPage implements OnInit {
           var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
           if(obj['uid']!=value.uid ){
            
-            var p= {
-              "username": obj.username,
-              "image": obj.image,
-               "role":obj.role,
-               "uid":obj.uid
-            };
+            p=obj;
             this.users.push(p);
   
           }
+          this.cache=this.users;
         });
   
       }
@@ -41,19 +39,20 @@ export class ChatPage implements OnInit {
     
   }
   search(){
-    var d=[]
+    let d=[]
+    
     if(this.queryText.length!=0){
     
-      this.discussions.forEach(el => {
-        if(el["name"].includes(this.queryText)){
+      this.users.forEach(el => {
+        if(el["username"].includes(this.queryText)){
           d.push(el);
         }
         
       });
-      this.discussions=d;
+      this.users=d;
     }
     else{
-      
+     this.users=this.cache; 
      
     }
    

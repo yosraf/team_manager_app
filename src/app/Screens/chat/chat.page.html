@@ -10,50 +10,29 @@
 
 <ion-content>
     <ion-searchbar [(ngModel)]="queryText" (ionChange)="search()"></ion-searchbar>
-    <ion-list class="list-header">
-        <ion-list-header class="title">
-            Contacts
-        </ion-list-header>
-        </ion-list>
-    <div class="thumnails">
-        <div class="list-thumbnail">
-          <div class="list" *ngFor="let x of users">
-              <div class="img-thumb" >
-                  <img  *ngIf="x['image']!=null else notnull" [src]="x['image']" (click)="open(x['uid'])">
-                  <ng-template #notnull>
-                    <img   src="../../../assets/icon/user.png"  (click)="open(x['uid'])">
-
-                  </ng-template>
-      
-              </div>
-              <ion-label class="name" >{{x["username"]}}</ion-label>
-
-          </div>
-
-        </div>
-
-    </div>
+ 
      
       <ion-list>
           <ion-list-header class="title">
-              Last discussions
+             Current users
           </ion-list-header>
-          <ion-card *ngIf="this.discussions.length==0 ; else notempty;" class="no-chat">
-              <ion-card-content>
-                  No discussion Found
-               </ion-card-content>
-          </ion-card>
-          <ng-template #notempty>
-                  <ion-item *ngFor="let x of discussions">
-                      <ion-avatar slot="start">
-                          <img [src]="x['img']">
-                      </ion-avatar>
-                      <ion-label>
-                        <h2>{{x["name"]}}</h2>
-                        <p>{{x["chat"]}}</p>
-                      </ion-label>
-                  </ion-item>
-          </ng-template>
+           
+            <ion-item  *ngFor="let x of users"  (click)="open(x['uid'])">
+                <ion-avatar slot="start">
+                    <img  *ngIf="x['image']!=null else notnull" [src]="x['image']">
+                    <ng-template #notnull>
+                      <img   src="../../../assets/icon/user.png"  (click)="open(x['uid'])">
+    
+                    </ng-template>
+                </ion-avatar>
+                <ion-label  >
+                   <h3 class="name"> {{x["username"]}} </h3> 
+                  
+                </ion-label>
+                <ion-badge color="danger" class="subtitle" slot="end">{{x["role"]}}</ion-badge>
+              </ion-item>
+      
+        
       </ion-list>
       
   

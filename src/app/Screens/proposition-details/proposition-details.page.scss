@@ -3,5 +3,79 @@ ion-toolbar{
 }
 
 .title{
+    --color:#462373;
+}
+.ion-title{
     color:#462373;
+    font-size: 18px;
+}
+.noresp-header{
+    color:white;
+    font-size: 16px;
+    --background:#462373;
+    height: 70px;
+    margin-top: 5px;
+    padding-top: 25px;
+    padding-left: 5px;
+
+}
+.type-icon{
+    color:#d6b0ff;
+    font-size: 16px;
+}
+.name{
+    color:#462373;
+    font-size: 18px;
+}
+.card {
+    box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    height:70px;
+    width: 90%;
+    display: flex;
+    .container {
+        width: 50%;
+        padding-left: 5px;
+        h5{
+            color:#462373;
+        }
+        p{
+            color: #8395a7;
+        }
+             
+ 
+
+      }
+      .project-info{
+            .icon{
+              font-size: 30px;
+              margin-top: 25%;
+              color:#462373;
+          }
+          background-color: #d6b0ff;
+          width:25%;
+          text-align: center;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+
+
+      }
+      div{
+        width:25%;
+        text-align: center;
+        ion-icon{
+            margin:0 auto;
+            margin-top: 50%;
+            color: #d6b0ff;
+            font-size: 18px;
+        }
+      }
+    
+  }
+  .modify{
+    color: #462373;
+    font-size: 25px;
+    padding-right: 15px;
 }

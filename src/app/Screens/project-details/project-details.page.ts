@@ -3,6 +3,7 @@ import {ProjectsService} from '../../Services/projects.service'
 import {ActivatedRoute,Router} from "@angular/router";
 import { Chart } from 'chart.js';
 import {Project} from '../../Models/Project'
+import {Task} from '../../Models/Task';
 
 @Component({
   selector: 'app-project-details',
@@ -31,6 +32,7 @@ export class ProjectDetailsPage implements OnInit {
 
   ngOnInit() {
     let p=new Project();
+    let t=new Task();
     this.service.getProject(this.id).then(res=>{
        p=res
       this.project=p;
@@ -40,34 +42,30 @@ export class ProjectDetailsPage implements OnInit {
     this.service.getTasks(this.id).forEach(task=>{
      
     task.forEach(
-       t=>{
-        var obj = JSON.parse(JSON.stringify(t.payload.doc.data()));
+       task=>{
+        var obj = JSON.parse(JSON.stringify(task.payload.doc.data()));
 
-        var p= {
-          "name": obj.name,
-          "description": obj.description,
-          "person":obj.person,
-          "state":obj.state
-        };
-        if(p['state']!="done"){
-          this.tasks.push(p);
-          if(p['state']=='to do'){
-            this.to_do.push(p);
+      
+        t=obj;
+        if(t['state']!="done"){
+          this.tasks.push(t);
+          if(t['state']=='to do'){
+            this.to_do.push(t);
 
           }
           else{
-            this.doing.push(p);
+            this.doing.push(t);
             
           }
         }
         else{
-          this.done.push(p);
+          this.done.push(t);
         }
         this.data=[this.to_do.length,this.doing.length,this.done.length]
         this.createLineChart()
 
        
-        this.service.getClient(p.person).then(res=>{
+        this.service.getClient(t.person).then(res=>{
               
           this.team.push(res)
         })

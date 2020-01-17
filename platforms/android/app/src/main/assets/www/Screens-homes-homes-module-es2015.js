@@ -2787,7 +2787,7 @@ LongPressModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n      </ion-buttons>\n      <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openRejected()\" class=\"btn\"></ion-icon>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-refresher slot=\"fixed\" \n(ionRefresh)=\"ionRefresh($event)\" \n(ionPull)=\"ionPull($event)\" \n(ionStart)=\"ionStart($event)\">\n  <ion-refresher-content\n    pullingIcon=\"arrow-dropdown\"\n    pullingText=\"Pull to refresh\"\n    refreshingSpinner=\"circles\"\n    refreshingText=\"Refreshing...\">\n  </ion-refresher-content>\n</ion-refresher>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n     <div >\n      <h3>{{spent}} DT</h3>\n     </div>\n    </div>\n  \n      <ion-card class=\"welcome-card\">\n       \n        <ion-card-content>\n          <canvas #dognutChart></canvas>\n        </ion-card-content>\n      </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{d['name']}}</b></h5>\n           <p>{{d['description']}}</p>\n\n        </div>\n        \n      </div>\n    </ion-list>\n   \n   \n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n  \n    <ion-label>No projects yet  </ion-label>\n  \n  </div > \n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n    </ion-buttons>\n    <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openRejected()\" class=\"btn\"></ion-icon>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\" (ionPull)=\"ionPull($event)\"\n    (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Pull to refresh\" refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n      <div>\n        <h3>{{spent}} DT</h3>\n      </div>\n    </div>\n\n    <ion-card class=\"welcome-card\">\n\n      <ion-card-content>\n        <canvas #dognutChart></canvas>\n      </ion-card-content>\n    </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5><b>{{d['name']}}</b></h5>\n          <p>{{d['description']}}</p>\n\n        </div>\n\n      </div>\n    </ion-list>\n\n\n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n\n    <ion-label>No projects yet </ion-label>\n\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -2886,6 +2886,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -2902,23 +2904,17 @@ let ClientHContentComponent = class ClientHContentComponent {
         this.spent = 0;
     }
     ngOnInit() {
+        let p = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
         this.service.AsyncProjects().subscribe(data => {
             this.projects = [];
             data.forEach(d => {
                 let value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['client'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "progress": obj.progress,
-                        "type": obj.type,
-                        "id": d.payload.doc.id,
-                        "cost": obj.cost
-                    };
-                    this.spent = +p.cost;
+                    p = obj;
+                    p.id = d.payload.doc.id;
+                    this.spent = this.spent + p.cost;
+                    console.log(this.spent);
                     this.projects.push(p);
                     if (p.progress == 100) {
                         this.finished.push(p);
@@ -3102,6 +3098,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -3121,19 +3119,14 @@ let ClientProjectsComponent = class ClientProjectsComponent {
         this.propositions = [];
         this.isShow = true;
         let value = firebase_app__WEBPACK_IMPORTED_MODULE_4__["auth"]().currentUser;
+        let p = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
         this.service.AsyncPropositions().subscribe(data => {
             this.propositions = [];
             data.map(d => {
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['client'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "type": obj.type,
-                        "id": d.payload.doc.id
-                    };
+                    p = obj;
+                    p.id = d.payload.doc.id;
                     this.propositions.push(p);
                 }
             });
@@ -3288,6 +3281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -3305,28 +3300,24 @@ let HContentComponent = class HContentComponent {
         this.highest_pro = [];
     }
     ngOnInit() {
-        let cache;
         this.service.AsyncProjects().subscribe(data => {
             this.projects = [];
             this.costs = [];
             this.labels = [];
+            let cache = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
+            let p = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
             data.forEach(d => {
                 let value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['manager'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "progress": obj.progress,
-                        "type": obj.type,
-                        "id": d.payload.doc.id,
-                        "cost": obj.cost
-                    };
+                    p = obj;
+                    p.id = d.payload.doc.id;
                     if (cache) {
                         if (cache.cost < p.cost) {
                             this.highest_pro.push(p);
+                        }
+                        if (cache.cost > p.cost) {
+                            this.highest_pro.push(cache);
                         }
                     }
                     this.cost += p.cost;
@@ -3511,6 +3502,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -3528,21 +3521,15 @@ let ProjectsComponent = class ProjectsComponent {
     }
     ngOnInit() {
         this.isShow = true;
+        let p = new _Models_Project__WEBPACK_IMPORTED_MODULE_7__["Project"]();
         this.service.AsyncProjects().subscribe(data => {
             this.projects = [];
             data.forEach(d => {
                 let value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['manager'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "progress": obj.progress,
-                        "type": obj.type,
-                        "id": d.payload.doc.id
-                    };
+                    p = obj;
+                    p.id = d.payload.doc.id;
                     this.projects.push(p);
                 }
             });
@@ -3610,10 +3597,8 @@ let ProjectsComponent = class ProjectsComponent {
         }, 2000);
     }
     ionPull(event) {
-        //Emitted while the user is pulling down the content and exposing the refresher.
     }
     ionStart(event) {
-        //Emitted when the user begins to start pulling down.
     }
 };
 ProjectsComponent.ctorParameters = () => [

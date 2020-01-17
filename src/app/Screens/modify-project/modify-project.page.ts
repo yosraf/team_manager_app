@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from "@angular/router";
 import{ProjectsService} from '../../Services/projects.service';
 import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
-
+import {Project} from '../../Models/Project';
 
 @Component({
   selector: 'app-modify-project',
@@ -72,14 +72,21 @@ export class ModifyProjectPage implements OnInit {
         
       });
     }
-    let data={
+    let data= new Project();
+    data.name=value.name;
+    data.description=value.description;
+    data.client=client;
+    data.manager=this.project.manager;
+    data.progress=this.project.progress;
+    data.type=this.project.type;
+    /*let data={
       "name":value.name,
       "description":value.description,
       "client":client,
       "manager":this.project.manager,
       "progress":this.project.progress,
       "type":value.type
-    }
+    }*/
     this.service.update(data,this.id).then(res=>{
       this.back(this.id);
 
@@ -91,5 +98,6 @@ export class ModifyProjectPage implements OnInit {
     let url="/task/"+id;
     this.router.navigate([url])
   }
+  
 
 }
