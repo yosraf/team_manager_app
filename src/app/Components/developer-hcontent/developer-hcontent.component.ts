@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Router } from '@angular/router';
-import { ProjectsService } from '../../Services/projects.service';
+import { TaskDevService } from '../../Services/task-dev.service';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -19,10 +19,14 @@ export class DeveloperHcontentComponent implements OnInit {
   finished:any=[];
   doing:any=[];
   spent:number=0;
-  constructor(private route: Router, private service: ProjectsService) { }
-
+  projectIds:any=[];
+  constructor(private route: Router, private service: TaskDevService) { }
+  
+  
   ngOnInit() {
-
+   
+   this.projects=this.service.getProjects();
+   console.log(this.projects)
     /*this.service.AsyncProjects().subscribe(
       data => {
         this.projects=[];
@@ -147,4 +151,5 @@ export class DeveloperHcontentComponent implements OnInit {
     this.route.navigate([url])
   }*/
 }
+
 }
