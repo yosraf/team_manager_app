@@ -31,22 +31,45 @@ export class TaskPage implements OnInit {
 }
 
   ngOnInit() {
+    let m=new Map();
     this.service.getTasks(this.id).subscribe(
-    
+      
       doc=>{
-        let cache;
+        m.clear()
+        
         this.task=doc.map(
             element=>{
-            
+             
               var obj = JSON.parse(JSON.stringify(element.payload.doc.data()));
               this.service.getClient(obj.person).then(res=>{
                 obj.person=res;
+                if(m.size==0){
+                  m.set(res,1);
+                }
+                else{
+                  if(m.has(res)){
+                    
+                    let v=m.get(res)+1;
+                    m.delete(res);
+                    m.set(res,v)
+                   
+                  }
+                  else{
+                    m.set(res,1);
+                  }
+
+                }
+                
+              //  console.log(m)
                
-                if(cache){
+              /*  if(cache){
+                  console.log(cache)
                   if(obj.person==cache){
+                    console.log(this.totalTask.length-1)
                     var el=this.totalTask[this.totalTask.length-1]+1;
                     this.totalTask.pop(this.totalTask.length-1);
                     this.totalTask.push(el);
+                    console.log(this.totalTask)
                    
                   }
                   else{
@@ -55,16 +78,15 @@ export class TaskPage implements OnInit {
                 }
                 else{
                   this.totalTask.push(1);
-                }
-                this.team.add(res);
-                this.createLine();
+                }*/
+                this.totalTask=Array.from(m.values())
                
-                cache=res;
-                
+                this.team=Array.from(m.keys())
+                this.createLine();
                
               })
             
-             
+            
               return obj;
             },
         );
@@ -166,6 +188,7 @@ openModify(id){
 }
 
  createLine(){
+   
   this.chart = new Chart(this.lineChart.nativeElement, {
     type: 'line',
 

@@ -26,7 +26,9 @@ export class HContentComponent implements OnInit {
    
    this.service.AsyncProjects().subscribe(
     data => {
+      this.cost=0;
       this.projects=[];
+      this.highest_pro=[];
       this.costs=[];
       this.labels=[];
       let cache=new Project();
@@ -51,7 +53,7 @@ export class HContentComponent implements OnInit {
           }
         
                 
-          this.cost+=p.cost;
+          this.cost=this.cost+p.cost;
           this.projects.push(p);
           this.labels.push(p.name);
           this.costs.push(p.cost)

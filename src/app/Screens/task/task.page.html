@@ -53,7 +53,7 @@
   
   </ion-list>
 
-    <ion-list-header>
+    <ion-list-header *ngIf="this.task.length>0">
       Done tasks
     </ion-list-header>
     <ion-list>
@@ -68,16 +68,12 @@
         </ion-item>
        
       </div>
-      <ion-card *ngIf="this.task.length==0" class="no-project">
-        <ion-card-content>
-          No task done yet
-        </ion-card-content>
-      </ion-card>
+      
     </ion-list>
-    <ion-list-header>
+    <ion-list-header *ngIf="this.task.length>0">
       Pending tasks
     </ion-list-header>
-    <ion-list>
+    <ion-list *ngIf="this.task.length>0">
       <div *ngFor="let t of task; let i = index;">
         <ion-item *ngIf="t['state']=='to do'">
           <ion-icon name="checkmark-circle" slot="start" class="icon" color="danger"></ion-icon>
@@ -98,9 +94,11 @@
       </div>
       </ion-list>
 
-      <ion-list-header *ngIf="this.task.length==0" class="no-project">
-        No task Found
-      </ion-list-header>
+      <ion-card *ngIf="this.task.length==0" class="no-project">
+        <ion-card-content>
+          No task found for this project
+        </ion-card-content>
+      </ion-card>
 
       <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
         <ion-fab-button>
