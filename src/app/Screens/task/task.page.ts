@@ -23,6 +23,7 @@ export class TaskPage implements OnInit {
   dev=false;
   totalhours:number=0;
   lefthours:number=0;
+  budget:number=0;
   constructor(private route: ActivatedRoute,private router:Router,private service:ProjectsService) {
     this.route.params.subscribe( params => {
       console.log(params["id"])
@@ -60,25 +61,7 @@ export class TaskPage implements OnInit {
 
                 }
                 
-              //  console.log(m)
-               
-              /*  if(cache){
-                  console.log(cache)
-                  if(obj.person==cache){
-                    console.log(this.totalTask.length-1)
-                    var el=this.totalTask[this.totalTask.length-1]+1;
-                    this.totalTask.pop(this.totalTask.length-1);
-                    this.totalTask.push(el);
-                    console.log(this.totalTask)
-                   
-                  }
-                  else{
-                    this.totalTask.push(1);
-                  }
-                }
-                else{
-                  this.totalTask.push(1);
-                }*/
+             
                 this.totalTask=Array.from(m.values())
                
                 this.team=Array.from(m.keys())
@@ -99,6 +82,11 @@ export class TaskPage implements OnInit {
       this.donetask=res;
       this.calculProgres()
 
+    })
+    this.service.getProject(this.id).then(res=>{
+
+      var obj = JSON.parse(JSON.stringify(res));
+      this.budget=obj["cost"];
     })
     
    
