@@ -11,7 +11,7 @@
   <ion-list *ngIf="this.propositions.length>0">
       <div *ngFor="let d of propositions;let i = index;">
         <ion-badge color="tertiary" slot="end">{{client[i]}}</ion-badge>
-        <div  class="card">
+        <div  class="card" (click)="open(d['id'])">
           <div class="project-info" [ngStyle]="{'background-color':color(d['type'])}">
             <ion-icon [name]="icon(d['type'])" class="icon"></ion-icon>
           </div>

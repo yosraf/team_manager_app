@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProjectsService} from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
 import { AlertController } from '@ionic/angular';
-
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-client-propositions',
   templateUrl: './client-propositions.page.html',
@@ -11,7 +11,9 @@ import { AlertController } from '@ionic/angular';
 export class ClientPropositionsPage implements OnInit {
   propositions:any=[]
   client:any=[]
-  constructor(private service:ProjectsService, public alertController: AlertController) { }
+  constructor(private service:ProjectsService, 
+    public alertController: AlertController,
+    private router:Router) { }
 
   ngOnInit() {
     this.service.AsyncPropositions().subscribe(
@@ -42,7 +44,11 @@ export class ClientPropositionsPage implements OnInit {
       }
     );
   }
-  
+  open(id){
+    let url="/client-prop-details/"+id;
+    this.router.navigate([url]);
+
+  }
   color(type){
     if(type=="web"){
       return "#462373";

@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RejectedPropositionsPage } from './rejected-propositions.page';
+import { ClientPropDetailsPage } from './client-prop-details.page';
 
-describe('RejectedPropositionsPage', () => {
-  let component: RejectedPropositionsPage;
-  let fixture: ComponentFixture<RejectedPropositionsPage>;
+describe('ClientPropDetailsPage', () => {
+  let component: ClientPropDetailsPage;
+  let fixture: ComponentFixture<ClientPropDetailsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RejectedPropositionsPage ],
+      declarations: [ ClientPropDetailsPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RejectedPropositionsPage);
+    fixture = TestBed.createComponent(ClientPropDetailsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
