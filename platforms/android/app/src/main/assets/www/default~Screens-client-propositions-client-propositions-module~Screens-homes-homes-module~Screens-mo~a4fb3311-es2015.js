@@ -302,20 +302,18 @@ let ProjectsService = class ProjectsService {
     updateProposition(value, file, id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             let uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
-            const storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref(`/pdf/uid/${file.name}.pdf`);
-            var uplaodtask = yield storageRef.put(file.data, { contentType: `application/pdf` });
-            var urlFile = (yield uplaodtask.ref.getDownloadURL());
-            return new Promise((resolve, reject) => {
-                this.afs.collection('propositions').doc(id).update({
-                    "name": value.name,
-                    "description": value.description,
-                    "type": value.type,
-                    "file": urlFile
-                })
-                    .then(res => {
-                    resolve(res);
-                }, err => reject(err));
-            });
+            var obj = {
+                "name": value.name,
+                "description": value.description,
+                "type": value.type
+            };
+            if (file != null) {
+                const storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref(`/pdf/uid/${file.name}.pdf`);
+                var uplaodtask = yield storageRef.put(file.data, { contentType: `application/pdf` });
+                var urlFile = (yield uplaodtask.ref.getDownloadURL());
+                obj["file"] = urlFile;
+            }
+            yield this.afs.collection('propositions').doc(id).update(obj);
         });
     }
     uploadFile(file) {

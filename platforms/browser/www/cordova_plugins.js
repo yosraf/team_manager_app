@@ -362,6 +362,14 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/integrator-cordova-plugin-downloader/www/Downloader.js",
+        "id": "integrator-cordova-plugin-downloader.Downloader",
+        "pluginId": "integrator-cordova-plugin-downloader",
+        "clobbers": [
+            "cordova.plugins.Downloader"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -385,7 +393,8 @@ module.exports.metadata =
     "cordova-support-android-plugin": "1.0.1",
     "cordova-support-google-services": "1.3.2",
     "cordova-plugin-chooser": "1.2.5",
-    "cordova-plugin-file-transfer": "1.7.1"
+    "cordova-plugin-file-transfer": "1.7.1",
+    "integrator-cordova-plugin-downloader": "0.0.1"
 }
 // BOTTOM OF METADATA
 });

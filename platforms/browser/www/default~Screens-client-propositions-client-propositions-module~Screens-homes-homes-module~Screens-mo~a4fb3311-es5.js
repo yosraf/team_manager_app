@@ -1,4 +1,24 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311"],{
+
+/***/ "./src/app/Models/Project.ts":
+/*!***********************************!*\
+  !*** ./src/app/Models/Project.ts ***!
+  \***********************************/
+/*! exports provided: Project */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Project", function() { return Project; });
+var Project = /** @class */ (function () {
+    function Project() {
+    }
+    return Project;
+}());
+
+
+
+/***/ }),
 
 /***/ "./src/app/Services/projects.service.ts":
 /*!**********************************************!*\
@@ -15,6 +35,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app/Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -43,7 +65,6 @@ var ProjectsService = /** @class */ (function () {
     };
     ProjectsService.prototype.AsyncProjects = function () {
         return this.afs.collection('projects').snapshotChanges();
-        ;
     };
     ProjectsService.prototype.AsyncPropositions = function () {
         return this.afs.collection('propositions').snapshotChanges();
@@ -53,20 +74,12 @@ var ProjectsService = /** @class */ (function () {
         return new Promise(function (resolve, reject) {
             var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
             var projects = [];
-            var project = {};
+            var project = new _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__["Project"]();
             _this.afs.collection('projects').get().forEach(function (doc) {
                 doc.docs.forEach(function (d) {
                     var obj = JSON.parse(JSON.stringify(d.data()));
                     if (obj['manager'] == value.uid) {
-                        project = {
-                            "name": obj.name,
-                            "description": obj.description,
-                            "manager": obj.manager,
-                            "client": obj.client,
-                            "progress": obj.progress,
-                            "type": obj.type,
-                            "id": d.id
-                        };
+                        project = obj;
                         projects.push(project);
                     }
                 });
@@ -133,20 +146,13 @@ var ProjectsService = /** @class */ (function () {
         return new Promise(function (resolve, reject) {
             var value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
             var projects = [];
-            var project = {};
+            var project = new _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__["Project"]();
             _this.afs.collection('projects').get().forEach(function (doc) {
                 doc.docs.forEach(function (d) {
                     var obj = JSON.parse(JSON.stringify(d.data()));
                     if (obj['client'] == value.uid) {
-                        project = {
-                            "name": obj.name,
-                            "description": obj.description,
-                            "manager": obj.manager,
-                            "client": obj.client,
-                            "progress": obj.progress,
-                            "type": obj.type,
-                            "id": d.id
-                        };
+                        project = obj;
+                        project.id = d.id;
                         projects.push(project);
                     }
                 });
@@ -289,22 +295,15 @@ var ProjectsService = /** @class */ (function () {
     };
     ProjectsService.prototype.getProject = function (id) {
         var _this = this;
-        var project;
+        var project = new _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__["Project"]();
         var result;
         return new Promise(function (resolve, reject) {
             _this.afs.collection('projects').get().forEach(function (doc) {
                 doc.docs.forEach(function (d) {
                     if (d.id == id) {
                         var obj = JSON.parse(JSON.stringify(d.data()));
-                        project = {
-                            "name": obj.name,
-                            "description": obj.description,
-                            "manager": obj.manager,
-                            "client": obj.client,
-                            "progress": obj.progress,
-                            "type": obj.type,
-                            "id": d.id
-                        };
+                        project = obj;
+                        project.id = d.id;
                         result = project;
                     }
                 });
@@ -330,6 +329,36 @@ var ProjectsService = /** @class */ (function () {
             }, function (err) { return reject(err); });
         });
     };
+    ProjectsService.prototype.updateProposition = function (value, file, id) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var uid, obj, storageRef, uplaodtask, urlFile;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+                        obj = {
+                            "name": value.name,
+                            "description": value.description,
+                            "type": value.type
+                        };
+                        if (!(file != null)) return [3 /*break*/, 3];
+                        storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref("/pdf/uid/" + file.name + ".pdf");
+                        return [4 /*yield*/, storageRef.put(file.data, { contentType: "application/pdf" })];
+                    case 1:
+                        uplaodtask = _a.sent();
+                        return [4 /*yield*/, uplaodtask.ref.getDownloadURL()];
+                    case 2:
+                        urlFile = (_a.sent());
+                        obj["file"] = urlFile;
+                        _a.label = 3;
+                    case 3: return [4 /*yield*/, this.afs.collection('propositions').doc(id).update(obj)];
+                    case 4:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     ProjectsService.prototype.uploadFile = function (file) {
         var storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref();
         return new Promise(function (resolve, reject) {
@@ -337,6 +366,9 @@ var ProjectsService = /** @class */ (function () {
                 console.log('Uploaded a blob or file!');
             });
         });
+    };
+    ProjectsService.prototype.getPropositionDetail = function (id) {
+        return this.afs.collection('propositions').doc(id).snapshotChanges();
     };
     ProjectsService.ctorParameters = function () { return [
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
@@ -355,4 +387,4 @@ var ProjectsService = /** @class */ (function () {
 /***/ })
 
 }]);
-//# sourceMappingURL=default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798-es5.js.map
+//# sourceMappingURL=default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311-es5.js.map

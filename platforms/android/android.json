@@ -82,6 +82,10 @@
             {
               "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Downloader\"><param name=\"android-package\" value=\"hr.integrator.cordova.plugins.downloader.Downloader\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -91,10 +95,14 @@
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 3
+              "count": 4
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
               "count": 1
             }
           ],
@@ -242,6 +250,9 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "integrator-cordova-plugin-downloader": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   },
@@ -589,6 +600,14 @@
       "clobbers": [
         "window.FileTransfer"
       ]
+    },
+    {
+      "id": "integrator-cordova-plugin-downloader.Downloader",
+      "file": "plugins/integrator-cordova-plugin-downloader/www/Downloader.js",
+      "pluginId": "integrator-cordova-plugin-downloader",
+      "clobbers": [
+        "cordova.plugins.Downloader"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -610,6 +629,7 @@
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-chooser": "1.2.5",
-    "cordova-plugin-file-transfer": "1.7.1"
+    "cordova-plugin-file-transfer": "1.7.1",
+    "integrator-cordova-plugin-downloader": "0.0.1"
   }
 }

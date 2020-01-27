@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>tasks</ion-title>\n    <ion-icon name=\"create\" slot=\"end\" class=\"modify\" (click)=\"openModify(id)\"></ion-icon>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\" (ionPull)=\"ionPull($event)\"\n    (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Pull to refresh\" refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list *ngIf=\"this.task.length>0\">\n\n\n    <ion-chip color=\"danger\" (click)=\"filter(0)\">\n      <ion-label color=\"danger\">Generals </ion-label>\n    </ion-chip>\n\n    <ion-chip color=\"tertiary\" *ngFor=\"let t of team\">\n      <ion-label color=\"tertiary\" (click)=\"filter(t)\">{{t}}</ion-label>\n    </ion-chip>\n    <div class=\"stats\" *ngIf=\"clicked==true\">\n      <div class=\"income-card\">\n        <ion-list-header class=\"stats\">Budget</ion-list-header>\n        <div>\n          <h3>2000 DT</h3>\n        </div>\n      </div>\n\n    </div>\n    <ion-card class=\"welcome-card\" [hidden]=\"!clicked\">\n\n      <ion-card-content>\n        <canvas #lineChart></canvas>\n      </ion-card-content>\n    </ion-card>\n\n\n    <ion-card class=\"welcome-card\" [hidden]=\"!dev\">\n\n      <ion-card-content>\n        <canvas #dognut></canvas>\n      </ion-card-content>\n    </ion-card>\n\n  \n  </ion-list>\n\n    <ion-list-header>\n      Done tasks\n    </ion-list-header>\n    <ion-list>\n      <div *ngFor=\"let t of task; let i = index;\">\n        <ion-item *ngIf=\"t['state']=='done'\">\n          <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"warning\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{t[\"hours\"]}} H</ion-badge>\n          <ion-label>\n            <h3 class=\"name\">{{t[\"name\"]}}</h3>\n            <p class=\"description\">{{t[\"description\"]}}</p>\n          </ion-label>\n        </ion-item>\n       \n      </div>\n      <ion-card *ngIf=\"this.task.length==0\" class=\"no-project\">\n        <ion-card-content>\n          No task done yet\n        </ion-card-content>\n      </ion-card>\n    </ion-list>\n    <ion-list-header>\n      Pending tasks\n    </ion-list-header>\n    <ion-list>\n      <div *ngFor=\"let t of task; let i = index;\">\n        <ion-item *ngIf=\"t['state']=='to do'\">\n          <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"danger\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{t[\"hours\"]}} H</ion-badge>\n          <ion-label>\n            <h3 class=\"name\">{{t[\"name\"]}}</h3>\n            <p class=\"description\">{{t[\"description\"]}}</p>\n          </ion-label>\n        </ion-item>\n        <ion-item *ngIf=\"t['state']=='doing'\">\n          <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"tertiary\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{t[\"hours\"]}} H</ion-badge>\n          <ion-label>\n            <h3 class=\"name\">{{t[\"name\"]}}</h3>\n            <p class=\"description\">{{t[\"description\"]}}</p>\n          </ion-label>\n        </ion-item>\n      </div>\n      </ion-list>\n\n      <ion-list-header *ngIf=\"this.task.length==0\" class=\"no-project\">\n        No task Found\n      </ion-list-header>\n\n      <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n        <ion-fab-button>\n          <ion-icon name=\"add\" (click)=\"open()\"></ion-icon>\n        </ion-fab-button>\n\n      </ion-fab>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>tasks</ion-title>\n    <ion-icon name=\"create\" slot=\"end\" class=\"modify\" (click)=\"openModify(id)\"></ion-icon>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\" (ionPull)=\"ionPull($event)\"\n    (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Pull to refresh\" refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list *ngIf=\"this.task.length>0\">\n\n\n    <ion-chip color=\"danger\" (click)=\"filter(0)\">\n      <ion-label color=\"danger\">Generals </ion-label>\n    </ion-chip>\n\n    <ion-chip color=\"tertiary\" *ngFor=\"let t of team\">\n      <ion-label color=\"tertiary\" (click)=\"filter(t)\">{{t}}</ion-label>\n    </ion-chip>\n    <div class=\"stats\" *ngIf=\"clicked==true\">\n      <div class=\"income-card\">\n        <ion-list-header class=\"stats\">Budget</ion-list-header>\n        <div>\n          <h3>2000 DT</h3>\n        </div>\n      </div>\n\n    </div>\n    <ion-card class=\"welcome-card\" [hidden]=\"!clicked\">\n\n      <ion-card-content>\n        <canvas #lineChart></canvas>\n      </ion-card-content>\n    </ion-card>\n\n\n    <ion-card class=\"welcome-card\" [hidden]=\"!dev\">\n\n      <ion-card-content>\n        <canvas #dognut></canvas>\n      </ion-card-content>\n    </ion-card>\n\n  \n  </ion-list>\n\n    <ion-list-header *ngIf=\"this.task.length>0\">\n      Done tasks\n    </ion-list-header>\n    <ion-list>\n      <div *ngFor=\"let t of task; let i = index;\">\n        <ion-item *ngIf=\"t['state']=='done'\">\n          <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"warning\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{t[\"hours\"]}} H</ion-badge>\n          <ion-label>\n            <h3 class=\"name\">{{t[\"name\"]}}</h3>\n            <p class=\"description\">{{t[\"description\"]}}</p>\n          </ion-label>\n        </ion-item>\n       \n      </div>\n      \n    </ion-list>\n    <ion-list-header *ngIf=\"this.task.length>0\">\n      Pending tasks\n    </ion-list-header>\n    <ion-list *ngIf=\"this.task.length>0\">\n      <div *ngFor=\"let t of task; let i = index;\">\n        <ion-item *ngIf=\"t['state']=='to do'\">\n          <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"danger\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{t[\"hours\"]}} H</ion-badge>\n          <ion-label>\n            <h3 class=\"name\">{{t[\"name\"]}}</h3>\n            <p class=\"description\">{{t[\"description\"]}}</p>\n          </ion-label>\n        </ion-item>\n        <ion-item *ngIf=\"t['state']=='doing'\">\n          <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"tertiary\"></ion-icon>\n          <ion-badge color=\"tertiary\" slot=\"end\">{{t[\"hours\"]}} H</ion-badge>\n          <ion-label>\n            <h3 class=\"name\">{{t[\"name\"]}}</h3>\n            <p class=\"description\">{{t[\"description\"]}}</p>\n          </ion-label>\n        </ion-item>\n      </div>\n      </ion-list>\n\n      <ion-card *ngIf=\"this.task.length==0\" class=\"no-project\">\n        <ion-card-content>\n          No task found for this project\n        </ion-card-content>\n      </ion-card>\n\n      <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n        <ion-fab-button>\n          <ion-icon name=\"add\" (click)=\"open()\"></ion-icon>\n        </ion-fab-button>\n\n      </ion-fab>\n\n</ion-content>"
 
 /***/ }),
 
@@ -111,28 +111,47 @@ let TaskPage = class TaskPage {
         });
     }
     ngOnInit() {
+        let m = new Map();
         this.service.getTasks(this.id).subscribe(doc => {
-            let cache;
+            m.clear();
             this.task = doc.map(element => {
                 var obj = JSON.parse(JSON.stringify(element.payload.doc.data()));
                 this.service.getClient(obj.person).then(res => {
                     obj.person = res;
-                    if (cache) {
-                        if (obj.person == cache) {
-                            var el = this.totalTask[this.totalTask.length - 1] + 1;
-                            this.totalTask.pop(this.totalTask.length - 1);
-                            this.totalTask.push(el);
-                        }
-                        else {
-                            this.totalTask.push(1);
-                        }
+                    if (m.size == 0) {
+                        m.set(res, 1);
                     }
                     else {
-                        this.totalTask.push(1);
+                        if (m.has(res)) {
+                            let v = m.get(res) + 1;
+                            m.delete(res);
+                            m.set(res, v);
+                        }
+                        else {
+                            m.set(res, 1);
+                        }
                     }
-                    this.team.add(res);
+                    //  console.log(m)
+                    /*  if(cache){
+                        console.log(cache)
+                        if(obj.person==cache){
+                          console.log(this.totalTask.length-1)
+                          var el=this.totalTask[this.totalTask.length-1]+1;
+                          this.totalTask.pop(this.totalTask.length-1);
+                          this.totalTask.push(el);
+                          console.log(this.totalTask)
+                         
+                        }
+                        else{
+                          this.totalTask.push(1);
+                        }
+                      }
+                      else{
+                        this.totalTask.push(1);
+                      }*/
+                    this.totalTask = Array.from(m.values());
+                    this.team = Array.from(m.keys());
                     this.createLine();
-                    cache = res;
                 });
                 return obj;
             });

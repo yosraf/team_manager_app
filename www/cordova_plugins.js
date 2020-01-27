@@ -342,6 +342,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.FileTransfer"
       ]
+    },
+    {
+      "id": "integrator-cordova-plugin-downloader.Downloader",
+      "file": "plugins/integrator-cordova-plugin-downloader/www/Downloader.js",
+      "pluginId": "integrator-cordova-plugin-downloader",
+      "clobbers": [
+        "cordova.plugins.Downloader"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -363,6 +371,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-chooser": "1.2.5",
-    "cordova-plugin-file-transfer": "1.7.1"
+    "cordova-plugin-file-transfer": "1.7.1",
+    "integrator-cordova-plugin-downloader": "0.0.1"
   };
 });

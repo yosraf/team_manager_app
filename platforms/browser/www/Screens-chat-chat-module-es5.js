@@ -7,7 +7,27 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Discussions</ion-title>\n    </ion-toolbar>\n      \n</ion-header>\n\n<ion-content>\n    <ion-searchbar [(ngModel)]=\"queryText\" (ionChange)=\"search()\"></ion-searchbar>\n    <ion-list class=\"list-header\">\n        <ion-list-header class=\"title\">\n            Contacts\n        </ion-list-header>\n        </ion-list>\n    <div class=\"thumnails\">\n        <div class=\"list-thumbnail\">\n          <div class=\"list\" *ngFor=\"let x of users\">\n              <div class=\"img-thumb\" >\n                  <img  *ngIf=\"x['image']!=null else notnull\" [src]=\"x['image']\">\n                  <ng-template #notnull>\n                    <img   src=\"../../../assets/icon/user.png\" >\n\n                  </ng-template>\n      \n              </div>\n              <ion-label class=\"name\" >{{x[\"username\"]}}</ion-label>\n\n          </div>\n\n        </div>\n\n    </div>\n     \n      <ion-list>\n          <ion-list-header class=\"title\">\n              Last discussions\n          </ion-list-header>\n          <ion-card *ngIf=\"this.discussions.length==0 ; else notempty;\" class=\"no-chat\">\n              <ion-card-content>\n                  No discussion Found\n               </ion-card-content>\n          </ion-card>\n          <ng-template #notempty>\n                  <ion-item *ngFor=\"let x of discussions\">\n                      <ion-avatar slot=\"start\">\n                          <img [src]=\"x['img']\">\n                      </ion-avatar>\n                      <ion-label>\n                        <h2>{{x[\"name\"]}}</h2>\n                        <p>{{x[\"chat\"]}}</p>\n                      </ion-label>\n                  </ion-item>\n          </ng-template>\n      </ion-list>\n      \n  \n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n        <ion-title>Chat</ion-title>\n    </ion-toolbar>\n      \n</ion-header>\n\n<ion-content>\n    <ion-searchbar [(ngModel)]=\"queryText\" (ionChange)=\"search()\"></ion-searchbar>\n \n     \n      <ion-list>\n          <ion-list-header class=\"title\">\n             Current users\n          </ion-list-header>\n           \n            <ion-item  *ngFor=\"let x of users\"  (click)=\"open(x['uid'])\">\n                <ion-avatar slot=\"start\">\n                    <img  *ngIf=\"x['image']!=null else notnull\" [src]=\"x['image']\">\n                    <ng-template #notnull>\n                      <img   src=\"../../../assets/icon/user.png\"  (click)=\"open(x['uid'])\">\n    \n                    </ng-template>\n                </ion-avatar>\n                <ion-label  >\n                   <h3 class=\"name\"> {{x[\"username\"]}} </h3> \n                  \n                </ion-label>\n                <ion-badge color=\"danger\" class=\"subtitle\" slot=\"end\">{{x[\"role\"]}}</ion-badge>\n              </ion-item>\n      \n        \n      </ion-list>\n      \n  \n</ion-content>\n"
+
+/***/ }),
+
+/***/ "./src/app/Models/User.ts":
+/*!********************************!*\
+  !*** ./src/app/Models/User.ts ***!
+  \********************************/
+/*! exports provided: User */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "User", function() { return User; });
+var User = /** @class */ (function () {
+    function User() {
+    }
+    return User;
+}());
+
+
 
 /***/ }),
 
@@ -69,7 +89,7 @@ var ChatPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-title {\n  color: #462373; }\n\nion-back-button {\n  --color:#462373; }\n\nion-toolbar {\n  --background:#d6b0ff; }\n\n.thumnails {\n  overflow-x: scroll;\n  overflow-y: hidden; }\n\n.thumnails .list-thumbnail {\n    width: 80%;\n    margin-left: 10px;\n    height: 100%;\n    white-space: nowrap; }\n\n.thumnails .list-thumbnail .img-thumb {\n      box-shadow: 2px 2px 2px #FFFF;\n      display: inline-block;\n      border: 2px solid #462373;\n      border-radius: 50%;\n      width: 65px;\n      height: 65px;\n      margin: 0 5px 0 0;\n      line-height: 60px; }\n\n.thumnails .list-thumbnail .list {\n      display: inline-grid; }\n\n.thumnails .list-thumbnail .list .name {\n        margin: 0 5px 0 0;\n        text-align: center;\n        color: #462373; }\n\n::-webkit-scrollbar {\n  display: none; }\n\n.title {\n  padding: 15px;\n  color: #462373; }\n\n.list-header {\n  padding-top: 0px;\n  padding-bottom: 0px; }\n\n.no-chat {\n  bottom: 3%;\n  font-size: medium;\n  color: #462373; }\n\nion-label h2 {\n  font-size: medium;\n  color: #462373;\n  font-weight: bold; }\n\nion-label p {\n  font-size: medium;\n  color: #462373;\n  font-weight: lighter; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL2NoYXQvY2hhdC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUM7RUFDRyxjQUFhLEVBQUE7O0FBRWpCO0VBQ0UsZUFBUSxFQUFBOztBQUdWO0VBQ0Usb0JBQWEsRUFBQTs7QUFHZjtFQUNJLGtCQUFrQjtFQUNsQixrQkFBa0IsRUFBQTs7QUFGdEI7SUFJTSxVQUFTO0lBQ1QsaUJBQWlCO0lBQ2pCLFlBQVk7SUFDWixtQkFBbUIsRUFBQTs7QUFQekI7TUFTUSw2QkFBNkI7TUFDN0IscUJBQXFCO01BQ3JCLHlCQUF5QjtNQUN6QixrQkFBa0I7TUFDbEIsV0FBVztNQUNYLFlBQVk7TUFDWixpQkFBZ0I7TUFDaEIsaUJBQWlCLEVBQUE7O0FBaEJ6QjtNQW1CUSxvQkFBb0IsRUFBQTs7QUFuQjVCO1FBcUJZLGlCQUFnQjtRQUNoQixrQkFBa0I7UUFDbEIsY0FBYyxFQUFBOztBQU94QjtFQUNFLGFBQWEsRUFBQTs7QUFFaEI7RUFDSSxhQUFhO0VBQ2IsY0FBYyxFQUFBOztBQUVuQjtFQUNJLGdCQUFnQjtFQUNoQixtQkFBbUIsRUFBQTs7QUFHdkI7RUFDSSxVQUFVO0VBQ1YsaUJBQWlCO0VBQ2pCLGNBQWMsRUFBQTs7QUFFbEI7RUFDSSxpQkFBaUI7RUFDakIsY0FBYztFQUNkLGlCQUFpQixFQUFBOztBQUVyQjtFQUNJLGlCQUFpQjtFQUNqQixjQUFjO0VBQ2Qsb0JBQW9CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9TY3JlZW5zL2NoYXQvY2hhdC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIgaW9uLXRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG5pb24tYmFjay1idXR0b257XG4gIC0tY29sb3I6IzQ2MjM3MztcblxufVxuaW9uLXRvb2xiYXJ7XG4gIC0tYmFja2dyb3VuZDojZDZiMGZmO1xufVxuXG4udGh1bW5haWxze1xuICAgIG92ZXJmbG93LXg6IHNjcm9sbDtcbiAgICBvdmVyZmxvdy15OiBoaWRkZW47XG4gICAgLmxpc3QtdGh1bWJuYWlse1xuICAgICAgd2lkdGg6ODAlO1xuICAgICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gICAgICBoZWlnaHQ6IDEwMCU7XG4gICAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgICAgLmltZy10aHVtYntcbiAgICAgICAgYm94LXNoYWRvdzogMnB4IDJweCAycHggI0ZGRkY7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICAgICAgYm9yZGVyOiAycHggc29saWQgIzQ2MjM3MztcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgICAgICB3aWR0aDogNjVweDtcbiAgICAgICAgaGVpZ2h0OiA2NXB4O1xuICAgICAgICBtYXJnaW46MCA1cHggMCAwOyBcbiAgICAgICAgbGluZS1oZWlnaHQ6IDYwcHg7XG4gICAgICB9XG4gICAgICAubGlzdHtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWdyaWQ7XG4gICAgICAgIC5uYW1le1xuICAgICAgICAgICAgbWFyZ2luOjAgNXB4IDAgMDsgXG4gICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgICBjb2xvcjogIzQ2MjM3MztcbiAgICAgICAgXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICAgXG4gICAgfVxuICB9XG4gIDo6LXdlYmtpdC1zY3JvbGxiYXIgeyBcbiAgICBkaXNwbGF5OiBub25lOyBcbiAgfVxuIC50aXRsZXtcbiAgICAgcGFkZGluZzogMTVweDtcbiAgICAgY29sb3I6ICM0NjIzNzM7XG59XG4ubGlzdC1oZWFkZXJ7XG4gICAgcGFkZGluZy10b3A6IDBweDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMHB4O1xufVxuXG4ubm8tY2hhdHtcbiAgICBib3R0b206IDMlO1xuICAgIGZvbnQtc2l6ZTogbWVkaXVtO1xuICAgIGNvbG9yOiAjNDYyMzczO1xufVxuaW9uLWxhYmVsIGgye1xuICAgIGZvbnQtc2l6ZTogbWVkaXVtO1xuICAgIGNvbG9yOiAjNDYyMzczO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuaW9uLWxhYmVsIHB7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG4gICAgY29sb3I6ICM0NjIzNzM7XG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0ZXI7XG59Il19 */"
+module.exports = "ion-title {\n  color: #462373;\n  font-size: 16px; }\n\nion-back-button {\n  --color:#462373; }\n\nion-toolbar {\n  --background:#d6b0ff; }\n\nion-item ion-label {\n  font-size: medium;\n  color: #462373; }\n\nion-avatar {\n  border: 2px solid #462373; }\n\n.title {\n  color: #462373;\n  font-size: 17px;\n  font-weight: bold; }\n\n.subtitle {\n  font-size: 12px; }\n\n.list-header {\n  padding-top: 0px;\n  padding-bottom: 0px; }\n\n.no-chat {\n  bottom: 3%;\n  font-size: medium;\n  color: #462373; }\n\nion-label h2 {\n  font-size: medium;\n  color: #462373;\n  font-weight: bold; }\n\nion-label p {\n  font-size: medium;\n  color: #462373;\n  font-weight: lighter; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9TY3JlZW5zL2NoYXQvY2hhdC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUM7RUFDRyxjQUFhO0VBQ2IsZUFBZSxFQUFBOztBQUVuQjtFQUNFLGVBQVEsRUFBQTs7QUFHVjtFQUNFLG9CQUFhLEVBQUE7O0FBRWY7RUFFSSxpQkFBaUI7RUFDakIsY0FBYyxFQUFBOztBQUdsQjtFQUNFLHlCQUF5QixFQUFBOztBQUkxQjtFQUVJLGNBQWM7RUFDZCxlQUFlO0VBQ2YsaUJBQWlCLEVBQUE7O0FBRXRCO0VBQ0UsZUFBZSxFQUFBOztBQUVqQjtFQUNJLGdCQUFnQjtFQUNoQixtQkFBbUIsRUFBQTs7QUFHdkI7RUFDSSxVQUFVO0VBQ1YsaUJBQWlCO0VBQ2pCLGNBQWMsRUFBQTs7QUFFbEI7RUFDSSxpQkFBaUI7RUFDakIsY0FBYztFQUNkLGlCQUFpQixFQUFBOztBQUVyQjtFQUNJLGlCQUFpQjtFQUNqQixjQUFjO0VBQ2Qsb0JBQW9CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9TY3JlZW5zL2NoYXQvY2hhdC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIgaW9uLXRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG4gICAgZm9udC1zaXplOiAxNnB4O1xufVxuaW9uLWJhY2stYnV0dG9ue1xuICAtLWNvbG9yOiM0NjIzNzM7XG5cbn1cbmlvbi10b29sYmFye1xuICAtLWJhY2tncm91bmQ6I2Q2YjBmZjtcbn1cbmlvbi1pdGVte1xuICBpb24tbGFiZWx7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG4gICAgY29sb3I6ICM0NjIzNzM7XG4gIH1cbn1cbmlvbi1hdmF0YXJ7XG4gIGJvcmRlcjogMnB4IHNvbGlkICM0NjIzNzM7XG59XG5cbiAgXG4gLnRpdGxle1xuICAgICBcbiAgICAgY29sb3I6ICM0NjIzNzM7XG4gICAgIGZvbnQtc2l6ZTogMTdweDtcbiAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG4uc3VidGl0bGV7XG4gIGZvbnQtc2l6ZTogMTJweDtcbn1cbi5saXN0LWhlYWRlcntcbiAgICBwYWRkaW5nLXRvcDogMHB4O1xuICAgIHBhZGRpbmctYm90dG9tOiAwcHg7XG59XG5cbi5uby1jaGF0e1xuICAgIGJvdHRvbTogMyU7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG4gICAgY29sb3I6ICM0NjIzNzM7XG59XG5pb24tbGFiZWwgaDJ7XG4gICAgZm9udC1zaXplOiBtZWRpdW07XG4gICAgY29sb3I6ICM0NjIzNzM7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5pb24tbGFiZWwgcHtcbiAgICBmb250LXNpemU6IG1lZGl1bTtcbiAgICBjb2xvcjogIzQ2MjM3MztcbiAgICBmb250LXdlaWdodDogbGlnaHRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -88,32 +108,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Services/authentification.service */ "./src/app/Services/authentification.service.ts");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _Models_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/User */ "./src/app/Models/User.ts");
+
+
 
 
 
 
 var ChatPage = /** @class */ (function () {
-    function ChatPage(service) {
+    function ChatPage(service, route) {
         this.service = service;
+        this.route = route;
         this.users = [];
+        this.cache = [];
         this.queryText = '';
     }
     ChatPage.prototype.ngOnInit = function () {
         var _this = this;
-        this.discussions = [];
+        this.cache = [];
+        var p = new _Models_User__WEBPACK_IMPORTED_MODULE_5__["User"]();
         this.service.getUsers().subscribe(function (data) {
             _this.users = [];
             data.forEach(function (d) {
                 var value = firebase_app__WEBPACK_IMPORTED_MODULE_3__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['uid'] != value.uid) {
-                    var p = {
-                        "username": obj.username,
-                        "image": obj.image,
-                        "role": obj.role
-                    };
+                    p = obj;
                     _this.users.push(p);
                 }
+                _this.cache = _this.users;
             });
         });
     };
@@ -121,18 +145,24 @@ var ChatPage = /** @class */ (function () {
         var _this = this;
         var d = [];
         if (this.queryText.length != 0) {
-            this.discussions.forEach(function (el) {
-                if (el["name"].includes(_this.queryText)) {
+            this.users.forEach(function (el) {
+                if (el["username"].includes(_this.queryText)) {
                     d.push(el);
                 }
             });
-            this.discussions = d;
+            this.users = d;
         }
         else {
+            this.users = this.cache;
         }
     };
+    ChatPage.prototype.open = function (id) {
+        var url = "/discussion/" + id;
+        this.route.navigate([url]);
+    };
     ChatPage.ctorParameters = function () { return [
-        { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"] }
+        { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
     ]; };
     ChatPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -140,7 +170,7 @@ var ChatPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./chat.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/chat/chat.page.html"),
             styles: [__webpack_require__(/*! ./chat.page.scss */ "./src/app/Screens/chat/chat.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Services_authentification_service__WEBPACK_IMPORTED_MODULE_2__["AuthentificationService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], ChatPage);
     return ChatPage;
 }());

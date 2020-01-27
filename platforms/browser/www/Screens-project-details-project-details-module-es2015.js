@@ -7,7 +7,23 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>Details</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Budget</ion-list-header>\n     <div >\n      <h3>{{project[\"cost\"]}} DT</h3>\n     </div>\n    </div>\n    <ion-card class=\"welcome-card\">\n   \n    <ion-card-content>\n      <canvas #lineChart></canvas>\n\n    </ion-card-content>\n  </ion-card>\n\n  </div>\n<div class=\"header\">\n  <ion-list-header>\n    Project informations\n  </ion-list-header>\n  <ion-item>\n   \n    <ion-icon [name]=\"icon(project['type'])\" class=\"type-icon\" slot=\"start\"></ion-icon>\n    <ion-label> \n      <h3 class=\"name\">{{project['name']}}</h3>\n     <p class=\"description\">{{project['description']}}</p>\n    </ion-label>\n  </ion-item>\n</div>\n<div class=\"tasks\">\n  \n  <div *ngIf=\"tasks.length>0\">\n    <ion-list-header>\n      Done tasks\n    </ion-list-header>\n   <ion-list >\n     <div *ngFor=\"let task of done; let i = index;\">\n      <ion-item *ngIf=\"task['state']=='done'\">\n        <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"warning\"></ion-icon>\n        <ion-badge color=\"tertiary\" slot=\"end\">{{team[i]}}</ion-badge>\n        <ion-label> \n          <h3 class=\"name\">{{task[\"name\"]}}</h3>\n         <p class=\"description\">{{task[\"description\"]}}</p>\n        </ion-label>\n      </ion-item>\n     </div>\n     <div *ngIf=\"this.done.length==0\"  class=\"no-project\">\n      <ion-label>No done tajs found  </ion-label>\n    </div> \n  </ion-list>\n  <ion-list-header>\n      Pending tasks\n    </ion-list-header>\n   <ion-list>\n    <div  *ngFor=\"let task of tasks; let i = index;\">\n      <ion-item *ngIf=\"task['state']=='to do'\">\n        <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"danger\"></ion-icon>\n        <ion-badge color=\"tertiary\" slot=\"end\">{{team[i]}}</ion-badge>\n        <ion-label> \n          <h3 class=\"name\">{{task[\"name\"]}}</h3>\n         <p class=\"description\">{{task[\"description\"]}}</p>\n        </ion-label>\n      </ion-item>\n      <ion-item *ngIf=\"task['state']=='doing'\">\n        <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"tertiary\"></ion-icon>\n        <ion-badge color=\"tertiary\" slot=\"end\">{{team[i]}}</ion-badge>\n        <ion-label> \n          <h3 class=\"name\">{{task[\"name\"]}}</h3>\n         <p class=\"description\">{{task[\"description\"]}}</p>\n        </ion-label>\n      </ion-item>\n    </div>  \n    <div *ngIf=\"this.tasks.length==0\"  class=\"no-project\">\n      <ion-label>No pending tasks found  </ion-label>\n    </div> \n   </ion-list>\n  </div>\n  \n</div>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>Details</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Budget</ion-list-header>\n     <div >\n      <h3>{{project[\"cost\"]}} DT</h3>\n     </div>\n    </div>\n    <ion-card class=\"welcome-card\">\n   \n    <ion-card-content>\n      <canvas #lineChart></canvas>\n\n    </ion-card-content>\n  </ion-card>\n\n  </div>\n<div class=\"header\">\n  <ion-list-header>\n    Project informations\n  </ion-list-header>\n  <ion-item>\n   \n    <ion-icon [name]=\"icon(project['type'])\" class=\"type-icon\" slot=\"start\"></ion-icon>\n    <ion-label> \n      <h3 class=\"name\">{{project['name']}}</h3>\n     <p class=\"description\">{{project['description']}}</p>\n    </ion-label>\n  </ion-item>\n</div>\n<div class=\"tasks\">\n  \n  <div *ngIf=\"tasks.length>0\">\n    <ion-list-header>\n      Done tasks\n    </ion-list-header>\n   <ion-list >\n     <div *ngFor=\"let task of done; let i = index;\">\n      <ion-item *ngIf=\"task['state']=='done'\">\n        <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"warning\"></ion-icon>\n        <ion-badge color=\"tertiary\" slot=\"end\">{{team[i]}}</ion-badge>\n        <ion-label> \n          <h3 class=\"name\">{{task[\"name\"]}}</h3>\n         <p class=\"description\">{{task[\"description\"]}}</p>\n        </ion-label>\n      </ion-item>\n     </div>\n    \n  </ion-list>\n  <ion-list-header>\n      Pending tasks\n    </ion-list-header>\n   <ion-list>\n    <div  *ngFor=\"let task of tasks; let i = index;\">\n      <ion-item *ngIf=\"task['state']=='to do'\">\n        <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"danger\"></ion-icon>\n        <ion-badge color=\"tertiary\" slot=\"end\">{{team[i]}}</ion-badge>\n        <ion-label> \n          <h3 class=\"name\">{{task[\"name\"]}}</h3>\n         <p class=\"description\">{{task[\"description\"]}}</p>\n        </ion-label>\n      </ion-item>\n      <ion-item *ngIf=\"task['state']=='doing'\">\n        <ion-icon name=\"checkmark-circle\" slot=\"start\" class=\"icon\" color=\"tertiary\"></ion-icon>\n        <ion-badge color=\"tertiary\" slot=\"end\">{{team[i]}}</ion-badge>\n        <ion-label> \n          <h3 class=\"name\">{{task[\"name\"]}}</h3>\n         <p class=\"description\">{{task[\"description\"]}}</p>\n        </ion-label>\n      </ion-item>\n    </div>  \n    <div *ngIf=\"this.tasks.length==0\"  class=\"no-project\">\n      <ion-label>No pending tasks found  </ion-label>\n    </div> \n   </ion-list>\n  </div>\n  \n</div>\n</ion-content>\n"
+
+/***/ }),
+
+/***/ "./src/app/Models/Task.ts":
+/*!********************************!*\
+  !*** ./src/app/Models/Task.ts ***!
+  \********************************/
+/*! exports provided: Task */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Task", function() { return Task; });
+class Task {
+}
+
 
 /***/ }),
 
@@ -92,6 +108,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+/* harmony import */ var _Models_Task__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Task */ "./src/app/Models/Task.ts");
+
+
 
 
 
@@ -102,7 +122,7 @@ let ProjectDetailsPage = class ProjectDetailsPage {
         this.service = service;
         this.route = route;
         this.router = router;
-        this.project = {};
+        this.project = new _Models_Project__WEBPACK_IMPORTED_MODULE_5__["Project"]();
         this.tasks = [];
         this.team = [];
         this.done = [];
@@ -115,42 +135,31 @@ let ProjectDetailsPage = class ProjectDetailsPage {
         });
     }
     ngOnInit() {
+        let p = new _Models_Project__WEBPACK_IMPORTED_MODULE_5__["Project"]();
+        let t = new _Models_Task__WEBPACK_IMPORTED_MODULE_6__["Task"]();
         this.service.getProject(this.id).then(res => {
-            var p = {
-                "name": res.name,
-                "description": res.description,
-                "client": res.client,
-                "manager": res.manager,
-                "type": res.type,
-                "progress": res.progress,
-                "cost": res.cost
-            };
+            p = res;
             this.project = p;
         });
         this.service.getTasks(this.id).forEach(task => {
-            task.forEach(t => {
-                var obj = JSON.parse(JSON.stringify(t.payload.doc.data()));
-                var p = {
-                    "name": obj.name,
-                    "description": obj.description,
-                    "person": obj.person,
-                    "state": obj.state
-                };
-                if (p['state'] != "done") {
-                    this.tasks.push(p);
-                    if (p['state'] == 'to do') {
-                        this.to_do.push(p);
+            task.forEach(task => {
+                var obj = JSON.parse(JSON.stringify(task.payload.doc.data()));
+                t = obj;
+                if (t['state'] != "done") {
+                    this.tasks.push(t);
+                    if (t['state'] == 'to do') {
+                        this.to_do.push(t);
                     }
                     else {
-                        this.doing.push(p);
+                        this.doing.push(t);
                     }
                 }
                 else {
-                    this.done.push(p);
+                    this.done.push(t);
                 }
                 this.data = [this.to_do.length, this.doing.length, this.done.length];
                 this.createLineChart();
-                this.service.getClient(p.person).then(res => {
+                this.service.getClient(t.person).then(res => {
                     this.team.push(res);
                 });
             });

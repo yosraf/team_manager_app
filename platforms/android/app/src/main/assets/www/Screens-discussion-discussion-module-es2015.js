@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>discussion</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n <div class=\"discussion\">\n  <div *ngIf=\"messages.length!=0\">\n    <ion-list >\n      <div *ngFor=\"let msg of messages\" class=\".sender-msg\">\n        <h6 class=\"date\">{{msg.date}}</h6>\n        <ion-item  *ngIf=\"sender==true\"  lines=\"full\" class=\"send\" >\n          <ion-avatar slot=\"start\">\n            <img [src]=\"sender_image\" *ngIf=\"sender_image!=null\">\n            <img src=\"../../../assets/icon/user.png\" *ngIf=\"sender_image==null\">\n          </ion-avatar>\n          <h5>{{msg.text}}</h5>\n         \n        </ion-item>\n        <ion-item  *ngIf=\"sender==false\" lines=\"full\" class=\"rece\" > \n          <ion-avatar slot=\"end\">\n            <img [src]=\"receiver_image\" *ngIf=\"receiver_image!=null\">\n            <img src=\"../../../assets/icon/user.png\" *ngIf=\"receiver_image==null\">\n          </ion-avatar>\n          <h6>{{msg.text}}</h6>\n         \n        </ion-item>\n        \n      </div>\n     \n    \n       \n    </ion-list>\n  </div>\n  <ion-card *ngIf=\"this.messages.length==0\" class=\"no-chat\">\n    <ion-card-content>\n        No discussion Found\n     </ion-card-content>\n</ion-card>\n </div>\n\n</ion-content>\n<ion-footer>\n  <div class=\"sender\">\n \n    <ion-item>\n      <ion-input type=\"text\" [(ngModel)]=\"message\"></ion-input>\n      <ion-icon slot=\"end\" name=\"send\"  (click)=\"send()\"></ion-icon>\n    </ion-item>\n  \n  \n</div >\n</ion-footer>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>discussion</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n <div class=\"discussion\">\n  <div *ngIf=\"messages.length!=0\">\n    <ion-list >\n      <div *ngFor=\"let msg of messages\" class=\"sender-msg\" >\n        <h6 class=\"date\">{{msg.date}}</h6>\n        <ion-item  lines=\"full\" class=\"send\" >\n          <ion-avatar [slot]=\"slot(msg['sender'])\">\n            <div *ngIf=\"slot(msg['sender'])=='start'\" >\n              <img [src]=\"send_img\" *ngIf=\"send_img!=null\">\n              <img src=\"../../../assets/icon/user.png\" *ngIf=\"send_img==null\">\n            </div>\n            <div *ngIf=\"slot(msg['sender'])=='end'\" >\n              <img [src]=\"rec_img\" *ngIf=\"rec_img!=null\">\n              <img src=\"../../../assets/icon/user.png\" *ngIf=\"rec_img==null\">\n            </div>\n           \n          </ion-avatar>\n          <h5>{{msg.text}}</h5>\n         \n        </ion-item>\n      \n        \n      </div>\n     \n    \n       \n    </ion-list>\n  </div>\n  <ion-card *ngIf=\"this.messages.length==0\" class=\"no-chat\">\n    <ion-card-content>\n        No discussion Found\n     </ion-card-content>\n</ion-card>\n </div>\n\n</ion-content>\n<ion-footer>\n  <div class=\"sender\">\n \n    <ion-item>\n      <ion-input type=\"text\" [(ngModel)]=\"message\"></ion-input>\n      <ion-icon slot=\"end\" name=\"send\"  (click)=\"send()\"></ion-icon>\n    </ion-item>\n  \n  \n</div >\n</ion-footer>\n"
 
 /***/ }),
 
@@ -85,6 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Services_chat_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/chat.service */ "./src/app/Services/chat.service.ts");
 /* harmony import */ var _Services_authentification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/authentification.service */ "./src/app/Services/authentification.service.ts");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -96,15 +99,37 @@ let DiscussionPage = class DiscussionPage {
         this.service = service;
         this.auth = auth;
         this.messages = [];
-        this.sender = false;
-        this.receiver_image = null;
-        this.sender_image = null;
         this.route.params.subscribe(params => {
-            console.log(params["id"]);
             this.id = params["id"];
         });
     }
     ngOnInit() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            (yield this.service.AsyncMessages(this.id)).subscribe((res) => {
+                this.messages = [];
+                res.map(value => {
+                    var obj = JSON.parse(JSON.stringify(value.payload.doc.data()));
+                    var now = Date.now();
+                    var d = obj["created_at"];
+                    if (new Date(now).getDay > new Date(d).getDay) {
+                        obj["date"] = (new Date(d)).getTime().toLocaleString();
+                    }
+                    else {
+                        obj["date"] = new Date(d).getHours() + ":" + new Date(d).getMinutes();
+                    }
+                    if (obj['sender'] == firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser.uid) {
+                        this.myid = obj['sender'];
+                    }
+                    else {
+                        this.receiverid = obj['sender'];
+                    }
+                    this.messages.push(obj);
+                });
+            });
+            this.getImage();
+        });
+    }
+    getImage() {
         this.auth.getUsers().subscribe(data => {
             data.forEach(d => {
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
@@ -112,37 +137,14 @@ let DiscussionPage = class DiscussionPage {
                     var p = {
                         "image": obj.image,
                     };
-                    this.sender_image = p.image;
+                    this.send_img = p["image"];
                 }
                 if (obj['uid'] == this.receiverid) {
                     var p = {
                         "image": obj.image,
                     };
-                    this.receiver_image = p.image;
-                    console.log(this.sender_image);
+                    this.rec_img = p["image"];
                 }
-            });
-        });
-        /*let ids=this.id.split("_");
-        this.myid=ids[0];
-        this.receiverid=ids[1];
-        if(this.myid==firebase.auth().currentUser.uid){
-          this.sender=true;
-        }*/
-        this.service.AsyncMessages(this.id).subscribe((res) => {
-            console.log(res);
-            this.messages = [];
-            res.map(value => {
-                var obj = JSON.parse(JSON.stringify(value.payload.doc.data()));
-                var now = Date.now();
-                var d = obj["created_at"];
-                if (new Date(now).getDay > new Date(d).getDay) {
-                    obj["date"] = (new Date(d)).getTime().toLocaleString();
-                }
-                else {
-                    obj["date"] = new Date(d).getHours() + ":" + new Date(d).getMinutes();
-                }
-                this.messages.push(obj);
             });
         });
     }
@@ -151,12 +153,20 @@ let DiscussionPage = class DiscussionPage {
             this.message = "";
         });
     }
-    color(sender) {
-        if (sender == true) {
+    color(id) {
+        if (this.myid == id) {
             return '#d6b0ff';
         }
         else {
             return '#462373';
+        }
+    }
+    slot(id) {
+        if (this.myid == id) {
+            return 'start';
+        }
+        else {
+            return 'end';
         }
     }
 };
@@ -204,12 +214,24 @@ let ChatService = class ChatService {
         this.MESSAGES = "messages";
     }
     AsyncMessages(user2) {
-        let currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
-        var iddoc_1 = `${currentUser.uid}_${user2}`;
-        var iddoc_2 = `${user2}_${currentUser.uid}`;
-        let bool = false;
-        return this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc_1).collection(this.MESSAGES, ref => ref.orderBy("created_at", 'asc')).snapshotChanges();
-        //return  this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc_2).collection(this.MESSAGES,ref=>ref.orderBy("created_at",'asc')).snapshotChanges();
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            let currentUser = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
+            var iddoc_1 = `${currentUser.uid}_${user2}`;
+            var iddoc_2 = `${user2}_${currentUser.uid}`;
+            let bool = false;
+            var iddoc = iddoc_1;
+            var doc = yield this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).ref.get();
+            if (!doc.exists) {
+                var doc2 = yield this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc_2).ref.get();
+                if (!doc2.exists) {
+                    this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).set({ users: [currentUser.uid, user2] });
+                }
+                else
+                    iddoc = iddoc_2;
+            }
+            return this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).collection(this.MESSAGES, ref => ref.orderBy("created_at", 'asc')).snapshotChanges();
+            //return  this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc_2).collection(this.MESSAGES,ref=>ref.orderBy("created_at",'asc')).snapshotChanges();
+        });
     }
     sendMessage(text, user2) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -217,7 +239,7 @@ let ChatService = class ChatService {
             var iddoc = `${currentUser.uid}_${user2}`;
             var docSnap = yield this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).ref.get(); //.collection(this.MESSAGES).doc().set({})
             if (!docSnap.exists) {
-                this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).set({ users: [currentUser.uid, user2] });
+                iddoc = `${user2}_${currentUser.uid}`;
             }
             var now = Date.now();
             yield this.afs.collection(this.COLLECTIONMESSAGE).doc(iddoc).

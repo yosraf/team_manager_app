@@ -57,6 +57,9 @@
     },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "integrator-cordova-plugin-downloader": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {

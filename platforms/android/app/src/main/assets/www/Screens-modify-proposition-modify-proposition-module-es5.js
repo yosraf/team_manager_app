@@ -91,6 +91,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _Models_Proposition__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/Proposition */ "./src/app/Models/Proposition.ts");
 /* harmony import */ var _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/chooser/ngx */ "./node_modules/@ionic-native/chooser/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
@@ -99,10 +101,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ModifyPropositionPage = /** @class */ (function () {
-    function ModifyPropositionPage(route, router, service, formBuilder, chooser) {
+    function ModifyPropositionPage(route, router, loadingController, service, formBuilder, chooser) {
         var _this = this;
         this.route = route;
         this.router = router;
+        this.loadingController = loadingController;
         this.service = service;
         this.formBuilder = formBuilder;
         this.chooser = chooser;
@@ -128,15 +131,51 @@ var ModifyPropositionPage = /** @class */ (function () {
         this.router.navigate([url]);
     };
     ModifyPropositionPage.prototype.modify = function (value) {
-        var _this = this;
-        var data = new _Models_Proposition__WEBPACK_IMPORTED_MODULE_5__["Proposition"]();
-        data.description = value.description;
-        data.name = value.name;
-        data.type = value.type;
-        var file = this.filetoupload;
-        this.service.updateProposition(data, file, this.id).then(function (res) {
-            console.log(res);
-            _this.back(_this.id);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var data, file, load;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        data = new _Models_Proposition__WEBPACK_IMPORTED_MODULE_5__["Proposition"]();
+                        data.description = value.description;
+                        data.name = value.name;
+                        data.type = value.type;
+                        file = this.filetoupload;
+                        console.log(data);
+                        return [4 /*yield*/, this.presentLoadingWithOptions()];
+                    case 1:
+                        load = _a.sent();
+                        load.present();
+                        return [4 /*yield*/, this.service.updateProposition(data, file, this.id).then(function () {
+                                console.log("finishing update");
+                                load.dismiss();
+                                _this.back(_this.id);
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ModifyPropositionPage.prototype.presentLoadingWithOptions = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            //   duration: 5000,
+                            message: 'Please wait...',
+                            translucent: true,
+                            showBackdrop: true,
+                            cssClass: 'custom-class custom-loading'
+                        })];
+                    case 1:
+                        loading = _a.sent();
+                        return [2 /*return*/, loading];
+                }
+            });
         });
     };
     ModifyPropositionPage.prototype.selectfile = function () {
@@ -158,6 +197,7 @@ var ModifyPropositionPage = /** @class */ (function () {
     ModifyPropositionPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"] },
         { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] },
         { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
         { type: _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_6__["Chooser"] }
@@ -169,6 +209,7 @@ var ModifyPropositionPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./modify-proposition.page.scss */ "./src/app/Screens/modify-proposition/modify-proposition.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"],
             _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
             _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_6__["Chooser"]])
     ], ModifyPropositionPage);

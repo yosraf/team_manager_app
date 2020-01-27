@@ -88,6 +88,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _Models_Proposition__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/Proposition */ "./src/app/Models/Proposition.ts");
 /* harmony import */ var _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/chooser/ngx */ "./node_modules/@ionic-native/chooser/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
@@ -96,9 +98,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ModifyPropositionPage = class ModifyPropositionPage {
-    constructor(route, router, service, formBuilder, chooser) {
+    constructor(route, router, loadingController, service, formBuilder, chooser) {
         this.route = route;
         this.router = router;
+        this.loadingController = loadingController;
         this.service = service;
         this.formBuilder = formBuilder;
         this.chooser = chooser;
@@ -123,14 +126,32 @@ let ModifyPropositionPage = class ModifyPropositionPage {
         this.router.navigate([url]);
     }
     modify(value) {
-        let data = new _Models_Proposition__WEBPACK_IMPORTED_MODULE_5__["Proposition"]();
-        data.description = value.description;
-        data.name = value.name;
-        data.type = value.type;
-        let file = this.filetoupload;
-        this.service.updateProposition(data, file, this.id).then(res => {
-            console.log(res);
-            this.back(this.id);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            let data = new _Models_Proposition__WEBPACK_IMPORTED_MODULE_5__["Proposition"]();
+            data.description = value.description;
+            data.name = value.name;
+            data.type = value.type;
+            let file = this.filetoupload;
+            console.log(data);
+            var load = yield this.presentLoadingWithOptions();
+            load.present();
+            yield this.service.updateProposition(data, file, this.id).then(() => {
+                console.log("finishing update");
+                load.dismiss();
+                this.back(this.id);
+            });
+        });
+    }
+    presentLoadingWithOptions() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const loading = yield this.loadingController.create({
+                //   duration: 5000,
+                message: 'Please wait...',
+                translucent: true,
+                showBackdrop: true,
+                cssClass: 'custom-class custom-loading'
+            });
+            return loading;
         });
     }
     selectfile() {
@@ -143,6 +164,7 @@ let ModifyPropositionPage = class ModifyPropositionPage {
 ModifyPropositionPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"] },
     { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
     { type: _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_6__["Chooser"] }
@@ -154,6 +176,7 @@ ModifyPropositionPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [__webpack_require__(/*! ./modify-proposition.page.scss */ "./src/app/Screens/modify-proposition/modify-proposition.page.scss")]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"],
         _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
         _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_6__["Chooser"]])
 ], ModifyPropositionPage);

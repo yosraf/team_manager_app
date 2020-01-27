@@ -90,6 +90,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -147,14 +149,21 @@ var ModifyProjectPage = /** @class */ (function () {
                 }
             });
         }
-        var data = {
-            "name": value.name,
-            "description": value.description,
-            "client": client,
-            "manager": this.project.manager,
-            "progress": this.project.progress,
-            "type": value.type
-        };
+        var data = new _Models_Project__WEBPACK_IMPORTED_MODULE_5__["Project"]();
+        data.name = value.name;
+        data.description = value.description;
+        data.client = client;
+        data.manager = this.project.manager;
+        data.progress = this.project.progress;
+        data.type = this.project.type;
+        /*let data={
+          "name":value.name,
+          "description":value.description,
+          "client":client,
+          "manager":this.project.manager,
+          "progress":this.project.progress,
+          "type":value.type
+        }*/
         this.service.update(data, this.id).then(function (res) {
             _this.back(_this.id);
         });

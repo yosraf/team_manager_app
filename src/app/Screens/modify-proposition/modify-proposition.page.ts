@@ -4,6 +4,7 @@ import{ProjectsService} from '../../Services/projects.service';
 import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
 import {Proposition} from "../../Models/Proposition";
 import { Chooser } from '@ionic-native/chooser/ngx';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modify-proposition',
@@ -17,6 +18,7 @@ export class ModifyPropositionPage implements OnInit {
   validation: FormGroup;
   filetoupload:any=null;
   constructor(private route: ActivatedRoute,private router:Router,
+    public loadingController: LoadingController,
     private service:ProjectsService,private formBuilder: FormBuilder
     
     
@@ -55,20 +57,34 @@ export class ModifyPropositionPage implements OnInit {
     let url="/proposition-details/"+id;
     this.router.navigate([url])
   }
-  modify(value){
+  async modify(value){
     
     let data= new Proposition();
     data.description=value.description;
     data.name=value.name;
     data.type=value.type;
     let file=this.filetoupload;
-    this.service.updateProposition(data,file,this.id).then(res=>{
-      console.log(res);
+    console.log(data);
+    var load=await this.presentLoadingWithOptions();
+    load.present();
+    await this.service.updateProposition(data,file,this.id).then(()=>{
+      console.log("finishing update");
+      load.dismiss();
+     
       this.back(this.id);
-
     })
 
     
+  }
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+   //   duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      showBackdrop:true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return  loading;
   }
   async selectfile(){
     this.filetoupload= await this.chooser.getFile("application/pdf");

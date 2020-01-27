@@ -2792,7 +2792,7 @@ var LongPressModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n      </ion-buttons>\n      <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openRejected()\" class=\"btn\"></ion-icon>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-refresher slot=\"fixed\" \n(ionRefresh)=\"ionRefresh($event)\" \n(ionPull)=\"ionPull($event)\" \n(ionStart)=\"ionStart($event)\">\n  <ion-refresher-content\n    pullingIcon=\"arrow-dropdown\"\n    pullingText=\"Pull to refresh\"\n    refreshingSpinner=\"circles\"\n    refreshingText=\"Refreshing...\">\n  </ion-refresher-content>\n</ion-refresher>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n     <div >\n      <h3>{{spent}} DT</h3>\n     </div>\n    </div>\n  \n      <ion-card class=\"welcome-card\">\n       \n        <ion-card-content>\n          <canvas #dognutChart></canvas>\n        </ion-card-content>\n      </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{d['name']}}</b></h5>\n           <p>{{d['description']}}</p>\n\n        </div>\n        \n      </div>\n    </ion-list>\n   \n   \n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n  \n    <ion-label>No projects yet  </ion-label>\n  \n  </div > \n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n    </ion-buttons>\n    <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openRejected()\" class=\"btn\"></ion-icon>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\" (ionPull)=\"ionPull($event)\"\n    (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Pull to refresh\" refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n      <div>\n        <h3>{{spent}} DT</h3>\n      </div>\n    </div>\n\n    <ion-card class=\"welcome-card\">\n\n      <ion-card-content>\n        <canvas #dognutChart></canvas>\n      </ion-card-content>\n    </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5><b>{{d['name']}}</b></h5>\n          <p>{{d['description']}}</p>\n\n        </div>\n\n      </div>\n    </ion-list>\n\n\n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n\n    <ion-label>No projects yet </ion-label>\n\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -2815,6 +2815,28 @@ module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-butt
 /***/ (function(module, exports) {
 
 module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n      </ion-buttons>\n    <ion-title class=\"title\">\n      Projects\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-refresher slot=\"fixed\" \n(ionRefresh)=\"ionRefresh($event)\" \n(ionPull)=\"ionPull($event)\" \n(ionStart)=\"ionStart($event)\">\n  <ion-refresher-content\n    pullingIcon=\"arrow-dropdown\"\n    pullingText=\"Pull to refresh\"\n    refreshingSpinner=\"circles\"\n    refreshingText=\"Refreshing...\">\n  </ion-refresher-content>\n</ion-refresher>\n<ion-list-header class=\"list-header\">\n  Projects\n</ion-list-header>\n <ion-list *ngIf=\"this.projects.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of projects\" (click)=\"open(d['id'])\" >\n        <div class=\"project-info\">\n          <circle-progress\n              [percent]=\"d['progress']\"\n              [radius]=\"30\"\n              [outerStrokeWidth]=\"6\"\n              [innerStrokeWidth]=\"1\"\n              [showSubtitle]=\"false\"\n              [titleColor]=\"color(d['type'])\"\n              [unitsColor]=\"'#8e44ad'\"\n              [outerStrokeColor]=\"color(d['type'])\"\n              [innerStrokeColor]=\"color(d['type'])\"\n              [animation]=\"false\"\n              [animationDuration]=\"300\"></circle-progress>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{d['name']}}</b></h5>\n           <p>{{d['description']}}</p>\n\n        </div>\n       \n        \n      </div>\n    </ion-list>\n    <ion-card *ngIf=\"this.projects.length==0\"  class=\"no-project\">\n      <ion-card-content>\n        No project Found\n      </ion-card-content>\n  </ion-card>\n    \n  \n  <ion-list-header class=\"list-header\">\n    Propositions\n  </ion-list-header>\n  <ion-card *ngIf=\"this.propositions.length==0\"  class=\"no-project\">\n    <ion-card-content>\n      No proposition Found\n    </ion-card-content>\n</ion-card>\n \n<ion-list *ngIf=\"this.propositions.length>0\">\n\n  <div  class=\"prop-card\" *ngFor=\"let d of propositions\"  >\n    <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n      <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n    </div>\n    <div class=\"container\" (click)=\"openProp(d['id'])\" >\n      <h5 ><b>{{d['name']}}</b></h5>\n      <p>{{d['description']}}</p>\n\n    </div>\n    <div class=\"delete\">\n      <ion-icon name=\"md-trash\" class=\"deleteIcon\" (click)=\"deleteAlert(d['id'])\"></ion-icon>\n\n    </div>\n    \n  </div>\n</ion-list>\n  <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" #fab>\n      <ion-fab-button  routerLink=\"/project-proposition\">\n        <ion-icon name=\"add\"></ion-icon>\n      </ion-fab-button>\n    \n    </ion-fab>\n</ion-content>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/Components/developer-hcontent/developer-hcontent.component.html":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/Components/developer-hcontent/developer-hcontent.component.html ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n      </ion-buttons>\n      <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openRejected()\" class=\"btn\"></ion-icon>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-refresher slot=\"fixed\" \n(ionRefresh)=\"ionRefresh($event)\" \n(ionPull)=\"ionPull($event)\" \n(ionStart)=\"ionStart($event)\">\n  <ion-refresher-content\n    pullingIcon=\"arrow-dropdown\"\n    pullingText=\"Pull to refresh\"\n    refreshingSpinner=\"circles\"\n    refreshingText=\"Refreshing...\">\n  </ion-refresher-content>\n</ion-refresher>\n \n  <!--\n     <div>\n     <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n     <div >\n      <h3>{{spent}} DT</h3>\n     </div>\n    </div>\n  \n      <ion-card class=\"welcome-card\">\n       \n        <ion-card-content>\n          <canvas #dognutChart></canvas>\n        </ion-card-content>\n      </ion-card>\n  </div>\n  --> \n\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{d['name']}}</b></h5>\n           <p>{{d['description']}}</p>\n\n        </div>\n        \n      </div>\n    </ion-list>\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n  \n    <ion-label>No projects yet  </ion-label>\n  \n  </div > \n</ion-content>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/Components/developer-home-content/developer-home-content.component.html":
+/*!*******************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/Components/developer-home-content/developer-home-content.component.html ***!
+  \*******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"developerHome\">\n      <ion-icon name=\"home\" ></ion-icon>\n      <ion-label> Home</ion-label>\n    </ion-tab-button>\n    <ion-tab-button tab=\"developerProjects\">\n          <ion-icon name=\"laptop\"></ion-icon>\n          <ion-label>Projects</ion-label>\n    </ion-tab-button>\n   \n  </ion-tab-bar>\n</ion-tabs>\n"
 
 /***/ }),
 
@@ -2858,7 +2880,7 @@ module.exports = "<ion-header>\n    <ion-toolbar>\n        <ion-buttons slot=\"s
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<app-home-content *ngIf=\"data['role']=='manager'\"></app-home-content>\n<app-client-home-content *ngIf=\"data['role']=='client'\"></app-client-home-content>\n\n"
+module.exports = "\n<app-home-content *ngIf=\"data['role']=='manager'\"></app-home-content>\n<app-client-home-content *ngIf=\"data['role']=='client'\"></app-client-home-content>\n<app-developer-home-content *ngIf=\"data['role']=='developer'\"></app-developer-home-content>\n\n\n"
 
 /***/ }),
 
@@ -2891,6 +2913,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -2908,23 +2932,17 @@ var ClientHContentComponent = /** @class */ (function () {
     }
     ClientHContentComponent.prototype.ngOnInit = function () {
         var _this = this;
+        var p = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
         this.service.AsyncProjects().subscribe(function (data) {
             _this.projects = [];
             data.forEach(function (d) {
                 var value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['client'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "progress": obj.progress,
-                        "type": obj.type,
-                        "id": d.payload.doc.id,
-                        "cost": obj.cost
-                    };
-                    _this.spent = +p.cost;
+                    p = obj;
+                    p.id = d.payload.doc.id;
+                    _this.spent = _this.spent + p.cost;
+                    console.log(_this.spent);
                     _this.projects.push(p);
                     if (p.progress == 100) {
                         _this.finished.push(p);
@@ -3116,6 +3134,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -3136,19 +3156,14 @@ var ClientProjectsComponent = /** @class */ (function () {
         this.propositions = [];
         this.isShow = true;
         var value = firebase_app__WEBPACK_IMPORTED_MODULE_4__["auth"]().currentUser;
+        var p = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
         this.service.AsyncPropositions().subscribe(function (data) {
             _this.propositions = [];
             data.map(function (d) {
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['client'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "type": obj.type,
-                        "id": d.payload.doc.id
-                    };
+                    p = obj;
+                    p.id = d.payload.doc.id;
                     _this.propositions.push(p);
                 }
             });
@@ -3288,6 +3303,239 @@ var ClientProjectsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/Components/developer-hcontent/developer-hcontent.component.scss":
+/*!*********************************************************************************!*\
+  !*** ./src/app/Components/developer-hcontent/developer-hcontent.component.scss ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "ion-toolbar {\n  --background:#d6b0ff; }\n\n.title {\n  color: #462373; }\n\n.stats {\n  color: #462373;\n  font-size: 18px; }\n\n.projects {\n  color: #462373;\n  font-size: 15px; }\n\nion-card, .card-ios, .card-md {\n  border: 0 !important;\n  box-shadow: none !important;\n  border: none !important;\n  border-style: none !important;\n  position: relative; }\n\n.welcome-card {\n  margin: 0 auto; }\n\n.card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  height: 75px;\n  width: 90%;\n  display: -webkit-box;\n  display: flex; }\n\n.card .container {\n    width: 75%;\n    padding-left: 5px; }\n\n.card .container h5 {\n      color: #462373; }\n\n.card .container p {\n      color: #8395a7; }\n\n.card .project-info {\n    width: 25%;\n    text-align: center;\n    border-top-left-radius: 6px;\n    border-bottom-left-radius: 6px; }\n\n.card .project-info .icon {\n      font-size: 30px;\n      margin-top: 25%;\n      color: white; }\n\n.no-project {\n  padding-left: 5%;\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  margin-top: 30px;\n  height: 7%;\n  width: 90%; }\n\n.no-project ion-label {\n    color: #462373;\n    font-size: 15px;\n    text-align: center; }\n\n.btn {\n  color: #462373;\n  font-size: 30px;\n  padding-right: 10px; }\n\n.hello-card {\n  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.4);\n  border-radius: 6px;\n  margin: 0 auto;\n  margin-bottom: 10px;\n  margin-top: 30px;\n  height: 13%;\n  width: 90%;\n  background-color: #462373; }\n\n.hello-card h3 {\n    font-weight: bold;\n    margin: 0 auto;\n    margin-left: 18px;\n    font-size: 35px;\n    color: white; }\n\n.hello-card ion-list-header {\n    color: white;\n    font-size: 18px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2RldmVsb3Blci1oY29udGVudC9kZXZlbG9wZXItaGNvbnRlbnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxvQkFBYSxFQUFBOztBQUdqQjtFQUNJLGNBQWEsRUFBQTs7QUFFakI7RUFDSSxjQUFhO0VBQ2IsZUFBZSxFQUFBOztBQUluQjtFQUNPLGNBQWE7RUFFaEIsZUFBZSxFQUFBOztBQUVuQjtFQUNJLG9CQUFvQjtFQUNwQiwyQkFBMkI7RUFDM0IsdUJBQXVCO0VBQ3ZCLDZCQUE2QjtFQUM3QixrQkFBa0IsRUFBQTs7QUFFcEI7RUFDSSxjQUFjLEVBQUE7O0FBRWxCO0VBQ0UsNkNBQTZDO0VBQzdDLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsbUJBQW1CO0VBQ25CLFlBQVc7RUFDWCxVQUFVO0VBQ1Ysb0JBQWE7RUFBYixhQUFhLEVBQUE7O0FBUGY7SUFTTSxVQUFVO0lBQ1YsaUJBQWlCLEVBQUE7O0FBVnZCO01BWVUsY0FBYSxFQUFBOztBQVp2QjtNQWVVLGNBQWMsRUFBQTs7QUFmeEI7SUE0QlEsVUFBUztJQUNULGtCQUFrQjtJQUNsQiwyQkFBMkI7SUFDM0IsOEJBQThCLEVBQUE7O0FBL0J0QztNQXVCWSxlQUFlO01BQ2YsZUFBZTtNQUNmLFlBQVksRUFBQTs7QUFXeEI7RUFDSSxnQkFBZTtFQUNkLDZDQUE2QztFQUM1QyxrQkFBa0I7RUFDbEIsY0FBYztFQUNkLG1CQUFtQjtFQUNuQixnQkFBZ0I7RUFDaEIsVUFBUztFQUNULFVBQVUsRUFBQTs7QUFSaEI7SUFVTSxjQUFhO0lBQ2IsZUFBZTtJQUNmLGtCQUFrQixFQUFBOztBQUd4QjtFQUVFLGNBQWE7RUFDYixlQUFlO0VBQ2YsbUJBQW1CLEVBQUE7O0FBR3RCO0VBQ0csNkNBQTZDO0VBQzdDLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsbUJBQW1CO0VBQ25CLGdCQUFnQjtFQUNoQixXQUFVO0VBQ1YsVUFBVTtFQUNWLHlCQUF5QixFQUFBOztBQVI1QjtJQVdPLGlCQUFpQjtJQUNqQixjQUFjO0lBQ2QsaUJBQWlCO0lBQ2pCLGVBQWU7SUFDZixZQUFZLEVBQUE7O0FBZm5CO0lBa0JPLFlBQVc7SUFDWCxlQUFlLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9Db21wb25lbnRzL2RldmVsb3Blci1oY29udGVudC9kZXZlbG9wZXItaGNvbnRlbnQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tdG9vbGJhcntcbiAgICAtLWJhY2tncm91bmQ6I2Q2YjBmZjtcbn1cblxuLnRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59XG4uc3RhdHN7XG4gICAgY29sb3I6IzQ2MjM3MztcbiAgICBmb250LXNpemU6IDE4cHg7XG4gICBcblxufVxuLnByb2plY3Rze1xuICAgICAgIGNvbG9yOiM0NjIzNzM7XG4gICAgXG4gICAgZm9udC1zaXplOiAxNXB4Oztcbn1cbmlvbi1jYXJkLCAuY2FyZC1pb3MsIC5jYXJkLW1kIHtcbiAgICBib3JkZXI6IDAgIWltcG9ydGFudDtcbiAgICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyOiBub25lICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLXN0eWxlOiBub25lICFpbXBvcnRhbnQ7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB9XG4gIC53ZWxjb21lLWNhcmR7XG4gICAgICBtYXJnaW46IDAgYXV0bztcbiAgfVxuICAuY2FyZCB7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IC00cHggcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgICBtYXJnaW46IDAgYXV0bztcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICAgIGhlaWdodDo3NXB4O1xuICAgIHdpZHRoOiA5MCU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICAuY29udGFpbmVyIHtcbiAgICAgICAgd2lkdGg6IDc1JTtcbiAgICAgICAgcGFkZGluZy1sZWZ0OiA1cHg7XG4gICAgICAgIGg1e1xuICAgICAgICAgICAgY29sb3I6IzQ2MjM3MztcbiAgICAgICAgfVxuICAgICAgICBwe1xuICAgICAgICAgICAgY29sb3I6ICM4Mzk1YTc7XG4gICAgICAgIH1cbiAgICAgICAgICAgICBcbiBcblxuICAgICAgfVxuICAgICAgLnByb2plY3QtaW5mb3tcbiAgICAgICAgICAgIC5pY29ue1xuICAgICAgICAgICAgICBmb250LXNpemU6IDMwcHg7XG4gICAgICAgICAgICAgIG1hcmdpbi10b3A6IDI1JTtcbiAgICAgICAgICAgICAgY29sb3I6IHdoaXRlO1xuICAgICAgICAgIH1cblxuICAgICAgICAgIHdpZHRoOjI1JTtcbiAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgYm9yZGVyLXRvcC1sZWZ0LXJhZGl1czogNnB4O1xuICAgICAgICAgIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDZweDtcblxuXG4gICAgICB9XG4gIH1cbiAgLm5vLXByb2plY3R7XG4gICAgICBwYWRkaW5nLWxlZnQ6NSU7XG4gICAgICAgYm94LXNoYWRvdzogMCA0cHggOHB4IC00cHggcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICAgIG1hcmdpbjogMCBhdXRvO1xuICAgICAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICAgICAgICBtYXJnaW4tdG9wOiAzMHB4O1xuICAgICAgICBoZWlnaHQ6NyU7XG4gICAgICAgIHdpZHRoOiA5MCU7XG4gICAgIGlvbi1sYWJlbHtcbiAgICAgICAgY29sb3I6IzQ2MjM3MztcbiAgICAgICAgZm9udC1zaXplOiAxNXB4O1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgIH1cbiAgfVxuICAuYnRue1xuICAgXG4gICAgY29sb3I6IzQ2MjM3MztcbiAgICBmb250LXNpemU6IDMwcHg7XG4gICAgcGFkZGluZy1yaWdodDogMTBweDtcbiAgICAgXG4gfVxuIC5oZWxsby1jYXJke1xuICAgIGJveC1zaGFkb3c6IDAgNHB4IDhweCAtNHB4IHJnYmEoMCwgMCwgMCwgMC40KTtcbiAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgbWFyZ2luLWJvdHRvbTogMTBweDtcbiAgICBtYXJnaW4tdG9wOiAzMHB4O1xuICAgIGhlaWdodDoxMyU7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDYyMzczO1xuXG4gICAgaDN7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgICAgICBtYXJnaW46IDAgYXV0bztcbiAgICAgICAgbWFyZ2luLWxlZnQ6IDE4cHg7XG4gICAgICAgIGZvbnQtc2l6ZTogMzVweDtcbiAgICAgICAgY29sb3I6IHdoaXRlO1xuICAgIH1cbiAgICBpb24tbGlzdC1oZWFkZXJ7XG4gICAgICAgIGNvbG9yOndoaXRlO1xuICAgICAgICBmb250LXNpemU6IDE4cHg7XG4gICAgfVxuIH0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/Components/developer-hcontent/developer-hcontent.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/Components/developer-hcontent/developer-hcontent.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: DeveloperHcontentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeveloperHcontentComponent", function() { return DeveloperHcontentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _Services_task_dev_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/task-dev.service */ "./src/app/Services/task-dev.service.ts");
+
+
+
+
+var DeveloperHcontentComponent = /** @class */ (function () {
+    function DeveloperHcontentComponent(route, service) {
+        this.route = route;
+        this.service = service;
+        this.projects = [];
+        this.finished = [];
+        this.doing = [];
+        this.spent = 0;
+        this.projectIds = [];
+    }
+    DeveloperHcontentComponent.prototype.ngOnInit = function () {
+        this.projects = this.service.getProjects();
+        console.log(this.projects);
+        /*this.service.AsyncProjects().subscribe(
+          data => {
+            this.projects=[];
+            data.forEach(d=>{
+              let value = firebase.auth().currentUser;
+              var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
+              if (obj['client'] == value.uid) {
+                var p= {
+                  "name": obj.name,
+                  "description": obj.description,
+                  "manager": obj.manager,
+                  "client": obj.client,
+                  "progress": obj.progress,
+                  "type": obj.type,
+                  "id": d.payload.doc.id,
+                  "cost":obj.cost
+                };
+                this.spent=+p.cost;
+                this.projects.push(p);
+                if(p.progress==100){
+                  this.finished.push(p)
+                }
+                else{
+                  this.doing.push(p)
+                }
+    
+              }
+            });
+            this.createDonutsChart();
+    
+    
+          }
+        );
+      }
+    
+    
+      getProjects() {
+    
+        this.projects = [];
+        this.service.getClientProjects().then(res => {
+    
+          res.forEach(element => {
+            this.projects.push(element);
+    
+    
+          });
+    
+        },
+          err => {
+            console.log(err);
+          }
+        );
+    
+      }
+      async createDonutsChart() {
+       
+        this.dognut = new Chart(this.dognutChart.nativeElement, {
+          type: 'doughnut',
+          data: {
+            labels: ['finished projects', 'upgoing projects'],
+            datasets: [{
+              label: 'Projects',
+              data: [this.finished.length,this.doing.length],
+              backgroundColor: [ '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+        });
+      }
+      color(type){
+        if(type=="web"){
+          return "#462373";
+        }
+        if(type=="mobile"){
+          return "#a55eea";
+        }
+        if(type=="data"){
+          return "#8e44ad";
+        }
+       }
+      icon(type) {
+        if (type == "web") {
+          return "md-desktop";
+        }
+        if (type == "mobile") {
+          return "md-phone-portrait";
+        }
+        if (type == "data") {
+          return "md-analytics";
+        }
+      }
+      openproject(id) {
+        this.route.navigate(["/project-details"])
+    
+      }
+      ionRefresh(event) {
+        setTimeout(() => {
+          this.getProjects();
+          event.target.complete();
+        }, 2000);
+      }
+      ionPull(event) {
+        console.log('ionPull Event Triggered!');
+      }
+      ionStart(event) {
+        console.log('ionStart Event Triggered!');
+      }
+      openRejected(){
+        this.route.navigate(["/rejected-propositions"]);
+      }
+      openProject(value){
+        let url='/project-details/'+value
+        this.route.navigate([url])
+      }*/
+    };
+    DeveloperHcontentComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _Services_task_dev_service__WEBPACK_IMPORTED_MODULE_3__["TaskDevService"] }
+    ]; };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('dognutChart', { static: false }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], DeveloperHcontentComponent.prototype, "dognutChart", void 0);
+    DeveloperHcontentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-developer-hcontent',
+            template: __webpack_require__(/*! raw-loader!./developer-hcontent.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/developer-hcontent/developer-hcontent.component.html"),
+            styles: [__webpack_require__(/*! ./developer-hcontent.component.scss */ "./src/app/Components/developer-hcontent/developer-hcontent.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_task_dev_service__WEBPACK_IMPORTED_MODULE_3__["TaskDevService"]])
+    ], DeveloperHcontentComponent);
+    return DeveloperHcontentComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/Components/developer-home-content/developer-home-content.component.scss":
+/*!*****************************************************************************************!*\
+  !*** ./src/app/Components/developer-home-content/developer-home-content.component.scss ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "ion-icon, ion-label {\n  color: #462373; }\n\nion-tab-bar {\n  --color-selected:#ff6b6b !important; }\n\nion-title {\n  color: #462373; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3lvc3JhZmF0bmFzc2kvQnVyZWF1LzNpbmcvbW9iaWxlL3RlYW1fbWFuYWdlcl9hcHAvc3JjL2FwcC9Db21wb25lbnRzL2RldmVsb3Blci1ob21lLWNvbnRlbnQvZGV2ZWxvcGVyLWhvbWUtY29udGVudC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQWMsRUFBQTs7QUFFbEI7RUFDSSxtQ0FBaUIsRUFBQTs7QUFFckI7RUFDSSxjQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9Db21wb25lbnRzL2RldmVsb3Blci1ob21lLWNvbnRlbnQvZGV2ZWxvcGVyLWhvbWUtY29udGVudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1pY29uLGlvbi1sYWJlbHtcbiAgICBjb2xvcjogIzQ2MjM3Mztcbn1cbmlvbi10YWItYmFye1xuICAgIC0tY29sb3Itc2VsZWN0ZWQ6I2ZmNmI2YiAhaW1wb3J0YW50O1xufVxuaW9uLXRpdGxle1xuICAgIGNvbG9yOiM0NjIzNzM7XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/Components/developer-home-content/developer-home-content.component.ts":
+/*!***************************************************************************************!*\
+  !*** ./src/app/Components/developer-home-content/developer-home-content.component.ts ***!
+  \***************************************************************************************/
+/*! exports provided: DeveloperHomeContentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeveloperHomeContentComponent", function() { return DeveloperHomeContentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var DeveloperHomeContentComponent = /** @class */ (function () {
+    function DeveloperHomeContentComponent() {
+    }
+    DeveloperHomeContentComponent.prototype.ngOnInit = function () { };
+    DeveloperHomeContentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-developer-home-content',
+            template: __webpack_require__(/*! raw-loader!./developer-home-content.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/developer-home-content/developer-home-content.component.html"),
+            styles: [__webpack_require__(/*! ./developer-home-content.component.scss */ "./src/app/Components/developer-home-content/developer-home-content.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], DeveloperHomeContentComponent);
+    return DeveloperHomeContentComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/Components/h-content/h-content.component.scss":
 /*!***************************************************************!*\
   !*** ./src/app/Components/h-content/h-content.component.scss ***!
@@ -3317,6 +3565,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -3335,31 +3585,29 @@ var HContentComponent = /** @class */ (function () {
     }
     HContentComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var cache;
         this.service.AsyncProjects().subscribe(function (data) {
+            _this.cost = 0;
             _this.projects = [];
+            _this.highest_pro = [];
             _this.costs = [];
             _this.labels = [];
+            var cache = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
+            var p = new _Models_Project__WEBPACK_IMPORTED_MODULE_6__["Project"]();
             data.forEach(function (d) {
                 var value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['manager'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "progress": obj.progress,
-                        "type": obj.type,
-                        "id": d.payload.doc.id,
-                        "cost": obj.cost
-                    };
+                    p = obj;
+                    p.id = d.payload.doc.id;
                     if (cache) {
                         if (cache.cost < p.cost) {
                             _this.highest_pro.push(p);
                         }
+                        if (cache.cost > p.cost) {
+                            _this.highest_pro.push(cache);
+                        }
                     }
-                    _this.cost += p.cost;
+                    _this.cost = _this.cost + p.cost;
                     _this.projects.push(p);
                     _this.labels.push(p.name);
                     _this.costs.push(p.cost);
@@ -3546,6 +3794,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _Models_Project__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -3564,21 +3814,15 @@ var ProjectsComponent = /** @class */ (function () {
     ProjectsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.isShow = true;
+        var p = new _Models_Project__WEBPACK_IMPORTED_MODULE_7__["Project"]();
         this.service.AsyncProjects().subscribe(function (data) {
             _this.projects = [];
             data.forEach(function (d) {
                 var value = firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser;
                 var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
                 if (obj['manager'] == value.uid) {
-                    var p = {
-                        "name": obj.name,
-                        "description": obj.description,
-                        "manager": obj.manager,
-                        "client": obj.client,
-                        "progress": obj.progress,
-                        "type": obj.type,
-                        "id": d.payload.doc.id
-                    };
+                    p = obj;
+                    p.id = d.payload.doc.id;
                     _this.projects.push(p);
                 }
             });
@@ -3659,10 +3903,8 @@ var ProjectsComponent = /** @class */ (function () {
         }, 2000);
     };
     ProjectsComponent.prototype.ionPull = function (event) {
-        //Emitted while the user is pulling down the content and exposing the refresher.
     };
     ProjectsComponent.prototype.ionStart = function (event) {
-        //Emitted when the user begins to start pulling down.
     };
     ProjectsComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
@@ -3710,8 +3952,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_client_hcontent_client_hcontent_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/client-hcontent/client-hcontent.component */ "./src/app/Components/client-hcontent/client-hcontent.component.ts");
 /* harmony import */ var _Components_client_projects_client_projects_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Components/client-projects/client-projects.component */ "./src/app/Components/client-projects/client-projects.component.ts");
 /* harmony import */ var _Components_client_home_content_client_home_content_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Components/client-home-content/client-home-content.component */ "./src/app/Components/client-home-content/client-home-content.component.ts");
-/* harmony import */ var ionic_long_press__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ionic-long-press */ "./node_modules/ionic-long-press/fesm5/ionic-long-press.js");
-/* harmony import */ var ng_circle_progress__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng-circle-progress */ "./node_modules/ng-circle-progress/index.js");
+/* harmony import */ var _Components_developer_hcontent_developer_hcontent_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../Components/developer-hcontent/developer-hcontent.component */ "./src/app/Components/developer-hcontent/developer-hcontent.component.ts");
+/* harmony import */ var _Components_developer_home_content_developer_home_content_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../Components/developer-home-content/developer-home-content.component */ "./src/app/Components/developer-home-content/developer-home-content.component.ts");
+/* harmony import */ var ionic_long_press__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ionic-long-press */ "./node_modules/ionic-long-press/fesm5/ionic-long-press.js");
+/* harmony import */ var ng_circle_progress__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ng-circle-progress */ "./node_modules/ng-circle-progress/index.js");
+
+
 
 
 
@@ -3752,7 +3998,11 @@ var routes = [
             {
                 path: 'clientHome',
                 component: _Components_client_hcontent_client_hcontent_component__WEBPACK_IMPORTED_MODULE_10__["ClientHContentComponent"]
-            }
+            },
+            {
+                path: 'developerHome',
+                component: _Components_developer_hcontent_developer_hcontent_component__WEBPACK_IMPORTED_MODULE_13__["DeveloperHcontentComponent"]
+            },
         ],
     },
 ];
@@ -3766,8 +4016,8 @@ var HomesPageModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes),
-                ionic_long_press__WEBPACK_IMPORTED_MODULE_13__["LongPressModule"],
-                ng_circle_progress__WEBPACK_IMPORTED_MODULE_14__["NgCircleProgressModule"].forRoot({
+                ionic_long_press__WEBPACK_IMPORTED_MODULE_15__["LongPressModule"],
+                ng_circle_progress__WEBPACK_IMPORTED_MODULE_16__["NgCircleProgressModule"].forRoot({
                     // set defaults here
                     radius: 50,
                 }),
@@ -3778,7 +4028,9 @@ var HomesPageModule = /** @class */ (function () {
                 _Components_projects_projects_component__WEBPACK_IMPORTED_MODULE_9__["ProjectsComponent"],
                 _Components_client_home_content_client_home_content_component__WEBPACK_IMPORTED_MODULE_12__["ClientHomeContentComponent"],
                 _Components_client_hcontent_client_hcontent_component__WEBPACK_IMPORTED_MODULE_10__["ClientHContentComponent"],
-                _Components_client_projects_client_projects_component__WEBPACK_IMPORTED_MODULE_11__["ClientProjectsComponent"]
+                _Components_client_projects_client_projects_component__WEBPACK_IMPORTED_MODULE_11__["ClientProjectsComponent"],
+                _Components_developer_hcontent_developer_hcontent_component__WEBPACK_IMPORTED_MODULE_13__["DeveloperHcontentComponent"],
+                _Components_developer_home_content_developer_home_content_component__WEBPACK_IMPORTED_MODULE_14__["DeveloperHomeContentComponent"]
             ],
             entryComponents: []
         })
@@ -3859,6 +4111,10 @@ var HomesPage = /** @class */ (function () {
                                     _this.router.navigate(["/homes/home"]);
                                     res.dismiss();
                                 }
+                                if (role == 'developer') {
+                                    _this.router.navigate(["/homes/developerHome"]);
+                                    res.dismiss();
+                                }
                             });
                         })];
                     case 1:
@@ -3882,6 +4138,83 @@ var HomesPage = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], HomesPage);
     return HomesPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/Services/task-dev.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/Services/task-dev.service.ts ***!
+  \**********************************************/
+/*! exports provided: TaskDevService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskDevService", function() { return TaskDevService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+
+
+
+
+var TaskDevService = /** @class */ (function () {
+    function TaskDevService(afs) {
+        this.afs = afs;
+        this.ids = [];
+    }
+    TaskDevService.prototype.getProjects = function () {
+        var _this = this;
+        var projects_id = [];
+        var projects = [];
+        var uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+        this.afs.collection("projects").get().subscribe(function (res) {
+            res.forEach(function (doc) {
+                _this.afs.collection("projects").doc(doc.id).collection("tasks").get().forEach(function (res) {
+                    res.docs.forEach(function (d) {
+                        var obj = JSON.parse(JSON.stringify(d.data()));
+                        if (obj['person'] == uid) {
+                            projects_id.push(doc.id);
+                            _this.afs.collection("projects").doc(doc.id).get().forEach(function (e) {
+                                var obj = JSON.parse(JSON.stringify(e.data()));
+                                projects.push(obj);
+                            });
+                        }
+                    });
+                });
+            });
+        });
+        return projects;
+    };
+    TaskDevService.prototype.getTasks = function (id) {
+        var projects = [];
+        var uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+        this.afs.collection("projects").doc(id).collection("tasks").get().forEach(function (res) {
+            res.docs.forEach(function (d) {
+                var obj = JSON.parse(JSON.stringify(d.data()));
+                if (obj['person'] == uid) {
+                    projects.push(obj);
+                    console.log(obj);
+                }
+            });
+        });
+        return projects;
+    };
+    TaskDevService.ctorParameters = function () { return [
+        { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
+    ]; };
+    TaskDevService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"]])
+    ], TaskDevService);
+    return TaskDevService;
 }());
 
 

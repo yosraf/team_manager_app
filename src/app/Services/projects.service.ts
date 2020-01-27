@@ -417,27 +417,24 @@ export class ProjectsService {
    }
   async updateProposition(value,file,id){
     let uid= firebase.auth().currentUser.uid;
-    const storageRef=firebase.storage().ref(`/pdf/uid/${file.name}.pdf`);
-    var uplaodtask=await storageRef.put(file.data, { contentType: `application/pdf` });
-    var urlFile= (await  uplaodtask.ref.getDownloadURL())
-    return new Promise<any>((resolve,reject)=>{
-      this.afs.collection('propositions').doc(id).update({
-        "name":value.name,
-        "description":value.description,
-        "type":value.type,
-        "file":urlFile
-        
-
-      })
+    
+    var obj={
+      "name":value.name,
+      "description":value.description,
+      "type":value.type
+    }
+    if(file!=null){
+      const storageRef=firebase.storage().ref(`/pdf/uid/${file.name}.pdf`);
+      var uplaodtask=await storageRef.put(file.data, { contentType: `application/pdf` });
+      var urlFile= (await  uplaodtask.ref.getDownloadURL())
+      obj ["file"]=urlFile
+    }
+    
+    
+    await this.afs.collection('propositions').doc(id).update(obj);
+    
+      
      
-      .then(
-        res => {
-        
-          resolve(res)
-        },
-        err => reject(err)
-      )
-    })
    }
    uploadFile(file){
      let storageRef= firebase.storage().ref();

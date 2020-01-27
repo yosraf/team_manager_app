@@ -153,5 +153,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "integrator-cordova-plugin-downloader": {
+    "source": {
+      "type": "registry",
+      "id": "integrator-cordova-plugin-downloader"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

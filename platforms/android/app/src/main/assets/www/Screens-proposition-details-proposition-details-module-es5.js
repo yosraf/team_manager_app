@@ -88,7 +88,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
 /* harmony import */ var _Models_Proposition__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Models/Proposition */ "./src/app/Models/Proposition.ts");
-/* harmony import */ var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx */ "./node_modules/@ionic-native/file-transfer/ngx/index.js");
+/* harmony import */ var _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/downloader/ngx */ "./node_modules/@ionic-native/downloader/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
@@ -96,14 +98,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PropositionDetailsPage = /** @class */ (function () {
-    function PropositionDetailsPage(route, router, service, transfer) {
+    function PropositionDetailsPage(route, router, service, downloader, loadingController) {
         var _this = this;
         this.route = route;
         this.router = router;
         this.service = service;
-        this.transfer = transfer;
+        this.downloader = downloader;
+        this.loadingController = loadingController;
         this.details = new _Models_Proposition__WEBPACK_IMPORTED_MODULE_4__["Proposition"]();
-        this.fileTransfer = this.transfer.create();
         this.route.params.subscribe(function (params) {
             console.log(params["id"]);
             _this.id = params["id"];
@@ -127,22 +129,67 @@ var PropositionDetailsPage = /** @class */ (function () {
         }
     };
     PropositionDetailsPage.prototype.download = function (url) {
-        console.log(url);
-        this.fileTransfer.download(url, "" + 'file.pdf').then(function (entry) {
-            console.log('download complete: ' + entry.toURL());
-        }, function (error) {
-            // handle error
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var date, loading, request, location;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(url);
+                        date = Date.now();
+                        return [4 /*yield*/, this.presentLoadingWithOptions()];
+                    case 1:
+                        loading = _a.sent();
+                        loading.present();
+                        request = {
+                            uri: url,
+                            title: 'download proposition file',
+                            description: '',
+                            mimeType: 'application/pdf',
+                            visibleInDownloadsUi: true,
+                            notificationVisibility: _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_5__["NotificationVisibility"].VisibleNotifyCompleted,
+                            destinationInExternalFilesDir: {
+                                dirType: 'Downloads',
+                                subPath: "file_" + date + ".pdf"
+                            }
+                        };
+                        return [4 /*yield*/, this.downloader.download(request)];
+                    case 2:
+                        location = _a.sent();
+                        loading.dismiss();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     PropositionDetailsPage.prototype.openModify = function () {
         var url = "/modify-proposition/" + this.id;
         this.router.navigate([url]);
     };
+    PropositionDetailsPage.prototype.presentLoadingWithOptions = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            //   duration: 5000,
+                            message: 'Please wait...',
+                            translucent: true,
+                            showBackdrop: true,
+                            cssClass: 'custom-class custom-loading'
+                        })];
+                    case 1:
+                        loading = _a.sent();
+                        return [2 /*return*/, loading];
+                }
+            });
+        });
+    };
     PropositionDetailsPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] },
-        { type: _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_5__["FileTransfer"] }
+        { type: _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_5__["Downloader"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"] }
     ]; };
     PropositionDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -152,7 +199,8 @@ var PropositionDetailsPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"],
-            _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_5__["FileTransfer"]])
+            _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_5__["Downloader"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"]])
     ], PropositionDetailsPage);
     return PropositionDetailsPage;
 }());

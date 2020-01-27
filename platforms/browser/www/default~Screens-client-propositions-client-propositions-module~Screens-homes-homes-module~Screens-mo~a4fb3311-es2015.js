@@ -1,4 +1,20 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311"],{
+
+/***/ "./src/app/Models/Project.ts":
+/*!***********************************!*\
+  !*** ./src/app/Models/Project.ts ***!
+  \***********************************/
+/*! exports provided: Project */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Project", function() { return Project; });
+class Project {
+}
+
+
+/***/ }),
 
 /***/ "./src/app/Services/projects.service.ts":
 /*!**********************************************!*\
@@ -15,6 +31,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/es2015/index.js");
+/* harmony import */ var _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app/Models/Project */ "./src/app/Models/Project.ts");
+
 
 
 
@@ -42,7 +60,6 @@ let ProjectsService = class ProjectsService {
     }
     AsyncProjects() {
         return this.afs.collection('projects').snapshotChanges();
-        ;
     }
     AsyncPropositions() {
         return this.afs.collection('propositions').snapshotChanges();
@@ -51,20 +68,12 @@ let ProjectsService = class ProjectsService {
         return new Promise((resolve, reject) => {
             let value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
             let projects = [];
-            let project = {};
+            let project = new _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__["Project"]();
             this.afs.collection('projects').get().forEach(doc => {
                 doc.docs.forEach(d => {
                     var obj = JSON.parse(JSON.stringify(d.data()));
                     if (obj['manager'] == value.uid) {
-                        project = {
-                            "name": obj.name,
-                            "description": obj.description,
-                            "manager": obj.manager,
-                            "client": obj.client,
-                            "progress": obj.progress,
-                            "type": obj.type,
-                            "id": d.id
-                        };
+                        project = obj;
                         projects.push(project);
                     }
                 });
@@ -127,20 +136,13 @@ let ProjectsService = class ProjectsService {
         return new Promise((resolve, reject) => {
             let value = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
             let projects = [];
-            let project = {};
+            let project = new _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__["Project"]();
             this.afs.collection('projects').get().forEach(doc => {
                 doc.docs.forEach(d => {
                     var obj = JSON.parse(JSON.stringify(d.data()));
                     if (obj['client'] == value.uid) {
-                        project = {
-                            "name": obj.name,
-                            "description": obj.description,
-                            "manager": obj.manager,
-                            "client": obj.client,
-                            "progress": obj.progress,
-                            "type": obj.type,
-                            "id": d.id
-                        };
+                        project = obj;
+                        project.id = d.id;
                         projects.push(project);
                     }
                 });
@@ -264,22 +266,15 @@ let ProjectsService = class ProjectsService {
         });
     }
     getProject(id) {
-        let project;
+        let project = new _app_Models_Project__WEBPACK_IMPORTED_MODULE_4__["Project"]();
         let result;
         return new Promise((resolve, reject) => {
             this.afs.collection('projects').get().forEach(doc => {
                 doc.docs.forEach(d => {
                     if (d.id == id) {
                         var obj = JSON.parse(JSON.stringify(d.data()));
-                        project = {
-                            "name": obj.name,
-                            "description": obj.description,
-                            "manager": obj.manager,
-                            "client": obj.client,
-                            "progress": obj.progress,
-                            "type": obj.type,
-                            "id": d.id
-                        };
+                        project = obj;
+                        project.id = d.id;
                         result = project;
                     }
                 });
@@ -304,6 +299,23 @@ let ProjectsService = class ProjectsService {
             }, err => reject(err));
         });
     }
+    updateProposition(value, file, id) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            let uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+            var obj = {
+                "name": value.name,
+                "description": value.description,
+                "type": value.type
+            };
+            if (file != null) {
+                const storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref(`/pdf/uid/${file.name}.pdf`);
+                var uplaodtask = yield storageRef.put(file.data, { contentType: `application/pdf` });
+                var urlFile = (yield uplaodtask.ref.getDownloadURL());
+                obj["file"] = urlFile;
+            }
+            yield this.afs.collection('propositions').doc(id).update(obj);
+        });
+    }
     uploadFile(file) {
         let storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref();
         return new Promise((resolve, reject) => {
@@ -311,6 +323,9 @@ let ProjectsService = class ProjectsService {
                 console.log('Uploaded a blob or file!');
             });
         });
+    }
+    getPropositionDetail(id) {
+        return this.afs.collection('propositions').doc(id).snapshotChanges();
     }
 };
 ProjectsService.ctorParameters = () => [
@@ -328,4 +343,4 @@ ProjectsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /***/ })
 
 }]);
-//# sourceMappingURL=default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~391e6798-es2015.js.map
+//# sourceMappingURL=default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311-es2015.js.map

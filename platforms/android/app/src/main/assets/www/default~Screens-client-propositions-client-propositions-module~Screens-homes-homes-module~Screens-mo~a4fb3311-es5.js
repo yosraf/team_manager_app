@@ -331,12 +331,17 @@ var ProjectsService = /** @class */ (function () {
     };
     ProjectsService.prototype.updateProposition = function (value, file, id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var uid, storageRef, uplaodtask, urlFile;
-            var _this = this;
+            var uid, obj, storageRef, uplaodtask, urlFile;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         uid = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser.uid;
+                        obj = {
+                            "name": value.name,
+                            "description": value.description,
+                            "type": value.type
+                        };
+                        if (!(file != null)) return [3 /*break*/, 3];
                         storageRef = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]().ref("/pdf/uid/" + file.name + ".pdf");
                         return [4 /*yield*/, storageRef.put(file.data, { contentType: "application/pdf" })];
                     case 1:
@@ -344,17 +349,12 @@ var ProjectsService = /** @class */ (function () {
                         return [4 /*yield*/, uplaodtask.ref.getDownloadURL()];
                     case 2:
                         urlFile = (_a.sent());
-                        return [2 /*return*/, new Promise(function (resolve, reject) {
-                                _this.afs.collection('propositions').doc(id).update({
-                                    "name": value.name,
-                                    "description": value.description,
-                                    "type": value.type,
-                                    "file": urlFile
-                                })
-                                    .then(function (res) {
-                                    resolve(res);
-                                }, function (err) { return reject(err); });
-                            })];
+                        obj["file"] = urlFile;
+                        _a.label = 3;
+                    case 3: return [4 /*yield*/, this.afs.collection('propositions').doc(id).update(obj)];
+                    case 4:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });

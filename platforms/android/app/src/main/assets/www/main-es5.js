@@ -929,7 +929,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
 /* harmony import */ var _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/utils/IonicGestureConfig */ "./src/app/utils/IonicGestureConfig.ts");
 /* harmony import */ var _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @ionic-native/chooser/ngx */ "./node_modules/@ionic-native/chooser/ngx/index.js");
-/* harmony import */ var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx */ "./node_modules/@ionic-native/file-transfer/ngx/index.js");
+/* harmony import */ var _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @ionic-native/downloader/ngx */ "./node_modules/@ionic-native/downloader/ngx/index.js");
 
 
 
@@ -982,7 +982,7 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_20__["WebView"],
                 _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_21__["FilePath"],
                 _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__["FCM"],
-                _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_25__["FileTransfer"],
+                _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_25__["Downloader"],
                 _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_22__["LocalNotifications"],
                 {
                     provide: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["HAMMER_GESTURE_CONFIG"], useClass: _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__["IonicGestureConfig"],

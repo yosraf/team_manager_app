@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Route,ActivatedRoute} from '@angular/router'
 import {ChatService} from '../../Services/chat.service';
 import {AuthentificationService} from '../../Services/authentification.service';
-
+import { DatePipe } from '@angular/common';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -15,20 +15,58 @@ export class DiscussionPage implements OnInit {
   message:string;
   messages:any=[];
   myid:string;
-  receiverid:string
-  sender:boolean=false;
-  receiver_image:any=null;
-  sender_image:any=null;
-  constructor(private route: ActivatedRoute,private service:ChatService,private auth:AuthentificationService) { 
+  receiverid:string;
+  send_img:string;
+  rec_img:string;
+  constructor(private route: ActivatedRoute,
+    private service:ChatService,
+    private auth:AuthentificationService,
+    private datePipe: DatePipe) { 
     this.route.params.subscribe( params => {
-      console.log(params["id"])
+    
       this.id=params["id"]
   } );
   }
 
-   ngOnInit() {
+  async ngOnInit() {
     
-     this.auth.getUsers().subscribe(
+    
+ 
+       ( await this.service.AsyncMessages(this.id)).subscribe((res)=>{
+     
+          this.messages=[];
+           res.map(value=>{
+             
+              
+              var obj = JSON.parse(JSON.stringify(value.payload.doc.data()));
+              var now=Date.now();
+              var d=obj["created_at"];
+              if(new Date(now).getDate() > new Date(d).getDate()){
+                obj["date"]=this.datePipe.transform(d,"MMM dd, HH:mm");
+              }else{
+                obj["date"]=this.datePipe.transform(d,"HH:mm")
+              }
+              if(obj['sender']==firebase.auth().currentUser.uid){
+                this.myid=obj['sender'];
+               
+
+              }
+              else{
+                this.receiverid=obj['sender'];
+               
+              }
+             
+              this.messages.push(obj);
+           
+           })
+      });
+      this.getImage();
+   
+     
+  }
+  getImage(){
+    
+    this.auth.getUsers().subscribe(
 
       data => {
        
@@ -41,8 +79,8 @@ export class DiscussionPage implements OnInit {
               "image": obj.image,
              
             };
-            this.sender_image=p.image;
            
+           this.send_img=p["image"];
   
           }
           if(obj['uid']==this.receiverid ){
@@ -52,56 +90,42 @@ export class DiscussionPage implements OnInit {
               "image": obj.image,
              
             };
-            this.receiver_image=p.image;
-            console.log(this.sender_image);
+            this.rec_img=p["image"];
+            
   
           }
         });
   
       }
-     )
-     /*let ids=this.id.split("_");
-     this.myid=ids[0];
-     this.receiverid=ids[1];
-     if(this.myid==firebase.auth().currentUser.uid){
-       this.sender=true;
-     }*/
-    
-       this.service.AsyncMessages(this.id).subscribe((res)=>{
-          console.log(res);
-          this.messages=[];
-           res.map(value=>{
-             
-            
-              var obj = JSON.parse(JSON.stringify(value.payload.doc.data()));
-              var now=Date.now();
-              var d=obj["created_at"];
-              if(new Date(now).getDay>new Date(d).getDay){
-                obj["date"]=(new Date(d)).getTime().toLocaleString();
-              }else{
-                obj["date"]=new Date(d).getHours()+":"+new Date(d).getMinutes()
-              }
-              this.messages.push(obj);
-            
-           })
-      });
+     );
      
+
   }
 
    send() {
      this.service.sendMessage(this.message,this.id).then((v)=>{
-
         this.message="";
      });
   }
-  color(sender){
-    if(sender==true){
+  color(id){
+    if(this.myid==id){
          return '#d6b0ff'
     
     }
     else{
       return '#462373'
     }
+  }
+  slot(id){
+   
+    if(this.myid==id){
+      return 'start';
+      
+ 
+ }
+ else{
+   return 'end';
+ }
   }
   
 }
