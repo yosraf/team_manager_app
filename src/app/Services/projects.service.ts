@@ -296,30 +296,8 @@ export class ProjectsService {
     })
 
   }
-  declinePropositon(value){
-    let user = firebase.auth().currentUser;
+  
 
-    return new Promise<any>((resolve,reject)=>{
-    this.afs.collection("refusedprops").add({
-      manager:user.uid,
-      name: value.name,
-      description: value.description,
-      type:value.type,
-      client:value.client,
-     
-    }) .then(
-      res => {
-      
-        resolve(res)
-      },
-      err => reject(err)
-    )
-    })
-  }
-  getRejections() {
-   return  this.afs.collection("refusedprops").snapshotChanges();
-    
-  }
   getDoneTasks(id){
     let tasks=[];
     return new Promise<any>((resolve,reject)=>{
@@ -450,6 +428,27 @@ export class ProjectsService {
     
   
     return this.afs.collection('propositions').doc(id).snapshotChanges();
+
+   }
+   replyProposition(value,id){
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection("propositions").doc(id).update(
+        {
+          'state':"treated",
+          'duration':value.duration,
+           'budget':value.budget
+
+        }
+      )
+     
+      .then(
+        res => {
+        
+          resolve(res)
+        },
+        err => reject(err)
+      )
+    })
 
    }
   

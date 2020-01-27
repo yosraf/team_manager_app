@@ -15,11 +15,11 @@ const routes: Routes = [
   { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
   { path: 'project-details/:id', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
   { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
-  { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
   { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
   { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
   { path: 'discussion/:id', loadChildren: './Screens/discussion/discussion.module#DiscussionPageModule' },
   { path: 'modify-proposition/:id', loadChildren: './Screens/modify-proposition/modify-proposition.module#ModifyPropositionPageModule' },
+  { path: 'client-prop-details/:id', loadChildren: './Screens/client-prop-details/client-prop-details.module#ClientPropDetailsPageModule' },
 ];
 
 @NgModule({

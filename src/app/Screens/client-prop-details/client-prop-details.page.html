@@ -1,9 +1,79 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>client-prop-details</ion-title>
+    <ion-title class="title">Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="title"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list >
+   
+    <ion-list-header class="ion-title">
+      Proposiotion informations
+    </ion-list-header>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon  name="clipboard" class="icon"></ion-icon>
+        </div>
+        <div class="container" >
+          <h5 ><b>{{details['name']}}</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon   [name]="icon(details['type'])" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{details['type']}}</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon  name="create" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{details['description']}}</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card" >
+        <div class="project-info">
+          <ion-icon  name="document" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>Project specifications</b></h5>
+          
+        </div>
+        
+        <div>
+          <ion-icon name="download" (click)="download(details['file'])"></ion-icon>
+        </div>
+     
+    
+        
+      </div>
+      <div class="ion-padding">
+        <ion-button size="large"  expand="block" (click)="presentAlertPrompt()">Reply to this proposition</ion-button>
+    
+      </div>
+   
+  </ion-list>
+ 
 
 </ion-content>

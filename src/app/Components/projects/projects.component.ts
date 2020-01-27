@@ -5,6 +5,7 @@ import {AngularFirestore,AngularFirestoreDocument ,AngularFirestoreCollection}fr
 import * as firebase from 'firebase/app';
 import { AlertController } from '@ionic/angular';
 import {Project} from '../../Models/Project';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-projects',
@@ -19,6 +20,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(public route:Router,private service:ProjectsService,
     private afs: AngularFirestore,
+    private toast:ToastController,
     public alertController: AlertController) {
   
   }
@@ -83,8 +85,14 @@ export class ProjectsComponent implements OnInit {
    }
   
   delete(id){
+    let toast;
+    this.presentToast("deleted successfuly").then
+    (res=>{
+      toast=res;
+    })
     this.service.deleteProject(id).then(res=>{
       console.log(res);
+      toast.present();
     })
   }
   async deleteAlert(id) {
@@ -116,5 +124,12 @@ export class ProjectsComponent implements OnInit {
 ionPull(event){
 }
 ionStart(event){
+}
+async presentToast(msg) {
+  const toast = await this.toast.create({
+    message: msg,
+    duration: 2000
+  });
+  return toast;
 }
 }

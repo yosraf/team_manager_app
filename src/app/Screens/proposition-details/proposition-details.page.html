@@ -6,75 +6,107 @@
     <ion-title class="title">
       Details
     </ion-title>
-    <ion-icon name="create" slot="end" class="modify" (click)="openModify()"></ion-icon>
+    <ion-icon name="create" slot="end" class="modify" (click)="openModify()" *ngIf="details['state']=='not treated'"></ion-icon>
 
   </ion-toolbar>
 </ion-header>
-<ion-list *ngIf="details['state']=='not treated'">
-  <ion-card  class="noresp-header">
-    no response yet
-  </ion-card>
-  <ion-list-header class="ion-title">
-    Proposiotion informations
-  </ion-list-header>
-    <div class="card">
-      <div class="project-info">
-        <ion-icon  name="clipboard" class="icon"></ion-icon>
-      </div>
-      <div class="container" >
-        <h5 ><b>{{details['name']}}</b></h5>
-        
-  
-      </div>
-    
-  
-      
-    </div>
-    <div class="card">
-      <div class="project-info">
-        <ion-icon   [name]="icon(details['type'])" class="icon"></ion-icon>
-      </div>
-      <div class="container">
-        <h5 ><b>{{details['type']}}</b></h5>
-        
-  
-      </div>
-    
-  
-      
-    </div>
-    <div class="card">
-      <div class="project-info">
-        <ion-icon  name="create" class="icon"></ion-icon>
-      </div>
-      <div class="container">
-        <h5 ><b>{{details['description']}}</b></h5>
-        
-  
-      </div>
-    
-  
-      
-    </div>
-    <div class="card" >
-      <div class="project-info">
-        <ion-icon  name="document" class="icon"></ion-icon>
-      </div>
-      <div class="container">
-        <h5 ><b>Project specifications</b></h5>
-        
-      </div>
-      
-      <div>
-        <ion-icon name="download" (click)="download(details['file'])"></ion-icon>
-      </div>
-   
-  
-      
-    </div>
- 
-</ion-list>
+
 
 <ion-content>
-
+  <ion-list >
+    <ion-card  class="noresp-header" *ngIf="details['state']=='not treated'">
+      no response yet
+    </ion-card>
+    <ion-card  class="noresp-header" *ngIf="details['state']=='treated'">
+      your proposition has been treated
+    </ion-card>
+    <ion-list-header class="ion-title">
+      Proposiotion informations
+    </ion-list-header>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon  name="clipboard" class="icon"></ion-icon>
+        </div>
+        <div class="container" >
+          <h5 ><b>{{details['name']}}</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon   [name]="icon(details['type'])" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{details['type']}}</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon  name="create" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{details['description']}}</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card" >
+        <div class="project-info">
+          <ion-icon  name="document" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>Project specifications</b></h5>
+          
+        </div>
+        
+        <div>
+          <ion-icon name="download" (click)="download(details['file'])"></ion-icon>
+        </div>
+     
+    
+        
+      </div>
+      <ion-list-header class="ion-title">
+        Budget and duration informations
+      </ion-list-header>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon  name="cash" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{details['budget']}} DT</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+      <div class="card">
+        <div class="project-info">
+          <ion-icon  name="time" class="icon"></ion-icon>
+        </div>
+        <div class="container">
+          <h5 ><b>{{details['duration']}} Months</b></h5>
+          
+    
+        </div>
+      
+    
+        
+      </div>
+   
+  </ion-list>
 </ion-content>

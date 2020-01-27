@@ -71,42 +71,6 @@ export class ClientPropositionsPage implements OnInit {
       return "md-analytics";
     }
    }
-   accept(d){
-     this.service.createProject(d).then(res=>{
-       console.log(res);
-     })
-     this.service.deletePropostion(d.id).then(
-      res=>{
-        console.log(res);
-
-      })
-   }
-   refuse(d){
-    this.service.deletePropostion(d.id).then(
-      res=>{
-        console.log(res);
-
-      })
-      this.service.declinePropositon(d).then(
-        res=>{
-          console.log(res);
+   
   
-        })
-   }
-   async refuseAlert(d) {
-    const alert = await this.alertController.create({
-      header: 'Confirm',
-      message: "Are you sure you want to delete this project?",
-      buttons: [
-        {text:'Cancel'}
-      , {text: 'Delete',
-      handler: () => {
-        this.refuse(d);
-      }
-        }
-    ]
-    });
-
-    await alert.present();
-  }
 }

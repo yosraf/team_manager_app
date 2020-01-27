@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl,FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import {ProjectsService} from '../../Services/projects.service';
 import { Chooser } from '@ionic-native/chooser/ngx';
+
 @Component({
   selector: 'app-project-proposition',
   templateUrl: './project-proposition.page.html',
@@ -12,7 +13,9 @@ export class ProjectPropositionPage implements OnInit {
   managers:any=[]
   validation: FormGroup;
   filetoupload:any=null;
-  constructor(public route:Router, private formBuilder: FormBuilder,private service:ProjectsService,private chooser:Chooser) { }
+  constructor(public route:Router,
+     private formBuilder: FormBuilder,
+     private service:ProjectsService,private chooser:Chooser) { }
 
   ngOnInit() {
       

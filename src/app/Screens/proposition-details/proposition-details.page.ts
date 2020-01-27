@@ -44,12 +44,7 @@ export class PropositionDetailsPage implements OnInit {
    }
    async download(url) {
      console.log(url)
-   /* this.fileTransfer.download(url, "" + 'file.pdf').then((entry) => {
-      console.log('download complete: ' + entry.toURL());
-    }, (error) => {
-      // handle error
-
-    }); */
+  
     var date= Date.now();// current date
     var loading=await this.presentLoadingWithOptions("Downlaoding...");
     loading.present();

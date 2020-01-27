@@ -4,6 +4,7 @@ import {ProjectsService} from '../../Services/projects.service';
 import * as firebase from 'firebase/app';
 import { AlertController } from '@ionic/angular';
 import {Project} from '../../Models/Project';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ClientProjectsComponent implements OnInit {
   propositions:any[];
   isShow=true;
 
-  constructor(public route:Router,private service:ProjectsService,private alertConroller:AlertController) {
+  constructor(public route:Router,private service:ProjectsService,
+    private alertConroller:AlertController, private toast:ToastController) {
    
    
   }
@@ -147,8 +149,13 @@ released(){
 }
 
 delete(id){
+  let toast;
+  this.presentToast("deleted successuly").then(res=>{
+    toast=res;
+  })
   this.service.deletePropostion(id).then(res=>{
     console.log(res);
+    toast.present()
   })
 }
 icon(type) {
@@ -165,5 +172,12 @@ icon(type) {
 openProp(id){
   let url="/proposition-details/"+id;
   this.route.navigate([url]);
+}
+async presentToast(msg) {
+  const toast = await this.toast.create({
+    message: msg,
+    duration: 2000
+  });
+  return toast;
 }
 }
