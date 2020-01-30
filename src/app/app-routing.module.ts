@@ -17,10 +17,16 @@ const routes: Routes = [
   { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
   { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
   { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
+<<<<<<< HEAD
   { path: 'discussion/:id', loadChildren: './Screens/discussion/discussion.module#DiscussionPageModule' },
   { path: 'modify-proposition/:id', loadChildren: './Screens/modify-proposition/modify-proposition.module#ModifyPropositionPageModule' },
   { path: 'client-prop-details/:id', loadChildren: './Screens/client-prop-details/client-prop-details.module#ClientPropDetailsPageModule' },
 ];
+=======
+  { path: 'task-dashbord', loadChildren: './Screens/task-dashbord/task-dashbord.module#TaskDashbordPageModule' },
+
+  ];
+>>>>>>> d3f0a41ce3c227ecb71860135958e52acd949237
 
 @NgModule({
   imports: [

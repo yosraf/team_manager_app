@@ -34,7 +34,19 @@ export class TaskDevService {
             this.afs.collection("projects").doc(doc.id).get().forEach(e=>{
              
                var obj = JSON.parse(JSON.stringify(e.data()));
-              projects.push(obj);
+               var p={
+                "name":obj.name,
+                "description":obj.description,
+                "type":obj.type,
+                "id":doc.id,
+                "cost":obj.cost,
+                "manager":obj.manager,
+                "progress":obj.progress
+              }
+                projects.push(p);
+              
+              
+              
               
             })           
           } 
@@ -50,8 +62,10 @@ export class TaskDevService {
 
     
    
-    return projects;
-    
+ 
+    return new Promise<any>((resolve, reject) => {
+      resolve(projects)
+    });    
   }
  
   getTasks(id){
@@ -66,6 +80,7 @@ export class TaskDevService {
         var obj = JSON.parse(JSON.stringify(d.data()));
         
         if(obj['person']==uid){
+        
           projects.push(obj)
           console.log(obj);
         } 
@@ -79,6 +94,106 @@ export class TaskDevService {
     
   }
 
-  
+  getProjectNames(){
+    let projects_names=[];
+   
+    
+    
+    let uid=firebase.auth().currentUser.uid;
+    this.afs.collection("projects").get().subscribe(res=>{
+     res.forEach(doc=>{
+      
+       this.afs.collection("projects").doc(doc.id).collection("tasks").get().forEach(res=>{
+         
+       
+        res.docs.forEach(d=>{
+          
+          
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          
+          if(obj['person']==uid){
+            
+            this.afs.collection("projects").doc(doc.id).get().forEach(e=>{
+             
+              var obj = JSON.parse(JSON.stringify(e.data()));
+              var p={
+               "name":obj.name,
+             
+             }
+               projects_names.push(p["name"]);
+             
+             
+             
+             
+           })   
+               
+          } 
+          
+
+        })
+       } )
+      
+       
+     })
+    })
+   
+
+    
+   
+    return new Promise<any>((resolve, reject) => {
+      resolve(projects_names)
+    });
+    
+  }
+  getProjectProgess(){
+    let projects_progress=[];
+   
+    
+    
+    let uid=firebase.auth().currentUser.uid;
+    this.afs.collection("projects").get().subscribe(res=>{
+     res.forEach(doc=>{
+      
+       this.afs.collection("projects").doc(doc.id).collection("tasks").get().forEach(res=>{
+         
+       
+        res.docs.forEach(d=>{
+          
+          
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          
+          if(obj['person']==uid){
+            
+            this.afs.collection("projects").doc(doc.id).get().forEach(e=>{
+             
+              var obj = JSON.parse(JSON.stringify(e.data()));
+              var p={
+              
+               "progress":obj.progress
+             }
+             projects_progress.push(p["progress"]);
+             
+             
+             
+             
+           })   
+               
+          } 
+          
+
+        })
+       } )
+      
+       
+     })
+    })
+   
+
+    
+    return new Promise<any>((resolve, reject) => {
+      resolve(projects_progress)
+    });
+    
+  }
   
 }

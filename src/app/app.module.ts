@@ -30,6 +30,9 @@ import {IonicGestureConfig} from "../app/utils/IonicGestureConfig";
 import { Chooser } from '@ionic-native/chooser/ngx';
 import { Downloader } from '@ionic-native/downloader/ngx';
 import { DatePipe } from '@angular/common';
+
+import { DragulaModule, DragulaService } from 'ng2-dragula';
+
 firebase.initializeApp(environment.firbase);
 
 @NgModule({
@@ -44,6 +47,8 @@ firebase.initializeApp(environment.firbase);
      AngularFireModule.initializeApp(environment.firbase),
      AngularFirestoreModule,
     AngularFireDatabaseModule,
+    DragulaModule.forRoot(),
+   
    
 
 
@@ -60,6 +65,7 @@ firebase.initializeApp(environment.firbase);
     FCM,
     Downloader,
     LocalNotifications,
+    DragulaService,
     {
       provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig,
     }

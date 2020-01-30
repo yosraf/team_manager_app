@@ -11,87 +11,66 @@ import * as firebase from 'firebase/app';
 })
 
 export class DeveloperHcontentComponent implements OnInit {
-  @ViewChild('dognutChart', { static: false }) dognutChart;
+  @ViewChild('lineChart', { static: false }) lineChart;
 
   dognut: any;
   colorArray: any;
   projects: any = [];
-  finished:any=[];
-  doing:any=[];
-  spent:number=0;
-  projectIds:any=[];
+  tasks:any=[];
+  bars: any;
+  names:any=[];
+  progress:any=[]
   constructor(private route: Router, private service: TaskDevService) { }
   
   
   ngOnInit() {
    
-   this.projects=this.service.getProjects();
-   console.log(this.projects)
-    /*this.service.AsyncProjects().subscribe(
-      data => {
-        this.projects=[];
-        data.forEach(d=>{
-          let value = firebase.auth().currentUser;
-          var obj = JSON.parse(JSON.stringify(d.payload.doc.data()));
-          if (obj['client'] == value.uid) {
-            var p= {
-              "name": obj.name,
-              "description": obj.description,
-              "manager": obj.manager,
-              "client": obj.client,
-              "progress": obj.progress,
-              "type": obj.type,
-              "id": d.payload.doc.id,
-              "cost":obj.cost
-            };
-            this.spent=+p.cost;
-            this.projects.push(p);
-            if(p.progress==100){
-              this.finished.push(p)
-            }
-            else{
-              this.doing.push(p)
-            }
+  this.service.getProjects().then(res=>{
 
-          }
-        });
-        this.createDonutsChart();
-
-
-      }
-    );
-  }
-
-
-  getProjects() {
-
-    this.projects = [];
-    this.service.getClientProjects().then(res => {
-
-      res.forEach(element => {
-        this.projects.push(element);
-
-
-      });
-
-    },
-      err => {
-        console.log(err);
-      }
-    );
-
-  }
-  async createDonutsChart() {
+      this.projects=res;
    
-    this.dognut = new Chart(this.dognutChart.nativeElement, {
-      type: 'doughnut',
+      this.service.getProjectProgess().then(res=>{
+        this.progress=res
+        console.log(res)
+      })
+      this.service.getProjectNames().then(res=>{
+        this.names=res
+        console.log(res)
+      })
+          
+    this.createLine();
+  })
+ 
+    
+  }
+  /*ngAfterViewInit(){
+    this.progress=this.service.getProjectProgess();
+    this.names=this.service.getProjectNames();
+    console.log(this.names)
+    this.createLine(this.names,this.progress);
+
+  }*/
+ /* ionviewdidenter(){
+    this.progress=this.service.getProjectProgess();
+    this.names=this.service.getProjectNames();
+    console.log(this.names)
+    this.createLine(this.names,this.progress);
+
+  }*/
+  
+
+
+  createLine(){
+    this.bars = new Chart(this.lineChart.nativeElement, {
+      type: 'line',
       data: {
-        labels: ['finished projects', 'upgoing projects'],
+        labels:this.names,
         datasets: [{
-          label: 'Projects',
-          data: [this.finished.length,this.doing.length],
-          backgroundColor: [ '#a55eea', '#8e44ad'], // array should have same number of elements as number of dataset
-          borderWidth: 1
+          label: 'Projects with their progress',
+          data:this.progress,
+          borderColor	:'#a55eea',
+          backgroundColor: '#d6b0ff', 
+          borderWidth: 2
         }]
       },
       options: {
@@ -105,51 +84,40 @@ export class DeveloperHcontentComponent implements OnInit {
       }
     });
   }
-  color(type){
-    if(type=="web"){
-      return "#462373";
-    }
-    if(type=="mobile"){
-      return "#a55eea";
-    }
-    if(type=="data"){
-      return "#8e44ad";
-    }
-   }
-  icon(type) {
-    if (type == "web") {
-      return "md-desktop";
-    }
-    if (type == "mobile") {
-      return "md-phone-portrait";
-    }
-    if (type == "data") {
-      return "md-analytics";
-    }
-  }
-  openproject(id) {
+
+ 
+  
+  /*openproject(id) {
     this.route.navigate(["/project-details"])
 
   }
-  ionRefresh(event) {
-    setTimeout(() => {
-      this.getProjects();
-      event.target.complete();
-    }, 2000);
-  }
-  ionPull(event) {
-    console.log('ionPull Event Triggered!');
-  }
-  ionStart(event) {
-    console.log('ionStart Event Triggered!');
-  }
-  openRejected(){
-    this.route.navigate(["/rejected-propositions"]);
-  }
+  
   openProject(value){
     let url='/project-details/'+value
     this.route.navigate([url])
   }*/
+
+color(type){
+  if(type=="web"){
+    return "#462373";
+  }
+  if(type=="mobile"){
+    return "#a55eea";
+  }
+  if(type=="data"){
+    return "#8e44ad";
+  }
+ }
+icon(type) {
+  if (type == "web") {
+    return "md-desktop";
+  }
+  if (type == "mobile") {
+    return "md-phone-portrait";
+  }
+  if (type == "data") {
+    return "md-analytics";
+  }
 }
 
 }

@@ -194,6 +194,37 @@ export class ProjectsService {
     })
     
   }
+
+
+  getDeveloperProjects(){
+    let projects=[];
+ 
+    let user = firebase.auth().currentUser;
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection("projects").doc().collection("tasks").get().forEach((res)=>{
+        res.docs.forEach(d=>{
+          console.log(d);
+
+          var obj = JSON.parse(JSON.stringify(d.data()));
+          if(obj['person']==user.uid){
+            
+            projects.push(res)
+
+          }
+
+        })
+     
+    })
+     
+      .then(
+        res => {
+        
+          resolve(projects)
+        },
+        err => reject(err)
+      )
+    })
+  }
   getManagers(){
     return new Promise<any>((resolve, reject) => {
       let managers:any=[]; 

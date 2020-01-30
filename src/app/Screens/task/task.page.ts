@@ -89,8 +89,6 @@ export class TaskPage implements OnInit {
       this.budget=obj["cost"];
     })
     
-   
- 
   }
 
   calculProgres(){
