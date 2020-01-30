@@ -43,6 +43,10 @@ export class HomesPage implements OnInit {
           this.router.navigate(["/homes/home"])
           res.dismiss()
         }
+        if(role=='developer'){
+          this.router.navigate(["/homes/developerHome"])
+          res.dismiss()
+        }
 
       })
     });
