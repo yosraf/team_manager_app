@@ -157,7 +157,9 @@ var ProjectPropositionPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./project-proposition.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/project-proposition/project-proposition.page.html"),
             styles: [__webpack_require__(/*! ./project-proposition.page.scss */ "./src/app/Screens/project-proposition/project-proposition.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"], _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_5__["Chooser"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"], _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_5__["Chooser"]])
     ], ProjectPropositionPage);
     return ProjectPropositionPage;
 }());

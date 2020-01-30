@@ -2792,7 +2792,7 @@ var LongPressModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n    </ion-buttons>\n    <ion-icon slot=\"end\" name=\"md-notifications\" (click)=\"openRejected()\" class=\"btn\"></ion-icon>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\" (ionPull)=\"ionPull($event)\"\n    (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Pull to refresh\" refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n      <div>\n        <h3>{{spent}} DT</h3>\n      </div>\n    </div>\n\n    <ion-card class=\"welcome-card\">\n\n      <ion-card-content>\n        <canvas #dognutChart></canvas>\n      </ion-card-content>\n    </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5><b>{{d['name']}}</b></h5>\n          <p>{{d['description']}}</p>\n\n        </div>\n\n      </div>\n    </ion-list>\n\n\n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n\n    <ion-label>No projects yet </ion-label>\n\n  </div>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button class=\"title\"></ion-menu-button>\n    </ion-buttons>\n\n    <ion-title class=\"title\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\" (ionPull)=\"ionPull($event)\"\n    (ionStart)=\"ionStart($event)\">\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Pull to refresh\" refreshingSpinner=\"circles\"\n      refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div>\n    <div class=\"hello-card\">\n      <ion-list-header>Total expenses</ion-list-header>\n      <div>\n        <h3>{{spent}} DT</h3>\n      </div>\n    </div>\n\n    <ion-card class=\"welcome-card\">\n\n      <ion-card-content>\n        <canvas #dognutChart></canvas>\n      </ion-card-content>\n    </ion-card>\n  </div>\n  <div>\n    <ion-list-header class=\"stats\">Finished projects</ion-list-header>\n    <ion-list *ngIf=\"this.finished.length>0\">\n\n      <div class=\"card\" *ngFor=\"let d of finished\" (click)=\"openProject(d['id'])\">\n        <div class=\"project-info\" [ngStyle]=\"{'background-color':color(d['type'])}\">\n          <ion-icon [name]=\"icon(d['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5><b>{{d['name']}}</b></h5>\n          <p>{{d['description']}}</p>\n\n        </div>\n\n      </div>\n    </ion-list>\n\n\n\n  </div>\n  <div class=\"no-project\" *ngIf=\"this.finished.length==0\">\n\n    <ion-label>No projects yet </ion-label>\n\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -3142,11 +3142,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var ClientProjectsComponent = /** @class */ (function () {
-    function ClientProjectsComponent(route, service, alertConroller) {
+    function ClientProjectsComponent(route, service, alertConroller, toast) {
         this.route = route;
         this.service = service;
         this.alertConroller = alertConroller;
+        this.toast = toast;
         this.projects = [];
         this.isShow = true;
     }
@@ -3264,8 +3266,13 @@ var ClientProjectsComponent = /** @class */ (function () {
         this.isShow = true;
     };
     ClientProjectsComponent.prototype.delete = function (id) {
+        var toast;
+        this.presentToast("deleted successuly").then(function (res) {
+            toast = res;
+        });
         this.service.deletePropostion(id).then(function (res) {
             console.log(res);
+            toast.present();
         });
     };
     ClientProjectsComponent.prototype.icon = function (type) {
@@ -3283,10 +3290,27 @@ var ClientProjectsComponent = /** @class */ (function () {
         var url = "/proposition-details/" + id;
         this.route.navigate([url]);
     };
+    ClientProjectsComponent.prototype.presentToast = function (msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toast.create({
+                            message: msg,
+                            duration: 2000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        return [2 /*return*/, toast];
+                }
+            });
+        });
+    };
     ClientProjectsComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"] }
     ]; };
     ClientProjectsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3294,7 +3318,8 @@ var ClientProjectsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./client-projects.component.html */ "./node_modules/raw-loader/index.js!./src/app/Components/client-projects/client-projects.component.html"),
             styles: [__webpack_require__(/*! ./client-projects.component.scss */ "./src/app/Components/client-projects/client-projects.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"]])
     ], ClientProjectsComponent);
     return ClientProjectsComponent;
 }());
@@ -3803,11 +3828,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var ProjectsComponent = /** @class */ (function () {
-    function ProjectsComponent(route, service, afs, alertController) {
+    function ProjectsComponent(route, service, afs, toast, alertController) {
         this.route = route;
         this.service = service;
         this.afs = afs;
+        this.toast = toast;
         this.alertController = alertController;
         this.projects = [];
     }
@@ -3859,8 +3886,13 @@ var ProjectsComponent = /** @class */ (function () {
         this.isShow = true;
     };
     ProjectsComponent.prototype.delete = function (id) {
+        var toast;
+        this.presentToast("deleted successfuly").then(function (res) {
+            toast = res;
+        });
         this.service.deleteProject(id).then(function (res) {
             console.log(res);
+            toast.present();
         });
     };
     ProjectsComponent.prototype.deleteAlert = function (id) {
@@ -3906,10 +3938,27 @@ var ProjectsComponent = /** @class */ (function () {
     };
     ProjectsComponent.prototype.ionStart = function (event) {
     };
+    ProjectsComponent.prototype.presentToast = function (msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toast.create({
+                            message: msg,
+                            duration: 2000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        return [2 /*return*/, toast];
+                }
+            });
+        });
+    };
     ProjectsComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"] },
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_4__["AngularFirestore"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ToastController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] }
     ]; };
     ProjectsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3920,6 +3969,7 @@ var ProjectsComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _Services_projects_service__WEBPACK_IMPORTED_MODULE_3__["ProjectsService"],
             _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_4__["AngularFirestore"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ToastController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"]])
     ], ProjectsComponent);
     return ProjectsComponent;

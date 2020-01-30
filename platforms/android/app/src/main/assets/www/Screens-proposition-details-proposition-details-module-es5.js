@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button class=\"title\"></ion-back-button>\n      </ion-buttons>\n    <ion-title class=\"title\">\n      Details\n    </ion-title>\n    <ion-icon name=\"create\" slot=\"end\" class=\"modify\" (click)=\"openModify()\"></ion-icon>\n\n  </ion-toolbar>\n</ion-header>\n<ion-list *ngIf=\"details['state']=='not treated'\">\n  <ion-card  class=\"noresp-header\">\n    no response yet\n  </ion-card>\n  <ion-list-header class=\"ion-title\">\n    Proposiotion informations\n  </ion-list-header>\n    <div class=\"card\">\n      <div class=\"project-info\">\n        <ion-icon  name=\"clipboard\" class=\"icon\"></ion-icon>\n      </div>\n      <div class=\"container\" >\n        <h5 ><b>{{details['name']}}</b></h5>\n        \n  \n      </div>\n    \n  \n      \n    </div>\n    <div class=\"card\">\n      <div class=\"project-info\">\n        <ion-icon   [name]=\"icon(details['type'])\" class=\"icon\"></ion-icon>\n      </div>\n      <div class=\"container\">\n        <h5 ><b>{{details['type']}}</b></h5>\n        \n  \n      </div>\n    \n  \n      \n    </div>\n    <div class=\"card\">\n      <div class=\"project-info\">\n        <ion-icon  name=\"create\" class=\"icon\"></ion-icon>\n      </div>\n      <div class=\"container\">\n        <h5 ><b>{{details['description']}}</b></h5>\n        \n  \n      </div>\n    \n  \n      \n    </div>\n    <div class=\"card\" >\n      <div class=\"project-info\">\n        <ion-icon  name=\"document\" class=\"icon\"></ion-icon>\n      </div>\n      <div class=\"container\">\n        <h5 ><b>Project specifications</b></h5>\n        \n      </div>\n      \n      <div>\n        <ion-icon name=\"download\" (click)=\"download(details['file'])\"></ion-icon>\n      </div>\n   \n  \n      \n    </div>\n \n</ion-list>\n\n<ion-content>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button class=\"title\"></ion-back-button>\n      </ion-buttons>\n    <ion-title class=\"title\">\n      Details\n    </ion-title>\n    <ion-icon name=\"create\" slot=\"end\" class=\"modify\" (click)=\"openModify()\" *ngIf=\"details['state']=='not treated'\"></ion-icon>\n\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-list >\n    <ion-card  class=\"noresp-header\" *ngIf=\"details['state']=='not treated'\">\n      no response yet\n    </ion-card>\n    <ion-card  class=\"noresp-header\" *ngIf=\"details['state']=='treated'\">\n      your proposition has been treated\n    </ion-card>\n    <ion-list-header class=\"ion-title\">\n      Proposiotion informations\n    </ion-list-header>\n      <div class=\"card\">\n        <div class=\"project-info\">\n          <ion-icon  name=\"clipboard\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\" >\n          <h5 ><b>{{details['name']}}</b></h5>\n          \n    \n        </div>\n      \n    \n        \n      </div>\n      <div class=\"card\">\n        <div class=\"project-info\">\n          <ion-icon   [name]=\"icon(details['type'])\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{details['type']}}</b></h5>\n          \n    \n        </div>\n      \n    \n        \n      </div>\n      <div class=\"card\">\n        <div class=\"project-info\">\n          <ion-icon  name=\"create\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{details['description']}}</b></h5>\n          \n    \n        </div>\n      \n    \n        \n      </div>\n      <div class=\"card\" >\n        <div class=\"project-info\">\n          <ion-icon  name=\"document\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>Project specifications</b></h5>\n          \n        </div>\n        \n        <div>\n          <ion-icon name=\"download\" (click)=\"download(details['file'])\"></ion-icon>\n        </div>\n     \n    \n        \n      </div>\n      <ion-list-header class=\"ion-title\">\n        Budget and duration informations\n      </ion-list-header>\n      <div class=\"card\">\n        <div class=\"project-info\">\n          <ion-icon  name=\"cash\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{details['budget']}} DT</b></h5>\n          \n    \n        </div>\n      \n    \n        \n      </div>\n      <div class=\"card\">\n        <div class=\"project-info\">\n          <ion-icon  name=\"time\" class=\"icon\"></ion-icon>\n        </div>\n        <div class=\"container\">\n          <h5 ><b>{{details['duration']}} Months</b></h5>\n          \n    \n        </div>\n      \n    \n        \n      </div>\n   \n  </ion-list>\n</ion-content>\n"
 
 /***/ }),
 
@@ -136,7 +136,7 @@ var PropositionDetailsPage = /** @class */ (function () {
                     case 0:
                         console.log(url);
                         date = Date.now();
-                        return [4 /*yield*/, this.presentLoadingWithOptions()];
+                        return [4 /*yield*/, this.presentLoadingWithOptions("Downlaoding...")];
                     case 1:
                         loading = _a.sent();
                         loading.present();
@@ -165,14 +165,14 @@ var PropositionDetailsPage = /** @class */ (function () {
         var url = "/modify-proposition/" + this.id;
         this.router.navigate([url]);
     };
-    PropositionDetailsPage.prototype.presentLoadingWithOptions = function () {
+    PropositionDetailsPage.prototype.presentLoadingWithOptions = function (msg) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var loading;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.loadingController.create({
                             //   duration: 5000,
-                            message: 'Please wait...',
+                            message: msg,
                             translucent: true,
                             showBackdrop: true,
                             cssClass: 'custom-class custom-loading'

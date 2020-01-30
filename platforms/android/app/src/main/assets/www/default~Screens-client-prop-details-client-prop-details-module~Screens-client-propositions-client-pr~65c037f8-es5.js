@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8"],{
 
 /***/ "./src/app/Models/Project.ts":
 /*!***********************************!*\
@@ -247,24 +247,6 @@ var ProjectsService = /** @class */ (function () {
             });
         });
     };
-    ProjectsService.prototype.declinePropositon = function (value) {
-        var _this = this;
-        var user = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
-        return new Promise(function (resolve, reject) {
-            _this.afs.collection("refusedprops").add({
-                manager: user.uid,
-                name: value.name,
-                description: value.description,
-                type: value.type,
-                client: value.client,
-            }).then(function (res) {
-                resolve(res);
-            }, function (err) { return reject(err); });
-        });
-    };
-    ProjectsService.prototype.getRejections = function () {
-        return this.afs.collection("refusedprops").snapshotChanges();
-    };
     ProjectsService.prototype.getDoneTasks = function (id) {
         var _this = this;
         var tasks = [];
@@ -370,6 +352,19 @@ var ProjectsService = /** @class */ (function () {
     ProjectsService.prototype.getPropositionDetail = function (id) {
         return this.afs.collection('propositions').doc(id).snapshotChanges();
     };
+    ProjectsService.prototype.replyProposition = function (value, id) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.afs.collection("propositions").doc(id).update({
+                'state': "treated",
+                'duration': value.duration,
+                'budget': value.budget
+            })
+                .then(function (res) {
+                resolve(res);
+            }, function (err) { return reject(err); });
+        });
+    };
     ProjectsService.ctorParameters = function () { return [
         { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
     ]; };
@@ -387,4 +382,4 @@ var ProjectsService = /** @class */ (function () {
 /***/ })
 
 }]);
-//# sourceMappingURL=default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311-es5.js.map
+//# sourceMappingURL=default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8-es5.js.map

@@ -85,8 +85,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _Services_chat_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Services/chat.service */ "./src/app/Services/chat.service.ts");
 /* harmony import */ var _Services_authentification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/authentification.service */ "./src/app/Services/authentification.service.ts");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -94,10 +96,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DiscussionPage = class DiscussionPage {
-    constructor(route, service, auth) {
+    constructor(route, service, auth, datePipe) {
         this.route = route;
         this.service = service;
         this.auth = auth;
+        this.datePipe = datePipe;
         this.messages = [];
         this.route.params.subscribe(params => {
             this.id = params["id"];
@@ -111,13 +114,13 @@ let DiscussionPage = class DiscussionPage {
                     var obj = JSON.parse(JSON.stringify(value.payload.doc.data()));
                     var now = Date.now();
                     var d = obj["created_at"];
-                    if (new Date(now).getDay > new Date(d).getDay) {
-                        obj["date"] = (new Date(d)).getTime().toLocaleString();
+                    if (new Date(now).getDate() > new Date(d).getDate()) {
+                        obj["date"] = this.datePipe.transform(d, "MMM dd, HH:mm");
                     }
                     else {
-                        obj["date"] = new Date(d).getHours() + ":" + new Date(d).getMinutes();
+                        obj["date"] = this.datePipe.transform(d, "HH:mm");
                     }
-                    if (obj['sender'] == firebase_app__WEBPACK_IMPORTED_MODULE_5__["auth"]().currentUser.uid) {
+                    if (obj['sender'] == firebase_app__WEBPACK_IMPORTED_MODULE_6__["auth"]().currentUser.uid) {
                         this.myid = obj['sender'];
                     }
                     else {
@@ -173,7 +176,8 @@ let DiscussionPage = class DiscussionPage {
 DiscussionPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _Services_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"] },
-    { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_4__["AuthentificationService"] }
+    { type: _Services_authentification_service__WEBPACK_IMPORTED_MODULE_4__["AuthentificationService"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"] }
 ];
 DiscussionPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -181,7 +185,10 @@ DiscussionPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./discussion.page.html */ "./node_modules/raw-loader/index.js!./src/app/Screens/discussion/discussion.page.html"),
         styles: [__webpack_require__(/*! ./discussion.page.scss */ "./src/app/Screens/discussion/discussion.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _Services_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"], _Services_authentification_service__WEBPACK_IMPORTED_MODULE_4__["AuthentificationService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _Services_chat_service__WEBPACK_IMPORTED_MODULE_3__["ChatService"],
+        _Services_authentification_service__WEBPACK_IMPORTED_MODULE_4__["AuthentificationService"],
+        _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"]])
 ], DiscussionPage);
 
 

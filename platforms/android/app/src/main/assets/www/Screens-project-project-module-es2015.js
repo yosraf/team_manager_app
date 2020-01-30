@@ -87,15 +87,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Services/projects.service */ "./src/app/Services/projects.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 
 let ProjectPage = class ProjectPage {
-    constructor(route, formBuilder, service) {
+    constructor(route, formBuilder, toast, service) {
         this.route = route;
         this.formBuilder = formBuilder;
+        this.toast = toast;
         this.service = service;
         this.clients = [];
     }
@@ -123,19 +126,34 @@ let ProjectPage = class ProjectPage {
         });
     }
     add(value) {
+        let toast;
+        this.presentToast("created successfuly").then(res => {
+            toast = res;
+        });
         this.service.createProject(value).then(res => {
             if (res) {
                 console.log(res);
                 this.route.navigate(["/homes/projects"]);
+                toast.present();
             }
         }, err => {
             console.log(err);
+        });
+    }
+    presentToast(msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toast.create({
+                message: msg,
+                duration: 2000
+            });
+            return toast;
         });
     }
 };
 ProjectPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"] },
     { type: _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"] }
 ];
 ProjectPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -145,6 +163,7 @@ ProjectPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [__webpack_require__(/*! ./project.page.scss */ "./src/app/Screens/project/project.page.scss")]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"],
         _Services_projects_service__WEBPACK_IMPORTED_MODULE_4__["ProjectsService"]])
 ], ProjectPage);
 

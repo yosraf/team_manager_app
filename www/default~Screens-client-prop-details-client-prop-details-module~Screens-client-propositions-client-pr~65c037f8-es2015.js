@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8"],{
 
 /***/ "./src/app/Models/Project.ts":
 /*!***********************************!*\
@@ -222,23 +222,6 @@ let ProjectsService = class ProjectsService {
             });
         });
     }
-    declinePropositon(value) {
-        let user = firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"]().currentUser;
-        return new Promise((resolve, reject) => {
-            this.afs.collection("refusedprops").add({
-                manager: user.uid,
-                name: value.name,
-                description: value.description,
-                type: value.type,
-                client: value.client,
-            }).then(res => {
-                resolve(res);
-            }, err => reject(err));
-        });
-    }
-    getRejections() {
-        return this.afs.collection("refusedprops").snapshotChanges();
-    }
     getDoneTasks(id) {
         let tasks = [];
         return new Promise((resolve, reject) => {
@@ -327,6 +310,18 @@ let ProjectsService = class ProjectsService {
     getPropositionDetail(id) {
         return this.afs.collection('propositions').doc(id).snapshotChanges();
     }
+    replyProposition(value, id) {
+        return new Promise((resolve, reject) => {
+            this.afs.collection("propositions").doc(id).update({
+                'state': "treated",
+                'duration': value.duration,
+                'budget': value.budget
+            })
+                .then(res => {
+                resolve(res);
+            }, err => reject(err));
+        });
+    }
 };
 ProjectsService.ctorParameters = () => [
     { type: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"] }
@@ -343,4 +338,4 @@ ProjectsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /***/ })
 
 }]);
-//# sourceMappingURL=default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311-es2015.js.map
+//# sourceMappingURL=default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8-es2015.js.map

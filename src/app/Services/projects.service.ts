@@ -323,6 +323,23 @@ export class ProjectsService {
       )
     })
   }
+  updateTask(id,state){
+    return new Promise<any>((resolve,reject)=>{
+      this.afs.collection("projects").doc(id).collection("tasks").doc(id).update({
+        
+          "state":state
+        
+      })
+     
+      .then(
+        res => {
+        
+          resolve(res)
+        },
+        err => reject(err)
+      )
+    })
+  }
  updateProject(id,progress){
   return new Promise<any>((resolve,reject)=>{
     this.afs.collection("projects").doc(id).update(

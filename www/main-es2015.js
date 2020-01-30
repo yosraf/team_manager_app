@@ -16,9 +16,15 @@ var map = {
 		"./src/app/Screens/chat/chat.module.ts",
 		"Screens-chat-chat-module"
 	],
+	"./Screens/client-prop-details/client-prop-details.module": [
+		"./src/app/Screens/client-prop-details/client-prop-details.module.ts",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
+		"common",
+		"Screens-client-prop-details-client-prop-details-module"
+	],
 	"./Screens/client-propositions/client-propositions.module": [
 		"./src/app/Screens/client-propositions/client-propositions.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"Screens-client-propositions-client-propositions-module"
 	],
 	"./Screens/discussion/discussion.module": [
@@ -27,7 +33,7 @@ var map = {
 	],
 	"./Screens/homes/homes.module": [
 		"./src/app/Screens/homes/homes.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-homes-homes-module"
@@ -38,51 +44,46 @@ var map = {
 	],
 	"./Screens/modify-project/modify-project.module": [
 		"./src/app/Screens/modify-project/modify-project.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"Screens-modify-project-modify-project-module"
 	],
 	"./Screens/modify-proposition/modify-proposition.module": [
 		"./src/app/Screens/modify-proposition/modify-proposition.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"common",
 		"Screens-modify-proposition-modify-proposition-module"
 	],
 	"./Screens/project-details/project-details.module": [
 		"./src/app/Screens/project-details/project-details.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module",
 		"Screens-project-details-project-details-module"
 	],
 	"./Screens/project-proposition/project-proposition.module": [
 		"./src/app/Screens/project-proposition/project-proposition.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"Screens-project-proposition-project-proposition-module"
 	],
 	"./Screens/project/project.module": [
 		"./src/app/Screens/project/project.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"Screens-project-project-module"
 	],
 	"./Screens/proposition-details/proposition-details.module": [
 		"./src/app/Screens/proposition-details/proposition-details.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"common",
 		"Screens-proposition-details-proposition-details-module"
 	],
-	"./Screens/rejected-propositions/rejected-propositions.module": [
-		"./src/app/Screens/rejected-propositions/rejected-propositions.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
-		"Screens-rejected-propositions-rejected-propositions-module"
-	],
 	"./Screens/task-form/task-form.module": [
 		"./src/app/Screens/task-form/task-form.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"Screens-task-form-task-form-module"
 	],
 	"./Screens/task/task.module": [
 		"./src/app/Screens/task/task.module.ts",
-		"default~Screens-client-propositions-client-propositions-module~Screens-homes-homes-module~Screens-mo~a4fb3311",
+		"default~Screens-client-prop-details-client-prop-details-module~Screens-client-propositions-client-pr~65c037f8",
 		"default~Screens-homes-homes-module~Screens-project-details-project-details-module~Screens-task-task-module",
 		"Screens-task-task-module"
 	]
@@ -710,11 +711,11 @@ const routes = [
     { path: 'project-proposition', loadChildren: './Screens/project-proposition/project-proposition.module#ProjectPropositionPageModule' },
     { path: 'project-details/:id', loadChildren: './Screens/project-details/project-details.module#ProjectDetailsPageModule' },
     { path: 'client-propositions', loadChildren: './Screens/client-propositions/client-propositions.module#ClientPropositionsPageModule' },
-    { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
     { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
     { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
     { path: 'discussion/:id', loadChildren: './Screens/discussion/discussion.module#DiscussionPageModule' },
     { path: 'modify-proposition/:id', loadChildren: './Screens/modify-proposition/modify-proposition.module#ModifyPropositionPageModule' },
+    { path: 'client-prop-details/:id', loadChildren: './Screens/client-prop-details/client-prop-details.module#ClientPropDetailsPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -898,6 +899,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_utils_IonicGestureConfig__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../app/utils/IonicGestureConfig */ "./src/app/utils/IonicGestureConfig.ts");
 /* harmony import */ var _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @ionic-native/chooser/ngx */ "./node_modules/@ionic-native/chooser/ngx/index.js");
 /* harmony import */ var _ionic_native_downloader_ngx__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @ionic-native/downloader/ngx */ "./node_modules/@ionic-native/downloader/ngx/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
 
 
 
@@ -956,7 +959,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             },
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
             },
-            _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__["Chooser"]
+            _ionic_native_chooser_ngx__WEBPACK_IMPORTED_MODULE_24__["Chooser"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_26__["DatePipe"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
