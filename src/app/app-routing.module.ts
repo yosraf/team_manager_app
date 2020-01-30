@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'rejected-propositions', loadChildren: './Screens/rejected-propositions/rejected-propositions.module#RejectedPropositionsPageModule' },
   { path: 'modify-project/:id', loadChildren: './Screens/modify-project/modify-project.module#ModifyProjectPageModule' },
   { path: 'proposition-details/:id', loadChildren: './Screens/proposition-details/proposition-details.module#PropositionDetailsPageModule' },
-];
+  { path: 'task-dashbord', loadChildren: './Screens/task-dashbord/task-dashbord.module#TaskDashbordPageModule' },
+
+  ];
 
 @NgModule({
   imports: [

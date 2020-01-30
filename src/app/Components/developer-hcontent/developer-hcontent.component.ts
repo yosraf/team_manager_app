@@ -23,7 +23,7 @@ export class DeveloperHcontentComponent implements OnInit {
 
   ngOnInit() {
 
-    /*this.service.AsyncProjects().subscribe(
+    this.service.AsyncProjects().subscribe(
       data => {
         this.projects=[];
         data.forEach(d=>{
@@ -145,6 +145,5 @@ export class DeveloperHcontentComponent implements OnInit {
   openProject(value){
     let url='/project-details/'+value
     this.route.navigate([url])
-  }*/
-}
+  }
 }

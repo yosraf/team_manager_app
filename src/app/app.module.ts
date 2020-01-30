@@ -27,6 +27,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import {IonicGestureConfig} from "../app/utils/IonicGestureConfig";
+import { DragulaModule, DragulaService } from 'ng2-dragula';
 
 firebase.initializeApp(environment.firbase);
 
@@ -42,6 +43,8 @@ firebase.initializeApp(environment.firbase);
      AngularFireModule.initializeApp(environment.firbase),
      AngularFirestoreModule,
     AngularFireDatabaseModule,
+    DragulaModule.forRoot(),
+   
    
 
 
@@ -57,6 +60,7 @@ firebase.initializeApp(environment.firbase);
     FilePath,
     FCM,
     LocalNotifications,
+    DragulaService,
     {
       provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig,
     }
