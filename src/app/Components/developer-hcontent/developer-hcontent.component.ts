@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import { Router } from '@angular/router';
 import { TaskDevService } from '../../Services/task-dev.service';
 import * as firebase from 'firebase/app';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-developer-hcontent',
@@ -16,32 +17,39 @@ export class DeveloperHcontentComponent implements OnInit {
   dognut: any;
   colorArray: any;
   projects: any = [];
-  tasks:any=[];
+  tasks: any = [];
   bars: any;
-  names:any=[];
-  progress:any=[]
+  names: any = [];
+  progress: any = [];
+  
   constructor(private route: Router, private service: TaskDevService) { }
-  
-  
+
+
   ngOnInit() {
    
-  this.service.getProjects().then(res=>{
-
-      this.projects=res;
    
-      this.service.getProjectProgess().then(res=>{
-        this.progress=res
+    let value = firebase.auth().currentUser;
+
+    this.service.getProjects().then(res => {
+
+
+      this.projects =res;
+
+      this.service.getProjectProgess().then(res => {
+        this.progress = res
         console.log(res)
       })
-      this.service.getProjectNames().then(res=>{
-        this.names=res
+      
+      this.service.getProjectNames().then(res => {
+        this.names = res
         console.log(res)
+        this.createLine();
       })
-          
-    this.createLine();
-  })
- 
-    
+
+     
+    })
+
+
   }
   /*ngAfterViewInit(){
     this.progress=this.service.getProjectProgess();
@@ -50,26 +58,26 @@ export class DeveloperHcontentComponent implements OnInit {
     this.createLine(this.names,this.progress);
 
   }*/
- /* ionviewdidenter(){
-    this.progress=this.service.getProjectProgess();
-    this.names=this.service.getProjectNames();
-    console.log(this.names)
-    this.createLine(this.names,this.progress);
+  /* ionviewdidenter(){
+     this.progress=this.service.getProjectProgess();
+     this.names=this.service.getProjectNames();
+     console.log(this.names)
+     this.createLine(this.names,this.progress);
+ 
+   }*/
 
-  }*/
-  
 
 
-  createLine(){
+  createLine() {
     this.bars = new Chart(this.lineChart.nativeElement, {
       type: 'line',
       data: {
-        labels:this.names,
+        labels: this.names,
         datasets: [{
           label: 'Projects with their progress',
-          data:this.progress,
-          borderColor	:'#a55eea',
-          backgroundColor: '#d6b0ff', 
+          data: this.progress,
+          borderColor: '#a55eea',
+          backgroundColor: '#d6b0ff',
           borderWidth: 2
         }]
       },
@@ -83,41 +91,69 @@ export class DeveloperHcontentComponent implements OnInit {
         }
       }
     });
+    
   }
 
- 
+  getProjects() {
+    this.projects=[];
+    this.service.getProjects() .then(res=>{
+     
+      res.forEach(element => {
+        this.projects.push(element);
+      
+       
+      });
+    
+    },
+    err => { 
+       console.log(err);}
+    );
+
+  }
   
-  /*openproject(id) {
-    this.route.navigate(["/project-details"])
+    openProject(id){
+      console.log('i M GOING TO TASK DAHSBOARD');
+      
+      let url='/task-dashbord/'+id;
+      this.route.navigate([url])
+    }
 
-  }
+   /* openProject(id){
+      console.log('i M GOING TO TASK DAHSBOARD');
+      
+      let url='/new-task-dashbord/'+id;
+      this.route.navigate([url])
+    }*/
   
-  openProject(value){
-    let url='/project-details/'+value
-    this.route.navigate([url])
-  }*/
 
-color(type){
-  if(type=="web"){
-    return "#462373";
+    ionRefresh(event) {
+      setTimeout(() => {
+       this.getProjects();
+        event.target.complete();
+      }, 2000);
   }
-  if(type=="mobile"){
-    return "#a55eea";
+
+  color(type) {
+    if (type == "web") {
+      return "#462373";
+    }
+    if (type == "mobile") {
+      return "#a55eea";
+    }
+    if (type == "data") {
+      return "#8e44ad";
+    }
   }
-  if(type=="data"){
-    return "#8e44ad";
+  icon(type) {
+    if (type == "web") {
+      return "md-desktop";
+    }
+    if (type == "mobile") {
+      return "md-phone-portrait";
+    }
+    if (type == "data") {
+      return "md-analytics";
+    }
   }
- }
-icon(type) {
-  if (type == "web") {
-    return "md-desktop";
-  }
-  if (type == "mobile") {
-    return "md-phone-portrait";
-  }
-  if (type == "data") {
-    return "md-analytics";
-  }
-}
 
 }

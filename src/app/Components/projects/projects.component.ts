@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router, NavigationEnd} from "@angular/router";
 import {ProjectsService} from '../../Services/projects.service';
-import{Observable}from 'rxjs'
+import{Observable}from 'rxjs';
 import {AngularFirestore,AngularFirestoreDocument ,AngularFirestoreCollection}from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { AlertController } from '@ionic/angular';

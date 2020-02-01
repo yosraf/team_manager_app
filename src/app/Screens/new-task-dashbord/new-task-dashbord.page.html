@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>tasks</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content forceOverscroll="false">
+
+  <ion-grid>
+    <ion-row no-padding class="matrix">
+
+      <ion-col size="6" class="task-to-do">
+        <div>To Do</div>
+        <ion-list dragula="bag" [(dragulaModel)]="toDo" lines="none">
+          <ion-item *ngFor="let task of tasks" expand="block" text-wrap>
+            {{ task.name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="6" class="task-doing">
+        <div>Doing</div>
+        <ion-list dragula="ongoing" [(dragulaModel)]="doing" lines="none">
+          <ion-item *ngFor="let task of doing" expand="block" text-wrap>
+            {{ task.name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="6" class="task-done">
+        <div>Done</div>
+        <ion-list dragula="bag" [(dragulaModel)]="done" lines="none">
+          <ion-item *ngFor="let task of done" expand="block" text-wrap>
+            {{ task.name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,214 +1,45 @@
-<!--
-  <ion-app>
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>Task Dashbord</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content fullscreen>
-    <ion-grid>
-     
-      <ion-row>
-        <ion-col>
-          <div>
-            To Do
-          </div>
-          <ion-list>
-            
-    
-            <ion-item>
-             
-              <ion-label>
-                <h2>Poe</h2>
-                <h3>New Ride</h3>
-                <p>I just upgraded my X-Wing. Next time...</p>
-              </ion-label>
-            </ion-item>
-    
-            <ion-item>
-            
-              <ion-label>
-                <h2>Ben</h2>
-                <h3>Move Along</h3>
-                <p>These aren't the droids you're looking for...</p>
-              </ion-label>
-            </ion-item>
-    
-            <ion-item>
-             
-              <ion-label>
-                <h2>Leia</h2>
-                <h3>You're My Only Hope</h3>
-                <p>I've placed information vital to the survival...</p>
-              </ion-label>
-            </ion-item>
-    
-            <ion-item>
-             
-              <ion-label>
-                <h2>Yoda</h2>
-                <h3>Size matters not</h3>
-                <p>Do or do not. There is no try...</p>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-
-        </ion-col>
-        <ion-col>
-          <div>Doing</div>
-        </ion-col>
-        <ion-col>
-          <div>Done</div>
-        </ion-col>
-      </ion-row>
-  
-     
-    </ion-grid>
-  </ion-content>
-</ion-app>
-
--->
-
-
-<!-- Dragula code
-  <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Task Dashbord
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
- 
-<ion-content forceOverscroll="false">
-  <ion-grid>
- 
-    <ion-row align-items-center>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="fixed">New Todo:</ion-label>
-          <ion-input [(ngModel)]="todo.value"></ion-input>
-        </ion-item>
- 
-      </ion-col>
- 
-      <ion-col size="12">
-        <ion-item>
-          <ion-label>Quadrant:</ion-label>
-          <ion-select [(ngModel)]="selectedQuadrant">
-            <ion-select-option value="q1">Do</ion-select-option>
-            <ion-select-option value="q2">Schedule</ion-select-option>
-            <ion-select-option value="q3">Delegate</ion-select-option>
-            <ion-select-option value="q4">Dont do</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
- 
-    </ion-row>
- 
-    <ion-button expand="block" fill="outline" (click)="addTodo()">
-      <ion-icon name="add" slot="start"></ion-icon>
-      Add Todo
-    </ion-button>
- 
-    <ion-row no-padding class="matrix">
-      <ion-col size="6" class="q1">
-        <div class="q-header">Do</div>
-        <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
-          <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
-            {{ item.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
- 
-      <ion-col size="6" class="q2">
-        <div class="q-header">Schedule</div>
-        <ion-list dragula="bag" [(dragulaModel)]="q2" lines="none">
-          <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
-            {{ item.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
- 
-      <ion-col size="6" class="q3">
-        <div class="q-header">Delegate</div>
-        <ion-list dragula="bag" [(dragulaModel)]="q3" lines="none">
-          <ion-item *ngFor="let item of q3" [color]="item.color" expand="block" text-wrap>
-            {{ item.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
- 
-      <ion-col size="6" class="q4">
-        <div class="q-header">Don't do</div>
-        <ion-list dragula="bag" [(dragulaModel)]="q4" lines="none">
-          <ion-item *ngFor="let item of q4" [color]="item.color" expand="block" text-wrap>
-            {{ item.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
- 
-  <ion-row class="delete-area" align-items-center justify-content-center>
-    <ion-icon name="trash" color="medium"></ion-icon>
-  </ion-row>
- 
-</ion-content>
--->
-<!--     -->
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>tasks</ion-title>
-    <ion-icon name="create" slot="end" class="modify" (click)="openModify(id)"></ion-icon>
   </ion-toolbar>
 </ion-header>
- 
-<ion-content forceOverscroll="false">
-  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
-    (ionStart)="ionStart($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-grid>
- 
-    <ion-row no-padding class="matrix">
 
-      <ion-col size="6" class="task-to-do">
-        <div>To Do</div>
-        <ion-list dragula="bag" [(dragulaModel)]="toDo" lines="none">
-          <ion-item *ngFor="let task of toDo" [color]="task.color" expand="block" text-wrap>
-            {{ task.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
+<ion-content>
+  
+  <ion-list-header>
+    My tasks
+  </ion-list-header>
+  <div>
+    <canvas id="canvas"></canvas>
+     
+    </div>
+
+
+  <ion-list *ngIf="this.task.length>0">
+    <div *ngFor="let t of task; let i = index;">
+      <ion-item (click)="update(t['name'])" > 
+        <ion-icon name="checkmark-circle" slot="start" class="icon" color="warning"></ion-icon>
+        <ion-badge color="tertiary" slot="end">{{t["hours"]}} H</ion-badge>
+        <ion-label>
+          <h3 class="name">{{t["name"]}}</h3>
+          <p class="description">{{t["description"]}}</p>
+        </ion-label>
+      </ion-item>
+
+    
+     
+    </div>
  
-      <ion-col size="6" class="task-doing">
-        <div>Doing</div>
-        <ion-list dragula="bag" [(dragulaModel)]="doing" lines="none">
-          <ion-item *ngFor="let task of doing" [color]="task.color" expand="block" text-wrap>
-            {{ task.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
- 
-      <ion-col size="6" class="task-done">
-        <div>Done</div>
-        <ion-list dragula="bag" [(dragulaModel)]="done" lines="none">
-          <ion-item *ngFor="let task of done" [color]="task.color" expand="block" text-wrap>
-            {{ task.value }}
-          </ion-item>
-        </ion-list>
-      </ion-col>
- 
-    </ion-row>
-  </ion-grid>
+  </ion-list>
+
+
+      <ion-list-header *ngIf="this.task.length==0" class="no-project">
+        No task assigned to you yet
+      </ion-list-header>
 
  
+
 </ion-content>

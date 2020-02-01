@@ -44,7 +44,6 @@
 
 
     <ion-card class="welcome-card" [hidden]="!dev">
-
       <ion-card-content>
         <canvas #dognut></canvas>
       </ion-card-content>
@@ -56,6 +55,13 @@
     <ion-list-header>
       Done tasks
     </ion-list-header>
+     <ion-card class="welcome-card" [hidden]="!dev">
+
+      <ion-card-content>
+        <canvas #dognut></canvas>
+      </ion-card-content>
+    </ion-card>
+
     <ion-list>
       <div *ngFor="let t of task; let i = index;">
         <ion-item *ngIf="t['state']=='done'">
